@@ -8,5 +8,6 @@ themes/*
 upgrade/*
 uploads/*
 
+index.php
 **/.DS_STORE
 **/.sass-cache
