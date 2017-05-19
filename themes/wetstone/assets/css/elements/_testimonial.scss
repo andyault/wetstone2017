@@ -1,0 +1,26 @@
+//blocks
+.testimonial {
+	width: 384px;
+	font-size: 1.125em;
+	line-height: $emBodyLineH;
+	margin-bottom: $pxPadding;
+
+	&:first-of-type {
+		margin-right: $pxPadding;
+	}
+}
+
+.testimonial-info {
+	float: right;
+	text-align: right;
+}
+
+//elements
+.testimonial-body {
+	font-style: italic;
+	hyphens: auto;
+}
+
+.testimonial-author {
+	font-weight: bold;
+}

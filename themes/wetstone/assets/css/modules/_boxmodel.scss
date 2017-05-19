@@ -1,0 +1,54 @@
+//variables
+$pxPadding: 16px;
+
+//blocks
+.site-content {
+	@extend .box-center;
+
+	width: 1200px;
+}
+
+.box-center {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.fullpage {
+	width: 100vw;
+	height: 100vh;
+}
+
+section {
+	padding: 1em 0;
+	overflow: hidden;
+}
+
+//elements
+.single-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.single-inquire {
+	@extend .box-center;
+
+	position: absolute;
+}
+
+//modifiers
+.site-content-small {
+	width: 700px;
+}
+
+.list-basic {
+	margin: 0;
+	padding: 0;
+
+	&> li {
+		padding: 0;
+
+		list-style: none;
+	}
+}

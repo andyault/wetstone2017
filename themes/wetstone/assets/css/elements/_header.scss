@@ -1,0 +1,102 @@
+//variables
+$pxHeader: 64px;
+
+//blocks
+.site-header {
+	position: relative;
+	width: 100%;
+	height: $pxHeader;
+
+	background-color: $col3;
+	color: $col1;
+	z-index: 99;
+}
+
+.site-header-nav {
+	@extend .list-basic;
+
+	display: flex;
+	height: auto;
+	justify-content: center;
+
+	li:hover .site-header-sub-nav { display: block; }
+}
+
+.site-header-sub-nav {
+	@extend .list-basic;
+
+	display: none;
+	position: absolute;
+	background: $col3;
+
+	&:hover { display: block; }
+}
+
+//elements
+.site-header-link {
+	display: inline-block;
+	padding: 0 $pxPadding;
+
+	line-height: $pxHeader;
+}
+
+.site-header-logo {
+	width: $pxHeader;
+	height: $pxHeader;
+}
+
+.site-header-sub {
+	position: relative;
+	width: 2em;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%; left: 50%;
+		width: 0;
+		height: 0;
+		transform: translate(-50%, -50%);
+
+		border-top: 16px solid #fff;
+		border-right: 8px solid transparent;
+		border-left: 8px solid transparent;
+	}
+}
+
+//modifiers
+.link-site-header {
+	position: relative;
+	
+	font-weight: bold;
+	text-transform: uppercase;
+
+	&.active { color: $col2; }
+
+	/*
+	&:hover::after {
+		width: calc(100% - #{$pxPadding * 2});
+		left: $pxPadding;
+	}
+
+	&::after {
+		content: '';
+
+		position: absolute;
+		width: 0;
+		height: 2px;
+		bottom: $pxHeader / 2 - $pxPadding * 0.75;
+		left: 50%;
+
+		background: $col1;
+
+		transition: all $sTrans;
+	}
+	*/
+}
+
+.has-sub-symbol {
+	margin-left: 1em;
+
+	font-size: smaller;
+	vertical-align: top;
+}

@@ -1,10 +1,12 @@
-#ignore everything
-/*
-
-#except...
-!.gitignore
+#ignore stuff we don't need
+plugins/*
 !plugins/wetstone-*
-!themes/wetstone/*
 
-#but not except...
-.sass-cache
+themes/*
+!themes/wetstone/
+
+upgrade/*
+uploads/*
+
+**/.DS_STORE
+**/.sass-cache

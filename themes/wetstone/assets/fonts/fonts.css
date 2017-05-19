@@ -1,0 +1,35 @@
+@font-face {
+	font-family: 'cera pro';
+	font-weight: regular;
+	font-style: regular;
+
+	src: url('CeraPRO-Regular.woff2') format('woff2'),
+	     url('CeraPRO-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'cera pro';
+	font-weight: bold;
+	font-style: regular;
+
+	src: url('CeraPRO-Bold.woff2') format('woff2'),
+	     url('CeraPRO-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'cera pro';
+	font-weight: regular;
+	font-style: italic;
+
+	src: url('CeraPRO-RegularItalic.woff2') format('woff2'),
+	     url('CeraPRO-RegularItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'wetstone';
+	font-weight: regular;
+	font-style: regular;
+
+	src: url('WetStone.woff2') format('woff2'),
+	     url('WetStone.woff') format('woff');
+}

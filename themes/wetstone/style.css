@@ -1,0 +1,390 @@
+@charset "UTF-8";
+/*!
+Theme Name: WetStone 2017
+Author: Andrew Ault
+Author URI: http://andrewault.me
+Description: Bringing WetStone into the 21st century.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: WetStone
+Tags:
+*/
+.site-content, .body-content {
+  width: 1200px; }
+
+.box-center, .site-content, .body-content, .single-inquire {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.fullpage {
+  width: 100vw;
+  height: 100vh; }
+
+section {
+  padding: 1em 0;
+  overflow: hidden; }
+
+.single-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.single-inquire {
+  position: absolute; }
+
+.site-content-small, .body-content {
+  width: 700px; }
+
+.list-basic, .site-header-nav, .site-header-sub-nav {
+  margin: 0;
+  padding: 0; }
+  .list-basic > li, .site-header-nav > li, .site-header-sub-nav > li {
+    padding: 0;
+    list-style: none; }
+
+p {
+  margin: 0 0 1.25em 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center; }
+
+.font-reset {
+  font-size: 1rem; }
+
+.wetstone-font {
+  height: 1.7em;
+  font-family: "wetstone", serif !important;
+  line-height: 2em;
+  letter-spacing: 0.05em; }
+  .wetstone-font::after {
+    content: '™';
+    position: relative;
+    top: -0.75em;
+    font-family: "cera pro", helvetica, arial, sans-serif;
+    font-size: 0.75em; }
+
+.body-content {
+  font-size: 1.3em;
+  line-height: 1.5em;
+  hyphens: auto; }
+
+.page-header {
+  margin: 0.5em 0;
+  font-family: "cera pro", helvetica, arial, sans-serif;
+  font-size: 3em;
+  font-weight: bold; }
+
+.section-header {
+  margin: 0.25em 0 0.5em;
+  font-family: "cera pro", helvetica, arial, sans-serif;
+  font-size: 2.5em;
+  font-weight: bold; }
+
+.link {
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: all 0.3s; }
+  .link:hover {
+    color: #bbbbbb; }
+
+.link-button {
+  display: inline-block;
+  min-width: 128px;
+  padding: 0 1em;
+  font-weight: bold;
+  text-align: center;
+  line-height: 3em;
+  text-transform: uppercase;
+  background: #2AAF51;
+  color: #FFFFFF;
+  border-radius: 4px; }
+
+.link-body {
+  color: #2AAF51; }
+  .link-body:hover {
+    color: #006b0d; }
+
+.text-center {
+  text-align: center; }
+
+.text-left {
+  text-align: left; }
+
+.alignright {
+  float: right;
+  margin-left: 16px; }
+
+.site-header {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  background-color: #303030;
+  color: #FFFFFF;
+  z-index: 99; }
+
+.site-header-nav {
+  display: flex;
+  height: auto;
+  justify-content: center; }
+  .site-header-nav li:hover .site-header-sub-nav {
+    display: block; }
+
+.site-header-sub-nav {
+  display: none;
+  position: absolute;
+  background: #303030; }
+  .site-header-sub-nav:hover {
+    display: block; }
+
+.site-header-link {
+  display: inline-block;
+  padding: 0 16px;
+  line-height: 64px; }
+
+.site-header-logo {
+  width: 64px;
+  height: 64px; }
+
+.site-header-sub {
+  position: relative;
+  width: 2em; }
+  .site-header-sub::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-top: 16px solid #fff;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent; }
+
+.link-site-header {
+  position: relative;
+  font-weight: bold;
+  text-transform: uppercase;
+  	/*
+  	&:hover::after {
+  		width: calc(100% - 32px);
+  		left: $pxPadding;
+  	}
+  
+  	&::after {
+  		content: '';
+  
+  		position: absolute;
+  		width: 0;
+  		height: 2px;
+  		bottom: $pxHeader / 2 - $pxPadding * 0.75;
+  		left: 50%;
+  
+  		background: $col1;
+  
+  		transition: all $sTrans;
+  	}
+  	*/ }
+  .link-site-header.active {
+    color: #2AAF51; }
+
+.has-sub-symbol {
+  margin-left: 1em;
+  font-size: smaller;
+  vertical-align: top; }
+
+.site-footer {
+  overflow: hidden;
+  margin-top: 128px;
+  padding: 16px 0; }
+
+.product-preview {
+  display: inline-flex;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; }
+
+.product-preview-content {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: calc(100% - 64px);
+  height: calc(100% - 64px);
+  z-index: 2;
+  line-height: 1.5em;
+  hyphens: auto; }
+
+.product-page {
+  display: flex;
+  height: 192px;
+  margin-bottom: 2em; }
+
+.product-page-inner {
+  display: flex;
+  flex-direction: column; }
+
+.product-preview-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.6); }
+
+.product-preview-header {
+  width: 100%;
+  margin: 0 0 16px;
+  font-size: 1.5em; }
+
+.product-preview-button {
+  position: absolute;
+  bottom: 0;
+  white-space: nowrap; }
+
+.product-page-img {
+  width: 192px;
+  height: 192px;
+  margin-right: 16px;
+  flex-shrink: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+.product-page-header {
+  margin-top: 0;
+  text-align: left; }
+
+.product-page-info {
+  overflow: hidden; }
+  .product-page-info p:last-of-type {
+    margin-bottom: 0; }
+
+.product-page-button {
+  margin-top: 1.25em;
+  align-self: center; }
+
+.testimonial {
+  width: 384px;
+  font-size: 1.125em;
+  line-height: 1.5em;
+  margin-bottom: 16px; }
+  .testimonial:first-of-type {
+    margin-right: 16px; }
+
+.testimonial-info {
+  float: right;
+  text-align: right; }
+
+.testimonial-body {
+  font-style: italic;
+  hyphens: auto; }
+
+.testimonial-author {
+  font-weight: bold; }
+
+.form-table {
+  position: relative;
+  width: 100%; }
+  .form-table td {
+    width: 50%;
+    padding-bottom: 1em;
+    vertical-align: top; }
+    .form-table td:first-of-type {
+      padding-right: 8px; }
+    .form-table td:last-of-type {
+      padding-left: 8px; }
+
+.form-multiple {
+  display: inline-flex;
+  width: 100%; }
+  .form-multiple .form-label {
+    flex-basis: 50%; }
+    .form-multiple .form-label:not(:last-of-type) {
+      padding-right: 16px; }
+
+.form-checkboxes {
+  display: inline-block;
+  line-height: 1.5em;
+  text-align: left; }
+  .form-checkboxes label {
+    padding-left: 1em; }
+
+.form-input, .form-textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.25em;
+  padding: 0.5em;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+
+.form-textarea {
+  resize: vertical; }
+
+.table-footer {
+  padding: 2em 0 0 0;
+  text-align: center; }
+
+.req {
+  color: #f00; }
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #666;
+  color: #FFFFFF; }
+
+.hero-info {
+  width: 512px;
+  text-align: center; }
+
+.section-invert {
+  background: #303030;
+  color: #FFFFFF; }
+
+.products-preview {
+  padding: 0; }
+
+.testimonials-preview-testimonials {
+  display: flex;
+  justify-content: center; }
+
+.hero-desc {
+  font-size: 1.5em;
+  line-height: 1.5em; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 16px;
+  text-transform: uppercase;
+  animation: hero-scroll-bounce 1s ease-in-out infinite; }
+
+.fullpage-hero {
+  margin-top: -64px;
+  padding-top: 64px; }
+
+@keyframes hero-scroll-bounce {
+  0% {
+    margin-bottom: 0; }
+  50% {
+    margin-bottom: 0.25em; }
+  100% {
+    margin-bottom: 0; } }
+* {
+  box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "cera pro", helvetica, arial, sans-serif;
+  font-size: 16px; }
+
+/*# sourceMappingURL=style.css.map */

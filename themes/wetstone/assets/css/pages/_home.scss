@@ -1,0 +1,58 @@
+//variables
+
+//blocks
+.hero {
+	display: flex;
+
+	justify-content: center;
+	align-items: center;
+
+	background: #666;
+	color: $col1;
+}
+
+.hero-info {
+	width: 512px;
+
+	text-align: center;
+}
+
+.section-invert {
+	background: $col3;
+	color: $col1;
+}
+
+.products-preview { padding: 0; }
+
+.testimonials-preview-testimonials {
+	display: flex;
+	justify-content: center;
+}
+
+//elements
+.hero-desc {
+	font-size: 1.5em;
+	line-height: 1.5em;
+}
+
+.hero-scroll {
+	position: absolute;
+	bottom: $pxPadding;
+
+	text-transform: uppercase;
+
+	animation: hero-scroll-bounce 1s ease-in-out infinite;
+}
+
+//modifiers
+.fullpage-hero {
+	margin-top: -$pxHeader;
+	padding-top: $pxHeader;
+}
+
+//animations
+@keyframes hero-scroll-bounce {
+	0% { margin-bottom: 0; }
+	50% { margin-bottom: 0.25em; }
+	100% { margin-bottom: 0; }
+}

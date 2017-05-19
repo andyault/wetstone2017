@@ -1,0 +1,67 @@
+//blocks
+.form-table {
+	position: relative;
+	width: 100%;
+
+	td {
+		width: 50%;
+		padding-bottom: 1em;
+		vertical-align: top;
+
+		&:first-of-type { padding-right: $pxPadding / 2; }
+		&:last-of-type { padding-left: $pxPadding / 2; }
+	}
+}
+
+.form-multiple {
+	display: inline-flex;
+	width: 100%;
+
+	.form-label {
+		flex-basis: 50%;
+
+		&:not(:last-of-type) { padding-right: $pxPadding; }
+	}
+}
+
+.form-checkboxes {
+	display: inline-block;
+
+	line-height: 1.5em;
+	text-align: left;
+
+	label { padding-left: 1em; }
+}
+
+//elements
+.form-label {
+	//color: $col3 + $colShade;
+}
+
+.form-input {
+	display: block;
+	width: 100%;
+	margin-top: 0.25em;
+	padding: 0.5em;
+
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.form-textarea {
+	@extend .form-input;
+
+	resize: vertical;
+}
+
+//modifiers
+.table-footer {
+	padding: 2em 0 0 0;
+
+	text-align: center;
+}
+
+.req {
+	color: #f00;
+}

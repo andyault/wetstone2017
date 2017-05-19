@@ -1,0 +1,42 @@
+/*!
+Theme Name: WetStone 2017
+Author: Andrew Ault
+Author URI: http://andrewault.me
+Description: Bringing WetStone into the 21st century.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: WetStone
+Tags:
+*/
+
+//imports
+//  modules
+@import 'modules/variables';
+@import 'modules/boxmodel';
+@import 'modules/typography';
+
+//  elements
+@import 'elements/header';
+@import 'elements/footer';
+@import 'elements/product';
+@import 'elements/testimonial';
+@import 'elements/forms';
+
+//  pages
+@import 'pages/home';
+
+//misc
+* { box-sizing: border-box; }
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin:0; 
+
+	font-family: $fontMain;
+	font-size: $emBase;
+}

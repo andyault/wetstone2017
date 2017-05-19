@@ -1,0 +1,95 @@
+//variables
+$fontMain: 'cera pro', helvetica, arial, sans-serif;
+$fontProduct: 'wetstone', serif;
+
+$emBase: 16px;
+
+$pxBodyHalfW: 384px;
+$emBodySize: 1.3em;
+$emBodyLineH: 1.5em;
+
+//basics
+p { margin: 0 0 1.25em 0; }
+h1, h2, h3, h4, h5, h6 { text-align: center; }
+.font-reset { font-size: 1rem; }
+
+//fix for stupid wetstone font
+.wetstone-font {
+	height: 1.7em;
+
+	font-family: $fontProduct !important;
+	line-height: 2em;
+	letter-spacing: 0.05em;
+	
+	&::after {
+		content: '™';
+
+		position: relative;
+		top: -0.75em;
+
+		font-family: $fontMain;
+		font-size: 0.75em;
+	}
+}
+
+//blocks
+.body-content {
+	@extend .site-content, .site-content-small;
+
+	font-size: $emBodySize;
+	line-height: $emBodyLineH;
+	hyphens: auto;
+}
+
+//elements
+.page-header {
+	margin: 0.5em 0;
+
+	font-family: $fontMain;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+.section-header {
+	margin: 0.25em 0 0.5em;
+
+	font-family: $fontMain;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+.link {
+	text-decoration: none;
+	color: $col1;
+
+	transition: all $sTrans;
+
+	&:hover { color: $col1 - $colShade; }
+}
+
+//modifiers
+.link-button {
+	display: inline-block;
+	min-width: 128px;
+	padding: 0 1em;
+
+	font-weight: bold;
+	text-align: center;
+	line-height: 3em;
+	text-transform: uppercase;
+	background: $col2;
+	color: $col1;
+	border-radius: 4px;
+}
+
+.link-body {
+	color: $col2;
+
+	&:hover { color: $col2 - $colShade; }
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+//wordpress
+.alignright { float: right; margin-left: $pxPadding; }
