@@ -1,0 +1,10 @@
+#ignore everything
+/*
+
+#except...
+!.gitignore
+!plugins/wetstone-*
+!themes/wetstone/*
+
+#but not except...
+.sass-cache
