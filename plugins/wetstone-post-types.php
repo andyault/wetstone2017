@@ -55,7 +55,6 @@ function wetstone_register_post_types() {
 		'has_archive' => false
 	]);
 
-	/*
 	//services
 	register_post_type('service', [
 		'public'     => true,
@@ -70,7 +69,6 @@ function wetstone_register_post_types() {
 		'supports'   => ['title', 'editor', 'excerpt'],
 		'has_archive' => true
 	]);
-	*/
 }
 
 //add meta boxes

@@ -147,20 +147,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 64px;
   height: 64px; }
 
-.site-header-sub {
-  position: relative;
-  width: 2em; }
-  .site-header-sub::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-top: 16px solid #fff;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent; }
+.site-header-sub.active ~ .site-header-sub-nav {
+  display: block; }
 
 .link-site-header {
   position: relative;
@@ -221,7 +209,7 @@ h1, h2, h3, h4, h5, h6 {
 .product-page {
   display: flex;
   height: 192px;
-  margin-bottom: 2em; }
+  margin-bottom: 4em; }
 
 .product-page-inner {
   display: flex;
@@ -267,6 +255,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.25em;
   align-self: center; }
 
+.larr {
+  margin-right: 1em; }
+  .larr:after {
+    content: '\2190'; }
+
+.rarr {
+  margin-left: 1em; }
+  .rarr:after {
+    content: '\2192'; }
+
 .testimonial {
   width: 384px;
   font-size: 1.125em;
@@ -285,6 +283,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .testimonial-author {
   font-weight: bold; }
+
+i[class] {
+  font-style: normal; }
 
 .form-table {
   position: relative;

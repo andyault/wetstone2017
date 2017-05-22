@@ -30,7 +30,7 @@ $pxProductPageImg: 256px;
 .product-page {
 	display: flex;
 	height: $pxProductPage;
-	margin-bottom: 2em;
+	margin-bottom: 4em;
 }
 
 .product-page-inner {
@@ -96,3 +96,14 @@ $pxProductPageImg: 256px;
 }
 
 //  single
+.larr {
+	margin-right: 1em;
+
+	&:after { content: '\2190'; }
+}
+
+.rarr {
+	margin-left: 1em;
+
+	&:after { content: '\2192'; }
+}

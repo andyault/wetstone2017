@@ -3,19 +3,23 @@
 	$isActive = is_page($id);
 	$activeClass = $isActive ? 'active' : '';
 
-	if($id == get_option('page_on_front')) { ?>
-		<a href="<?php the_permalink(); ?>" class="site-header-link <?php echo $activeClass; ?>">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" class="site-header-logo">
-		</a>
-	<?php } else { ?>
-		<a href="<?php the_permalink(); ?>" class="site-header-link link link-site-header <?php echo $activeClass; ?>">
-			<?php the_title(); ?>
-		</a>
+	if($id == get_option('page_on_front')) {
+		echo sprintf(
+			'<a href="%s" class="site-header-link %s"><img src="%s" class="site-header-logo"></a>',
+			get_the_permalink(),
+			$activeClass,
+			get_template_directory_uri() . '/assets/img/logo.svg'
+		);
+	} else {
+		echo sprintf(
+			'<a href="%s" class="site-header-link link link-site-header %s">%s</a>',
+			get_the_permalink(),
+			$activeClass,
+			get_the_title()
+		);
 
-		<?php 
-
-		if(count($subPages)) { ?>
-			<a href class="site-header-link site-header-sub"></a>
-		<?php }
+		if(count($subPages)) {
+			echo '<a href class="site-header-link site-header-sub link link-site-header">&raquo;</a>';
+		}
 	}
 ?>

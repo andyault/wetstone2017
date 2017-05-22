@@ -16,7 +16,7 @@
 		<!-- wordpress -->
 		<?php wp_head(); ?>
 
-		<style>body.admin-bar { margin-top: -32px; } #wpadminbar { opacity: 0.5; }</style>
+		<style>/* body.admin-bar { margin-top: -32px; } #wpadminbar { opacity: 0.5; } */</style>
 	</head>
 
 	<body <?php body_class(); ?>>

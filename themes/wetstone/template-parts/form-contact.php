@@ -1,5 +1,29 @@
 <?php
-	//this file is kinda ugly... todo?
+	$subject = strtolower(sanitize_text_field($_GET['subject']));
+	$context = strtolower(sanitize_text_field($_GET['context']));
+
+	//make it pretty
+	switch($context) {
+		case 'product':
+			$subjectVal = 'Inquiry about %s';
+			$placeholder = 'Hi, I\'m interested in your product %s...';
+			break;
+
+		case 'service':
+			$subjectVal = 'Inquiry about %s services';
+			$placeholder = 'Hi, I\'m interested in your %s services...';
+			break;
+
+		default:
+			$subjectVal = ($subject ? '%s' : 'WetStone Contact Form');
+			$placeholder = 'Hi, I have a question about' . ($subject ? ' %s...' : '...');
+			break;
+	}
+
+	$subjectVal = sprintf($subjectVal, $subject);
+	$placeholder = sprintf($placeholder, ucwords($subject));
+
+	//this file is ugly... todo?
 	$interests = [
 		'Malware investigation',
 		'Steganography investigation',
@@ -56,6 +80,10 @@
 ?>
 
 <form name="contact" class="form">
+	<?php wp_nonce_field('wetstone-contact-form'); ?>
+
+	<input type="hidden" name="subject" value="<?php echo $subjectVal; ?>">
+
 	<table class="form-table">
 		<tr>
 			<td colspan="2" class="text-center">Fields marked with <i class="req">*</i> are required.</td>
@@ -121,7 +149,7 @@
 					Questions/Comments:
 					<textarea class="form-textarea"
 					          style="height: calc(<?php echo count($interests); ?> * 1.5em)"
-					          placeholder="Hi, I have a question about..."></textarea>
+					          placeholder="<?php echo $placeholder; ?>"></textarea>
 				</label>
 			</td>
 		</tr>

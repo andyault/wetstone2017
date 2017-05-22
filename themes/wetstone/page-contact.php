@@ -2,7 +2,7 @@
 	get_header();
 	the_post();
 
-	get_template_part('template-parts/page', 'nobody');
+	get_template_part('template-parts/basic', 'page-nobody');
 ?>
 
 <section class="page-posts site-content site-content-small">

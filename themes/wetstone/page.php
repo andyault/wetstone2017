@@ -2,7 +2,7 @@
 	get_header();
 	the_post();
 
-	get_template_part('template-parts/page', 'basic');
+	get_template_part('template-parts/basic', 'page');
 
 	//showing posts
 	//first, see if we have a post type meta
