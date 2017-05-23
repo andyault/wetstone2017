@@ -44,6 +44,12 @@ section {
     padding: 0;
     list-style: none; }
 
+.locations {
+  width: 100%;
+  margin-bottom: 16px; }
+  .locations img {
+    margin-right: 16px; }
+
 p {
   margin: 0 0 1.25em 0; }
 
@@ -66,9 +72,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.75em; }
 
 .body-content {
-  font-size: 1.3em;
+  font-size: 1.3rem;
   line-height: 1.5em;
   hyphens: auto; }
+
+.body-small, .testimonial, .testimonial-page {
+  font-size: 1.125em; }
 
 .page-header {
   margin: 0.5em 0;
@@ -267,15 +276,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .testimonial {
   width: 384px;
-  font-size: 1.125em;
   line-height: 1.5em;
   margin-bottom: 16px; }
+  .testimonial .testimonial-info {
+    float: right; }
   .testimonial:first-of-type {
     margin-right: 16px; }
 
 .testimonial-info {
-  float: right;
   text-align: right; }
+
+.testimonial-page {
+  margin-bottom: 2em; }
+  .testimonial-page p {
+    margin-bottom: 0; }
 
 .testimonial-body {
   font-style: italic;
@@ -291,6 +305,7 @@ i[class] {
   position: relative;
   width: 100%; }
   .form-table td {
+    position: relative;
     width: 50%;
     padding-bottom: 1em;
     vertical-align: top; }
@@ -309,7 +324,7 @@ i[class] {
 
 .form-checkboxes {
   display: inline-block;
-  line-height: 1.5em;
+  line-height: 1.55em;
   text-align: left; }
   .form-checkboxes label {
     padding-left: 1em; }
@@ -326,12 +341,23 @@ i[class] {
 .form-textarea {
   resize: vertical; }
 
+.select-symbol {
+  position: absolute;
+  right: 16px;
+  bottom: 1.5em;
+  pointer-events: none; }
+
 .table-footer {
   padding: 2em 0 0 0;
   text-align: center; }
 
 .req {
   color: #f00; }
+
+.form-input-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
 
 .hero {
   display: flex;

@@ -1,18 +1,28 @@
 //blocks
+//  front
 .testimonial {
+	@extend .body-small;
+
 	width: 384px;
-	font-size: 1.125em;
 	line-height: $emBodyLineH;
 	margin-bottom: $pxPadding;
+
+	.testimonial-info { float: right; }
 
 	&:first-of-type {
 		margin-right: $pxPadding;
 	}
 }
 
-.testimonial-info {
-	float: right;
-	text-align: right;
+.testimonial-info { text-align: right; }
+
+//  page
+.testimonial-page {
+	@extend .body-small;
+	
+	margin-bottom: 2em;
+
+	p { margin-bottom: 0; }
 }
 
 //elements

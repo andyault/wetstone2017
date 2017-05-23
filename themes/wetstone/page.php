@@ -31,10 +31,7 @@
 						foreach($posts as $post) {
 							setup_postdata($post);
 
-							get_template_part(
-								sprintf('template-parts/%s', $postType),
-								'page'
-							);
+							get_template_part('template-parts/' . $postType, 'page');
 						}
 					?>
 				</div>

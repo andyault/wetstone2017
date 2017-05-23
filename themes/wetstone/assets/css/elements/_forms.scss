@@ -4,6 +4,7 @@
 	width: 100%;
 
 	td {
+		position: relative;
 		width: 50%;
 		padding-bottom: 1em;
 		vertical-align: top;
@@ -27,7 +28,7 @@
 .form-checkboxes {
 	display: inline-block;
 
-	line-height: 1.5em;
+	line-height: 1.55em;
 	text-align: left;
 
 	label { padding-left: 1em; }
@@ -35,7 +36,6 @@
 
 //elements
 .form-label {
-	//color: $col3 + $colShade;
 }
 
 .form-input {
@@ -55,6 +55,13 @@
 	resize: vertical;
 }
 
+.select-symbol {
+	position: absolute;
+	right: $pxPadding;
+	bottom: 1.5em;
+	pointer-events: none;
+}
+
 //modifiers
 .table-footer {
 	padding: 2em 0 0 0;
@@ -64,4 +71,10 @@
 
 .req {
 	color: #f00;
+}
+
+.form-input-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }

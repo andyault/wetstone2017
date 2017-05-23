@@ -52,3 +52,10 @@ section {
 		list-style: none;
 	}
 }
+
+.locations {
+	width: 100%;
+	margin-bottom: $pxPadding;
+
+	img { margin-right: $pxPadding; }
+}

@@ -5,7 +5,7 @@ $fontProduct: 'wetstone', serif;
 $emBase: 16px;
 
 $pxBodyHalfW: 384px;
-$emBodySize: 1.3em;
+$emBodySize: 1.3rem;
 $emBodyLineH: 1.5em;
 
 //basics
@@ -39,6 +39,10 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	font-size: $emBodySize;
 	line-height: $emBodyLineH;
 	hyphens: auto;
+}
+
+.body-small {
+	font-size: 1.125em;
 }
 
 //elements
