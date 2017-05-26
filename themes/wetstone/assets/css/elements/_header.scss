@@ -2,6 +2,7 @@
 $pxHeader: 64px;
 
 //blocks
+//  site
 .site-header {
 	position: relative;
 	width: 100%;
@@ -28,11 +29,18 @@ $pxHeader: 64px;
 	display: none;
 	position: absolute;
 	background: $col3;
+	z-index: 100;
 
 	&:hover { display: block; }
 }
 
+//  page
+.site-header-nav-page {
+	justify-content: flex-end;
+}
+
 //elements
+//  site
 .site-header-link {
 	display: inline-block;
 	padding: 0 $pxPadding;
@@ -49,7 +57,14 @@ $pxHeader: 64px;
 	&.active ~ .site-header-sub-nav { display: block; }
 }
 
+//  page
+.page-header-link-welcome {
+	position: absolute;
+	left: 0;
+}
+
 //modifiers
+//  site
 .link-site-header {
 	position: relative;
 	
@@ -57,27 +72,6 @@ $pxHeader: 64px;
 	text-transform: uppercase;
 
 	&.active { color: $col2; }
-
-	/*
-	&:hover::after {
-		width: calc(100% - #{$pxPadding * 2});
-		left: $pxPadding;
-	}
-
-	&::after {
-		content: '';
-
-		position: absolute;
-		width: 0;
-		height: 2px;
-		bottom: $pxHeader / 2 - $pxPadding * 0.75;
-		left: 50%;
-
-		background: $col1;
-
-		transition: all $sTrans;
-	}
-	*/
 }
 
 .has-sub-symbol {
@@ -85,4 +79,17 @@ $pxHeader: 64px;
 
 	font-size: smaller;
 	vertical-align: top;
+}
+
+//  page
+.site-header-page {
+	z-index: 98;
+
+	background: #fff;
+	color: $col3 !important;
+	border-bottom: 1px solid $col3;
+}
+
+.link-header-page {
+	color: $col3;
 }

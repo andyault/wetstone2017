@@ -143,9 +143,13 @@ h1, h2, h3, h4, h5, h6 {
 .site-header-sub-nav {
   display: none;
   position: absolute;
-  background: #303030; }
+  background: #303030;
+  z-index: 100; }
   .site-header-sub-nav:hover {
     display: block; }
+
+.site-header-nav-page {
+  justify-content: flex-end; }
 
 .site-header-link {
   display: inline-block;
@@ -159,30 +163,14 @@ h1, h2, h3, h4, h5, h6 {
 .site-header-sub.active ~ .site-header-sub-nav {
   display: block; }
 
+.page-header-link-welcome {
+  position: absolute;
+  left: 0; }
+
 .link-site-header {
   position: relative;
   font-weight: bold;
-  text-transform: uppercase;
-  	/*
-  	&:hover::after {
-  		width: calc(100% - 32px);
-  		left: $pxPadding;
-  	}
-  
-  	&::after {
-  		content: '';
-  
-  		position: absolute;
-  		width: 0;
-  		height: 2px;
-  		bottom: $pxHeader / 2 - $pxPadding * 0.75;
-  		left: 50%;
-  
-  		background: $col1;
-  
-  		transition: all $sTrans;
-  	}
-  	*/ }
+  text-transform: uppercase; }
   .link-site-header.active {
     color: #2AAF51; }
 
@@ -190,6 +178,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 1em;
   font-size: smaller;
   vertical-align: top; }
+
+.site-header-page {
+  z-index: 98;
+  background: #fff;
+  color: #303030 !important;
+  border-bottom: 1px solid #303030; }
+
+.link-header-page {
+  color: #303030; }
 
 .site-footer {
   overflow: hidden;

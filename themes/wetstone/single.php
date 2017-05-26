@@ -5,7 +5,7 @@
 	//load single template - in order, try posttype-single, basic-single, then basic-page
 	$postType = get_post_type();
 
-	if(locate_template('template-parts/' . $postType . '-single.php') != '') {
+	if(locate_template(sprintf('template-parts/%s-single.php', $postType)) != '') {
 		get_template_part('template-parts/' . $postType, 'single');
 	} else {
 		if(locate_template('template-parts/basic-single.php') != '')
@@ -49,7 +49,7 @@
 
 		if($next) {
 			echo sprintf(
-				'<a href="%s" class="link link-body"><i class="rarr"></i> %s</a>',
+				'<a href="%s" class="link link-body">%s <i class="rarr"></i></a>',
 				get_permalink($next),
 				get_the_title($next)
 			);

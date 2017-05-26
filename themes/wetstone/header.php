@@ -26,6 +26,7 @@
 					//get all root pages - maybe todo?
 					$pages = get_pages([
 						'parent'      => 0,
+						'exclude'     => [19, 84], //exclude sign in and portal
 						'sort_column' => 'menu_order',
 						'sort_order'  => 'ASC'
 					]);
@@ -80,6 +81,23 @@
 						echo '</li>';
 					}
 				?>
+
+				<li>
+					<?php
+						$signin = get_page_by_path('sign-in');
+						$portal = get_page_by_path('portal');
+
+						global $post;
+
+						if(is_user_logged_in())
+							$post = $portal;
+						else
+							$post = $signin;
+
+						setup_postdata($post);
+						get_template_part('template-parts/header', 'link');
+					?>
+				</li>
 			</ul>
 		</header>
 

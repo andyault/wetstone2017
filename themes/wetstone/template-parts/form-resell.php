@@ -25,7 +25,7 @@
 		return $ret;
 	}
 
-	//this file is ugly... todo?
+	//big todo in here
 	$interests = [
 		'Malware investigation',
 		'Steganography investigation',
