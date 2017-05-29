@@ -37,6 +37,9 @@ section {
 .site-content-small, .body-content {
   width: 700px; }
 
+.site-content-tiny {
+  width: 320px; }
+
 .list-basic, .site-header-nav, .site-header-sub-nav {
   margin: 0;
   padding: 0; }
@@ -115,11 +118,14 @@ h1, h2, h3, h4, h5, h6 {
   .link-body:hover {
     color: #006b0d; }
 
+.text-left {
+  text-align: left; }
+
 .text-center {
   text-align: center; }
 
-.text-left {
-  text-align: left; }
+.text-right {
+  text-align: right; }
 
 .alignright {
   float: right;
@@ -306,9 +312,9 @@ i[class] {
     width: 50%;
     padding-bottom: 1em;
     vertical-align: top; }
-    .form-table td:first-of-type {
+    .form-table td:not([colspan]):first-of-type {
       padding-right: 8px; }
-    .form-table td:last-of-type {
+    .form-table td:not([colspan]):last-of-type {
       padding-left: 8px; }
 
 .form-multiple {
@@ -407,8 +413,16 @@ html, body {
   height: 100%; }
 
 body {
+  display: flex;
   margin: 0;
+  flex-direction: column;
   font-family: "cera pro", helvetica, arial, sans-serif;
   font-size: 16px; }
+
+.site-main {
+  flex: 1 0 auto; }
+
+header, footer {
+  flex: none; }
 
 /*# sourceMappingURL=style.css.map */

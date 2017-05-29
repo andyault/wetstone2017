@@ -1,4 +1,6 @@
 <?php 
+	require_once('login-redirect.php');
+
 	get_header();
 	//the_post();
 
@@ -40,7 +42,7 @@
 		?>
 
 		<li>
-			<a href="<?php echo wp_logout_url(); ?>"
+			<a href="<?php echo wp_logout_url(get_permalink(get_page_by_path('sign-in'))); ?>"
 			   class="site-header-link link link-site-header link-header-page">
 				Sign out
 			</a>

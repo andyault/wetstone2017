@@ -34,9 +34,20 @@ html, body {
 	height: 100%;
 }
 
+//too hacky for sticky footer?
 body {
-	margin:0; 
+	display: flex;
+	margin: 0; 
+	flex-direction: column;
 
 	font-family: $fontMain;
 	font-size: $emBase;
+}
+
+.site-main {
+	flex: 1 0 auto;
+}
+
+header, footer {
+	flex: none;
 }

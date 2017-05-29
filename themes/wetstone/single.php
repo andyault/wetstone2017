@@ -13,6 +13,8 @@
 		else
 			get_template_part('template-parts/basic', 'page');
 	}
+
+	//todo - https://codex.wordpress.org/Pagination
 ?>
 
 <!-- prev/next links, inquire link -->

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!-- todo: https://www.w3.org/TR/html-aria/ -->
+
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
