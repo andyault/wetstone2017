@@ -40,10 +40,10 @@ section {
 .site-content-tiny {
   width: 320px; }
 
-.list-basic, .site-header-nav, .site-header-sub-nav {
+.list-basic, .header-nav, .header-sub-nav-site {
   margin: 0;
   padding: 0; }
-  .list-basic > li, .site-header-nav > li, .site-header-sub-nav > li {
+  .list-basic > li, .header-nav > li, .header-sub-nav-site > li {
     padding: 0;
     list-style: none; }
 
@@ -131,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
   float: right;
   margin-left: 16px; }
 
-.site-header {
+.header {
   position: relative;
   width: 100%;
   height: 64px;
@@ -139,45 +139,55 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   z-index: 99; }
 
-.site-header-nav {
+.header-nav {
+  display: flex; }
+
+.header-site {
   display: flex;
-  height: auto;
   justify-content: center; }
-  .site-header-nav li:hover .site-header-sub-nav {
+
+.header-nav-site {
+  height: auto;
+  flex: 1 0 0; }
+  .header-nav-site:first-of-type {
+    justify-content: flex-end; }
+  .header-nav-site:last-of-type {
+    justify-content: flex-start; }
+  .header-nav-site li:hover .header-sub-nav-site {
     display: block; }
 
-.site-header-sub-nav {
+.header-sub-nav-site {
   display: none;
   position: absolute;
   background: #303030;
   z-index: 100; }
-  .site-header-sub-nav:hover {
+  .header-sub-nav-site:hover {
     display: block; }
 
-.site-header-nav-page {
+.header-nav-page {
   justify-content: flex-end; }
 
-.site-header-link {
+.header-link {
   display: inline-block;
   padding: 0 16px;
   line-height: 64px; }
 
-.site-header-logo {
+.header-logo-site {
   width: 64px;
   height: 64px; }
 
-.site-header-sub.active ~ .site-header-sub-nav {
+.header-sub.active ~ .site-header-sub-nav {
   display: block; }
 
 .page-header-link-welcome {
   position: absolute;
   left: 0; }
 
-.link-site-header {
+.link-header-site {
   position: relative;
   font-weight: bold;
   text-transform: uppercase; }
-  .link-site-header.active {
+  .link-header-site.active {
     color: #2AAF51; }
 
 .has-sub-symbol {
@@ -185,7 +195,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: smaller;
   vertical-align: top; }
 
-.site-header-page {
+.header-page {
   z-index: 98;
   background: #fff;
   color: #303030 !important;

@@ -1,10 +1,13 @@
 <?php
 	get_header();
+
+	var_dump(get_query_var( 'pagename' ));
+
 	the_post();
 
 	get_template_part('template-parts/basic', 'page');
 
-	//showing posts
+	//showing posts - todo - maybe turn this into a shortcode? idk?
 	//first, see if we have a post type meta
 	$postType = get_post_meta($post->ID, 'page_posttype', true);
 
@@ -12,7 +15,8 @@
 		//then make sure there are posts with the post type
 		$posts = get_posts([
 			'post_type'      => $postType,
-			'posts_per_page' => -1 //todo
+			'category_name'  => get_post_meta($post->ID, 'page_postcat', true),
+			'posts_per_page' => -1 //todo - https://codex.wordpress.org/Pagination
 		]);
 
 		if(count($posts)) {

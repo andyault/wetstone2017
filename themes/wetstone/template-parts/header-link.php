@@ -5,21 +5,29 @@
 
 	if($id == get_option('page_on_front')) {
 		echo sprintf(
-			'<a href="%s" class="site-header-link %s"><img src="%s" class="site-header-logo"></a>',
+			'</ul>
+			<a href="%s" class="header-link %s"><img src="%s" class="header-logo-site"></a>
+			<ul class="header-nav header-nav-site">',
+
 			get_the_permalink(),
 			$activeClass,
 			get_template_directory_uri() . '/assets/img/logo.svg'
 		);
 	} else {
 		echo sprintf(
-			'<a href="%s" class="site-header-link link link-site-header %s">%s</a>',
+			'<li><a href="%s" class="header-link link link-header-site %s">%s</a>',
 			get_the_permalink(),
 			$activeClass,
 			get_the_title()
 		);
 
+		if(!count($subPages))
+			echo '</li>';
+
+		/*
 		if(count($subPages)) {
 			echo '<a href class="site-header-link site-header-sub link link-site-header">&raquo;</a>';
 		}
+		*/
 	}
 ?>

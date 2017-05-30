@@ -22,8 +22,8 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-		<header class="site-header">
-			<ul class="site-header-nav site-content">
+		<header class="header header-site">
+			<ul class="header-nav header-nav-site">
 				<?php
 					//get all root pages - maybe todo?
 					$pages = get_pages([
@@ -54,33 +54,24 @@
 
 						$subPages = get_posts($args);
 
-						//the actual link
-						echo '<li>';
-
 						//using include(locate_template()) so we still have access to $subPages
 						include(locate_template('template-parts/header-link.php'));
 
 						//handle submenus
-						if(count($subPages)) { ?>
-							<ul class="site-header-sub-nav">
-								<?php
-									//go through posts
-									global $post;
+						if(count($subPages)) {
+							echo '<ul class="header-sub-nav-site">';
 
-									foreach($subPages as $post) {
-										setup_postdata($post);
+							//go through posts
+							global $post;
 
-										echo '<li>';
+							foreach($subPages as $post) {
+								setup_postdata($post);
 
-										get_template_part('template-parts/header', 'link');
+								get_template_part('template-parts/header', 'link');
+							}
 
-										echo '</li>';
-									}
-								?>
-							</ul>
-						<?php }
-
-						echo '</li>';
+							echo '</ul></li>';
+						}
 					}
 				?>
 

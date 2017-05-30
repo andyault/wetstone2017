@@ -2,8 +2,8 @@
 $pxHeader: 64px;
 
 //blocks
-//  site
-.site-header {
+//  basic
+.header {
 	position: relative;
 	width: 100%;
 	height: $pxHeader;
@@ -13,17 +13,29 @@ $pxHeader: 64px;
 	z-index: 99;
 }
 
-.site-header-nav {
+.header-nav {
 	@extend .list-basic;
 
 	display: flex;
-	height: auto;
-	justify-content: center;
-
-	li:hover .site-header-sub-nav { display: block; }
 }
 
-.site-header-sub-nav {
+//  site
+.header-site {
+	display: flex;
+	justify-content: center;
+}
+
+.header-nav-site {
+	height: auto;
+	flex: 1 0 0;
+
+	&:first-of-type { justify-content: flex-end; }
+	&:last-of-type { justify-content: flex-start; }
+
+	li:hover .header-sub-nav-site { display: block; }
+}
+
+.header-sub-nav-site {
 	@extend .list-basic;
 
 	display: none;
@@ -35,25 +47,25 @@ $pxHeader: 64px;
 }
 
 //  page
-.site-header-nav-page {
+.header-nav-page {
 	justify-content: flex-end;
 }
 
 //elements
 //  site
-.site-header-link {
+.header-link {
 	display: inline-block;
 	padding: 0 $pxPadding;
 
 	line-height: $pxHeader;
 }
 
-.site-header-logo {
+.header-logo-site {
 	width: $pxHeader;
 	height: $pxHeader;
 }
 
-.site-header-sub {
+.header-sub {
 	&.active ~ .site-header-sub-nav { display: block; }
 }
 
@@ -65,7 +77,7 @@ $pxHeader: 64px;
 
 //modifiers
 //  site
-.link-site-header {
+.link-header-site {
 	position: relative;
 	
 	font-weight: bold;
@@ -82,7 +94,7 @@ $pxHeader: 64px;
 }
 
 //  page
-.site-header-page {
+.header-page {
 	z-index: 98;
 
 	background: #fff;

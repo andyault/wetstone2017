@@ -2,57 +2,29 @@
 	require_once('login-redirect.php');
 
 	get_header();
-	//the_post();
 
-	$user = wp_get_current_user();
+	get_template_part('header', 'portal');
 ?>
 
-<header class="site-header site-header-page">
-	<ul class="site-header-nav site-header-nav-page site-content">
-		<li class="page-header-link-welcome">
-			<a class="site-header-link page-header-link">
-				<?php
-					echo sprintf(
-						'Welcome back, %s %s',
+<section class="page-posts site-content site-content-small">
+	<h2 class="section-header">What's New</h2>
 
-						$user->user_firstname,
-						$user->user_lastname
-					);
-				?>
-			</a>
-		</li>
-
+	<div class="page-list">
 		<?php
-			$pages = get_pages([
-				'parent'      => get_page_by_path('portal')->ID,
-				'sort_column' => 'menu_order',
-				'sort_order'  => 'ASC'
+			$posts = get_posts([
+				'post_type' => 'post',
+				'posts_per_page' => -1
 			]);
 
-			foreach($pages as $subpage) {
-				echo sprintf(
-					'<li>
-						<a href="%s" class="site-header-link link link-site-header link-header-page">%s</a>
-					</li>',
+			//weird with global but it works
+			global $post;
 
-					get_permalink($subpage->ID),
-					get_the_title($subpage->ID)
-				);
+			foreach($posts as $post) {
+				setup_postdata($post);
+
+				get_template_part('template-parts/basic', 'page');
 			}
 		?>
-
-		<li>
-			<a href="<?php echo wp_logout_url(get_permalink(get_page_by_path('sign-in'))); ?>"
-			   class="site-header-link link link-site-header link-header-page">
-				Sign out
-			</a>
-		</li>		
-	</ul>
-</header>
-
-<section class="page-overview site-content">
-	<div class="body-content">
-		<?php //the_content(); ?>
 	</div>
 </section>
 

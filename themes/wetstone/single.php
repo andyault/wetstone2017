@@ -5,16 +5,13 @@
 	//load single template - in order, try posttype-single, basic-single, then basic-page
 	$postType = get_post_type();
 
-	if(locate_template(sprintf('template-parts/%s-single.php', $postType)) != '') {
-		get_template_part('template-parts/' . $postType, 'single');
-	} else {
-		if(locate_template('template-parts/basic-single.php') != '')
-			get_template_part('template-parts/basic', 'single');
-		else
-			get_template_part('template-parts/basic', 'page');
-	}
+	$templates = [
+		'template-parts/' . $postType . '-single.php',
+		'template-parts/basic-single.php',
+		'template-parts/basic-page.php'
+	]
 
-	//todo - https://codex.wordpress.org/Pagination
+	locate_template($templates, true, false);
 ?>
 
 <!-- prev/next links, inquire link -->
