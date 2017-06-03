@@ -1,7 +1,7 @@
 <?php
 	get_header();
 
-	var_dump(get_query_var( 'pagename' ));
+	//var_dump(get_query_var( 'pagename' ));
 
 	the_post();
 

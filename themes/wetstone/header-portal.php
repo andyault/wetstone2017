@@ -22,14 +22,17 @@
 				'sort_order'  => 'ASC'
 			]);
 
-			foreach($pages as $subpage) {
+			foreach($pages as $page) {
+				$isActive = is_page($page->ID) ? 'active' : '';
+
 				echo sprintf(
 					'<li>
-						<a href="%s" class="header-link link link-header-site link-header-page">%s</a>
+						<a href="%s" class="header-link link link-header-site link-header-page %s">%s</a>
 					</li>',
 
-					get_permalink($subpage->ID),
-					get_the_title($subpage->ID)
+					get_permalink($page->ID),
+					$isActive,
+					get_the_title($page->ID)
 				);
 			}
 		?>

@@ -1,8 +1,26 @@
+<?php
+	//all children of /portal are auth-only, restrict access
+	$isRestricted = false;
+
+	$portalID = get_page_by_path('portal')->ID;
+
+	if($post->post_parent == $portalID || $post->ID == $portalID) {
+		$isRestricted = true;
+
+		if(!is_user_logged_in()) {
+			wp_safe_redirect(get_permalink(get_page_by_path('sign-in')));
+
+			exit();
+		}
+	}
+?>
+
 <!DOCTYPE html>
 
 <!-- todo: https://www.w3.org/TR/html-aria/ -->
 
 <html <?php language_attributes(); ?>>
+
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -95,3 +113,8 @@
 		</header>
 
 		<main class="site-main">
+			<?php
+				//if they made it this far, show member header
+				if($isRestricted)
+					locate_template('header-portal.php', true, false);
+			?>

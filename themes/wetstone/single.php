@@ -9,7 +9,7 @@
 		'template-parts/' . $postType . '-single.php',
 		'template-parts/basic-single.php',
 		'template-parts/basic-page.php'
-	]
+	];
 
 	locate_template($templates, true, false);
 ?>

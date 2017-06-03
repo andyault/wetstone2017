@@ -1,10 +1,4 @@
-<?php 
-	require_once('login-redirect.php');
-
-	get_header();
-
-	get_template_part('header', 'portal');
-?>
+<?php get_header(); ?>
 
 <section class="page-posts site-content site-content-small">
 	<h2 class="section-header">What's New</h2>
