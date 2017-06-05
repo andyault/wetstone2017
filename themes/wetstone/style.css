@@ -34,6 +34,9 @@ section {
 .single-inquire {
   position: absolute; }
 
+.flex {
+  display: flex; }
+
 .site-content-small, .body-content {
   width: 700px; }
 
@@ -112,6 +115,9 @@ h1, h2, h3, h4, h5, h6 {
   background: #2AAF51;
   color: #FFFFFF;
   border-radius: 4px; }
+  .link-button:hover {
+    color: #FFFFFF;
+    background: #006b0d; }
 
 .link-body {
   color: #2AAF51; }
@@ -372,6 +378,14 @@ i[class] {
   -moz-appearance: none;
   appearance: none; }
 
+.news-header {
+  margin: 0 0 0.5em;
+  font-size: 1.5em;
+  text-align: left; }
+
+.news-excerpt {
+  margin: 0; }
+
 .hero {
   display: flex;
   justify-content: center;
@@ -379,13 +393,38 @@ i[class] {
   background: #666;
   color: #FFFFFF; }
 
+.hero-background, .video-container, .video-filter, .video-poster {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.video-video {
+  position: absolute;
+  z-index: 2; }
+
+.video-filter {
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.4); }
+
+.video-poster {
+  z-index: 1;
+  background-size: cover;
+  background-position: center; }
+
 .hero-info {
   width: 512px;
+  z-index: 4;
   text-align: center; }
 
-.section-invert {
-  background: #303030;
-  color: #FFFFFF; }
+.section-double {
+  display: flex; }
+
+.section-half {
+  flex: none;
+  width: 50%; }
 
 .products-preview {
   padding: 0; }
@@ -401,12 +440,17 @@ i[class] {
 .hero-scroll {
   position: absolute;
   bottom: 16px;
+  z-index: 4;
   text-transform: uppercase;
   animation: hero-scroll-bounce 1s ease-in-out infinite; }
 
 .fullpage-hero {
   margin-top: -64px;
   padding-top: 64px; }
+
+.section-invert {
+  background: #303030;
+  color: #FFFFFF; }
 
 @keyframes hero-scroll-bounce {
   0% {

@@ -84,6 +84,11 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	background: $col2;
 	color: $col1;
 	border-radius: 4px;
+
+	&:hover {
+		color: $col1;
+		background: $col2 - $colShade;
+	}
 }
 
 .link-body {

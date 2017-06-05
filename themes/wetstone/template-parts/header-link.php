@@ -1,6 +1,8 @@
 <?php
+	$page = $wp_query->post;
+
 	$id = $post->ID;
-	$isActive = is_page($id);
+	$isActive = is_page($id) || $page->post_parent == $id;
 	$activeClass = $isActive ? 'active' : '';
 
 	if($id == get_option('page_on_front')) {

@@ -116,5 +116,5 @@
 			<?php
 				//if they made it this far, show member header
 				if($isRestricted)
-					locate_template('header-portal.php', true, false);
+					get_header('portal');
 			?>
