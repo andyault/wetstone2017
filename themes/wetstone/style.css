@@ -328,9 +328,9 @@ i[class] {
     width: 50%;
     padding-bottom: 1em;
     vertical-align: top; }
-    .form-table td:not([colspan]):first-of-type {
+    .form-table td:not([colspan]):not(:only-child):first-of-type {
       padding-right: 8px; }
-    .form-table td:not([colspan]):last-of-type {
+    .form-table td:not([colspan]):not(:only-child):last-of-type {
       padding-left: 8px; }
 
 .form-multiple {

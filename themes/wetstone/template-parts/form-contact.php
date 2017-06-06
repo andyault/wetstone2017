@@ -1,4 +1,6 @@
 <?php
+	include_once(dirname(__FILE__) . '/../util.php');
+
 	$subject = strtolower(sanitize_text_field($_GET['subject']));
 	$context = strtolower(sanitize_text_field($_GET['context']));
 
@@ -42,15 +44,11 @@
 		],
 		[
 			['company', 'text', 'Company', 'Google Inc.', true],
-			['title', 'text', 'Title', 'CEO']
+			['title', 'text', 'Title', 'Mr.']
 		],
 		[
 			['phone', 'tel', 'Phone', '(555) 867-5309', true],
-			['email', 'email', 'Email', 'john.doe@example.com']
-		],
-		[
-			['faxnum', 'text', 'Fax', '(555) 123-4567'],
-			['cnum',  'text', 'Customer Appreciation #', '123456']
+			['email', 'email', 'Email', 'john.doe@example.com', true]
 		],
 		[
 			['address1', 'text', 'Address Line 1', '1600 Pennsylvania Ave NW', true],
@@ -122,27 +120,14 @@
 		?>
 
 		<tr>
-			<td>
-				<div class="form-checkboxes">
-					<div class="form-label">
-						<i class="req">*</i> Please mark your area(s) of interest:
-					</div>
-
-					<?php
-						foreach($interests as $interest) {
-							echo sprintf(
-								'<label class="%s">
-									<input type="checkbox" name="interests" value="%2$s">
-									%2$s
-								</label><br />',
-
-								'form-label',
-								$interest
-							);
-						}
-					?>
-				</div>
-			</td>
+			<?php
+				echo wetstone_form_make_checkboxes(
+					'interests',
+					'Please mark your area(s) of interest:',
+					$interests,
+					true
+				);
+			?>
 
 			<td>
 				<label class="form-label">

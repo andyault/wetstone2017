@@ -1,85 +1,20 @@
 <?php
-	function makeSelect($name, $label, $options, $required = false) {
-		$ret = sprintf(
-			'<td>
-				<label class="form-label">
-					%s%s <br />
-					<select name="%s" class="form-input form-input-select" %s>
-						<option value selected>Select an option</option>',
-
-			$required ? '<i class="req">*</i> ' : '',
-			$label,
-			$name,
-			$required ? 'required' : ''
-		);
-
-		foreach($options as $option) {
-			$ret .= sprintf(
-				'<option value="%1$s">%1$s</option>',
-				$option
-			);
-		}
-
-		$ret .= '</select><i class="select-symbol">&dtrif;</i></label></td>';
-
-		return $ret;
-	}
-
-	//big todo in here
-	$interests = [
-		'Malware investigation',
-		'Steganography investigation',
-		'Live acquisition and triage',
-		'Forensic time',
-		'Reselling opportunities',
-		'Hosting a training',
-		'Other (please specify below)'
-	];
+	include_once(dirname(__FILE__) . '/../util.php');
 
 	//name, type, label, placeholder, required
 	$structure = [
 		[
 			['fname', 'text', 'First Name', 'John', true],
-			makeSelect(
-				'customers',
-				'Who is your typical customer?',
-				[
-					'Government',
-					'Educational Institutions',
-					'Financial Institutions',
-					'Healthcare Facilities',
-					'Individuals',
-					'Commercial Markets'
-				],
-				true
-			)
-		],
-		[
-			['lname', 'text', 'Last Name', 'Doe', true],
-			makeSelect(
-				'description',
-				'Which best describes your company?',
-				[
-					'Systems Integration',
-					'Consulting Firm',
-					'Reseller',
-					'Distributor',
-					'Retail',
-					'Service Provider',
-					'Educational Institution',
-					'Other (please specify below)'
-				],
-				true
-			)
+			['lname', 'text', 'Last Name', 'Doe', true]
 		],
 		[
 			['company', 'text', 'Company', 'Google Inc.', true],
-			['territories', 'text', 'What territories do you support?', '???', true]
+			['website', 'text', 'Website', 'http://google.com', true]
 		],
-		/* [
+		[
 			['phone', 'tel', 'Phone', '(555) 867-5309', true],
-			['email', 'email', 'Email', 'john.doe@example.com']
-		], */
+			['email', 'email', 'Email', 'john.doe@example.com', true]
+		],
 		[
 			['address1', 'text', 'Address Line 1', '1600 Pennsylvania Ave NW', true],
 			['address2', 'text', 'Address Line 2', 'Apt. 123']
@@ -103,6 +38,56 @@
 		[
 			['country', 'text', 'Country', 'U.S.A.', true],
 			['referrer', 'text', 'How did you hear about us?', 'Google', true]
+		],
+		[
+			wetstone_form_make_select(
+				'customers',
+				'Who is your typical customer?',
+				[
+					'Government',
+					'Educational Institutions',
+					'Financial Institutions',
+					'Healthcare Facilities',
+					'Individuals',
+					'Commercial Markets'
+				],
+				true
+			),
+			wetstone_form_make_checkboxes( //todo
+				'interests',
+				'What is your main marketing campaign?',
+				[
+					'Trade Shows',
+					'Print Advertising',
+					'TV Advertising',
+					'Direct Mail',
+					'Newsletter',
+					'Seminars/Trainings',
+					'Telemarketing',
+					'Web'
+				],
+				true
+			)
+		],
+		[
+			wetstone_form_make_select(
+				'description',
+				'Which best describes your company?',
+				[
+					'Systems Integration',
+					'Consulting Firm',
+					'Reseller',
+					'Distributor',
+					'Retail',
+					'Service Provider',
+					'Educational Institution',
+					'Other (please specify below)'
+				],
+				true
+			)
+		],
+		[
+			['territories', 'text', 'What territories do you support?', '???', true]
 		]
 	];
 ?>
@@ -139,9 +124,8 @@
 							$input[3],
 							$input[4] ? 'required' : ''
 						);
-					} else {
+					} else
 						echo $input;
-					}
 				}
 
 				echo '</tr>';
@@ -149,27 +133,8 @@
 		?>
 
 		<tr>
-			<td>
-				<div class="form-checkboxes">
-					<div class="form-label">
-						<i class="req">*</i> Please mark your area(s) of interest:
-					</div>
 
-					<?php
-						foreach($interests as $interest) {
-							echo sprintf(
-								'<label class="form-label">
-									<input type="checkbox" name="interests" value="%1$s">
-									%1$s
-								</label><br />',
-
-								$interest
-							);
-						}
-					?>
-				</div>
-			</td>
-
+			<!-- 
 			<td>
 				<label class="form-label">
 					Questions/Comments:
@@ -178,6 +143,7 @@
 					          placeholder="<?php echo $placeholder; ?>"></textarea>
 				</label>
 			</td>
+			-->
 		</tr>
 
 		<tr>

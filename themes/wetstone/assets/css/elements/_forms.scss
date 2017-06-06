@@ -9,7 +9,7 @@
 		padding-bottom: 1em;
 		vertical-align: top;
 
-		&:not([colspan]) {
+		&:not([colspan]):not(:only-child) {
 			&:first-of-type { padding-right: $pxPadding / 2; }
 			&:last-of-type { padding-left: $pxPadding / 2; }
 		}
