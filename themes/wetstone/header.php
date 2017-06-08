@@ -1,4 +1,6 @@
-<?php
+<?php	
+	include_once(dirname(__FILE__) . '/util.php');
+
 	//all children of /portal are auth-only, restrict access
 	$isRestricted = false;
 
@@ -8,6 +10,7 @@
 		$isRestricted = true;
 
 		if(!is_user_logged_in()) {
+			//todo - add message
 			wp_safe_redirect(get_permalink(get_page_by_path('sign-in')));
 
 			exit();
@@ -20,7 +23,6 @@
 <!-- todo: https://www.w3.org/TR/html-aria/ -->
 
 <html <?php language_attributes(); ?>>
-
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -57,26 +59,13 @@
 					foreach($pages as $post) {
 						setup_postdata($post);
 
-						//get subpages first so we can style accordingly
-						$args = ['posts_per_page' => -1];
+						echo '<li>';
 
-						$postType = get_post_meta($post->ID, 'page_posttype', true);
-
-						//either get post type or children
-						if($postType)
-							$args['post_type'] = $postType;
-						else {
-							$args['post_parent'] = $post->ID;
-							$args['post_type'] = 'any';
-						}
-
-						$subPages = get_posts($args);
-
-						//using include(locate_template()) so we still have access to $subPages
-						include(locate_template('template-parts/header-link.php'));
+						//include the actual link
+						get_template_part('template-parts/header', 'link');
 
 						//handle submenus
-						if(count($subPages)) {
+						if(count($subPages = wetstone_get_children($post))) {
 							echo '<ul class="header-sub-nav-site">';
 
 							//go through posts
@@ -85,25 +74,28 @@
 							foreach($subPages as $post) {
 								setup_postdata($post);
 
+								echo '<li>';
+								
 								get_template_part('template-parts/header', 'link');
+
+								echo '</li>';
 							}
 
-							echo '</ul></li>';
+							echo '</ul>';
 						}
+
+						echo '</li>';
 					}
 				?>
 
 				<li>
 					<?php
-						$signin = get_page_by_path('sign-in');
-						$portal = get_page_by_path('portal');
-
 						global $post;
 
 						if(is_user_logged_in())
-							$post = $portal;
+							$post = get_page_by_path('portal');
 						else
-							$post = $signin;
+							$post = get_page_by_path('sign-in');
 
 						setup_postdata($post);
 						get_template_part('template-parts/header', 'link');

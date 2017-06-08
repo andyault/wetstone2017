@@ -75,7 +75,7 @@ function wetstone_register_post_types() {
 add_action('add_meta_boxes', 'wetstone_add_meta_boxes');
 
 function wetstone_add_meta_boxes() {
-	foreach(['testimonial', 'product'] as $meta) {
+	foreach(['testimonial', 'product', 'page'] as $meta) {
 		add_meta_box(
 			sprintf('%s_meta', $meta),
 			sprintf('%s Info', ucfirst($meta)),
@@ -107,6 +107,20 @@ function wetstone_meta_product_content($post) {
 		[
 			'color'     => ['label' => 'Product color', 'type' => 'color'],
 			'ispreview' => ['label' => 'Show on front page?', 'type' => 'checkbox']
+		],
+		get_post_meta($post->ID)
+	);
+}
+
+//  pages
+function wetstone_meta_page_content($post) {
+	wetstone_meta_content(
+		'page',
+		[
+			'posttype'  => ['label' => 'Post type to list'],
+			'metakey'   => ['label' => 'Post filter meta key'],
+			'metaval'   => ['label' => 'Post filter meta value'],
+			'listlabel' => ['label' => 'Post list label'] 
 		],
 		get_post_meta($post->ID)
 	);

@@ -54,6 +54,13 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	font-weight: bold;
 }
 
+.page-subheader {
+	margin-top: -1em;
+
+	text-align: center;
+	color: $col3 + $colShade;
+}
+
 .section-header {
 	margin: 0.25em 0 0.5em;
 

@@ -1,15 +1,6 @@
 <?php
 	get_header();
 
-	function getAsset($url) {
-		return sprintf(
-			'%s/assets%s',
-
-			get_template_directory_uri(),
-			$url
-		);
-	}
-
 	$err = 'Your browser does not support the video tag, please update your browser to view content.';
 ?>
 
@@ -19,17 +10,17 @@
 			<div class="video-filter"></div>
 
 			<video id="hero-video" class="video-video" autoplay loop>
-				<source src="<?php echo getAsset('/img/background/busy-people.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
-				<source src="<?php echo getAsset('/img/background/busy-people.webm'); ?>" type="video/webm" /><?php echo $err; ?>
+				<source src="<?php echo wetstone_get_asset('/img/background/busy-people.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
+				<source src="<?php echo wetstone_get_asset('/img/background/busy-people.webm'); ?>" type="video/webm" /><?php echo $err; ?>
 			</video>
 
 			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo getAsset('/img/background/busy-people.jpg'); ?>);"></div>
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/busy-people.jpg'); ?>);"></div>
 		</div>
 	</div>
 
 	<div class="hero-info">
-		<img class="hero-logo" src="<?php echo getAsset('/img/biglogo.svg'); ?>">
+		<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.svg'); ?>">
 
 		<p class="hero-desc"><?php echo get_bloginfo('description'); ?></p>
 	</div>

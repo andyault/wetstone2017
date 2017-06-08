@@ -1,6 +1,4 @@
 <?php
-	include_once(dirname(__FILE__) . '/../util.php');
-
 	//name, type, label, placeholder, required
 	$structure = [
 		[
@@ -53,7 +51,7 @@
 				],
 				true
 			),
-			wetstone_form_make_checkboxes( //todo
+			wetstone_form_make_checkboxes(
 				'interests',
 				'What is your main marketing campaign?',
 				[
@@ -66,6 +64,7 @@
 					'Telemarketing',
 					'Web'
 				],
+				true,
 				true
 			)
 		],

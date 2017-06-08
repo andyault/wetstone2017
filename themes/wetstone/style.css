@@ -91,6 +91,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3em;
   font-weight: bold; }
 
+.page-subheader {
+  margin-top: -1em;
+  text-align: center;
+  color: #747474; }
+
 .section-header {
   margin: 0.25em 0 0.5em;
   font-family: "cera pro", helvetica, arial, sans-serif;
@@ -215,6 +220,17 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 128px;
   padding: 16px 0; }
 
+.site-footer > div > ul {
+  display: flex;
+  font-weight: bold; }
+  .site-footer > div > ul * {
+    flex: 1; }
+  .site-footer > div > ul li {
+    display: block; }
+  .site-footer > div > ul ul {
+    padding-left: 1em;
+    font-weight: normal; }
+
 .product-preview {
   display: inline-flex;
   position: relative;
@@ -332,6 +348,8 @@ i[class] {
       padding-right: 8px; }
     .form-table td:not([colspan]):not(:only-child):last-of-type {
       padding-left: 8px; }
+    .form-table td:only-child {
+      padding-right: 8px; }
 
 .form-multiple {
   display: inline-flex;

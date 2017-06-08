@@ -10,13 +10,12 @@
 				'posts_per_page' => -1
 			]);
 
-			//weird with global but it works
 			global $post;
 
 			foreach($posts as $post) {
 				setup_postdata($post);
 
-				get_template_part('template-parts/basic', 'page');
+				//get_template_part('template-parts/post', 'page'); //todo
 			}
 		?>
 	</div>

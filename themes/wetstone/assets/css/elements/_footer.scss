@@ -3,3 +3,17 @@
 	margin-top: 128px;
 	padding: $pxPadding 0;
 }
+
+.site-footer > div > ul {
+	display: flex;
+
+	font-weight: bold;
+
+	* { flex: 1; }
+	li { display: block; }
+	ul {
+		padding-left: 1em;
+
+		font-weight: normal;
+	}
+}

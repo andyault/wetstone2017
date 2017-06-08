@@ -1,6 +1,4 @@
 <?php
-	include_once(dirname(__FILE__) . '/../util.php');
-
 	$subject = strtolower(sanitize_text_field($_GET['subject']));
 	$context = strtolower(sanitize_text_field($_GET['context']));
 

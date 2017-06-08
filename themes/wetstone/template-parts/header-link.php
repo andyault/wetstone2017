@@ -13,23 +13,15 @@
 
 			get_the_permalink(),
 			$activeClass,
-			get_template_directory_uri() . '/assets/img/logo.svg'
+			wetstone_get_asset('/img/logo.svg')
 		);
 	} else {
 		echo sprintf(
-			'<li><a href="%s" class="header-link link link-header-site %s">%s</a>',
+			'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
+
 			get_the_permalink(),
 			$activeClass,
 			get_the_title()
 		);
-
-		if(!count($subPages))
-			echo '</li>';
-
-		/*
-		if(count($subPages)) {
-			echo '<a href class="site-header-link site-header-sub link link-site-header">&raquo;</a>';
-		}
-		*/
 	}
 ?>
