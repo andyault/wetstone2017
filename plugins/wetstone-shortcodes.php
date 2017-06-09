@@ -54,3 +54,10 @@ function wetstone_list_posts($attrs) {
 		return ob_get_clean();
 	}
 }
+
+//add excerpts to posts
+function wetstone_add_page_excerpts() {
+	add_post_type_support('page', 'excerpt');
+}
+
+add_action('init', 'wetstone_add_page_excerpts');

@@ -49,12 +49,18 @@
 				'Inquire about this ' . $label
 			);
 		} else {
-			echo sprintf(
-				'<a href="%s" class="single-inquire link link-button">%s</a>',
+			$back = sanitize_text_field($_GET['back']);
 
-				get_permalink(get_page_by_path('/corporate/news')), //todo
-				'Back to Company News'
-			);
+			if($back) {
+				$page = get_page_by_path($back);
+
+				echo sprintf(
+					'<a href="%s" class="single-inquire link link-button">Back to %s</a>',
+
+					get_permalink($page),
+					$page->post_title
+				);
+			}
 		}
 
 		if($next) {

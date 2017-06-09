@@ -37,6 +37,14 @@ section {
 	position: absolute;
 }
 
+.page-preview {
+	width: 50%;
+	float: left;
+
+	&:nth-of-type(2n + 1) { padding-right: $pxPadding / 2; }
+	&:nth-of-type(2n) { padding-left: $pxPadding / 2; }
+}
+
 //modifiers
 .flex { display: flex; }
 

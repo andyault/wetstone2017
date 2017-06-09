@@ -41,8 +41,8 @@
 			['lname', 'text', 'Last Name', 'Doe', true]
 		],
 		[
-			['company', 'text', 'Company', 'Google Inc.', true],
-			['title', 'text', 'Title', 'Mr.']
+			['title', 'text', 'Title', 'Mr.'],
+			['company', 'text', 'Company', 'Google Inc.', true]
 		],
 		[
 			['phone', 'tel', 'Phone', '(555) 867-5309', true],

@@ -34,6 +34,14 @@ section {
 .single-inquire {
   position: absolute; }
 
+.page-preview {
+  width: 50%;
+  float: left; }
+  .page-preview:nth-of-type(2n + 1) {
+    padding-right: 8px; }
+  .page-preview:nth-of-type(2n) {
+    padding-left: 8px; }
+
 .flex {
   display: flex; }
 
@@ -77,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "cera pro", helvetica, arial, sans-serif;
     font-size: 0.75em; }
 
-.body-content {
+.body, .body-content {
   font-size: 1.3rem;
   line-height: 1.5em;
   hyphens: auto; }
@@ -126,7 +134,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .link-body {
   color: #2AAF51; }
-  .link-body:hover {
+  .link-body:hover, .link-body.active {
     color: #006b0d; }
 
 .text-left {
@@ -228,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
   .site-footer > div > ul li {
     display: block; }
   .site-footer > div > ul ul {
-    padding-left: 1em;
+    padding: 0;
     font-weight: normal; }
 
 .product-preview {

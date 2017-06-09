@@ -15,6 +15,13 @@
 			</a>
 		</li>
 
+		<li>
+			<a href="<?php echo get_permalink($home = get_page_by_path('portal')); ?>"
+			   class="header-link link link-header-site link-header-page <?php echo is_page($home->ID) ? 'active' : ''; ?>">
+				Home
+			</a>
+		</li>
+
 		<?php
 			$pages = get_pages([
 				'parent'      => get_page_by_path('portal')->ID,
@@ -42,6 +49,6 @@
 			   class="header-link link link-header-site link-header-page">
 				Sign out
 			</a>
-		</li>		
+		</li>
 	</ul>
 </header>

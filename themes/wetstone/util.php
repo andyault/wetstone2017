@@ -66,11 +66,11 @@ function wetstone_form_make_select($name, $label, $options, $required = false) {
 	return ob_get_clean();
 }
 
-function wetstone_form_make_checkboxes($name, $label, $options, $required = false, $radio = false) {
+function wetstone_form_make_checkboxes($name, $label, $options, $required = false, $radio = false, $rowspan = null) {
 	ob_start();
 	?>
 
-	<td rowspan="<?php echo count($options); ?>">
+	<td <?php if($rowspan) echo 'rowspan="' . $rowspan . '"'; ?>>
 		<div class="form-checkboxes">
 			<div class="form-label">
 				<?php if($required) echo '<i class="req">*</i>'; ?>

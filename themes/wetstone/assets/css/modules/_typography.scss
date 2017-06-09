@@ -33,12 +33,14 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 }
 
 //blocks
-.body-content {
-	@extend .site-content, .site-content-small;
-
+.body {
 	font-size: $emBodySize;
 	line-height: $emBodyLineH;
 	hyphens: auto;
+}
+
+.body-content {
+	@extend .site-content, .site-content-small, .body;
 }
 
 .body-small {
@@ -101,7 +103,7 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 .link-body {
 	color: $col2;
 
-	&:hover { color: $col2 - $colShade; }
+	&:hover, &.active { color: $col2 - $colShade; }
 }
 
 .text-left { text-align: left; }
