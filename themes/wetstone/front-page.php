@@ -28,7 +28,7 @@
 	<div class="hero-scroll box-center">scroll down</div>
 </section>
 
-<section id="products" class="products-preview section-invert">
+<section id="products" class="products-front section-invert">
 	<div class="site-content">
 	<?php
 		$products = get_posts([

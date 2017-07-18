@@ -1,11 +1,12 @@
 //variables
 $pxPadding: 16px;
+$bodyWidth: 1200px;
 
 //blocks
 .site-content {
 	@extend .box-center;
 
-	width: 1200px;
+	width: $bodyWidth;
 }
 
 .box-center {
@@ -20,7 +21,7 @@ $pxPadding: 16px;
 }
 
 section {
-	padding: 1em 0;
+	padding: 2em 0;
 	overflow: hidden;
 }
 

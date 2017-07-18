@@ -3,7 +3,7 @@
 //blocks
 .hero {
 	display: flex;
-
+	padding: 0;
 	justify-content: center;
 	align-items: center;
 
@@ -53,7 +53,7 @@
 	width: 50%;
 }
 
-.products-preview { padding: 0; }
+.products-front { padding: 0; }
 
 .testimonials-preview-testimonials {
 	display: flex;
@@ -78,6 +78,8 @@
 
 //modifiers
 .fullpage-hero {
+	position: relative;
+	min-height: 448px;
 	margin-top: -$pxHeader;
 	padding-top: $pxHeader;
 }

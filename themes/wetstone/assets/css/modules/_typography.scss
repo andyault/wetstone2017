@@ -100,6 +100,12 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	}
 }
 
+.link-button-grey {
+	background: $col1 - $colShade;
+
+	&:hover { background: $col1 - $colShade * 2; }
+}
+
 .link-body {
 	color: $col2;
 

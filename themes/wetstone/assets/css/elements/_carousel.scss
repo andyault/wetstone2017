@@ -1,0 +1,71 @@
+//b
+.carousel {
+	position: relative;
+	padding: 0;
+}
+
+.carousel-dots {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	padding: 0;
+	transform: translate(-50%);
+}
+
+//e
+.carousel-arrow {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 50%;
+	width: 80px;
+	height: 100%;
+	z-index: 99;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: 32px;
+		height: 32px;
+		top: 45%;
+
+		opacity: 0.5;
+
+		border-right: 3px solid #fff;
+		border-bottom: 3px solid #fff;
+	}
+
+	&:hover::after { opacity: 1; }
+
+	&.carousel-arrow-prev {
+		transform: translate(-$bodyWidth / 2 + 80);
+
+		&::after {
+			right: 16px;
+			transform: rotate(135deg);
+		}
+	}
+
+	&.carousel-arrow-next {
+		transform: translate($bodyWidth / 2 - 80);
+
+		&::after {
+			left: 14px;
+			transform: rotate(-45deg);
+		}
+	}
+}
+
+.carousel-dot {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin: 0 4px;
+
+	border: 4px solid #fff;
+	border-radius: 4px;
+	cursor: pointer;
+	opacity: 0.4;
+
+	&.active, &:hover { opacity: 1; }
+}
