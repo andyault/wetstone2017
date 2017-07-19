@@ -74,9 +74,9 @@
 <script>
 	var carouselEl = document.getElementById('product-preview-slides');
 	var dots = document.getElementsByClassName('carousel-dot');
-	var btns = document.getElementsByClassName('product-page-button');
+	var btns = document.getElementsByClassName('product-page-button-view');
 
-	var onChange = function() {
+	var onChange = function(shouldHash) {
 		//highlight dots
 		for(var i = 0; i < dots.length; i++) {
 			if(i == carousel.currentSlide)
@@ -84,12 +84,20 @@
 			else
 				dots[i].classList.remove('active');
 		}
+
+		if(shouldHash !== false) {
+			var newSlide = carousel.innerElements[carousel.currentSlide];
+
+			var newHash = newSlide.id;
+			newSlide.id = undefined;
+			location.replace('#' + newHash);
+			newSlide.id = newHash;
+		}
 	}
 
 	var carousel = new Siema({
 		selector: carouselEl,
 		duration: 500,
-		perPage:  1,
 		loop:     true,
 		onChange: onChange
 	});
@@ -117,7 +125,19 @@
 	}
 
 	//init
-	onChange();
+	if(location.hash) {
+		var id = location.hash.substr(1);
+		var elem = document.getElementById(id);
+		var slide = elem.parentElement;
+
+		var i = 0;
+
+		while((slide = slide.previousSibling) != null)
+			i++;
+
+		carousel.goTo(i);
+	} else
+		onChange(false);
 </script>
 
 <?php

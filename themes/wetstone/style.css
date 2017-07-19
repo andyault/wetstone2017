@@ -337,8 +337,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .product-page-button {
   flex-grow: 1; }
-  .product-page-button:first-of-type {
-    margin-right: 16px; }
+
+.product-page-button-view {
+  margin-right: 16px; }
 
 .larr {
   margin-right: 1em; }
