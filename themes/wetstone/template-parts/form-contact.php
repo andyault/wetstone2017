@@ -23,17 +23,6 @@
 	$subjectVal = sprintf($subjectVal, $subject);
 	$placeholder = sprintf($placeholder, ucwords($subject));
 
-	//this file is ugly... todo?
-	$interests = [
-		'Malware investigation',
-		'Steganography investigation',
-		'Live acquisition and triage',
-		'Forensic time',
-		'Reselling opportunities',
-		'Hosting a training',
-		'Other (please specify below)'
-	];
-
 	//name, type, label, placeholder, required
 	$structure = [
 		[
@@ -70,12 +59,13 @@
 		],
 		[
 			['country', 'text', 'Country', 'U.S.A.', true],
-			['referrer', 'text', 'How did you hear about us?', 'Google', true]
+			['referrer', 'text', 'How did you hear about us?', 'Google']
 		]
 	];
 ?>
 
-<form name="contact" class="form">
+<form name="contact" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
+	<input type="hidden" name="action" value="wetstone-contact-form">
 	<?php wp_nonce_field('wetstone-contact-form'); ?>
 
 	<input type="hidden" name="subject" value="<?php echo $subjectVal; ?>">
@@ -119,8 +109,18 @@
 
 		<tr>
 			<?php
+				$interests = [
+					'Malware investigation',
+					'Steganography investigation',
+					'Live acquisition and triage',
+					'Forensic time',
+					'Reselling opportunities',
+					'Hosting a training',
+					'Other (please specify below)'
+				];
+
 				echo wetstone_form_make_checkboxes(
-					'interests',
+					'interests[]',
 					'Please mark your area(s) of interest:',
 					$interests,
 					true
@@ -130,7 +130,7 @@
 			<td>
 				<label class="form-label">
 					Questions/Comments:
-					<textarea class="form-textarea"
+					<textarea name="comments" class="form-textarea"
 					          style="height: calc(<?php echo count($interests); ?> * 1.5em)"
 					          placeholder="<?php echo $placeholder; ?>"></textarea>
 				</label>
@@ -139,7 +139,10 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<a href="#" onclick="return !!document.contact.submit();" class="link link-button">Submit</a>
+				<div class="inline-flex">
+					<a href="#" onclick="return !!document.contact.reset();" class="form-reset link link-button link-button-grey">Reset</a>
+					<a href="#" onclick="return !!document.contact.submit();" class="link link-button">Submit</a>
+				</div>
 			</td>
 		</tr>
 	</table>

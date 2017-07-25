@@ -1,14 +1,4 @@
 <?php
-/**
- * @package WetStone_Core
- * @version 1.0
- */
-/*
-Plugin Name: WetStone Shortcodes
-Description: Adds a number of shortcodes used on the WetStone website.
-Author: Andrew Ault
-Version: 1.0
-*/
 
 add_shortcode('wetstone_list_posts', 'wetstone_list_posts');
 

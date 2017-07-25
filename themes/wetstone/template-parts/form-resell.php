@@ -87,7 +87,7 @@
 			)
 		],
 		[
-			['territories', 'text', 'What territories do you support?', '???', true]
+			['territories', 'text', 'What territories do you support?', 'South East U.S.', true]
 		]
 	];
 ?>
@@ -148,7 +148,10 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<a href="#" onclick="return !!document.contact.submit();" class="link link-button">Submit</a>
+				<div class="inline-flex">
+					<a href="#" onclick="return !!document.contact.reset();" class="form-reset link link-button link-button-grey">Reset</a>
+					<a href="#" onclick="return !!document.contact.submit();" class="link link-button">Submit</a>
+				</div>
 			</td>
 		</tr>
 	</table>

@@ -1,14 +1,4 @@
 <?php
-/**
- * @package WetStone_Core
- * @version 1.0
- */
-/*
-Plugin Name: WetStone Customer Meta
-Description: Adds meta info to users necessary for WetStone website.
-Author: Andrew Ault
-Version: 1.0
-*/
 
 //make submenu page
 function wetstone_add_customer_page() {

@@ -41,9 +41,6 @@
 }
 
 //elements
-.form-label {
-}
-
 .form-input {
 	display: block;
 	width: 100%;
@@ -68,9 +65,13 @@
 	pointer-events: none;
 }
 
+.form-reset {
+	margin-right: $pxPadding;
+}
+
 //modifiers
 .table-footer {
-	padding: 2em 0 0 0;
+	padding: 2em 0 0 0 !important;
 
 	text-align: center;
 }

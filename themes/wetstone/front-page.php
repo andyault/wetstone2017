@@ -29,7 +29,7 @@
 </section>
 
 <section id="products" class="products-front section-invert">
-	<div class="site-content">
+	<div class="site-content products-front-products">
 	<?php
 		$products = get_posts([
 			'post_type'      => 'product',

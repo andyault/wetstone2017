@@ -46,7 +46,7 @@ function wetstone_form_make_select($name, $label, $options, $required = false) {
 			<?php if($required) echo '<i class="req">*</i>'; ?>
 			<?php echo $label; ?>
 			<br />
-			<select name="<?php echo name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?>>
+			<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?>>
 				<option value selected>Select an option</option>
 
 				<?php
@@ -79,13 +79,14 @@ function wetstone_form_make_checkboxes($name, $label, $options, $required = fals
 
 			<?php
 				foreach($options as $option) {
-					//1: value, 2: input type
+					//1: name, 2: value, 3: input type
 					echo sprintf(
 						'<label class="form-label">
-							<input type="%2$s" name="interests" value="%1$s">
-							%1$s
+							<input type="%3$s" name="%1$s" value="%2$s">
+							%2$s
 						</label><br />',
 
+						$name,
 						$option,
 						$radio ? 'radio' : 'checkbox'
 					);

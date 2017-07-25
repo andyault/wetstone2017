@@ -1,14 +1,4 @@
 <?php
-/**
- * @package WetStone_Core
- * @version 1.0
- */
-/*
-Plugin Name: WetStone Post Types
-Description: Adds a number of post types used on the WetStone website.
-Author: Andrew Ault
-Version: 1.0
-*/
 
 //add theme support
 add_action('after_setup_theme', 'wetstone_add_theme_support');

@@ -1,14 +1,4 @@
 <?php
-/**
- * @package WetStone_Core
- * @version 1.0
- */
-/*
-Plugin Name: WetStone Security
-Description: Prevents unauthorized access to wp-admin.php
-Author: Andrew Ault
-Version: 1.0
-*/
 
 $wetstone_redirect_slug = 'sign-in';
 
