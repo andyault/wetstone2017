@@ -105,22 +105,24 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 	if(!isset($fromName) || empty($fromName))
 		$fromName = wetstone_get_option('form_handling', 'default_name');
 
-	//handle multiple recipients
+	/*/handle multiple recipients
 	$recipients = explode(',', wetstone_get_option('form_handling', 'receiver_email'));
 
 	$toHeader = 'To: ';
 
 	foreach($recipients as $address)
 		$toHeader .= 'Sales Support <' . $address . '>,';
+	*/
 
 	//email headers
 	$headers = [
 		'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
 		sprintf('From: %s via Contact Form <%s>', $fromName, $fromAddress),
 		sprintf('Reply-to: %s <%s>', $fromName, $fromAddress),
-		substr($toHeader, 0, -1),
+		//substr($toHeader, 0, -1),
 		'Content-type: text/html'
 	];
+	
 	return wp_mail(
 		wetstone_get_option('form_handling', 'receiver_email'),
 		$subject,
