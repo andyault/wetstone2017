@@ -96,13 +96,11 @@
 	</a>
 </section>
 
-<div class="site-content flex">
+<div class="site-content site-content-padded flex">
 	<section id="showcase" class="showcase-preview section-half">
 		<h2 class="section-header">Showcase</h2>
 
-		<a href="<?php echo esc_url(get_permalink(get_page_by_path('corporate/news'))); ?>" class="link link-button box-center">
-			See more projects
-		</a>
+		<p class="text-center" style="display: block; width: 100%; height: 64px; background: #eee; line-height: 64px">Coming soon!</p>
 	</section>
 
 	<section id="news" class="news-preview section-half">

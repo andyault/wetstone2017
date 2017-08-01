@@ -1,0 +1,11 @@
+@media (max-width: 1199px) {
+  .site-content {
+    width: 800px; }
+
+  .carousel-arrow-prev {
+    transform: translate(-320px) translate(-100%); }
+
+  .carousel-arrow-next {
+    transform: translate(320px); } }
+
+/*# sourceMappingURL=media.css.map */

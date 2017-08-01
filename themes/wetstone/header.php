@@ -34,6 +34,7 @@
 		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/assets/css/lib/normalize.css'; ?>">
 		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/assets/fonts/fonts.css'; ?>">
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/media.css'; ?>">
 
 		<!-- wordpress -->
 		<?php wp_head(); ?>
@@ -48,7 +49,7 @@
 					//get all root pages - maybe todo?
 					$pages = get_pages([
 						'parent'      => 0,
-						'exclude'     => [19, 84], //exclude sign in and portal
+						'exclude'     => [19, 84, 112], //exclude sign in, portal, thank you
 						'sort_column' => 'menu_order',
 						'sort_order'  => 'ASC'
 					]);

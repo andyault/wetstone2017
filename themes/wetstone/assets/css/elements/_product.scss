@@ -1,8 +1,6 @@
 //variables
-$pxProductPreview: 400px;
-$pxProductPage: 192px;
-
-$pxProductPageImg: 256px;
+$pxProductFront: 400px; //p much arbitrary
+$pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 
 //blocks
 //  front
@@ -13,8 +11,8 @@ $pxProductPageImg: 256px;
 .product-front {
 	display: inline-block;
 	position: relative;
-	width: $pxProductPreview;
-	height: $pxProductPreview;
+	width: $pxProductFront;
+	height: $pxProductFront;
 	padding: $pxPadding * 2;
 
 	background-position: center;
@@ -60,8 +58,8 @@ $pxProductPageImg: 256px;
 .product-page {
 	display: flex;
 	position: relative;
-	width: 288px;
-	height: 288px;
+	width: $pxProductPage;
+	height: $pxProductPage;
 	margin-right: $pxPadding;
 	flex-direction: column;
 }

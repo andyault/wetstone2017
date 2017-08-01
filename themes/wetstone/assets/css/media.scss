@@ -1,0 +1,10 @@
+$pxArrowWidth: 80px; //bad?? how do I fix?
+
+@media (max-width: 1199px) {
+	$bodyWidth: 800px;
+
+	.site-content { width: $bodyWidth; }
+
+	.carousel-arrow-prev { transform: translate(-$bodyWidth / 2 + $pxArrowWidth) translate(-100%); }
+	.carousel-arrow-next { transform: translate($bodyWidth / 2 - $pxArrowWidth); }
+}

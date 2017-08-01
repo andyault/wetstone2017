@@ -50,6 +50,11 @@ section {
 .flex { display: flex; }
 .inline-flex { display: inline-flex; }
 
+.site-content-padded {
+	padding-right: $pxPadding;
+	padding-left: $pxPadding;
+}
+
 .site-content-small {
 	width: 700px;
 }

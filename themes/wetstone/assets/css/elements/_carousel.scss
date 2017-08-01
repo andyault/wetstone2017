@@ -1,3 +1,5 @@
+$pxArrowWidth: 80px;
+
 //b
 .carousel {
 	position: relative;
@@ -18,7 +20,7 @@
 	display: block;
 	top: 0;
 	left: 50%;
-	width: 80px;
+	width: $pxArrowWidth;
 	height: 100%;
 	z-index: 99;
 
@@ -36,24 +38,6 @@
 	}
 
 	&:hover::after { opacity: 1; }
-
-	&.carousel-arrow-prev {
-		transform: translate(-$bodyWidth / 2 + 80);
-
-		&::after {
-			right: 16px;
-			transform: rotate(135deg);
-		}
-	}
-
-	&.carousel-arrow-next {
-		transform: translate($bodyWidth / 2 - 80);
-
-		&::after {
-			left: 14px;
-			transform: rotate(-45deg);
-		}
-	}
 }
 
 .carousel-dot {
@@ -68,4 +52,23 @@
 	opacity: 0.4;
 
 	&.active, &:hover { opacity: 1; }
+}
+
+//m
+.carousel-arrow-prev {
+	transform: translate(-$bodyWidth / 2 + $pxArrowWidth) translate(-100%);
+
+	&::after {
+		right: 16px;
+		transform: rotate(135deg);
+	}
+}
+
+.carousel-arrow-next {
+	transform: translate($bodyWidth / 2 - $pxArrowWidth);
+
+	&::after {
+		left: 14px;
+		transform: rotate(-45deg);
+	}
 }

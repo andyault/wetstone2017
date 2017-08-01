@@ -1,36 +1,49 @@
 		</main>
 
 		<footer class="site-footer section-invert">
-			<div class="site-footer-inner site-content">
+			<div class="site-footer-inner site-content site-content-padded">
 				<?php
-					function list_pages($id = 0) {
-						$pages = get_pages([
-							'parent' => $id
-						]);
+					function footer_link($page, $depth) {
+						echo sprintf(
+							'<a href="%s" class="link link-footer">%s</a>',
 
-						if(count($pages)) {
-							echo '<ul>';
+							get_permalink($page),
+							get_the_title($page)
+						);
 
-							foreach($pages as $page) {
-								echo '<li>';
+						//this sucks
+						if($page->ID == 84)
+							$children = get_pages(['parent' => $page->ID]);
+						else
+							$children = wetstone_get_children($page);
 
-								echo sprintf(
-									'<a href="%s" class="link link-footer">%s</a>',
-
-									get_permalink($page),
-									get_the_title($page)
-								);
-
-								list_pages($page->ID);
-
-								echo '</li>';
-							}
-
-							echo '</ul>';
-						}
+						//recursion is fun
+						if($depth != 0 && $children)
+							footer_list($children, $depth - 1);
 					}
 
-					list_pages();
+					function footer_list($pages, $depth) {
+						echo '<ul class="list-footer">';
+
+						foreach($pages as $page) {
+							echo '<li>';
+
+							if(gettype($page) == 'string')
+								$page = get_page_by_path($page);
+
+							echo footer_link($page, $depth);
+
+							echo '</li>';
+						}
+
+						echo '</ul>';
+					}
+
+					//sgo
+					footer_list(['home', 'about-us', 'contact'], 1);
+					footer_list(['products', 'services'], 1);
+					footer_list(['corporate'], 1); 
+					footer_list(['sign-in', 'portal'], 1);
 				?>
 			</div>
 		</footer>

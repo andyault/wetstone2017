@@ -89,6 +89,10 @@
 	color: $col1;
 }
 
+//ids
+#showcase { padding-right: $pxPadding / 2; }
+#news { padding-left: $pxPadding / 2; }
+
 //animations
 @keyframes hero-scroll-bounce {
 	0% { margin-bottom: 0; }

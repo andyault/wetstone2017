@@ -42,7 +42,7 @@
 		get_template_part('template-parts/basic', 'page');
 ?>
 
-<section class="page-posts site-content">
+<section class="page-posts site-content site-content-padded">
 	<h2 class="section-header">
 		<?php
 			//todo - default to 'our _', allow %s, remove if no value?
@@ -135,7 +135,10 @@
 		while((slide = slide.previousSibling) != null)
 			i++;
 
-		carousel.goTo(i);
+		if(i > 0)
+			carousel.goTo(i);
+		else
+			onChange(false);
 	} else
 		onChange(false);
 </script>

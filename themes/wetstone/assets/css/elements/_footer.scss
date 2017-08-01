@@ -1,19 +1,30 @@
 .site-footer {
 	overflow: hidden;
 	margin-top: 128px;
-	padding: $pxPadding 0;
+	padding: $pxPadding 0 $pxPadding * 4;
 }
 
-.site-footer > div > ul {
+.site-footer-inner {
 	display: flex;
 
-	font-weight: bold;
+	line-height: 1.5em;
 
-	* { flex: 1; }
-	li { display: block; }
-	ul {
+	& > .list-footer {
+		flex: 1;
+		margin: 0;
 		padding: 0;
 
-		font-weight: normal;
+		list-style: none;
+		font-weight: bold;
+		font-size: 1.125em;
+
+		& > li { margin-bottom: 0.5em; }
+
+		ul {
+			padding: 0 1em;
+			list-style: none;
+			font-weight: normal;
+			font-size: 1rem;
+		}
 	}
 }

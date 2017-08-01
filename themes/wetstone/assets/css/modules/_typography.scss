@@ -80,7 +80,6 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	&:hover { color: $col1 - $colShade; }
 }
 
-//modifiers
 .link-button {
 	display: inline-block;
 	min-width: 128px;
@@ -98,6 +97,18 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 		color: $col1;
 		background: $col2 - $colShade;
 	}
+}
+
+//modifiers
+.link-button-input {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+
+	border: 0;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
 }
 
 .link-button-grey {

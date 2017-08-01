@@ -20,6 +20,14 @@
 	}
 }
 
+.form-error td {
+	padding: 1em;
+
+	background: rgba(231, 76, 60, 0.3);
+}
+
+.form-error-spacer { padding-top: 1em; }
+
 .form-multiple {
 	display: inline-flex;
 	width: 100%;
