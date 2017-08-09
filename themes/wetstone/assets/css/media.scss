@@ -34,8 +34,8 @@ $pxHeader: 64px;
 	}
 }
 
-//@media (min-width: 600px) and (max-width: 899px) {
-.home.home.home.home {
+@media (min-width: 600px) and (max-width: 899px) {
+//.home.home.home.home {
 	$bodyWidth: 600px;
 	$bodyWidthSmall: 480px;
 
