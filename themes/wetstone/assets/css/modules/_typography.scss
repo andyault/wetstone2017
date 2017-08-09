@@ -75,7 +75,8 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	text-decoration: none;
 	color: $col1;
 
-	transition: all $sTrans;
+	transition-property: color;
+	transition-duration: $sTrans;
 
 	&:hover { color: $col1 - $colShade; }
 }
@@ -92,6 +93,8 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	background: $col2;
 	color: $col1;
 	border-radius: 4px;
+
+	transition-property: color, background;
 
 	&:hover {
 		color: $col1;
@@ -126,6 +129,8 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 .text-left { text-align: left; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
+
+.text-nowrap { white-space: nowrap; }
 
 //wordpress
 .alignright { float: right; margin-left: $pxPadding; }

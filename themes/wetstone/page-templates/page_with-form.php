@@ -10,7 +10,7 @@
 		get_template_part('template-parts/basic', 'page-nobody');
 ?>
 
-<section class="page-posts site-content site-content-small">
+<section class="page-posts site-content site-content-small site-content-padded">
 	<h2 class="section-header">
 		<?php
 			//todo - default to 'our _', allow %s, remove if no value?

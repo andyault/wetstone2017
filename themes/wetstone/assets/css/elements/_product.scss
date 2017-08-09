@@ -14,6 +14,7 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 	width: $pxProductFront;
 	height: $pxProductFront;
 	padding: $pxPadding * 2;
+	flex-shrink: 0;
 
 	background-position: center;
 	background-repeat: no-repeat;
@@ -92,9 +93,11 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 
 .product-front-header {
 	width: 100%;
-	margin: 0 0 $pxPadding;
+	height: auto;
+	margin: 0;
 
 	font-size: 1.5em;
+	white-space: nowrap;
 }
 
 .product-front-body {

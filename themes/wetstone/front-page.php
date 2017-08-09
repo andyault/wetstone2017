@@ -29,24 +29,24 @@
 </section>
 
 <section id="products" class="products-front section-invert">
-	<div class="site-content products-front-products">
-	<?php
-		$products = get_posts([
-			'post_type'      => 'product',
-			'meta_key'       => 'product_ispreview',
-			'meta_value'     => 'true',
-			'orderby'        => 'rand',
-			'posts_per_page' => -1
-		]);
+	<div class="products-front-products">
+		<?php
+			$products = get_posts([
+				'post_type'      => 'product',
+				'meta_key'       => 'product_ispreview',
+				'meta_value'     => 'true',
+				'orderby'        => 'rand',
+				'posts_per_page' => -1
+			]);
 
-		foreach($products as $product) {
-			global $post;
-			$post = $product;
-			setup_postdata($post);
+			foreach($products as $product) {
+				global $post;
+				$post = $product;
+				setup_postdata($post);
 
-			get_template_part('template-parts/product', 'front');
-		}
-	?>
+				get_template_part('template-parts/product', 'front');
+			}
+		?>
 	</div>
 </section>
 
@@ -71,7 +71,7 @@
 <section id="testimonials" class="testimonials-preview section-invert">
 	<h2 class="section-header">Testimonials</h2>
 
-	<div class="testimonials-preview-testimonials">
+	<div class="testimonials-preview-testimonials flex flex-center flex-responsive">
 		<?php
 			$testimonials = get_posts([
 				'post_type'      => 'testimonial',
@@ -96,7 +96,7 @@
 	</a>
 </section>
 
-<div class="site-content site-content-padded flex">
+<div class="site-content site-content-padded flex flex-responsive">
 	<section id="showcase" class="showcase-preview section-half">
 		<h2 class="section-header">Showcase</h2>
 

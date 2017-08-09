@@ -31,8 +31,8 @@
 		<title><?php wp_title('-', true, 'right'); echo get_bloginfo('name'); ?></title>
 
 		<!-- css -->
-		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/assets/css/lib/normalize.css'; ?>">
-		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/assets/fonts/fonts.css'; ?>">
+		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/css/lib/normalize.css'); ?>">
+		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/fonts/fonts.css'); ?>">
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/media.css'; ?>">
 
@@ -43,66 +43,99 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-		<header class="header header-site">
-			<ul class="header-nav header-nav-site">
-				<?php
-					//get all root pages - maybe todo?
-					$pages = get_pages([
-						'parent'      => 0,
-						'exclude'     => [19, 84, 112], //exclude sign in, portal, thank you
-						'sort_column' => 'menu_order',
-						'sort_order'  => 'ASC'
-					]);
+		<header class="header">
+			<?php global $post; ?>
 
-					//for each page, set up postdata
-					global $post;
+			<div class="header-site-full">
+				<ul class="header-nav header-nav-site">
+					<?php
+						//get all root pages - maybe todo?
+						$pages = get_pages([
+							'parent'      => 0,
+							'exclude'     => [
+								get_page_by_path('sign-in')->ID,
+								get_page_by_path('portal')->ID,
+								get_page_by_path('thank-you')->ID
+							], 
+							'sort_column' => 'menu_order',
+							'sort_order'  => 'ASC'
+						]);
 
-					foreach($pages as $post) {
-						setup_postdata($post);
+						//for each page, set up postdata
+						foreach($pages as $post) {
+							setup_postdata($post);
 
-						echo '<li>';
+							$isLogo = $post->ID == get_option('page_on_front');
 
-						//include the actual link
-						get_template_part('template-parts/header', 'link');
-
-						//handle submenus
-						if(count($subPages = wetstone_get_children($post))) {
-							echo '<ul class="header-sub-nav-site">';
-
-							//go through posts
-							global $post;
-
-							foreach($subPages as $post) {
-								setup_postdata($post);
-
+							if($isLogo)
+								echo '</ul>';
+							else
 								echo '<li>';
-								
+
+							//include the actual link
+							get_template_part('template-parts/header', 'link');
+
+							//handle submenus
+							if(count($subPages = wetstone_get_children($post))) {
+								echo '<ul class="header-sub-nav-site">';
+
+								//make a click through link
+								echo '<li class="header-link-clickthru">';
+
 								get_template_part('template-parts/header', 'link');
 
 								echo '</li>';
+
+								//go through sub pages
+								foreach($subPages as $post) {
+									setup_postdata($post);
+
+									echo '<li>';
+									
+									get_template_part('template-parts/header', 'link');
+
+									echo '</li>';
+								}
+
+								echo '</ul>';
 							}
 
-							echo '</ul>';
+							if($isLogo)
+								echo '<ul class="header-nav header-nav-site">';
+							else
+								echo '</li>';
 						}
+					?>
 
-						echo '</li>';
-					}
+					<li>
+						<?php
+							global $post;
+
+							if(is_user_logged_in())
+								$post = get_page_by_path('portal');
+							else
+								$post = get_page_by_path('sign-in');
+
+							setup_postdata($post);
+							get_template_part('template-parts/header', 'link');
+						?>
+					</li>
+				</ul>
+			</div>
+
+			<div class="header-site-mobile">
+				<?php
+					$post = get_post(get_option('page_on_front'));
+
+					get_template_part('template-parts/header', 'link');
 				?>
 
-				<li>
-					<?php
-						global $post;
-
-						if(is_user_logged_in())
-							$post = get_page_by_path('portal');
-						else
-							$post = get_page_by_path('sign-in');
-
-						setup_postdata($post);
-						get_template_part('template-parts/header', 'link');
-					?>
-				</li>
-			</ul>
+				<div class="header-site-dropdown">
+					<a href class="header-link link link-site-header header-site-dropdown-selected">
+						<?php echo $wp_query->post->post_title; ?>
+					</a>
+				</div>
+			</div>
 		</header>
 
 		<main class="site-main">

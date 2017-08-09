@@ -53,12 +53,12 @@
 	width: 50%;
 }
 
-.products-front { padding: 0; }
-
-.testimonials-preview-testimonials {
-	display: flex;
-	justify-content: center;
+.products-front {
+	padding: 0;
+	overflow-x: scroll;
 }
+
+.products-front-products {}
 
 //elements
 .hero-desc {

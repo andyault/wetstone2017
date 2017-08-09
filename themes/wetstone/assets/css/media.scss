@@ -1,10 +1,84 @@
 $pxArrowWidth: 80px; //bad?? how do I fix?
+$pxHeader: 64px;
 
-@media (max-width: 1199px) {
-	$bodyWidth: 800px;
+@media (min-width: 900px) and (max-width: 1199px) {
+	$bodyWidth: 900px;
 
-	.site-content { width: $bodyWidth; }
+	$pxProductFront: 300px;
+	$pxProductPage: 278.66667px;
 
+	//general
+	.site-content:not(.site-content-small) { width: $bodyWidth; }
+
+	//front page
+	.product-front {
+		width: $pxProductFront;
+		height: $pxProductFront;
+	}
+
+	.product-front-header {
+		margin-bottom: 0.5em;
+
+		font-size: 1.125em;
+	}
+
+	//.product-front-body { visibility: hidden; }
+
+	//product listing page
 	.carousel-arrow-prev { transform: translate(-$bodyWidth / 2 + $pxArrowWidth) translate(-100%); }
 	.carousel-arrow-next { transform: translate($bodyWidth / 2 - $pxArrowWidth); }
+
+	.product-page {
+		width: $pxProductPage;
+		height: $pxProductPage;
+	}
+}
+
+//@media (min-width: 600px) and (max-width: 899px) {
+.home.home.home.home {
+	$bodyWidth: 600px;
+	$bodyWidthSmall: 480px;
+
+	$pxProductFront: 300px;
+
+	//general
+	.site-content, .site-content-small { width: $bodyWidth; }
+
+	.body-content {
+		width: $bodyWidthSmall;
+
+		font-size: 1.125em;
+	}
+
+	.flex-responsive {
+		flex-direction: column;
+		align-items: center;
+
+		.body-content-half, .section-half {
+			width: $bodyWidthSmall;
+		}
+	}
+
+	//header
+	.header { position: fixed; }
+	.site-main { margin-top: $pxHeader; }
+	.header-site-full { display: none; }
+	.header-site-mobile { display: flex; }
+
+	//front page
+	.product-front {
+		width: $pxProductFront;
+		height: $pxProductFront;
+	}
+
+	.product-front-header {
+		margin-bottom: 0.5em;
+
+		font-size: 1.125em;
+	}
+
+	.testimonial:not(:last-of-type) {
+		padding-bottom: 1em;
+		border-bottom: 1px solid #fff;
+	}
 }

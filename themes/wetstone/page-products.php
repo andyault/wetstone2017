@@ -66,11 +66,10 @@
 	</div>
 </section>
 
-<!-- smooth scrolling anchors -->
+<!-- smooth scrolling anchors, carousel -->
 <script src="<?php echo wetstone_get_asset('/js/smoothscroll.js'); ?>"></script>
-
-<!-- carousel -->
 <script src="<?php echo wetstone_get_asset('/js/siema.min.js'); ?>"></script>
+
 <script>
 	var carouselEl = document.getElementById('product-preview-slides');
 	var dots = document.getElementsByClassName('carousel-dot');

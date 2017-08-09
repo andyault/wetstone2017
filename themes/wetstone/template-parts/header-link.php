@@ -7,9 +7,7 @@
 
 	if($id == get_option('page_on_front')) {
 		echo sprintf(
-			'</ul>
-			<a href="%s" class="header-link %s"><img src="%s" class="header-logo-site"></a>
-			<ul class="header-nav header-nav-site">',
+			'<a href="%s" class="header-link header-logo-link %s"><img src="%s" class="header-logo-img"></a>',
 
 			get_the_permalink(),
 			$activeClass,
@@ -24,4 +22,6 @@
 			get_the_title()
 		);
 	}
+
+	echo "\n";
 ?>

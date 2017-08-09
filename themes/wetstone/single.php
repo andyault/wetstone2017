@@ -74,4 +74,22 @@
 	?>
 </section>
 
+<script>
+	var imgs = document.querySelectorAll('.body-content img[srcset]');
+
+	for(var i = 0; i < imgs.length; i++) {
+		var img = imgs[i];
+		var parent = img.parentNode;
+		var next = img.nextSibling;
+
+		var link = document.createElement('a');
+		link.href = img.srcset.split(', ').pop().match(/([^\s]*)/)[1];
+		link.className = 'wplightbox';
+
+		link.appendChild(img);
+
+		parent.insertBefore(link, next);
+	}
+</script>
+
 <?php get_footer(); ?>
