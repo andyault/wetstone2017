@@ -55,6 +55,24 @@
 
   .testimonial:not(:last-of-type) {
     padding-bottom: 1em;
-    border-bottom: 1px solid #fff; } }
+    border-bottom: 1px solid #fff; }
+
+  .carousel-arrow-prev {
+    transform: translate(-220px) translate(-100%); }
+
+  .carousel-arrow-next {
+    transform: translate(220px); }
+
+  .product-preview-image {
+    position: absolute;
+    width: 100%; }
+
+  .product-preview-info {
+    width: 100%; }
+
+  /* .product-page {
+  	width: $pxProductPage;
+  	height: $pxProductPage;
+  } */ }
 
 /*# sourceMappingURL=media.css.map */

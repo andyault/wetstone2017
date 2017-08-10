@@ -18,7 +18,7 @@
 		if(count($posts)) {
 			?>
 
-			<section class="page-posts site-content site-content-small">
+			<section class="page-posts site-content site-content-padded site-content-small">
 				<h2 class="section-header">
 					<?php
 						//todo - default to 'our _', allow %s, remove if no value?

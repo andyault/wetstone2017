@@ -38,7 +38,8 @@ section, .product-preview-slide {
   width: 50%;
   float: left; }
   .page-preview:nth-of-type(2n + 1) {
-    padding-right: 8px; }
+    padding-right: 8px;
+    clear: left; }
   .page-preview:nth-of-type(2n) {
     padding-left: 8px; }
 
@@ -175,6 +176,16 @@ h1, h2, h3, h4, h5, h6 {
 .text-nowrap {
   white-space: nowrap; }
 
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  font-size: 0.5em;
+  border: 0.7em solid transparent;
+  border-top: 1em solid #fff;
+  border-bottom: 0; }
+
 .alignright {
   float: right;
   margin-left: 16px; }
@@ -207,8 +218,10 @@ h1, h2, h3, h4, h5, h6 {
 .header-sub-nav-site {
   display: none;
   position: absolute;
-  background: #303030;
-  z-index: 100; }
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  z-index: 100;
+  background: #303030; }
   .header-sub-nav-site a {
     width: 100%; }
   .header-sub-nav-site:hover {
@@ -217,6 +230,13 @@ h1, h2, h3, h4, h5, h6 {
 .header-site-mobile {
   display: none;
   justify-content: space-between; }
+
+.header-site-dropdown {
+  flex: 1;
+  text-align: right; }
+  .header-site-dropdown .header-sub-nav-site {
+    right: 0;
+    text-align: left; }
 
 .header-nav-page {
   justify-content: flex-end; }
@@ -229,20 +249,31 @@ h1, h2, h3, h4, h5, h6 {
   .header-link.active ~ .header-sub-nav-site {
     display: block; }
 
+.header-logo-link {
+  height: 64px; }
+
 .header-logo-img {
   width: 64px;
   height: 64px; }
+
+.header-site-dropdown-selected {
+  position: relative;
+  padding-right: 48px; }
+  .header-site-dropdown-selected .caret {
+    position: absolute;
+    right: 16px; }
 
 .page-header-link-welcome {
   position: absolute;
   left: 0; }
 
-.header-link-clickthru {
-  border-bottom: 1px solid #525252; }
-  .header-link-clickthru .header-link::before {
-    content: 'Go to '; }
-  .header-link-clickthru .header-link::after {
-    content: ' page'; }
+.header-link-clickthru .header-link::before {
+  content: 'Go to '; }
+.header-link-clickthru .header-link::after {
+  content: ' page'; }
+
+.header-link-separated:not(:first-of-type) {
+  border-top: 1px solid #525252; }
 
 .link-header-site {
   position: relative;
@@ -520,6 +551,7 @@ i[class] {
   bottom: 0;
   left: 50%;
   padding: 0;
+  margin-bottom: 8px;
   transform: translate(-50%); }
 
 .carousel-arrow {

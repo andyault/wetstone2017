@@ -132,5 +132,16 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 
 .text-nowrap { white-space: nowrap; }
 
+.caret::after {
+	content: '';
+	display: inline-block;
+	width: 0; height: 0;
+
+	font-size: 0.5em;
+	border: 0.7em solid transparent;
+	border-top: 1em solid #fff;
+	border-bottom: 0;
+}
+
 //wordpress
 .alignright { float: right; margin-left: $pxPadding; }

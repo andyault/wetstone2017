@@ -1,27 +1,37 @@
 //touch nav for dropdowns
-var submenus = document.getElementsByClassName('header-sub-nav-site');
-
-//[...htmlcollection] is a godsend
-var links = Array.prototype.slice.call(submenus);
-links = links.map(function(e) { return e.previousSibling });
+//wouldn't [...collection] and lambdas be nice rn?
+var links = document.getElementsByClassName('header-sub-nav-site');
+links = Array.prototype.slice.call(links);
+links = links.map(function(e) { return e.previousElementSibling });
 
 //hook into touch events
-for(let i = 0; i < links.length; i++) {
-	let link = links[i];
-	link.submenu = submenus[i];
+for(var i = 0; i < links.length; i++) {
+	var link = links[i];
 
 	link.addEventListener('touchend', function(e) {
+		e.preventDefault();
+
+		//if we click on an open menu, just close it 
+		if(this.classList.contains('active')) {
+			this.classList.remove('active');
+
+			return false
+		}
+
+		//otherwise, open this menu up
 		closeSubmenus();
 
-		this.classList.toggle('active');
+		this.classList.add('active');
 
-		e.preventDefault();
 		return false;
 	});
 }
 
 //business logic
-var closeSubmenus = function() {
+var closeSubmenus = function(e) {
+	if(e && e.target && e.target.classList.contains('header-link') && e.target.classList.contains('active'))
+		return;
+
 	var links = document.querySelectorAll('.header-link.active');
 
 	for(var i = 0; i < links.length; i++)

@@ -81,4 +81,22 @@ $pxHeader: 64px;
 		padding-bottom: 1em;
 		border-bottom: 1px solid #fff;
 	}
+
+	//product listing page
+	.carousel-arrow-prev { transform: translate(-$bodyWidth / 2 + $pxArrowWidth) translate(-100%); }
+	.carousel-arrow-next { transform: translate($bodyWidth / 2 - $pxArrowWidth); }
+
+	.product-preview-image {
+		position: absolute;
+		width: 100%;
+	}
+
+	.product-preview-info {
+		width: 100%;
+	}
+
+	/* .product-page {
+		width: $pxProductPage;
+		height: $pxProductPage;
+	} */
 }

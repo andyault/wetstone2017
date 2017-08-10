@@ -47,93 +47,139 @@
 			<?php global $post; ?>
 
 			<div class="header-site-full">
-				<ul class="header-nav header-nav-site">
-					<?php
-						//get all root pages - maybe todo?
-						$pages = get_pages([
-							'parent'      => 0,
-							'exclude'     => [
-								get_page_by_path('sign-in')->ID,
-								get_page_by_path('portal')->ID,
-								get_page_by_path('thank-you')->ID
-							], 
-							'sort_column' => 'menu_order',
-							'sort_order'  => 'ASC'
-						]);
+				<?php
+					//normal links
+					function make_header_link() {
+						$id = $post->ID;
+						$isActive = is_page($id) || $page->post_parent == $id;
+						$activeClass = $isActive ? 'active' : '';
 
-						//for each page, set up postdata
+						return sprintf(
+							'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
+
+							get_the_permalink(),
+							$activeClass,
+							get_the_title()
+						);
+					}
+
+					//recursion is fun
+					function make_header_links_list($pages, $depth = 0) {
+						global $post;
+
+						//if it's a submenu, make it sub nav and add a click thru link
+						if($depth > 0) {
+							echo '<ul class="header-sub-nav-site">';
+							echo '<li class="header-link-clickthru header-link-separated">';
+							echo make_header_link();
+							echo '<li>';
+						} else
+							echo '<ul class="header-nav header-nav-site">';
+
+						//making links
 						foreach($pages as $post) {
-							setup_postdata($post);
+							echo '<li>';
+							echo make_header_link();
 
-							$isLogo = $post->ID == get_option('page_on_front');
+							if(count($children = wetstone_get_children($post)))
+								make_header_links_list($children, $depth + 1);
 
-							if($isLogo)
-								echo '</ul>';
-							else
-								echo '<li>';
-
-							//include the actual link
-							get_template_part('template-parts/header', 'link');
-
-							//handle submenus
-							if(count($subPages = wetstone_get_children($post))) {
-								echo '<ul class="header-sub-nav-site">';
-
-								//make a click through link
-								echo '<li class="header-link-clickthru">';
-
-								get_template_part('template-parts/header', 'link');
-
-								echo '</li>';
-
-								//go through sub pages
-								foreach($subPages as $post) {
-									setup_postdata($post);
-
-									echo '<li>';
-									
-									get_template_part('template-parts/header', 'link');
-
-									echo '</li>';
-								}
-
-								echo '</ul>';
-							}
-
-							if($isLogo)
-								echo '<ul class="header-nav header-nav-site">';
-							else
-								echo '</li>';
+							echo '</li>';
 						}
-					?>
 
-					<li>
-						<?php
-							global $post;
+						echo '</ul>';
+					}
 
-							if(is_user_logged_in())
-								$post = get_page_by_path('portal');
-							else
-								$post = get_page_by_path('sign-in');
+					//logo
+					function make_header_logo() {
+						return sprintf(
+							'<a href="%s" class="header-link header-logo-link %s"><img src="%s" class="header-logo-img"></a>',
 
+							get_the_permalink(),
+							$activeClass,
+							wetstone_get_asset('/img/logo.svg')
+						);
+					}
+				?>
+
+				<?php
+					//get all root pages - maybe todo?
+					$pages = get_pages([
+						'parent'      => 0,
+						'exclude'     => [
+							get_page_by_path('sign-in')->ID,
+							get_page_by_path('portal')->ID,
+							get_page_by_path('thank-you')->ID
+						], 
+						'sort_column' => 'menu_order',
+						'sort_order'  => 'ASC'
+					]);
+
+					if(is_user_logged_in())
+						array_push($pages, get_page_by_path('portal'));
+					else
+						array_push($pages, get_page_by_path('sign-in'));
+
+					//save home page
+					$homeID = get_option('page_on_front');
+
+					//split by home link
+					$right = $pages;
+					$left = [];
+					$count = count($right);
+
+					for($i = 0; $i < $count; $i++) {
+						$page = array_shift($right);
+
+						//before we hit the home page
+						if($page->ID != $homeID)
+							$left[] = $page;
+						else {
+							//we've hit home - make left side
+							make_header_links_list($left);
+
+							//then the middle
+							$post = $page;
 							setup_postdata($post);
-							get_template_part('template-parts/header', 'link');
-						?>
-					</li>
-				</ul>
+							echo make_header_logo();
+
+							//then the right side
+							make_header_links_list($right);
+
+							break;
+						}
+					}
+				?>
 			</div>
 
 			<div class="header-site-mobile">
 				<?php
-					$post = get_post(get_option('page_on_front'));
-
-					get_template_part('template-parts/header', 'link');
+					$post = get_post($homeID);
+					setup_postdata($post);
+					echo make_header_logo();
 				?>
 
 				<div class="header-site-dropdown">
-					<a href class="header-link link link-site-header header-site-dropdown-selected">
+					<a href class="header-link link link-header-site header-site-dropdown-selected">
 						<?php echo $wp_query->post->post_title; ?>
+						<span class="caret"></span>
 					</a>
+
+					<ul class="header-sub-nav-site">
+						<?php
+							foreach($pages as $post) {
+								echo '<li class="header-link-separated">';
+								echo make_header_link();
+								echo '</li>';
+
+								foreach(wetstone_get_children($post) as $post) {
+									echo '<li>';
+									echo make_header_link();
+									echo '</li>';
+								}
+							}
+						?>
+					</ul>
 				</div>
 			</div>
 		</header>
