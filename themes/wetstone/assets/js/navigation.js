@@ -12,8 +12,8 @@ for(var i = 0; i < links.length; i++) {
 		e.preventDefault();
 
 		//if we click on an open menu, just close it 
-		if(this.classList.contains('active')) {
-			this.classList.remove('active');
+		if(this.classList.contains('open-nav')) {
+			this.classList.remove('open-nav');
 
 			return false
 		}
@@ -21,7 +21,7 @@ for(var i = 0; i < links.length; i++) {
 		//otherwise, open this menu up
 		closeSubmenus();
 
-		this.classList.add('active');
+		this.classList.add('open-nav');
 
 		return false;
 	});
@@ -29,13 +29,13 @@ for(var i = 0; i < links.length; i++) {
 
 //business logic
 var closeSubmenus = function(e) {
-	if(e && e.target && e.target.classList.contains('header-link') && e.target.classList.contains('active'))
+	if(e && e.target && e.target.classList.contains('header-link') && e.target.classList.contains('open-nav'))
 		return;
 
-	var links = document.querySelectorAll('.header-link.active');
+	var links = document.querySelectorAll('.header-link.open-nav');
 
 	for(var i = 0; i < links.length; i++)
-		links[i].classList.remove('active');
+		links[i].classList.remove('open-nav');
 }
 
 //mousedown because touchstart messes up scrolling

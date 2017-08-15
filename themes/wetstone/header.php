@@ -50,6 +50,8 @@
 				<?php
 					//normal links
 					function make_header_link() {
+						global $post;
+
 						$id = $post->ID;
 						$isActive = is_page($id) || $page->post_parent == $id;
 						$activeClass = $isActive ? 'active' : '';
@@ -65,6 +67,9 @@
 
 					//recursion is fun
 					function make_header_links_list($pages, $depth = 0) {
+						if($depth > 1)
+							return;
+						
 						global $post;
 
 						//if it's a submenu, make it sub nav and add a click thru link
@@ -167,6 +172,10 @@
 
 					<ul class="header-sub-nav-site">
 						<?php
+							//move home page to top of array
+							unset($pages[array_search($post, $pages)]);
+							array_unshift($pages, $post);
+
 							foreach($pages as $post) {
 								echo '<li class="header-link-separated">';
 								echo make_header_link();

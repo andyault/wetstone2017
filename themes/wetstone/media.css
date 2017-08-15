@@ -1,3 +1,6 @@
+@media (min-width: 1200px) {
+  .product-page:nth-of-type(4n) {
+    margin-right: 0; } }
 @media (min-width: 900px) and (max-width: 1199px) {
   .site-content:not(.site-content-small) {
     width: 900px; }
@@ -18,8 +21,10 @@
 
   .product-page {
     width: 278.66667px;
-    height: 278.66667px; } }
-@media (min-width: 600px) and (max-width: 899px) {
+    height: 278.66667px; }
+    .product-page:nth-of-type(3n) {
+      margin-right: 0; } }
+@media (max-width: 899px) {
   .site-content, .site-content-small {
     width: 600px; }
 
@@ -57,6 +62,12 @@
     padding-bottom: 1em;
     border-bottom: 1px solid #fff; }
 
+  #showcase {
+    padding-right: 0; }
+
+  #news {
+    padding-left: 0; }
+
   .carousel-arrow-prev {
     transform: translate(-220px) translate(-100%); }
 
@@ -64,15 +75,53 @@
     transform: translate(220px); }
 
   .product-preview-image {
-    position: absolute;
-    width: 100%; }
+    display: none; }
+
+  .product-preview-image-mobile {
+    display: block; }
 
   .product-preview-info {
     width: 100%; }
 
-  /* .product-page {
-  	width: $pxProductPage;
-  	height: $pxProductPage;
-  } */ }
+  .product-page {
+    width: 276px;
+    height: 276px; }
+    .product-page:nth-of-type(2n) {
+      margin-right: 0; }
+
+  .single-footer .link-body {
+    max-width: 128px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+
+  .table-responsive tr {
+    display: block; }
+  .table-responsive td {
+    display: block;
+    margin-bottom: 16px;
+    text-align: center; } }
+@media (max-width: 599px) {
+  .site-content, .site-content-small {
+    width: 416px; }
+
+  .body-content {
+    width: 416px; }
+
+  .site-content-padded {
+    padding-left: 0;
+    padding-right: 0; }
+
+  .flex-responsive .body-content-half, .flex-responsive .section-half {
+    width: 416px; }
+
+  .hero-info {
+    width: 416px; }
+
+  .carousel-arrow-prev {
+    transform: translate(-128px) translate(-100%); }
+
+  .carousel-arrow-next {
+    transform: translate(128px); } }
 
 /*# sourceMappingURL=media.css.map */

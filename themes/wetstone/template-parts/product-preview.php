@@ -1,8 +1,15 @@
-<div id="<?php echo $post->post_name; ?>" class="product-preview-slide" style="background: <?php echo get_post_meta($post->ID, 'product_color', true); ?>">
-	<div class="product-background-filter"></div>
+<?php 
+	$name = $post->post_name;
+	$color = get_post_meta($post->ID, 'product_color', true);
+	$img = get_the_post_thumbnail_url($post, 'full');
+?>
+
+<div id="<?php echo $name; ?>" class="product-preview-slide" style="background: <?php echo $color; ?>">
+	<div class="product-background-filter product-preview-background"></div>
+		<div class="product-preview-image product-preview-image-mobile" style="background-image: url(<?php echo $img; ?>)"></div>
 
 	<div class="product-preview-inner site-content">
-		<div class="product-preview-image" style="background-image: url(<?php the_post_thumbnail_url('full'); ?>)"></div>
+		<div class="product-preview-image" style="background-image: url(<?php echo $img; ?>)"></div>
 
 		<div class="product-preview-info">
 			<h2 class="product-preview-title wetstone-font"><?php the_title(); ?></h2>

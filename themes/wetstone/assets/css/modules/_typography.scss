@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 
 //fix for stupid wetstone font
 .wetstone-font {
-	height: 1.7em;
+	min-height: 1.7em;
 
 	font-family: $fontProduct !important;
 	line-height: 2em;
@@ -41,6 +41,11 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 
 .body-content {
 	@extend .site-content, .site-content-small, .body;
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
 }
 
 .body-small {
@@ -131,6 +136,12 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 .text-right { text-align: right; }
 
 .text-nowrap { white-space: nowrap; }
+
+.text-ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 .caret::after {
 	content: '';

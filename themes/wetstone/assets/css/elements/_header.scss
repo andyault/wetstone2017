@@ -10,7 +10,7 @@ $pxHeader: 64px;
 
 	background-color: $col3;
 	color: $col1;
-	z-index: 99;
+	z-index: 999;
 }
 
 .header-nav {
@@ -42,7 +42,7 @@ $pxHeader: 64px;
 	position: absolute;
 	max-height: calc(100vh - #{$pxHeader});
 	overflow-y: auto;
-	z-index: 100;
+	z-index: 9999;
 
 	background: $col3;
 
@@ -80,7 +80,7 @@ $pxHeader: 64px;
 	line-height: $pxHeader;
 	white-space: nowrap;
 
-	&.active ~ .header-sub-nav-site { display: block; }
+	&.open-nav ~ .header-sub-nav-site { display: block; }
 }
 
 .header-logo-link { height: $pxHeader; }
