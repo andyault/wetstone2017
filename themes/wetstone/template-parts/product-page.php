@@ -4,7 +4,7 @@
 	<div class="product-page-img" style="background-image: url(<?php the_post_thumbnail_url('medium'); ?>)"></div>
 
 	<div class="product-page-buttons">
-		<a class="product-page-button product-page-button-view link link-button link-button-grey">Quick View</a>
-		<a href="<?php the_permalink(); ?>" class="product-page-button link link-button">Go to page</a>
+		<a class="product-page-button product-page-button-view link link-button link-button-grey">Preview</a>
+		<a href="<?php the_permalink(); ?>" class="product-page-button link link-button">View</a>
 	</div>
 </div>

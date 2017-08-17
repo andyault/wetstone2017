@@ -16,7 +16,7 @@
 
 			<div class="product-preview-excerpt body"><?php the_excerpt(); ?></div>
 
-			<a href="<?php the_permalink(); ?>" class="product-preview-button link link-button">Go to product page</a>
+			<a href="<?php the_permalink(); ?>" class="product-preview-button link link-button">View product</a>
 		</div>
 	</div>
 </div>

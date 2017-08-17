@@ -174,16 +174,10 @@ $pxPadding: 16px;
 		height: $pxProductPage;
 	}
 
-	.product-page-header { flex: 1; }
-	.product-page-img { display: none; }
-
-	.product-page-buttons {
-		flex-direction: column;
-	}
-
-	.product-page-button-view {
-		margin-right: 0;
-		margin-bottom: 16px;
+	.product-page-button {
+		width: 50%;
+		min-width: 0;
+		padding: 0;
 	}
 
 	//single
