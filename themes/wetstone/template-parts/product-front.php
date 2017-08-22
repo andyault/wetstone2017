@@ -1,7 +1,7 @@
 <?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), [256, 256]); ?>
 
 <div class="product-front" style="
-	background-color: <?php echo get_post_meta($post->ID, 'product_color', true); ?>;
+	/* background-color: <?php echo get_post_meta($post->ID, 'product_color', true); ?>; */
 	background-image: url(<?php echo $thumb[0] ?>);
 	background-size: <?php echo sprintf('%spx %spx', $thumb[1], $thumb[2]); ?>
 ">

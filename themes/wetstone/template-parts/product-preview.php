@@ -4,7 +4,7 @@
 	$img = get_the_post_thumbnail_url($post, 'full');
 ?>
 
-<div id="<?php echo $name; ?>" class="product-preview-slide" style="background: <?php echo $color; ?>">
+<div id="<?php echo $name; ?>" class="product-preview-slide" style="/* background: <?php echo $color; ?> */">
 	<div class="product-background-filter product-preview-background"></div>
 		<div class="product-preview-image product-preview-image-mobile" style="background-image: url(<?php echo $img; ?>)"></div>
 

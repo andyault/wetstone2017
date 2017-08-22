@@ -2,9 +2,8 @@
 
 <!-- todo: side buttons (overview, screenshots, free trial, etc) -->
 
-<section class="product-single-banner" style="background: <?php echo $productColor; ?>;">
-	<!-- ??? todo -->
-</section>
+<!-- <section class="product-single-banner" style="background: <?php echo $productColor; ?>;">
+</section> -->
 
 <section class="product-single-description">
 	<h1 class="section-header wetstone-font"><?php the_title(); ?></h1>

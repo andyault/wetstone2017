@@ -83,7 +83,7 @@
 		var next = img.nextSibling;
 
 		var link = document.createElement('a');
-		link.href = img.srcset.split(', ').pop().match(/([^\s]*)/)[1];
+		link.href = img.attributes.srcset.split(', ').pop().match(/([^\s]*)/)[1];
 		link.className = 'wplightbox';
 
 		link.appendChild(img);

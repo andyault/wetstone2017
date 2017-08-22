@@ -38,12 +38,6 @@
     .flex-responsive .body-content-half, .flex-responsive .section-half {
       width: 480px; }
 
-  .header {
-    position: fixed; }
-
-  .site-main {
-    margin-top: 64px; }
-
   .header-site-full {
     display: none; }
 

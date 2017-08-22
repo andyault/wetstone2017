@@ -56,6 +56,8 @@ section {
 .inline-flex { display: inline-flex; }
 .flex-center { justify-content: center; }
 
+.fullpage-hero { height: calc(100vh - 64px); }
+
 .site-content-padded {
 	padding-right: $pxPadding;
 	padding-left: $pxPadding;

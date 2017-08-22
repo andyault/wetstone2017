@@ -4,7 +4,7 @@ $pxHeader: 64px;
 //blocks
 //  basic
 .header {
-	position: relative;
+	position: fixed;
 	width: 100%;
 	height: $pxHeader;
 
@@ -12,6 +12,8 @@ $pxHeader: 64px;
 	color: $col1;
 	z-index: 999;
 }
+
+.site-main { margin-top: $pxHeader; }
 
 .header-nav {
 	@extend .list-basic;

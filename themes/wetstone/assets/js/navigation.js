@@ -8,8 +8,9 @@ links = links.map(function(e) { return e.previousElementSibling });
 for(var i = 0; i < links.length; i++) {
 	var link = links[i];
 
-	link.addEventListener('touchend', function(e) {
+	var handleTouch = function(e) {
 		e.preventDefault();
+		e.stopPropagation();
 
 		//if we click on an open menu, just close it 
 		if(this.classList.contains('open-nav')) {
@@ -24,7 +25,14 @@ for(var i = 0; i < links.length; i++) {
 		this.classList.add('open-nav');
 
 		return false;
-	});
+	}
+
+	//hooking
+	link.addEventListener('touchend', handleTouch);
+
+	//not too happy with this but oh well - always support dropdown for touch, only for click if it's mobile menu
+	if(link.parentElement.classList.contains('header-site-dropdown'))
+		link.addEventListener('click', handleTouch);
 }
 
 //business logic
@@ -42,32 +50,3 @@ var closeSubmenus = function(e) {
 document.body.addEventListener('mousedown', closeSubmenus);
 
 closeSubmenus();
-
-/*
-
-//header sub menu toggles
-var links = document.querySelectorAll('.site-header-sub');
-
-//toggle class when button clicked
-for(var i = 0; i < links.length; i++) {
-	links[i].onclick = function(e) {
-		this.classList.toggle('active');
-
-		return false;
-	}
-}
-
-//remove classes when clicked anywhere else
-document.body.addEventListener('click', function(e) {
-	var classList = e.target.classList;
-
-	//weird step to prevent removing and toggling in the same event
-	if(!(classList.contains('site-header-sub') && classList.contains('active'))) {
-		var activeMenus = document.querySelectorAll('.site-header-sub.active');
-
-		for(var i = 0; i < activeMenus.length; i++)
-			activeMenus[i].classList.remove('active');
-	}
-}, true);
-
-*/

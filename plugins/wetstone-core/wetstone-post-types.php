@@ -95,7 +95,7 @@ function wetstone_meta_product_content($post) {
 	wetstone_meta_content(
 		'product',
 		[
-			'color'     => ['label' => 'Product color', 'type' => 'color'],
+			//'color'     => ['label' => 'Product color', 'type' => 'color'],
 			'ispreview' => ['label' => 'Show on front page?', 'type' => 'checkbox']
 		],
 		get_post_meta($post->ID)

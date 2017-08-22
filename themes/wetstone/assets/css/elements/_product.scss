@@ -78,6 +78,8 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 	margin-right: $pxPadding;
 	margin-bottom: $pxPadding;
 	flex-direction: column;
+
+	&:hover .product-page-img { margin: -4px; }
 }
 
 .product-page-img {
@@ -86,6 +88,8 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+
+	transition: margin $sTrans;
 }
 
 .product-page-buttons {
@@ -103,7 +107,7 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 	top: 0; right: 0;
 	width: 100%; height: 100%;
 
-	background: rgba(26, 26, 26, 0.6);
+	background: rgba(26, 26, 26, 0.3);
 }
 
 .product-front-header {
@@ -116,6 +120,7 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 }
 
 .product-front-body {
+	width: 100%;
 	flex: 1 1 auto;
 	overflow: hidden;
 }
@@ -140,6 +145,7 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 }
 
 .product-preview-excerpt {
+	width: 100%;
 	flex-grow: 1;
 	overflow: hidden;
 }
