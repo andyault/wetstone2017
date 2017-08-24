@@ -31,10 +31,12 @@
 		<title><?php wp_title('-', true, 'right'); echo get_bloginfo('name'); ?></title>
 
 		<!-- css -->
+		<!--[if !IE]> -->
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/css/lib/normalize.css'); ?>">
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/fonts/fonts.css'); ?>">
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/media.css'; ?>">
+		<!-- <![endif]-->
 
 		<!-- wordpress -->
 		<?php wp_head(); ?>
@@ -43,6 +45,26 @@
 	</head>
 
 	<body <?php body_class(); ?>>
+		<!--[if lte IE 9]>
+			<style>
+				.wrapper {
+					width: 100%;
+					text-align: center;
+				}
+
+				.content {
+					width: 480px;
+					text-align: left;
+				}
+			</style>
+
+			<div class="wrapper">
+				<p class="content">
+				</p>
+			</div>
+		<![endif]-->
+
+		<!--[if !IE]> -->
 		<header class="header">
 			<?php global $post; ?>
 

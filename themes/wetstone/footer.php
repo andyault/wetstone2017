@@ -49,7 +49,8 @@
 		</footer>
 
 		<script src="<?php echo wetstone_get_asset('/js/navigation.js'); ?>"></script>
-
+		<!-- <![endif]-->
+		
 		<?php wp_footer(); ?>
 	</body>
 </html>
