@@ -32,47 +32,8 @@
 
 		<!-- css -->
 		<!--[if lte IE 9]>
-			<style>
-				/* get rid of everything that isn't .ie-only */
-				body > *:not(.ie-only) { display: none; }
-
-				/* center .content */
-				html, body {
-					margin: 0;
-					padding: 0;
-					width: 100%;
-					height: 100%;
-					display: table;
-
-					background: #303030;
-					font-size: 16px;
-					line-height: 1.4em;
-				}
-
-				.ie-only {
-					display: table-cell;
-					text-align: center;
-					vertical-align: middle;
-				}
-
-				.content {
-					display: inline-block;
-					width: 480px;
-					padding: 2em;
-
-					background: #fff;
-				}
-
-				.content img {
-					background: #303030;
-				}
-
-				p:not(:last-of-type) {
-					text-indent: 1.618em;
-					text-align: left;
-				}
-			</style>
-		<!-- <![endif]-->
+		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/ie.css'; ?>">
+		<![endif]-->
 
 		<!--[if !IE]> -->
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/css/lib/normalize.css'); ?>">
@@ -100,7 +61,7 @@
 				that you download a newer browser, like <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla 
 				Firefox</a> or <a href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a>.</p>
 
-				<p>We at WetStone Technologies thank you for your interest and your patience.</p>
+				<p class="center">We at WetStone Technologies thank you for your interest and your patience.</p>
 			</div>
 		</div>
 

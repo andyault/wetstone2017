@@ -38,6 +38,8 @@ html, body {
 	overflow-y: auto;
 }
 
+.ie-only { display: none; }
+
 //too hacky for sticky footer?
 body {
 	display: flex;

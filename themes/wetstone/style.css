@@ -730,6 +730,9 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto; }
 
+.ie-only {
+  display: none; }
+
 body {
   display: flex;
   margin: 0;
