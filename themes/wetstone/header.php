@@ -31,6 +31,11 @@
 		<title><?php wp_title('-', true, 'right'); echo get_bloginfo('name'); ?></title>
 
 		<!-- css -->
+		<!--[if lte IE 9]>
+			<style>
+				body *:not(.ie-only) { display: none; }
+			</style>
+		<![endif]-->
 		<!--[if !IE]> -->
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/css/lib/normalize.css'); ?>">
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/fonts/fonts.css'); ?>">
@@ -45,26 +50,10 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-		<!--[if lte IE 9]>
-			<style>
-				.wrapper {
-					width: 100%;
-					text-align: center;
-				}
+		<div class="ie-only">
+			<p class="content">get a better browser</p>
+		</div>
 
-				.content {
-					width: 480px;
-					text-align: left;
-				}
-			</style>
-
-			<div class="wrapper">
-				<p class="content">
-				</p>
-			</div>
-		<![endif]-->
-
-		<!--[if !IE]> -->
 		<header class="header">
 			<?php global $post; ?>
 
