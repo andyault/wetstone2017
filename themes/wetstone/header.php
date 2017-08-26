@@ -53,15 +53,15 @@
 			<div class="content">
 				<img src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" width="448" height="134" />
 
-				<p>Unfortunately, our new website relies on browser features that are not available in older versions of 
-				Internet Explorer. As Microsoft has <a href="https://www.microsoft.com/en-us/windowsforbusiness/
-				end-of-ie-support">officially stopped supporting these browsers</a>, we have chosen to do the same. 
-				Instead, we recommend that you <a href="https://support.microsoft.com/en-us/help/17621/
+				<p class="body">Unfortunately, our new website relies on browser features that are not available in 
+				older versions of Internet Explorer. As Microsoft has <a href="https://www.microsoft.com/en-us/
+				windowsforbusiness/end-of-ie-support">officially stopped supporting these browsers</a>, we have chosen 
+				to do the same. Instead, we recommend that you <a href="https://support.microsoft.com/en-us/help/17621/
 				internet-explorer-downloads">upgrade Internet Explorer</a> if you are running Windows 7, 8, or 10, or 
 				that you download a newer browser, like <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla 
 				Firefox</a> or <a href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a>.</p>
 
-				<p class="center">We at WetStone Technologies thank you for your interest and your patience.</p>
+				<p>We at WetStone Technologies thank you for your interest and your patience.</p>
 			</div>
 		</div>
 

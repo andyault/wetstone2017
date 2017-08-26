@@ -33,9 +33,7 @@ html, body {
 	background: #303030;
 }
 
-.content p {
+.content .body {
 	text-indent: 1.618em;
 	text-align: left;
 }
-
-.content .center { text-indent: 0; }
