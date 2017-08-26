@@ -33,9 +33,47 @@
 		<!-- css -->
 		<!--[if lte IE 9]>
 			<style>
-				body *:not(.ie-only) { display: none; }
+				/* get rid of everything that isn't .ie-only */
+				body > *:not(.ie-only) { display: none; }
+
+				/* center .content */
+				html, body {
+					margin: 0;
+					padding: 0;
+					width: 100%;
+					height: 100%;
+					display: table;
+
+					background: #303030;
+					font-size: 16px;
+					line-height: 1.4em;
+				}
+
+				.ie-only {
+					display: table-cell;
+					text-align: center;
+					vertical-align: middle;
+				}
+
+				.content {
+					display: inline-block;
+					width: 480px;
+					padding: 2em;
+
+					background: #fff;
+				}
+
+				.content img {
+					background: #303030;
+				}
+
+				p:not(:last-of-type) {
+					text-indent: 1.618em;
+					text-align: left;
+				}
 			</style>
-		<![endif]-->
+		<!-- <![endif]-->
+
 		<!--[if !IE]> -->
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/css/lib/normalize.css'); ?>">
 		<link rel="stylesheet" href="<?php echo wetstone_get_asset('/fonts/fonts.css'); ?>">
@@ -51,7 +89,19 @@
 
 	<body <?php body_class(); ?>>
 		<div class="ie-only">
-			<p class="content">get a better browser</p>
+			<div class="content">
+				<img src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" width="448" height="134" />
+
+				<p>Unfortunately, our new website relies on browser features that are not available in older versions of 
+				Internet Explorer. As Microsoft has <a href="https://www.microsoft.com/en-us/windowsforbusiness/
+				end-of-ie-support">officially stopped supporting these browsers</a>, we have chosen to do the same. 
+				Instead, we recommend that you <a href="https://support.microsoft.com/en-us/help/17621/
+				internet-explorer-downloads">upgrade Internet Explorer</a> if you are running Windows 7, 8, or 10, or 
+				that you download a newer browser, like <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla 
+				Firefox</a> or <a href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a>.</p>
+
+				<p>We at WetStone Technologies thank you for your interest and your patience.</p>
+			</div>
 		</div>
 
 		<header class="header">
