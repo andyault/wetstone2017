@@ -10,7 +10,7 @@
 	]);
 ?>
 
-<section id="product-preview" class="product-preview carousel">
+<section id="product-preview" class="product-preview carousel section-invert">
 	<a href="#" id="product-preview-prev" class="carousel-arrow carousel-arrow-prev"></a>
 
 	<div id="product-preview-slides" class="product-preview-slides carousel-slides">
@@ -35,35 +35,37 @@
 	</ul>
 </section>
 
-<?php
-	wp_reset_postdata();
-
-	if(get_the_content())
-		get_template_part('template-parts/basic', 'page');
-?>
-
 <section class="page-posts site-content site-content-padded">
-	<h2 class="section-header">
-		<?php
-			//todo - default to 'our _', allow %s, remove if no value?
-			$label = get_post_meta($post->ID, 'page_listlabel', true);
+	<?php
+		//group products by category
+		$grouped = [];
 
-			if($label)
-				echo $label;
+		foreach($posts as $post) {
+			$cat = get_the_category($post->ID);
+
+			if(!empty($cat))
+				$cat = esc_html($cat[0]->name);
 			else
-				echo 'Our ' . get_post_type_object($postType)->labels->name;
-		?>
-	</h2>
+				$cat = 'Other Products';
 
-	<div class="page-list flex">
-		<?php
-			foreach($posts as $post) {
-				setup_postdata($post);
+			$grouped[$cat][] = $post;
+		}
 
-				get_template_part('template-parts/' . $postType, 'page');
-			}
-		?>
-	</div>
+		//for each cat, spit out a header and our products
+		foreach($grouped as $group => $posts) { ?>
+			<h2 class="section-header"><?php echo $group; ?></h2>
+
+			<div class="page-list flex">
+				<?php
+					foreach($posts as $post) {
+						setup_postdata($post);
+
+						get_template_part('template-parts/' . $postType, 'page');
+					}
+				?>
+			</div>
+		<?php }
+	?>
 </section>
 
 <!-- smooth scrolling anchors, carousel -->
