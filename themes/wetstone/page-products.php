@@ -39,17 +39,20 @@
 	<?php
 		//group products by category
 		$grouped = [];
+		$other = [];
 
 		foreach($posts as $post) {
 			$cat = get_the_category($post->ID);
 
-			if(!empty($cat))
+			if(!empty($cat)) {
 				$cat = esc_html($cat[0]->name);
-			else
-				$cat = 'Other Products';
 
-			$grouped[$cat][] = $post;
+				$grouped[$cat][] = $post;
+			} else
+				continue $other[] = $post;
 		}
+
+		$grouped['Other Products'] = $other;
 
 		//for each cat, spit out a header and our products
 		foreach($grouped as $group => $posts) { ?>
