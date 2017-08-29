@@ -40,8 +40,9 @@ function wetstone_register_post_types() {
 			'new_item'      => 'New Product',
 			'view_item'     => 'View Product'
 		],
-		'supports'   => ['title', 'editor', 'thumbnail', 'excerpt'],
+		'supports'    => ['title', 'editor', 'thumbnail', 'excerpt'],
 		'rewrite'     => ['slug' => 'products'],
+		'taxonomies'  => ['category'],
 		'has_archive' => false
 	]);
 
