@@ -49,7 +49,7 @@
 
 				$grouped[$cat][] = $post;
 			} else
-				continue $other[] = $post;
+				$other[] = $post;
 		}
 
 		$grouped['Other Products'] = $other;
