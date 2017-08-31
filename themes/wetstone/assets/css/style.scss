@@ -27,6 +27,7 @@ Tags:
 
 //  pages
 @import 'pages/home';
+@import 'pages/portal';
 
 //misc
 * { box-sizing: border-box; }
@@ -39,6 +40,22 @@ html, body {
 }
 
 .ie-only { display: none; }
+
+//reset buttons
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	font: inherit;
+	border: 0;
+	cursor: pointer;
+
+	&::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+}
 
 //too hacky for sticky footer?
 body {

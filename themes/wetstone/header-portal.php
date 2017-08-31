@@ -1,9 +1,9 @@
 <?php $user = wp_get_current_user(); ?>
 
-<header class="header header-page">
-	<ul class="header-nav header-nav-page site-content">
-		<li class="page-header-link-welcome">
-			<a class="header-link header-link-page">
+<header class="header header-portal">
+	<ul class="header-nav header-nav-portal site-content">
+		<li class="header-portal-welcome">
+			<a class="header-link header-link-portal">
 				<?php
 					echo sprintf(
 						'Welcome back, %s %s',
@@ -17,7 +17,7 @@
 
 		<li>
 			<a href="<?php echo get_permalink($home = get_page_by_path('portal')); ?>"
-			   class="header-link link link-header-site link-header-page <?php echo is_page($home->ID) ? 'active' : ''; ?>">
+			   class="header-link link link-header-site link-header-portal <?php echo is_page($home->ID) ? 'active' : ''; ?>">
 				Home
 			</a>
 		</li>
@@ -34,7 +34,7 @@
 
 				echo sprintf(
 					'<li>
-						<a href="%s" class="header-link link link-header-site link-header-page %s">%s</a>
+						<a href="%s" class="header-link link link-header-site link-header-portal %s">%s</a>
 					</li>',
 
 					get_permalink($page->ID),
@@ -46,9 +46,11 @@
 
 		<li>
 			<a href="<?php echo wp_logout_url(get_permalink(get_page_by_path('sign-in'))); ?>"
-			   class="header-link link link-header-site link-header-page">
+			   class="header-link link link-header-site link-header-portal">
 				Sign out
 			</a>
 		</li>
 	</ul>
 </header>
+
+<div class="header-portal-clearfix"></div>

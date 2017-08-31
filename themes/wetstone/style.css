@@ -263,9 +263,6 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     text-align: left; }
 
-.header-nav-page {
-  justify-content: flex-end; }
-
 .header-link {
   display: inline-block;
   padding: 0 16px;
@@ -288,10 +285,6 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     right: 16px; }
 
-.page-header-link-welcome {
-  position: absolute;
-  left: 0; }
-
 .header-link-clickthru .header-link::before {
   content: 'Go to '; }
 .header-link-clickthru .header-link::after {
@@ -311,15 +304,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 1em;
   font-size: smaller;
   vertical-align: top; }
-
-.header-page {
-  z-index: 98;
-  background: #fff;
-  color: #303030 !important;
-  border-bottom: 1px solid #303030; }
-
-.link-header-page {
-  color: #303030; }
 
 .site-footer {
   overflow: hidden;
@@ -721,6 +705,25 @@ i[class] {
     margin-bottom: 0.25em; }
   100% {
     margin-bottom: 0; } }
+.header-nav-portal {
+  justify-content: flex-end; }
+
+.header-portal-welcome {
+  position: absolute;
+  left: 0; }
+
+.header-portal-clearfix {
+  margin-top: 64px; }
+
+.header-portal {
+  z-index: 98;
+  background: #fff;
+  color: #303030 !important;
+  border-bottom: 1px solid #303030; }
+
+.link-header-portal {
+  color: #303030; }
+
 * {
   box-sizing: border-box; }
 
@@ -732,6 +735,17 @@ html, body {
 
 .ie-only {
   display: none; }
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font: inherit;
+  border: 0;
+  cursor: pointer; }
+  button::-moz-focus-inner {
+    border: 0;
+    padding: 0; }
 
 body {
   display: flex;

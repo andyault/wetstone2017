@@ -130,3 +130,27 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 		$headers
 	);
 }
+
+//handle login form
+function wetstone_post_login() {
+	$res = wp_signon();
+
+	//var_dump($res);
+
+	if(is_wp_error($res)) {
+   		wp_safe_redirect(get_permalink(get_page_by_path('sign-in')) . '?loginerror=true');
+	} else
+		wp_safe_redirect(get_permalink(get_option('page_on_front')));
+}
+
+add_action('admin_post_wetstone-login', 'wetstone_post_login');
+add_action('admin_post_nopriv_wetstone-login', 'wetstone_post_login');
+
+//this is stupid if you ask me
+function wetstone_register_login_param() { 
+	global $wp;
+
+	$wp->add_query_var('loginerror'); 
+}
+
+add_action('init','wetstone_register_login_param');

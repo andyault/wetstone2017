@@ -68,11 +68,6 @@ $pxHeader: 64px;
 	}
 }
 
-//  page
-.header-nav-page {
-	justify-content: flex-end;
-}
-
 //elements
 //  site
 .header-link {
@@ -102,12 +97,6 @@ $pxHeader: 64px;
 	}
 }
 
-//  page
-.page-header-link-welcome {
-	position: absolute;
-	left: 0;
-}
-
 //modifiers
 .header-link-clickthru .header-link {
 	&::before { content: 'Go to '; }
@@ -135,17 +124,4 @@ $pxHeader: 64px;
 
 	font-size: smaller;
 	vertical-align: top;
-}
-
-//  page
-.header-page {
-	z-index: 98;
-
-	background: #fff;
-	color: $col3 !important;
-	border-bottom: 1px solid $col3;
-}
-
-.link-header-page {
-	color: $col3;
 }
