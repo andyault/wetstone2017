@@ -145,9 +145,9 @@
     top: 0;
     white-space: nowrap; }
 
-  .form-table tr {
+  .form-table-collapse tr {
     display: block; }
-  .form-table td {
+  .form-table-collapse td {
     display: block;
     width: 100%;
     padding-left: 0 !important;

@@ -135,11 +135,8 @@
 					//get all root pages - maybe todo?
 					$pages = get_pages([
 						'parent'      => 0,
-						'exclude'     => [
-							get_page_by_path('sign-in')->ID,
-							get_page_by_path('portal')->ID,
-							get_page_by_path('thank-you')->ID
-						], 
+						'meta_key'    => 'page_showinheader',
+						'meta_value'  => 'true',
 						'sort_column' => 'menu_order',
 						'sort_order'  => 'ASC'
 					]);

@@ -66,7 +66,7 @@ section, .product-preview-slide {
   width: 700px; }
 
 .site-content-tiny {
-  width: 320px; }
+  width: 320px !important; }
 
 .list-basic, .header-nav, .header-sub-nav-site {
   margin: 0;
@@ -496,12 +496,13 @@ i[class] {
     width: 50%;
     padding-bottom: 1em;
     vertical-align: top; }
-    .form-table td:not([colspan]):not(:only-child):first-of-type {
-      padding-right: 8px; }
-    .form-table td:not([colspan]):not(:only-child):last-of-type {
-      padding-left: 8px; }
-    .form-table td:only-child {
-      padding-right: 8px; }
+
+.form-table-collapse td:not([colspan]):not(:only-child):first-of-type {
+  padding-right: 8px; }
+.form-table-collapse td:not([colspan]):not(:only-child):last-of-type {
+  padding-left: 8px; }
+.form-table-collapse td:only-child {
+  padding-right: 8px; }
 
 .form-error td {
   padding: 1em;
@@ -560,6 +561,22 @@ i[class] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
+
+.show-password #pass1 {
+  display: none; }
+
+#pass-strength-result {
+  padding: 0.5em;
+  text-align: center;
+  border-radius: 0 0 4px 4px; }
+  #pass-strength-result.strong {
+    background: #c1e1b9; }
+  #pass-strength-result.good {
+    background: #ffe399; }
+  #pass-strength-result.bad {
+    background: #fbc5a9; }
+  #pass-strength-result.short {
+    background: #f1adad; }
 
 .news-header {
   margin: 0 0 0.5em;

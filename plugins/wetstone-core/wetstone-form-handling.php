@@ -135,10 +135,8 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 function wetstone_post_login() {
 	$res = wp_signon();
 
-	//var_dump($res);
-
 	if(is_wp_error($res)) {
-   		wp_safe_redirect(get_permalink(get_page_by_path('sign-in')) . '?loginerror=true');
+   		wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
 	} else
 		wp_safe_redirect(get_permalink(get_option('page_on_front')));
 }

@@ -8,15 +8,16 @@
 		width: 50%;
 		padding-bottom: 1em;
 		vertical-align: top;
+	}
+}
+.form-table-collapse td {
+	&:not([colspan]):not(:only-child) {
+		&:first-of-type { padding-right: $pxPadding / 2; }
+		&:last-of-type { padding-left: $pxPadding / 2; }
+	}
 
-		&:not([colspan]):not(:only-child) {
-			&:first-of-type { padding-right: $pxPadding / 2; }
-			&:last-of-type { padding-left: $pxPadding / 2; }
-		}
-
-		&:only-child {
-			padding-right: $pxPadding / 2;
-		}
+	&:only-child {
+		padding-right: $pxPadding / 2;
 	}
 }
 
@@ -94,4 +95,19 @@
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+}
+
+//reset form
+.show-password #pass1 { display: none; }
+
+#pass-strength-result {
+	padding: 0.5em;
+
+	text-align: center;
+	border-radius: 0 0 4px 4px;
+
+	&.strong { background: #c1e1b9; }
+	&.good { background: #ffe399; }
+	&.bad { background: #fbc5a9; }
+	&.short { background: #f1adad; }
 }
