@@ -1,4 +1,9 @@
-<?php if(!is_user_logged_in()) { ?>
+<h2 class="section-header">Sign In</h2>
+
+<?php if(!is_user_logged_in()) {
+	if($_GET['passwordchanged'])
+		echo '<p class="text-center">Your password has been changed.</p>'; ?>
+
 	<form method="POST" name="login" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
 		<input type="hidden" name="action" value="wetstone-login">
 		<?php wp_nonce_field('wetstone-login'); ?>
@@ -29,23 +34,23 @@
 			</tr>
 
 			<tr>
-				<td>
+				<td class="cell-nostretch">
 					<label class="form-label">
 						<input type="checkbox" name="rememberme" value="forever" checked>
 						Remember Me
 					</label>
 				</td>
 
-				<td class="text-right">
-					<a href="<?php echo wp_lostpassword_url(); ?>" class="link link-body">
-						<?php _e('Lost Password?', 'easy-digital-downloads'); ?>
+				<td class="cell-nostretch text-right">
+					<a href="<?php echo add_query_arg('action', 'lostpassword', get_permalink()); ?>" class="link link-body">
+						Lost Password?
 					</a>
 				</td>
 			</tr>
 
 			<tr>
 				<td colspan="2" class="text-center">
-					<button type="submit" name="wp-submit" class="link link-button">Log in</a>
+					<button type="submit" class="link link-button">Log in</button>
 				</td>
 			</tr>
 		</table>

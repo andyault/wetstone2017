@@ -4,7 +4,7 @@
 
 	<input type="hidden" name="subject" value="Reseller Application">
 
-	<table class="form-table">
+	<table class="form-table form-table-collapse">
 		<tr>
 			<td colspan="2" class="text-center">Fields marked with <i class="req">*</i> are required.</td>
 		</tr>

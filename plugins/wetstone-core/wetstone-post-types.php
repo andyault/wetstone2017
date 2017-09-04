@@ -97,7 +97,7 @@ function wetstone_meta_product_content($post) {
 		'product',
 		[
 			//'color'     => ['label' => 'Product color', 'type' => 'color'],
-			'ispreview' => ['label' => 'Show on front page?', 'type' => 'checkbox'],
+			'ispreview'   => ['label' => 'Show on front page?', 'type' => 'checkbox'],
 			'purchasable' => ['label' => 'Can be purchased?', 'type' => 'checkbox']
 		],
 		get_post_meta($post->ID)
@@ -109,10 +109,11 @@ function wetstone_meta_page_content($post) {
 	wetstone_meta_content(
 		'page',
 		[
-			'posttype'  => ['label' => 'Post type to list'],
-			'metakey'   => ['label' => 'Post filter meta key'],
-			'metaval'   => ['label' => 'Post filter meta value'],
-			'listlabel' => ['label' => 'Post list label'] 
+			'showinheader' => ['label' => 'Show in header?', 'type' => 'checkbox'],
+			'posttype'     => ['label' => 'Post type to list'],
+			'metakey'      => ['label' => 'Post filter meta key'],
+			'metaval'      => ['label' => 'Post filter meta value'],
+			'listlabel'    => ['label' => 'Post list label'] 
 		],
 		get_post_meta($post->ID)
 	);
