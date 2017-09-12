@@ -151,10 +151,10 @@
 						'sort_order'  => 'ASC'
 					]);
 
-					if(is_user_logged_in())
+					//if(is_user_logged_in())
 						array_push($pages, get_page_by_path('portal'));
-					else
-						array_push($pages, get_page_by_path('sign-in'));
+					//else
+					//	array_push($pages, get_page_by_path('sign-in'));
 
 					//save home page
 					$homeID = get_option('page_on_front');

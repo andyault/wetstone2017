@@ -119,7 +119,7 @@
 
 	//load the rest of the stuff normally
 	get_header();
-	the_post();
+	wp_reset_postdata();
 
 	if(get_the_content())
 		get_template_part('template-parts/basic', 'page-nobody');
