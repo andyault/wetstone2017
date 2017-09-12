@@ -29,7 +29,9 @@ function wetstone_add_customer_content() {
 	global $fields;
 	global $acctypes;
 
-	wp_enqueue_script('wp-ajax-response');
+	do_action('login_enqueue_scripts');
+
+	wp_enqueue_script('utils');
 	wp_enqueue_script('user-profile');
 
 	?>
@@ -146,7 +148,8 @@ function wetstone_add_customer_content() {
 						<table>
 							<thead>
 								<tr>
-									<th>Product Name</th>
+									<th style="width: 0;">Product Name</th>
+									<th style="width: 0; padding-right: 4em;">Product Owned?</th>
 									<th>Expiry Date</th>
 									<th>Licenses Owned</th>
 									<th>Licenses Used</th>
@@ -171,12 +174,14 @@ function wetstone_add_customer_content() {
 										<tr>
 											<td><?php echo $product->post_title; ?></td>
 
+											<td style="text-align: center; padding-right: 4em;"><input type="checkbox" name="product[<?php echo $key ?>][owned]" class="product-owned-checkbox"></td>
+
 											<td style="padding: 0;">
-												<input type="date" name="product[<?php echo $key ?>][expiry]" value="<?php echo sprintf('%s-%s-%s', date('Y') + 1, date('m'), date('d')); ?>">
+												<input type="date" name="product[<?php echo $key ?>][expiry]" value="<?php echo sprintf('%s-%s-%s', date('Y') + 1, date('m'), date('d')); ?>" disabled>
 											</td>
 
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][owned]" value="0"></td>
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][used]" value="0"></td>
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][num_owned]" value="1" disabled></td>
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][num_used]" value="1" disabled></td>
 										</tr>
 
 										<?php
@@ -192,6 +197,24 @@ function wetstone_add_customer_content() {
 		</form>
 	</div>
 
+	<script>
+		//enable inputs on checkbox check
+		var checkboxes = document.getElementsByClassName('product-owned-checkbox');
+
+		for(var i = 0; i < checkboxes.length; i++) {
+			var checkbox = checkboxes[i];
+
+			checkbox.onchange = function() {
+				var row = this.parentElement.parentElement;
+				var inputs = row.querySelectorAll('input:not([type=checkbox])');
+
+				for(var j = 0; j < inputs.length; j++)
+					inputs[j].disabled = !this.checked;
+			}
+		}
+
+	</script>
+
 	<?php
 }
 
@@ -200,7 +223,9 @@ function wetstone_post_customer_registration() {
 	//todo - handle post data
 	//https://codex.wordpress.org/Function_Reference/wp_insert_user
 	
-	var_dump($_POST);
+	$user = [
+		'user_pass' => $_POST['']
+	];
 }
 
 add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');
