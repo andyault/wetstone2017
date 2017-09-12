@@ -139,9 +139,11 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 }
 
 .product-preview-title {
+	width: 100%;
 	margin-top: 0;
 
 	white-space: nowrap;
+	text-align: left;
 }
 
 .product-preview-excerpt {

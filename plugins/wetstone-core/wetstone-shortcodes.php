@@ -1,49 +1,86 @@
 <?php
 
-add_shortcode('wetstone_list_posts', 'wetstone_list_posts');
+function wetstone_shortcode_carousel($attrs) {
+	if(!isset($attrs['ids']) || empty($attrs['ids']))
+		return;
 
-function wetstone_list_posts($attrs) {
-	$attrs = shortcode_atts([
-		'type'     => 'post'
-	], $attrs);
-
-	//make sure there are posts with the post type
-	$posts = get_posts([
-		'post_type'      => $attrs['type'],
-		'category_name'  => $attrs['category'],
-		'posts_per_page' => -1 //todo - https://codex.wordpress.org/Pagination
+	$attachments = get_posts([
+		'include' => $atts['ids'],
+		'post_status' => 'inherit',
+		'post_type' => 'attachment',
+		'post_mime_type' => 'image'
 	]);
 
-	if(count($posts)) {
+	if(count($attachments)) {
 		ob_start();
 		?>
 
-		</div>
+		<section id="gallery" class="post-gallery carousel section-invert">
+			<a href="#" id="post-gallery-prev" class="carousel-arrow carousel-arrow-prev"></a>
 
-		<section class="page-posts site-content site-content-small">
-			<h2 class="section-header">
-				<?php echo sprintf('Our %s', get_post_type_object($attrs['type'])->labels->name); ?>
-			</h2>
-
-			<div class="page-list">
+			<div id="post-gallery-slides" class="post-gallery-slides carousel-slides">
 				<?php
-					//weird with global but it works
-					global $post;
-
-					foreach($posts as $post) {
-						setup_postdata($post);
-
-						get_template_part('template-parts/' . $attrs['type'], 'page'); //big todo, pls escape
-					}
+					foreach($attachments as $attachment)
+						include(locate_template('template-parts/gallery-preview.php'));
 				?>
 			</div>
+			
+			<a href="#" id="post-gallery-next" class="carousel-arrow carousel-arrow-next"></a>
+
+			<ul class="carousel-dots">
+				<?php
+					foreach($attachments as $attachment)
+						echo '<li class="carousel-dot"></li>';
+				?>
+			</ul>
 		</section>
 
-		<?php
+		<div class="post-gallery-clearfix"></div>
 
+		<script src="<?php echo wetstone_get_asset('/js/siema.min.js'); ?>"></script>
+
+		<script>
+			var carouselEl = document.getElementById('post-gallery-slides');
+			var dots = document.getElementsByClassName('carousel-dot');
+
+			var onChange = function(shouldHash) {
+				//highlight dots
+				for(var i = 0; i < dots.length; i++) {
+					if(i == carousel.currentSlide)
+						dots[i].classList.add('active');
+					else
+						dots[i].classList.remove('active');
+				}
+			}
+
+			var carousel = new Siema({
+				selector: carouselEl,
+				duration: 500,
+				loop:     true,
+				onChange: onChange
+			});
+
+			//arrows
+			document.getElementById('post-gallery-prev').onclick = function() { carousel.prev(); return false; }
+			document.getElementById('post-gallery-next').onclick = function() { carousel.next(); return false; }
+
+			//dots
+			for(var i = 0; i < dots.length; i++) {
+				dots[i].index = i;
+
+				dots[i].onclick = function() { carousel.goTo(this.index); }
+			}
+
+			//init
+			onChange(false);
+		</script>
+
+		<?php
 		return ob_get_clean();
 	}
 }
+
+add_shortcode('wetstone_carousel', 'wetstone_shortcode_carousel');
 
 //add excerpts to posts
 function wetstone_add_page_excerpts() {

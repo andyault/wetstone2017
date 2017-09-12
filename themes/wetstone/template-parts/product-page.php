@@ -1,5 +1,5 @@
 <a href="<?php the_permalink(); ?>" class="product-page link link-body">
-	<h3 class="product-page-header wetstone-font"><?php the_title(); ?></h3>
+	<h3 class="product-page-header <?php if($post->ID != 141) echo 'wetstone-font'; ?>"><?php the_title(); ?></h3>
 
 	<div class="product-page-img" style="background-image: url(<?php the_post_thumbnail_url('medium'); ?>)"></div>
 

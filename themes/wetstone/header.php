@@ -2,7 +2,7 @@
 	include_once(dirname(__FILE__) . '/util.php');
 
 	//all children of /portal are auth-only, restrict access
-	/* $isRestricted = false;
+	$isRestricted = false;
 
 	$portalID = get_page_by_path('portal')->ID;
 
@@ -15,7 +15,7 @@
 
 			exit();
 		}
-	} */
+	}
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +89,7 @@
 
 					//recursion is fun
 					function make_header_links_list($pages, $depth = 0) {
+						//don't need sub sub menus
 						if($depth > 1)
 							return;
 						
@@ -104,16 +105,23 @@
 							echo '<ul class="header-nav header-nav-site">';
 
 						//making links
-						foreach($pages as $post) {
-							echo '<li>';
-							echo make_header_link();
+						$grouped = wetstone_group_by_cat($pages);
 
-							if($post->ID != get_page_by_path('portal')->ID) {
-								if(count($children = wetstone_get_children($post)))
-									make_header_links_list($children, $depth + 1);
+						foreach($grouped as $cat => $pages) {
+							if(count($grouped) > 1)
+								echo sprintf('<li class="header-sub-nav-cat-header">%s</li>', $cat);
+
+							foreach($pages as $post) {
+								echo '<li>';
+								echo make_header_link();
+
+								if($post->ID != get_page_by_path('portal')->ID) {
+									if(count($children = wetstone_get_children($post))) 
+										make_header_links_list($children, $depth + 1);
+								}
+
+								echo '</li>';
 							}
-
-							echo '</li>';
 						}
 
 						echo '</ul>';
@@ -141,10 +149,10 @@
 						'sort_order'  => 'ASC'
 					]);
 
-					//if(is_user_logged_in())
+					if(is_user_logged_in())
 						array_push($pages, get_page_by_path('portal'));
-					//else
-					//	array_push($pages, get_page_by_path('sign-in'));
+					else
+						array_push($pages, get_page_by_path('sign-in'));
 
 					//save home page
 					$homeID = get_option('page_on_front');
@@ -203,10 +211,18 @@
 								echo '</li>';
 
 								if($post->ID != get_page_by_path('portal')->ID) {
-									foreach(wetstone_get_children($post) as $post) {
-										echo '<li>';
-										echo make_header_link();
-										echo '</li>';
+									$children = wetstone_get_children($post);
+									$grouped = wetstone_group_by_cat($children);
+
+									foreach($grouped as $cat => $posts) {
+										if(count($grouped) > 1)
+											echo sprintf('<li class="header-sub-nav-cat-header">%s</li>', $cat);
+
+										foreach($posts as $post) {
+											echo '<li>';
+											echo make_header_link();
+											echo '</li>';
+										}
 									}
 								}
 							}

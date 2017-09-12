@@ -6,7 +6,7 @@
 
 <div id="<?php echo $name; ?>" class="product-preview-slide" style="/* background: <?php echo $color; ?> */">
 	<div class="product-background-filter product-preview-background"></div>
-		<div class="product-preview-image product-preview-image-mobile" style="background-image: url(<?php echo $img; ?>)"></div>
+	<div class="product-preview-image product-preview-image-mobile" style="background-image: url(<?php echo $img; ?>)"></div>
 
 	<div class="product-preview-inner site-content">
 		<div class="product-preview-image" style="background-image: url(<?php echo $img; ?>)"></div>
