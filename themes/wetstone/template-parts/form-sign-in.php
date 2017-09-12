@@ -1,8 +1,13 @@
 <h2 class="section-header">Sign In</h2>
 
 <?php if(!is_user_logged_in()) {
-	if($_GET['passwordchanged'])
-		echo '<p class="text-center">Your password has been changed.</p>'; ?>
+	if($_GET['success'] == 'false')
+		echo '<p class="text-center" style="line-height: 1.5em;"><strong>ERROR</strong>: Invalid username or password.<br />
+		      <a href="' . add_query_arg('action', 'lostpassword', get_permalink()) . '" class="link link-body">Lost your password?</a>';
+	elseif($_GET['passwordchanged'])
+		echo '<p class="text-center">Your password has been changed.</p>';
+	elseif($_GET['loggedout'])
+		echo '<p class="text-center">You are now logged out.</p>'; ?>
 
 	<form method="POST" name="login" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
 		<input type="hidden" name="action" value="wetstone-login">

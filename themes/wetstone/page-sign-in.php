@@ -67,27 +67,28 @@
 
 		case 'resetpass':
 		case 'rp':
-			if($isPOST) {
-				$key = $_GET['key'];
-				$login = $_GET['login'];
+			$key = $_GET['key'];
+			$login = $_GET['login'];
 
-				//if we have the right query vars, check password
-				if(isset($key) && !empty($key) && isset($login) && !empty($login)) {
-					$user = check_password_reset_key($key, $login); 
+			//if we have the right query vars, check password
+			if(isset($key) && !empty($key) && isset($login) && !empty($login)) {
+				$user = check_password_reset_key($key, $login); 
 
-					//if we're trying to reset our pass, check the hash?
-					if(isset($_POST['pass1']) && !hash_equals($key, $_POST['rp_key']))
-						$user = false;
-				} else
+				//if we're trying to reset our pass, check the hash?
+				if(isset($_POST['pass1']) && !hash_equals($key, $_POST['rp_key']))
 					$user = false;
+			} else
+				$user = false;
 
-				//if we weren't successful, that means our key is bad
-				if(!$user || is_wp_error($user)) {
-					wp_safe_redirect(add_query_arg(['action' => 'lostpassword', 'rperror' => 'invalidkey'], get_permalink()));
+			//if we weren't successful, that means our key is bad
+			if(!$user || is_wp_error($user)) {
+				wp_safe_redirect(add_query_arg(['action' => 'lostpassword', 'rperror' => 'invalidkey'], get_permalink()));
 
-					exit;
-				}
+				exit;
+			}
 
+			//the rest is all posting?
+			if($isPOST) {
 				//see if passwords don't match somehow
 				if(isset($_POST['pass1']) && $_POST['pass1'] != $_POST['pass2'])
 						$errors->add('password_reset_mismatch', 'The passwords do not match.');
