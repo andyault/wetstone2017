@@ -2,6 +2,8 @@
 	get_header();
 	wp_reset_postdata();
 
+	var_dump($post->post_title);
+
 	//load single template - in order, try posttype-single, basic-single, then basic-page
 	$postType = get_post_type();
 

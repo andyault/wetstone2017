@@ -1,6 +1,7 @@
 <?php	
 	include_once(dirname(__FILE__) . '/util.php');
 
+	/* 	
 	//all children of /portal are auth-only, restrict access
 	$isRestricted = false;
 
@@ -16,6 +17,7 @@
 			exit();
 		}
 	}
+	*/
 ?>
 
 <!DOCTYPE html>
@@ -235,6 +237,6 @@
 		<main class="site-main">
 			<?php
 				//if they made it this far, show member header
-				if($isRestricted)
-					get_header('portal');
+				//if($isRestricted)
+					//get_header('portal');
 			?>
