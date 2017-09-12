@@ -5,7 +5,7 @@ function wetstone_shortcode_carousel($attrs) {
 		return;
 
 	$attachments = get_posts([
-		'include' => $atts['ids'],
+		'include' => $attrs['ids'],
 		'post_status' => 'inherit',
 		'post_type' => 'attachment',
 		'post_mime_type' => 'image'
