@@ -683,6 +683,12 @@ i[class] {
     left: 14px;
     transform: rotate(-45deg); }
 
+.post-gallery .carousel-arrow::after {
+  border-right-color: #000;
+  border-bottom-color: #000; }
+.post-gallery .carousel-dot {
+  border-color: #000; }
+
 .hero {
   padding: 0;
   background: #666;

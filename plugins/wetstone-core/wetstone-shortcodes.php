@@ -15,7 +15,7 @@ function wetstone_shortcode_carousel($attrs) {
 		ob_start();
 		?>
 
-		<section id="gallery" class="post-gallery carousel section-invert">
+		<section id="gallery" class="post-gallery carousel">
 			<a href="#" id="post-gallery-prev" class="carousel-arrow carousel-arrow-prev"></a>
 
 			<div id="post-gallery-slides" class="post-gallery-slides carousel-slides">

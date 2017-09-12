@@ -102,3 +102,9 @@ $pxArrowWidth: 80px;
 		transform: rotate(-45deg);
 	}
 }
+
+//sigh
+.post-gallery {
+	.carousel-arrow::after { border-right-color: #000; border-bottom-color: #000; }
+	.carousel-dot { border-color: #000; }
+}
