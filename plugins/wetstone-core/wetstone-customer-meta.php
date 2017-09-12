@@ -24,6 +24,7 @@ $fields = [
 
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
 
+//filling in the page
 function wetstone_add_customer_content() {
 	global $fields;
 	global $acctypes;
@@ -36,9 +37,9 @@ function wetstone_add_customer_content() {
 	<div class="wrap">
 		<h1>Add New Customer</h1>
 
-		<form method="POST" id="adduser" name="newcustomer">
-			<input type="hidden" name="action" value="addcustomer">
-			<?php wp_nonce_field('add-customer', '_wpnonce_addcustomer'); ?>
+		<form method="POST" name="newcustomer" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+			<input type="hidden" name="action" value="wetstone-customer-registration">
+			<?php wp_nonce_field('wetstone-customer-registration'); ?>
 
 			<table class="form-table">
 				<tr><th scope="row"><h3>Account Info</h3></th></tr>
@@ -140,11 +141,51 @@ function wetstone_add_customer_content() {
 					</td>
 				</tr>
 
-				<?php
-					//products - todo - loop through edd downloads?
-					//all products will need: expiry date, num licenses owned, num licenses used?
+				<tr>
+					<td colspan="99" style="padding: 0;">
+						<table>
+							<thead>
+								<tr>
+									<th>Product Name</th>
+									<th>Expiry Date</th>
+									<th>Licenses Owned</th>
+									<th>Licenses Used</th>
+								</tr>
+							</thead>
 
-				?>
+							<tbody>
+								<?php
+									//products - todo - loop through edd downloads?
+									//all products will need: expiry date, num licenses owned, num licenses used?
+
+									$products = get_posts([
+										'post_type'      => 'product',
+										'posts_per_page' => -1
+									]);
+
+									foreach($products as $key => $product) {
+										$meta = get_post_meta($product->ID);
+
+										?>
+
+										<tr>
+											<td><?php echo $product->post_title; ?></td>
+
+											<td style="padding: 0;">
+												<input type="date" name="product[<?php echo $key ?>][expiry]" value="<?php echo sprintf('%s-%s-%s', date('Y') + 1, date('m'), date('d')); ?>">
+											</td>
+
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][owned]" value="0"></td>
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][used]" value="0"></td>
+										</tr>
+
+										<?php
+									}
+								?>
+							</tbody>
+						</table>
+					</td>
+				</tr>
 			</table>
 
 			<?php submit_button(__('Add New Customer'), 'primary', 'createcustomer', true, ['id' => 'createcustomersub']); ?>
@@ -153,3 +194,19 @@ function wetstone_add_customer_content() {
 
 	<?php
 }
+
+//handling form post
+function wetstone_post_customer_registration() {
+	//todo - handle post data
+	//https://codex.wordpress.org/Function_Reference/wp_insert_user
+	
+	var_dump($_POST);
+}
+
+add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');
+
+
+
+
+
+

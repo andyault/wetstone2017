@@ -25,6 +25,23 @@ function wetstone_get_children($post, $args = null) {
 	return get_posts($args);
 }
 
+function wetstone_group_by_cat($posts) {
+	$grouped = [];
+
+	foreach($posts as $post) {
+		$cat = get_the_category($post->ID);
+
+		if(empty($cat))
+			$cat = 'Uncategorized';
+		else
+			$cat = esc_html($cat[0]->name);
+
+		$grouped[$cat][] = $post;
+	}
+
+	return $grouped;
+}
+
 function wetstone_get_asset($url) {
 	return sprintf(
 		'%s/assets%s',

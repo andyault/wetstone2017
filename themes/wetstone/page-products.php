@@ -38,20 +38,10 @@
 <section class="page-posts site-content site-content-padded">
 	<?php
 		//group products by category
-		$grouped = [];
-		$other = [];
+		$grouped = wetstone_group_by_cat($posts);
 
-		foreach($posts as $post) {
-			$cat = get_the_category($post->ID);
-
-			if(!empty($cat)) {
-				$cat = esc_html($cat[0]->name);
-
-				$grouped[$cat][] = $post;
-			} else
-				$other[] = $post;
-		}
-
+		$other = $grouped['Uncategorized'];
+		unset($grouped['Uncategorized']);
 		$grouped['Other Products'] = $other;
 
 		//for each cat, spit out a header and our products

@@ -1,6 +1,6 @@
 <?php
 	get_header();
-	the_post();
+	wp_reset_postdata();
 
 	//load single template - in order, try posttype-single, basic-single, then basic-page
 	$postType = get_post_type();
@@ -74,22 +74,7 @@
 	?>
 </section>
 
-<script>
-	var imgs = document.querySelectorAll('.body-content img[srcset]');
-
-	for(var i = 0; i < imgs.length; i++) {
-		var img = imgs[i];
-		var parent = img.parentNode;
-		var next = img.nextSibling;
-
-		var link = document.createElement('a');
-		link.href = img.attributes.srcset.split(', ').pop().match(/([^\s]*)/)[1];
-		link.className = 'wplightbox';
-
-		link.appendChild(img);
-
-		parent.insertBefore(link, next);
-	}
-</script>
+<script src="<?php echo wetstone_get_asset('/js/luminous.min.js'); ?>"></script>
+<script>new LuminousGallery(document.getElementsByClassName('luminous-link'));</script>
 
 <?php get_footer(); ?>
