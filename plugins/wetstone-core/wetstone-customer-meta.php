@@ -39,7 +39,7 @@ function wetstone_add_customer_content() {
 	<div class="wrap">
 		<h1>Add New Customer</h1>
 
-		<form method="POST" name="newcustomer" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+		<form method="POST" name="newcustomer" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" autocomplete="off">
 			<input type="hidden" name="action" value="wetstone-customer-registration">
 			<?php wp_nonce_field('wetstone-customer-registration'); ?>
 
@@ -56,7 +56,7 @@ function wetstone_add_customer_content() {
 									<label for="%1$s">%2$s %6$s</label>
 								</th>
 								<td>
-									<input type="%3$s" id="%1$s" name="%1$s" placeholder="%4$s" class="regular-text" %5$s>
+									<input type="%3$s" id="%1$s" name="%1$s" placeholder="%4$s" class="regular-text" %5 autocomplete="off" %5$s>
 								</td>
 							</tr>',
 
@@ -70,48 +70,38 @@ function wetstone_add_customer_content() {
 					}
 				?>
 
-				<!-- https://github.com/WordPress/WordPress/blob/746edb23f2fd9fceef473aea742ad471b9599730/wp-admin/user-new.php#L425 -->
-				<tr class="form-field form-required user-pass1-wrap">
-					<th scope="row">
-						<label for="pass1">
-							<?php _e( 'Password' ); ?>
-							<span class="description hide-if-js"><?php _e( '(required)' ); ?></span>
-						</label>
-					</th>
-					<td>
-						<input class="hidden" value=" " /><!-- #24364 workaround -->
-						<button type="button" class="button wp-generate-pw hide-if-no-js"><?php _e( 'Show password' ); ?></button>
-						<div class="wp-pwd hide-if-js">
-							<?php $initial_password = wp_generate_password( 24 ); ?>
-							<span class="password-input-wrapper">
-								<input type="password" name="pass1" id="pass1" class="regular-text" autocomplete="off" data-reveal="1" data-pw="<?php echo esc_attr( $initial_password ); ?>" aria-describedby="pass-strength-result" />
-							</span>
-							<button type="button" class="button wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Hide password' ); ?>">
-								<span class="dashicons dashicons-hidden"></span>
-								<span class="text"><?php _e( 'Hide' ); ?></span>
-							</button>
-							<button type="button" class="button wp-cancel-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Cancel password change' ); ?>">
-								<span class="text"><?php _e( 'Cancel' ); ?></span>
-							</button>
-							<div style="display:none" id="pass-strength-result" aria-live="polite"></div>
-						</div>
-					</td>
-				</tr>
-				<tr class="form-field form-required user-pass2-wrap hide-if-js">
-					<th scope="row"><label for="pass2"><?php _e( 'Repeat Password' ); ?> <span class="description"><?php _e( '(required)' ); ?></span></label></th>
-					<td>
-					<input name="pass2" type="password" id="pass2" autocomplete="off" />
-					</td>
-				</tr>
-				<tr class="pw-weak">
-					<th><?php _e( 'Confirm Password' ); ?></th>
-					<td>
+				<tr class="user-pass1-wrap">
+					<td colspan="2">
 						<label>
-							<input type="checkbox" name="pw_weak" class="pw-checkbox" />
-							<?php _e( 'Confirm use of weak password' ); ?>
+							New Password
+
+							<div class="wp-pwd">
+								<span class="password-input-wrapper">
+									<input type="password" data-reveal="1" data-pw="<?php echo esc_attr( wp_generate_password( 16 ) ); ?>" name="pass1" id="pass1" class="input form-input" size="20" value="" autocomplete="new-password" />
+								</span>
+
+								<div id="pass-strength-result" class="hide-if-no-js">Strength indicator</div>
+							</div>
 						</label>
 					</td>
 				</tr>
+
+				<tr class="user-pass2-wrap">
+					<td colspan="2">
+						<label>
+							Confirm new password
+
+							<input type="password" name="pass2" id="pass2" class="input form-input" size="20" value="" autocomplete="off" />
+						</label>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<?php echo wp_get_password_hint(); ?>
+					</td>
+				</tr>
+
 				<tr>
 					<th scope="row"><?php _e( 'Send User Notification' ) ?></th>
 					<td>
@@ -212,7 +202,6 @@ function wetstone_add_customer_content() {
 					inputs[j].disabled = !this.checked;
 			}
 		}
-
 	</script>
 
 	<?php
@@ -226,6 +215,8 @@ function wetstone_post_customer_registration() {
 	$user = [
 		'user_pass' => $_POST['']
 	];
+
+	var_dump($user);
 }
 
 add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');

@@ -91,7 +91,6 @@
 					'Live acquisition and triage',
 					'Forensic time',
 					'Reselling opportunities',
-					'Hosting a training',
 					'Other (please specify below)'
 				];
 			?>
