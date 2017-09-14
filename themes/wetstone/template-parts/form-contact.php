@@ -52,7 +52,7 @@
 		</tr>
 
 		<tr>
-			<td><?php echo wetstone_form_make_input('title', 'text', 'Title', 'Mr.'); ?></td>
+			<td><?php echo wetstone_form_make_input('title', 'text', 'Title', 'CEO'); ?></td>
 			<td><?php echo wetstone_form_make_input('company', 'text', 'Company', 'Google Inc.', true); ?></td>
 		</tr>
 
