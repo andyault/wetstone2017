@@ -1,5 +1,12 @@
 <?php
 
+//make customer role
+add_role(
+	'customer',
+	'Customer',
+	[] //everything defaults to false, right?
+);
+
 //make submenu page
 function wetstone_add_customer_page() {
 	add_users_page(
@@ -34,6 +41,9 @@ function wetstone_add_customer_content() {
 
 	if(!current_user_can('create_users'))
 		echo '<div class="wrap"><h1>Add New Customer</h1> <p>You are not allowed to create users.</p></div>';
+
+	if($_GET['customeradded'] == true)
+		echo '<div class="notice notice-success is-dismissible"><p>Customer successfully added.</p></div>';
 
 	?>
 
@@ -201,6 +211,7 @@ function wetstone_post_customer_registration() {
 		$user[$key] = $_POST[$key];
 
 	$user['user_registered'] = date('Y-m-d H:i:s');
+	$user['role'] = 'customer';
 
 	//create user
 	$id = wp_insert_user($user);
@@ -211,17 +222,29 @@ function wetstone_post_customer_registration() {
 		foreach($meta as $key => $val)
 			add_user_meta($id, 'wetstone_' . $key, $val, true);
 
-		//send email
-		$message = "Hello,\n\nYour new WetStone Technologies account has been set up.\nPlease click the following link to confirm the invite:\n";
+		//set up activation stuff
+		$newuser_key = substr( md5( $id ), 0, 5 );
+		do_action( 'invite_user', $id, 'customer', $newuser_key );
+
+		//send email		
+		$message = "Hello,\n\nYour new WetStone Technologies account has been set up.\n\nPlease click the following link to confirm the invite:\n";
 
 		wp_mail(
 			$user['user_email'],
 			'WetStone Technologies Registration',
-			$message . home_url('\/newbloguser\/' . $newuser_key . '/')
+			$message . home_url('/newbloguser/' . $newuser_key . '/')
 		);
 
 		//redirect to user listing
-		wp_safe_redirect(admin_url('users.php'));
+		wp_safe_redirect(add_query_arg(
+			[
+				'page' => 'user-new-customer',
+				'customeradded' => true
+			],
+
+			'users.php'
+		));
+
 		exit;
 	}
 	
@@ -230,8 +253,6 @@ function wetstone_post_customer_registration() {
 }
 
 add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');
-
-
 
 
 
