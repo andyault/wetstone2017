@@ -134,6 +134,24 @@
 			onChange(false);
 	} else
 		onChange(false);
+
+	//auto scroll
+	var amt = 0;
+
+	var timer = setInterval(function() {
+		//if hovered, pause
+		if(carouselEl.parentElement.querySelector(':hover') !== carouselEl)
+			amt += 100;
+
+		//otherwise, wait 5s
+		if(amt >= 5000) {
+			amt = -1000;
+
+			carousel.next();
+		}
+	}, 100);
+
+	document.getElementById('gallery').onclick = function() { clearInterval(timer); }
 </script>
 
 <?php
