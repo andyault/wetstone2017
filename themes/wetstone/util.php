@@ -1,10 +1,12 @@
 <?php
 
 //generic util
-function wetstone_pop_value(&$arr, $key) {
-	$ret = $arr[$key];
-	unset($arr[$key]);
-	return $ret;
+if(!function_exists('wetstone_pop_value')) {
+	function wetstone_pop_value(&$arr, $key) {
+		$ret = $arr[$key];
+		unset($arr[$key]);
+		return $ret;
+	}
 }
 
 //page functions

@@ -4,7 +4,7 @@
 add_role(
 	'customer',
 	'Customer',
-	[] //everything defaults to false, right?
+	['read' => true] //everything defaults to false, right?
 );
 
 //make submenu page
@@ -223,16 +223,16 @@ function wetstone_post_customer_registration() {
 			add_user_meta($id, 'wetstone_' . $key, $val, true);
 
 		//set up activation stuff
-		$newuser_key = substr( md5( $id ), 0, 5 );
-		do_action( 'invite_user', $id, 'customer', $newuser_key );
+		$key = get_password_reset_key(get_user_by('id', $id));
 
 		//send email		
-		$message = "Hello,\n\nYour new WetStone Technologies account has been set up.\n\nPlease click the following link to confirm the invite:\n";
+		$message = "Hello,\n\nYour new WetStone Technologies account has been set up.\n\nPlease click the following link to set your password:\n";
+		$message .= add_query_arg(['action'=>'rp', 'key'=>$key, 'login'=>rawurlencode($user['user_login'])], get_permalink(get_page_by_path('sign-in')));
 
 		wp_mail(
 			$user['user_email'],
 			'WetStone Technologies Registration',
-			$message . home_url('/newbloguser/' . $newuser_key . '/')
+			$message
 		);
 
 		//redirect to user listing
