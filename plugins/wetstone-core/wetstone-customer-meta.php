@@ -16,10 +16,13 @@ add_action('admin_menu', 'wetstone_add_customer_page');
 //add page content
 $fields = [
 	//name => [type, label, placeholder, required]
-	'fname' => ['text', 'First Name', 'John'],
-	'lname' => ['text', 'Last Name', 'Doe'],
-	'email' => ['email', 'Email Address', 'john.doe@example.com', true],
-	'username' => ['text', 'Username', 'johndoe123', true]
+	'first_name' => ['text', 'First Name', 'John'],
+	'last_name' => ['text', 'Last Name', 'Doe'],
+	'company' => ['text', 'Company', 'Google Inc.'],
+	'phone' => ['tel', 'Phone', '(555) 867-5309'],
+	//'address1' => ['text', 'Address Line 1', 'Google Inc.'], //maybe
+	'user_email' => ['email', 'Email Address', 'john.doe@example.com', true],
+	'user_login' => ['text', 'Username', 'johndoe123', true],
 ];
 
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
@@ -29,17 +32,15 @@ function wetstone_add_customer_content() {
 	global $fields;
 	global $acctypes;
 
-	do_action('login_enqueue_scripts');
-
-	wp_enqueue_script('utils');
-	wp_enqueue_script('user-profile');
+	if(!current_user_can('create_users'))
+		echo '<div class="wrap"><h1>Add New Customer</h1> <p>You are not allowed to create users.</p></div>';
 
 	?>
 
 	<div class="wrap">
 		<h1>Add New Customer</h1>
 
-		<form method="POST" name="newcustomer" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" autocomplete="off">
+		<form method="POST" id="createuser" name="newcustomer" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" autocomplete="off">
 			<input type="hidden" name="action" value="wetstone-customer-registration">
 			<?php wp_nonce_field('wetstone-customer-registration'); ?>
 
@@ -55,6 +56,7 @@ function wetstone_add_customer_content() {
 								<th scope="row">
 									<label for="%1$s">%2$s %6$s</label>
 								</th>
+
 								<td>
 									<input type="%3$s" id="%1$s" name="%1$s" placeholder="%4$s" class="regular-text" %5 autocomplete="off" %5$s>
 								</td>
@@ -70,44 +72,18 @@ function wetstone_add_customer_content() {
 					}
 				?>
 
-				<tr class="user-pass1-wrap">
-					<td colspan="2">
-						<label>
-							New Password
+				<tr class="form-field">
+					<th scope="row">
+						<label for="user_pass">Password <span class="description">(required)</span></label>
+					</th>
 
-							<div class="wp-pwd">
-								<span class="password-input-wrapper">
-									<input type="password" data-reveal="1" data-pw="<?php echo esc_attr( wp_generate_password( 16 ) ); ?>" name="pass1" id="pass1" class="input form-input" size="20" value="" autocomplete="new-password" />
-								</span>
-
-								<div id="pass-strength-result" class="hide-if-no-js">Strength indicator</div>
-							</div>
-						</label>
-					</td>
-				</tr>
-
-				<tr class="user-pass2-wrap">
-					<td colspan="2">
-						<label>
-							Confirm new password
-
-							<input type="password" name="pass2" id="pass2" class="input form-input" size="20" value="" autocomplete="off" />
-						</label>
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan="2">
-						<?php echo wp_get_password_hint(); ?>
-					</td>
-				</tr>
-
-				<tr>
-					<th scope="row"><?php _e( 'Send User Notification' ) ?></th>
 					<td>
-						<input type="checkbox" name="send_user_notification" id="send_user_notification" value="1" checked />
-						<label for="send_user_notification"><?php _e( 'Send the new user an email about their account.' ); ?></label>
+						<input type="text" id="user_pass" name="user_pass" class="regular-text" value="<?php echo esc_attr(wp_generate_password(24)); ?>" required autocomplete="new-password">
 					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" style="padding-left: 0;">Passwords are sent to new users with a link to change them.</td>
 				</tr>
 
 				<tr><th scope="row"><h3>Customer Info</h3></th></tr>
@@ -209,14 +185,48 @@ function wetstone_add_customer_content() {
 
 //handling form post
 function wetstone_post_customer_registration() {
-	//todo - handle post data
 	//https://codex.wordpress.org/Function_Reference/wp_insert_user
-	
-	$user = [
-		'user_pass' => $_POST['']
-	];
+	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-customer-registration'))
+		return wp_nonce_ays('wetstone-customer-registration');
 
-	var_dump($user);
+	if(!current_user_can('create_users'))
+		wp_die('<h1>' . __( 'Cheatin&#8217; uh?' ) . '</h1><p>' . __( 'Sorry, you are not allowed to create users.' ) . '</p>', 403);
+
+	//remove our meta info from the post array
+	foreach(['company', 'phone'] as $key)
+		$meta[$key] = $_POST[$key];
+
+	//only use the keys we need
+	foreach(['user_login', 'user_pass', 'user_email', 'first_name', 'last_name'] as $key)
+		$user[$key] = $_POST[$key];
+
+	$user['user_registered'] = date('Y-m-d H:i:s');
+
+	//create user
+	$id = wp_insert_user($user);
+
+	//if successful
+	if(!is_wp_error($id)) {
+		//add meta
+		foreach($meta as $key => $val)
+			add_user_meta($id, 'wetstone_' . $key, $val, true);
+
+		//send email
+		$message = "Hello,\n\nYour new WetStone Technologies account has been set up.\nPlease click the following link to confirm the invite:\n";
+
+		wp_mail(
+			$user['user_email'],
+			'WetStone Technologies Registration',
+			$message . home_url('\/newbloguser\/' . $newuser_key . '/')
+		);
+
+		//redirect to user listing
+		wp_safe_redirect(admin_url('users.php'));
+		exit;
+	}
+	
+	//otherwise
+	error_log(print_r($id->get_error_messages()));
 }
 
 add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');

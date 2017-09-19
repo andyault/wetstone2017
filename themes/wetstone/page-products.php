@@ -40,8 +40,7 @@
 		//group products by category
 		$grouped = wetstone_group_by_cat($posts);
 
-		$other = $grouped['Uncategorized'];
-		unset($grouped['Uncategorized']);
+		$other = wetstone_pop_value($grouped, 'Uncategorized');
 		$grouped['Other Products'] = $other;
 
 		//for each cat, spit out a header and our products

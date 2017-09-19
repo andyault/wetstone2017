@@ -1,5 +1,12 @@
 <?php
 
+//generic util
+function wetstone_pop_value(&$arr, $key) {
+	$ret = $arr[$key];
+	unset($arr[$key]);
+	return $ret;
+}
+
 //page functions
 function wetstone_get_children($post, $args = null) {
 	$args = wp_parse_args($args, [

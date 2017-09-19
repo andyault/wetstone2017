@@ -106,8 +106,7 @@
 
 						//making links
 						$grouped = wetstone_group_by_cat($pages);
-						$other = $grouped['Uncategorized'];
-						unset($grouped['Uncategorized']);
+						$other = wetstone_pop_value($grouped, 'Uncategorized');
 						$grouped['Other Products'] = $other;
 
 						foreach($grouped as $cat => $pages) {
