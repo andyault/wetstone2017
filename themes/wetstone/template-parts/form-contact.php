@@ -39,7 +39,7 @@
 
 		<?php if($_GET['errmsg']) { ?>
 			<tr class="form-error">
-				<td colspan="2" class="text-center"><?php echo $_GET['errmsg']; ?></td>
+				<td colspan="2" class="text-center"><?php echo esc_html($_GET['errmsg']); ?></td>
 			</tr>
 
 			<tr class="form-error-spacer"><td></td></tr>

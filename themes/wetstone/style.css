@@ -519,6 +519,10 @@ i[class] {
 .form-table-collapse td:only-child {
   padding-right: 8px; }
 
+.form-success td {
+  padding: 1em;
+  background: rgba(42, 175, 81, 0.3); }
+
 .form-error td {
   padding: 1em;
   background: rgba(231, 76, 60, 0.3); }
@@ -568,6 +572,10 @@ i[class] {
 .table-footer {
   padding: 2em 0 0 0 !important;
   text-align: center; }
+
+.table-cell-center {
+  text-align: center;
+  vertical-align: center; }
 
 .req {
   color: #f00; }

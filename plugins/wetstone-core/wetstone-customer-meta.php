@@ -4,7 +4,7 @@
 add_role(
 	'customer',
 	'Customer',
-	['read' => true] //everything defaults to false, right?
+	[] //everything defaults to false, right?
 );
 
 //make submenu page
@@ -220,7 +220,10 @@ function wetstone_post_customer_registration() {
 	if(!is_wp_error($id)) {
 		//add meta
 		foreach($meta as $key => $val)
-			add_user_meta($id, 'wetstone_' . $key, $val, true);
+			add_user_meta($id, 'wetstone_' . $key, sanitize_text_field($val), true);
+
+		//add products
+		add_user_meta($id, 'wetstone_products', $_POST['products']);
 
 		//set up activation stuff
 		$key = get_password_reset_key(get_user_by('id', $id));
@@ -235,16 +238,8 @@ function wetstone_post_customer_registration() {
 			$message
 		);
 
-		//redirect to user listing
-		wp_safe_redirect(add_query_arg(
-			[
-				'page' => 'user-new-customer',
-				'customeradded' => true
-			],
-
-			'users.php'
-		));
-
+		//redirect to same page with notification
+		wp_safe_redirect(add_query_arg(['page' => 'user-new-customer', 'customeradded' => true], 'users.php'));
 		exit;
 	}
 	
@@ -254,6 +249,30 @@ function wetstone_post_customer_registration() {
 
 add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');
 
+//"my account" page
+function wetstone_post_my_account() {
+	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-my-account'))
+		return wp_nonce_ays('wetstone-my-account');
 
+	//make sure ids match
+	$id = wp_get_current_user()->ID;
 
+	if($_POST['ID'] === $id)
+		wp_die('<h1>' . __( 'Cheatin&#8217; uh?' ) . '</h1><p>' . __( 'Sorry, you can only edit your own account.' ) . '</p>', 403);
 
+	//update userdata
+	wp_update_user([
+		'ID' => $id,
+		'first_name' => sanitize_text_field($_POST['first_name']),
+		'last_name' => sanitize_text_field($_POST['last_name']),
+		'user_email' => sanitize_text_field($_POST['user_email'])
+	]);
+
+	//update user meta
+	foreach(['company', 'phone'] as $key)
+		update_user_meta($id, 'wetstone_' . $key, sanitize_text_field($_POST['wetstone_' . $key]));
+
+	wp_safe_redirect(add_query_arg('updated', true, home_url('/portal/my-account/')));
+}
+
+add_action('admin_post_wetstone-my-account', 'wetstone_post_my_account');
