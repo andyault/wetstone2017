@@ -151,7 +151,7 @@
 		}
 	}, 100);
 
-	document.getElementById('gallery').onclick = function() { clearInterval(timer); }
+	document.getElementById('product-preview').onclick = function() { clearInterval(timer); }
 </script>
 
 <?php

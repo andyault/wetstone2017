@@ -111,7 +111,7 @@
 
 						foreach($grouped as $cat => $pages) {
 							if(count($grouped) > 1)
-								echo sprintf('<li class="header-sub-nav-cat-header">%s</li>', $cat);
+								echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
 
 							foreach($pages as $post) {
 								echo '<li>';
@@ -142,7 +142,7 @@
 				?>
 
 				<?php
-					//get all root pages - maybe todo?
+					//get all header pages
 					$pages = get_pages([
 						'parent'      => 0,
 						'meta_key'    => 'page_showinheader',
@@ -204,9 +204,18 @@
 					<ul class="header-sub-nav-site">
 						<?php
 							//move home page to top of array
-							unset($pages[array_search($post, $pages)]);
+							//this is stupid
+							foreach($pages as $key => $page) {
+								if($page->ID == $homeID) {
+									unset($pages[$key]);
+
+									break;
+								}
+							}
+
 							array_unshift($pages, $post);
 
+							//make list
 							foreach($pages as $post) {
 								echo '<li class="header-link-separated">';
 								echo make_header_link();
@@ -218,7 +227,7 @@
 
 									foreach($grouped as $cat => $posts) {
 										if(count($grouped) > 1)
-											echo sprintf('<li class="header-sub-nav-cat-header">%s</li>', $cat);
+											echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
 
 										foreach($posts as $post) {
 											echo '<li>';

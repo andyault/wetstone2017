@@ -267,12 +267,12 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     text-align: left; }
 
-.header-link {
+.header-link, .header-sub-nav-cat-header {
   display: inline-block;
   padding: 0 16px;
   line-height: 64px;
   white-space: nowrap; }
-  .header-link.open-nav ~ .header-sub-nav-site {
+  .header-link.open-nav ~ .header-sub-nav-site, .open-nav.header-sub-nav-cat-header ~ .header-sub-nav-site {
     display: block; }
 
 .header-logo-link {
@@ -289,18 +289,41 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     right: 16px; }
 
+/* .header-sub-nav-cat-header {
+	padding: 0 $pxPadding !important;
+	height: 16px;
+
+	line-height: 16px;
+	text-transform: uppercase;
+	font-size: 0.75em;
+	font-weight: bold;
+	color: #999;
+} */
 .header-sub-nav-cat-header {
-  padding: 0 16px !important;
-  height: 16px;
-  line-height: 16px;
+  position: relative;
+  width: 100%;
+  line-height: 2em;
   text-transform: uppercase;
+  text-align: center;
   font-size: 0.75em;
   font-weight: bold;
   color: #999; }
+  .header-sub-nav-cat-header span {
+    position: absolute;
+    padding: 0 1em;
+    transform: translate(-50%);
+    background: #303030; }
+  .header-sub-nav-cat-header:before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 2em);
+    top: 50%;
+    left: 1em;
+    border-top: 1px solid #999; }
 
-.header-link-clickthru .header-link::before {
+.header-link-clickthru .header-link::before, .header-link-clickthru .header-sub-nav-cat-header::before {
   content: 'Go to '; }
-.header-link-clickthru .header-link::after {
+.header-link-clickthru .header-link::after, .header-link-clickthru .header-sub-nav-cat-header::after {
   content: ' page'; }
 
 .header-link-separated:not(:first-of-type) {
