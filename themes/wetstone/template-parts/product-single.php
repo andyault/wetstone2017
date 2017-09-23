@@ -6,7 +6,7 @@
 </section> -->
 
 <section class="product-single-description">
-	<h1 class="section-header wetstone-font"><?php the_title(); ?></h1>
+	<h1 class="section-header <?php if($post->ID != 141) echo 'wetstone-font'; ?>"><?php the_title(); ?></h1>
 
 	<div class="body-content">
 		<?php the_content(); ?>
