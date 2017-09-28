@@ -50,7 +50,7 @@
 		foreach($grouped as $group => $posts) { ?>
 			<h2 class="section-header"><?php echo $group; ?></h2>
 
-			<div class="page-list flex">
+			<div class="page-list flex flex-center">
 				<?php
 					foreach($posts as $post) {
 						setup_postdata($post);
