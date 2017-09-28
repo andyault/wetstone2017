@@ -1,17 +1,102 @@
 <?php
 	get_header();
+	wp_reset_postdata();
 
-	$products = 1;
-?>
+	$baseurl = get_the_permalink();
 
-<section class="site-content site-content-padded">
-	<ul class="myproducts-list">
-		<?php
-			var_dump(wp_get_current_user());
-			echo "\n--\n";
-			var_dump(get_user_mata($wp_get_current_user->ID));
+	$user = wp_get_current_user();
+	$products = get_user_meta($user->ID, 'wetstone_products', true);
+
+	//allow viewing of single product
+	$view = $_GET['view'];
+
+	if(isset($view) && isset($products[$view])) {
+		$post = get_post($view);
+		setup_postdata($post);
+
+		get_template_part('template-parts/my-product', 'single');
+
+		//todo, add next/prev/back buttons at bottom of page
 		?>
-	</ul>
-</section>
 
-<?php get_footer(); ?>
+		<section class="single-footer site-content site-content-padded">
+			<?php
+				//have to get prev/next links weird
+				$curpost = $post;
+
+				while($post = get_previous_post()) {
+					if(!isset($post)) break;
+
+					if($post->ID == $curpost->ID) {
+						$post = null;
+						break;
+					}
+
+					if(isset($products[$post->ID])) break;
+				}
+
+				$prev = $post;
+				$post = $curpost;
+
+				while($post = get_next_post()) {
+					if(!isset($post)) break;
+
+					if($post->ID == $curpost->ID) {
+						$post = null;
+						break;
+					}
+
+					if(isset($products[$post->ID])) break;
+				}
+
+				$next = $post;
+				$post = $curpost;
+				
+				//show links
+				if(!empty($prev)) {
+					echo sprintf(
+						'<a href="%s" class="link link-body"><i class="larr"></i> %s</a>',
+
+						get_permalink($prev),
+						get_the_title($prev)
+					);
+				}
+
+				//fix for flex alignment
+				echo '<span>&nbsp;</span>';
+
+				//for posts - back to posts button
+				//for products/services - inquire button
+				echo sprintf('<a href="' . $baseurl . '" class="single-inquire link link-button">Back to My Products</a>');
+
+				if(!empty($next)) {
+					echo sprintf(
+						'<a href="%s" class="link link-body">%s <i class="rarr"></i></a>',
+
+						get_permalink($next),
+						get_the_title($next)
+					);
+				}
+			?>
+		</section>
+
+		<?php
+	} else { ?>
+		<section class="site-content site-content-small site-content-padded">
+			<h2 class="section-header"><?php the_title(); ?></h2>
+
+			<ul class="myproducts-list">
+				<?php
+					foreach($products as $id => $info) {
+						$post = get_post($id);
+						setup_postdata($post);
+
+						get_template_part('template-parts/my-product', 'list');
+					}
+				?>
+			</pre>
+		</section>
+	<? }
+
+	get_footer();
+?>

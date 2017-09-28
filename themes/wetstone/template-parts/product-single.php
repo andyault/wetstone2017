@@ -1,5 +1,7 @@
 <?php $productColor = get_post_meta($post->ID, 'product_color', true); ?>
 
+<?php var_dump(get_post_meta($post->ID)); ?>
+
 <!-- todo: side buttons (overview, screenshots, free trial, etc) -->
 
 <!-- <section class="product-single-banner" style="background: <?php echo $productColor; ?>;">

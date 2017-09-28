@@ -1,5 +1,6 @@
 <?php
 
+//carousel
 function wetstone_shortcode_carousel($attrs) {
 	if(!isset($attrs['ids']) || empty($attrs['ids']))
 		return;

@@ -75,6 +75,15 @@ function wetstone_add_meta_boxes() {
 			'side'
 		);
 	}
+
+	//add another body to products
+	add_meta_box(
+		'product_customerinfo',
+		'Customer Info',
+		'wetstone_meta_product_customerinfo',
+		'product',
+		'normal'
+	);
 }
 
 //meta box content
@@ -101,6 +110,13 @@ function wetstone_meta_product_content($post) {
 			'purchasable' => ['label' => 'Can be purchased?', 'type' => 'checkbox']
 		],
 		get_post_meta($post->ID)
+	);
+}
+
+function wetstone_meta_product_customerinfo($post) {
+	wp_editor(
+		get_post_meta($post->ID, 'wetstone_product_customerinfo', true),
+		'wetstone_product_customerinfo_editor'
 	);
 }
 
@@ -170,13 +186,11 @@ function wetstone_meta_content($name, $fields, $old) {
 }
 
 //saving meta content?
-add_action('save_post', 'wetstone_meta_save');
-
 function wetstone_meta_save($id) {
 	//don't save if autosave, revision, or nonce doesn't match
 	$isValidNonce = wp_verify_nonce($_POST['_wp_ws_nonce'], 'wetstone_meta_nonce');
 
-	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce)
+	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce || !current_user_can('edit_post', $id))
 		return;
 
 	//save all data in _meta[]
@@ -187,3 +201,18 @@ function wetstone_meta_save($id) {
 			delete_post_meta($id, $key);
 	}
 }
+
+add_action('save_post', 'wetstone_meta_save');
+
+//save product info
+function wetstone_product_customerinfo_save($id) {
+	//don't save if autosave, revision, or nonce doesn't match
+	$isValidNonce = wp_verify_nonce($_POST['_wp_ws_nonce'], 'wetstone_meta_nonce');
+
+	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce || !current_user_can('edit_post', $id))
+		return;
+
+	update_post_meta($id, 'wetstone_product_customerinfo', $_POST['wetstone_product_customerinfo_editor']);
+}
+
+add_action('save_post', 'wetstone_product_customerinfo_save');

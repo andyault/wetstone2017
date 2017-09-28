@@ -143,21 +143,22 @@ function wetstone_add_customer_content() {
 									]);
 
 									foreach($products as $key => $product) {
-										$meta = get_post_meta($product->ID);
+										$pid = $product->ID;
+										$meta = get_post_meta($pid);
 
 										?>
 
 										<tr>
 											<td><?php echo $product->post_title; ?></td>
 
-											<td style="text-align: center; padding-right: 4em;"><input type="checkbox" name="product[<?php echo $key ?>][owned]" class="product-owned-checkbox"></td>
+											<td style="text-align: center; padding-right: 4em;"><input type="checkbox" class="product-owned-checkbox"></td>
 
 											<td style="padding: 0;">
-												<input type="date" name="product[<?php echo $key ?>][expiry]" value="<?php echo sprintf('%s-%s-%s', date('Y') + 1, date('m'), date('d')); ?>" disabled>
+												<input type="date" name="product[<?php echo $pid ?>][expiry]" value="<?php echo sprintf('%s-%s-%s', date('Y') + 1, date('m'), date('d')); ?>" disabled>
 											</td>
 
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][num_owned]" value="1" disabled></td>
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $key ?>][num_used]" value="1" disabled></td>
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_owned]" value="1" disabled></td>
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_used]" value="1" disabled></td>
 										</tr>
 
 										<?php
@@ -223,7 +224,7 @@ function wetstone_post_customer_registration() {
 			add_user_meta($id, 'wetstone_' . $key, sanitize_text_field($val), true);
 
 		//add products
-		add_user_meta($id, 'wetstone_products', $_POST['products']);
+		add_user_meta($id, 'wetstone_products', $_POST['product']);
 
 		//set up activation stuff
 		$key = get_password_reset_key(get_user_by('id', $id));
