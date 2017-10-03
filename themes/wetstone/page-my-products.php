@@ -96,7 +96,7 @@
 					} else
 						echo '<p class="text-center">You don\'t have any products yet.</p>';
 				?>
-			</pre>
+			</ul>
 		</section>
 	<? }
 
