@@ -114,10 +114,28 @@ function wetstone_meta_product_content($post) {
 }
 
 function wetstone_meta_product_customerinfo($post) {
-	wp_editor(
-		get_post_meta($post->ID, 'wetstone_product_customerinfo', true),
-		'wetstone_product_customerinfo_editor'
-	);
+	?>
+
+	<label class="wp-heading-inline">
+		<p class="post-attributes-label">Customer Page Excerpt</p>
+
+		<textarea id="wetstone_product_customerinfo_excerpt" rows="2" cols="40" name="wetstone_product_customerinfo_excerpt"><?php
+			echo get_post_meta($post->ID, 'wetstone_product_customerexcerpt', true);
+		?></textarea>
+	</label>
+
+	<label class="wp-heading-inline">
+		<p class="post-attributes-label">Customer Page Content</p>
+
+		<?php
+			wp_editor(
+				get_post_meta($post->ID, 'wetstone_product_customerinfo', true),
+				'wetstone_product_customerinfo_editor'
+			);
+		?>
+	</label>
+
+	<?php
 }
 
 //  pages
@@ -213,6 +231,21 @@ function wetstone_product_customerinfo_save($id) {
 		return;
 
 	update_post_meta($id, 'wetstone_product_customerinfo', $_POST['wetstone_product_customerinfo_editor']);
+	update_post_meta($id, 'wetstone_product_customerexcerpt', $_POST['wetstone_product_customerinfo_excerpt']);
 }
 
 add_action('save_post', 'wetstone_product_customerinfo_save');
+
+//adding styles to admin page
+function wetstone_admin_styles() {
+	echo '<style>
+		#wetstone_product_customerinfo_excerpt {
+			display: block;
+			margin: 12px 0 0;
+			height: 6em;
+			width: 100%;
+		}
+	</style>';
+}
+
+add_action('admin_head', 'wetstone_admin_styles');

@@ -101,6 +101,70 @@ function wetstone_shortcode_carousel($attrs) {
 
 add_shortcode('wetstone_carousel', 'wetstone_shortcode_carousel');
 
+//adding tabs to posts
+function wetstone_shortcode_tabs($attrs, $content = null) {
+	if(empty($content)) return;
+
+	//can't use has_shortcode
+	if(strpos($content, '[wetstone_tab') == false) return;
+
+	//here we go
+	ob_start();
+
+	//get an array of tab names and tab content
+	preg_match_all(
+		'/\[wetstone_tab\s+name="([^"]*)"[^]]*\]([^\[]+)/i',
+		$content,
+		$matches
+	);
+
+	//turn it into stuff we can use
+	$tabs = [];
+
+	foreach($matches[1] as $key => $name) {
+		$tabs[$key] = [
+			'name' => $name,
+			'content' => $matches[2][$key],
+			'id' => strtolower(preg_replace('/[^\w\s]/', '', implode('-', explode(' ', $name))))
+		];
+	}
+
+	?>
+
+	<div class="tabbed">
+		<?php
+			foreach($tabs as $i => $tab) {
+				$nameClass = isset($attrs['name']) ? ('-' . $attrs['name']) : '';
+
+				//https://css-tricks.com/functional-css-tabs-revisited/
+				?>
+
+				<input type="radio"
+				       name="tab-input<?php echo $nameClass; ?>"
+				       id="tab-input<?php echo $nameClass . '-' . $tab['id']; ?>"
+				       class="tab-input"
+				       <?php if($i == 0) echo 'checked'; ?>>
+
+				<label for="tab-input<?php echo $nameClass . '-' . $tab['id']; ?>" class="tab-label">
+					<?php echo $tab['name']; ?>
+				</label>
+
+				<div class="tab-content">
+					<?php echo $tab['content']; ?>
+				</div>
+
+				<?php
+			}
+		?>
+	</div>
+
+	<?php
+
+	return ob_get_clean();
+}
+
+add_shortcode('wetstone_tabs', 'wetstone_shortcode_tabs');
+
 //add excerpts to posts
 function wetstone_add_page_excerpts() {
 	add_post_type_support('page', 'excerpt');

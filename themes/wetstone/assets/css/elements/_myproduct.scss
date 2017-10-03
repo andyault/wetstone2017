@@ -8,6 +8,16 @@
 	margin-bottom: $pxPadding;
 }
 
+.myproduct-overview {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 128px;
+	align-items: stretch;
+
+	margin-bottom: $pxPadding;
+}
+
 //
 .myproduct-list-item-img {
 	width: 128px;
@@ -19,4 +29,22 @@
 	flex: 1;
 
 	text-align: left;
+}
+
+.myproduct-overview-image {
+	width: 128px;
+	height: 128px;
+	margin-right: 16px;
+
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.myproduct-overview-info {
+	padding: $pxPadding 0;
+	overflow: hidden;
+	flex: 1;
+
+	white-space: pre-wrap;
 }

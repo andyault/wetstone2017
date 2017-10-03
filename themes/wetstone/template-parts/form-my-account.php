@@ -34,7 +34,7 @@
 			<td>
 				<label class="form-label">
 					Password Change: <br />
-					<a href="<?php echo add_query_arg('action', 'lostpassword', get_permalink()); ?>" class="link link-body form-input text-center" style="border-color: transparent;">
+					<a href="<?php echo add_query_arg('action', 'lostpassword', get_permalink(get_page_by_path('sign-in'))); ?>" class="link link-body form-input text-center" style="border-color: transparent;">
 						Click here to change your password.
 					</a>
 				</label>

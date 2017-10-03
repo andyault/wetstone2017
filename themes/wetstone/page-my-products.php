@@ -16,7 +16,6 @@
 
 		get_template_part('template-parts/my-product', 'single');
 
-		//todo, add next/prev/back buttons at bottom of page
 		?>
 
 		<section class="single-footer site-content site-content-padded">
@@ -57,7 +56,7 @@
 					echo sprintf(
 						'<a href="%s" class="link link-body"><i class="larr"></i> %s</a>',
 
-						get_permalink($prev),
+						add_query_arg('view', $prev->ID),
 						get_the_title($prev)
 					);
 				}
@@ -73,7 +72,7 @@
 					echo sprintf(
 						'<a href="%s" class="link link-body">%s <i class="rarr"></i></a>',
 
-						get_permalink($next),
+						add_query_arg('view', $next->ID),
 						get_the_title($next)
 					);
 				}
@@ -85,14 +84,17 @@
 		<section class="site-content site-content-small site-content-padded">
 			<h2 class="section-header"><?php the_title(); ?></h2>
 
-			<ul class="myproducts-list">
+			<ul class="myproducts-list list-basic">
 				<?php
-					foreach($products as $id => $info) {
-						$post = get_post($id);
-						setup_postdata($post);
+					if($products) {
+						foreach($products as $id => $info) {
+							$post = get_post($id);
+							setup_postdata($post);
 
-						get_template_part('template-parts/my-product', 'list');
-					}
+							get_template_part('template-parts/my-product', 'list');
+						}
+					} else
+						echo '<p class="text-center">You don\'t have any products yet.</p>';
 				?>
 			</pre>
 		</section>

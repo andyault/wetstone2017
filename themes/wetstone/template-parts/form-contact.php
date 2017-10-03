@@ -112,6 +112,7 @@
 						'comments', 
 						'Questions/Comments', 
 						$placeholder, 
+						false,
 						['style' => sprintf('height: calc(%d * 1.5em)', count($interests))]
 					); 
 				?>
