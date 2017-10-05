@@ -455,7 +455,10 @@ h1, h2, h3, h4, h5, h6 {
 .product-front-body {
   width: 100%;
   flex: 1 1 auto;
-  overflow: hidden; }
+  overflow: hidden;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 .product-front-button {
   margin-top: 16px; }
@@ -573,12 +576,14 @@ i[class] {
     padding-bottom: 1em;
     vertical-align: top; }
 
-.form-table-collapse td:not([colspan]):not(:only-child):first-of-type {
-  padding-right: 8px; }
-.form-table-collapse td:not([colspan]):not(:only-child):last-of-type {
-  padding-left: 8px; }
-.form-table-collapse td:only-child {
-  padding-right: 8px; }
+.form-table-collapse td {
+  /* &:only-child {
+  	padding-right: $pxPadding / 2;
+  } */ }
+  .form-table-collapse td:not([colspan]):not(:only-child):first-of-type {
+    padding-right: 8px; }
+  .form-table-collapse td:not([colspan]):not(:only-child):last-of-type {
+    padding-left: 8px; }
 
 .form-success td {
   padding: 1em;

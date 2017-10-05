@@ -98,14 +98,14 @@ function wetstone_add_customer_content() {
 
 				<tr><th scope="row"><h3>Customer Info</h3></th></tr>
 
-				<tr class="form-field">
+				<!-- <tr class="form-field">
 					<th scope="row">
 						<label for="acctype">Account Type:</label>
 					</th>
 
 					<td>
 						<select id="acctype" name="acctype">
-							<?php
+							< ?php
 								foreach($acctypes as $acctype) {
 									//1: acctype
 									echo sprintf(
@@ -117,7 +117,7 @@ function wetstone_add_customer_content() {
 							?>
 						</select>
 					</td>
-				</tr>
+				</tr> -->
 
 				<tr>
 					<td colspan="99" style="padding: 0;">
@@ -158,7 +158,7 @@ function wetstone_add_customer_content() {
 											</td>
 
 											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_owned]" value="1" disabled></td>
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_used]" value="1" disabled></td>
+											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_used]" value="0" disabled></td>
 										</tr>
 
 										<?php

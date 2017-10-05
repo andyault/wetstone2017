@@ -16,9 +16,9 @@
 		&:last-of-type { padding-left: $pxPadding / 2; }
 	}
 
-	&:only-child {
+	/* &:only-child {
 		padding-right: $pxPadding / 2;
-	}
+	} */
 }
 
 .form-success td {
