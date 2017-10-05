@@ -7,8 +7,8 @@
 	$posts = get_posts([
 		'post_type'      => $postType,
 		'posts_per_page' => -1,
-		'sort_column' => 'menu_order',
-		'sort_order'  => 'ASC'
+		'orderby'        => 'menu_order',
+		'order'          => 'ASC'
 	]);
 ?>
 
