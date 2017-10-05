@@ -760,7 +760,8 @@ i[class] {
 
 .tabbed {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  font-size: 1rem; }
 
 .tab-input {
   position: absolute;
@@ -788,7 +789,8 @@ i[class] {
 
 .tab-input:checked + .tab-label {
   background: #fff;
-  border-bottom-color: #fff; }
+  border-bottom-color: #fff;
+  font-weight: bold; }
 .tab-input:checked + .tab-label + .tab-content {
   display: block; }
 

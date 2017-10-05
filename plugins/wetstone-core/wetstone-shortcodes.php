@@ -149,7 +149,7 @@ function wetstone_shortcode_tabs($attrs, $content = null) {
 					<?php echo $tab['name']; ?>
 				</label>
 
-				<div class="tab-content">
+				<div class="tab-content body-content">
 					<?php echo $tab['content']; ?>
 				</div>
 
