@@ -230,8 +230,13 @@ function wetstone_product_customerinfo_save($id) {
 	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce || !current_user_can('edit_post', $id))
 		return;
 
-	update_post_meta($id, 'wetstone_product_customerinfo', $_POST['wetstone_product_customerinfo_editor']);
-	update_post_meta($id, 'wetstone_product_customerexcerpt', $_POST['wetstone_product_customerinfo_excerpt']);
+	foreach(['customerinfo', 'customerexcerpt'] as $name) {
+		$key = 'wetstone_product_' . $name;
+		$value = $_POST[$key];
+
+		if(!empty($value))
+			update_post_meta($id, $key, $value);
+	}
 }
 
 add_action('save_post', 'wetstone_product_customerinfo_save');

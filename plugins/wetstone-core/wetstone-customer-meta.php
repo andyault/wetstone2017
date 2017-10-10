@@ -35,6 +35,127 @@ $fields = [
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
 
 //filling in the page
+function wetstone_echo_customer_form_fields($userId = null) {
+	if(isset($userId))
+		$myproducts = get_user_meta($userId, 'wetstone_products', true);
+
+	//table's already open
+	?>
+
+		<!-- <tr class="form-field">
+			<th scope="row">
+				<label for="acctype">Account Type:</label>
+			</th>
+
+			<td>
+				<select id="acctype" name="acctype">
+					< ?php
+						foreach($acctypes as $acctype) {
+							//1: acctype
+							echo sprintf(
+								'<option value="%1$s">%1$s</option>',
+
+								$acctype
+							);
+						}
+					?>
+				</select>
+			</td>
+		</tr> -->
+
+		<tr>
+			<td colspan="99" style="padding: 0;">
+				<table>
+					<thead>
+						<tr>
+							<th style="width: 0;">Product Name</th>
+							<th style="width: 0; padding-right: 4em;">Product Owned?</th>
+							<th>Expiry Date</th>
+							<th>Licenses Owned</th>
+							<th>Licenses Used</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php
+							//products - todo - loop through edd downloads?
+							//all products will need: expiry date, num licenses owned, num licenses used?
+
+							$products = get_posts([
+								'post_type'      => 'product',
+								'posts_per_page' => -1
+							]);
+
+							$expiryDate = sprintf(
+								'%s-%s-%s',
+
+								date('Y') + 1,
+								date('m'),
+								date('d')
+							);
+
+							foreach($products as $key => $product) {
+								$pid = $product->ID;
+								$meta = get_post_meta($pid);
+								$myinfo = $myproducts[$pid];
+
+								$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false; //for sure need to test this
+
+								?>
+
+								<tr>
+									<td><?php echo $product->post_title; ?></td>
+
+									<td style="text-align: center; padding-right: 4em;">
+										<input type="checkbox" class="product-owned-checkbox" <?php if($owned) echo 'checked'; ?>>
+									</td>
+
+									<td style="padding: 0;">
+										<input type="date"
+										       name="product[<?php echo $pid ?>][expiry]"
+										       value="<?php echo $myinfo ? $myinfo['expiry'] : $expiryDate; ?>" disabled>
+									</td>
+
+									<td style="padding: 0;">
+										<input type="number" name="product[<?php echo $pid ?>][num_owned]" value="<?php echo $myinfo ? $myinfo['num_owned'] : 1; ?>" disabled>
+									</td>
+
+									<td style="padding: 0;">
+										<input type="number" name="product[<?php echo $pid ?>][num_used]" value="<?php echo $myinfo ? $myinfo['num_used'] : 0; ?>" disabled>
+									</td>
+								</tr>
+
+								<?php
+							}
+						?>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<script>
+		//enable inputs on checkbox check
+		var checkboxes = document.getElementsByClassName('product-owned-checkbox');
+
+		for(var i = 0; i < checkboxes.length; i++) {
+			var checkbox = checkboxes[i];
+
+			checkbox.onchange = function() {
+				var row = this.parentElement.parentElement;
+				var inputs = row.querySelectorAll('input:not([type=checkbox])');
+
+				for(var j = 0; j < inputs.length; j++)
+					inputs[j].disabled = !this.checked;
+			}
+
+			checkbox.onchange();
+		}
+	</script>
+
+	<?
+}
+
 function wetstone_add_customer_content() {
 	global $fields;
 	global $acctypes;
@@ -98,98 +219,13 @@ function wetstone_add_customer_content() {
 
 				<tr><th scope="row"><h3>Customer Info</h3></th></tr>
 
-				<!-- <tr class="form-field">
-					<th scope="row">
-						<label for="acctype">Account Type:</label>
-					</th>
+				<?php
+					wetstone_echo_customer_form_fields();
 
-					<td>
-						<select id="acctype" name="acctype">
-							< ?php
-								foreach($acctypes as $acctype) {
-									//1: acctype
-									echo sprintf(
-										'<option value="%1$s">%1$s</option>',
-
-										$acctype
-									);
-								}
-							?>
-						</select>
-					</td>
-				</tr> -->
-
-				<tr>
-					<td colspan="99" style="padding: 0;">
-						<table>
-							<thead>
-								<tr>
-									<th style="width: 0;">Product Name</th>
-									<th style="width: 0; padding-right: 4em;">Product Owned?</th>
-									<th>Expiry Date</th>
-									<th>Licenses Owned</th>
-									<th>Licenses Used</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<?php
-									//products - todo - loop through edd downloads?
-									//all products will need: expiry date, num licenses owned, num licenses used?
-
-									$products = get_posts([
-										'post_type'      => 'product',
-										'posts_per_page' => -1
-									]);
-
-									foreach($products as $key => $product) {
-										$pid = $product->ID;
-										$meta = get_post_meta($pid);
-
-										?>
-
-										<tr>
-											<td><?php echo $product->post_title; ?></td>
-
-											<td style="text-align: center; padding-right: 4em;"><input type="checkbox" class="product-owned-checkbox"></td>
-
-											<td style="padding: 0;">
-												<input type="date" name="product[<?php echo $pid ?>][expiry]" value="<?php echo sprintf('%s-%s-%s', date('Y') + 1, date('m'), date('d')); ?>" disabled>
-											</td>
-
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_owned]" value="1" disabled></td>
-											<td style="padding: 0;"><input type="number" name="product[<?php echo $pid ?>][num_used]" value="0" disabled></td>
-										</tr>
-
-										<?php
-									}
-								?>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-			</table>
-
-			<?php submit_button(__('Add New Customer'), 'primary', 'createcustomer', true, ['id' => 'createcustomersub']); ?>
+				submit_button(__('Add New Customer'), 'primary', 'createcustomer', true, ['id' => 'createcustomersub']);
+			?>
 		</form>
 	</div>
-
-	<script>
-		//enable inputs on checkbox check
-		var checkboxes = document.getElementsByClassName('product-owned-checkbox');
-
-		for(var i = 0; i < checkboxes.length; i++) {
-			var checkbox = checkboxes[i];
-
-			checkbox.onchange = function() {
-				var row = this.parentElement.parentElement;
-				var inputs = row.querySelectorAll('input:not([type=checkbox])');
-
-				for(var j = 0; j < inputs.length; j++)
-					inputs[j].disabled = !this.checked;
-			}
-		}
-	</script>
 
 	<?php
 }
@@ -249,6 +285,31 @@ function wetstone_post_customer_registration() {
 }
 
 add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_registration');
+
+//editing other user profile
+function wetstone_edit_user_profile($user) {
+	?>
+
+	<h2>Customer Info</h2>
+
+	<table class="form-table">
+		<?php
+
+		wetstone_echo_customer_form_fields($user->ID);
+}
+
+add_action('show_user_profile', 'wetstone_edit_user_profile');
+add_action('edit_user_profile', 'wetstone_edit_user_profile');
+
+function wetstone_edit_user_profile_update($userId) {
+	if(!current_user_can('edit_user_meta', $userId))
+		return false;
+
+	update_user_meta($userId, 'wetstone_products', $_POST['product']);
+}
+
+add_action('edit_user_profile_update', 'wetstone_edit_user_profile_update');
+add_action('personal_options_update', 'wetstone_edit_user_profile_update');
 
 //"my account" page
 function wetstone_post_my_account() {

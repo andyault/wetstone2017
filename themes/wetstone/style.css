@@ -154,6 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 128px;
   padding: 0 1em;
   font-weight: bold;
+  font-size: 1rem;
   text-align: center;
   line-height: 3em;
   text-transform: uppercase;
@@ -520,6 +521,10 @@ h1, h2, h3, h4, h5, h6 {
   align-items: stretch;
   margin-bottom: 16px; }
 
+.download-item {
+  display: flex;
+  align-items: center; }
+
 .myproduct-list-item-img {
   width: 128px;
   height: 128px;
@@ -542,6 +547,13 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   flex: 1;
   white-space: pre-wrap; }
+
+.download-item-title {
+  padding-right: 16px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre; }
 
 .testimonial {
   width: 384px;

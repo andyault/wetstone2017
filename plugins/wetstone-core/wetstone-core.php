@@ -95,4 +95,5 @@ include('wetstone-security.php');
 include('wetstone-customer-meta.php');
 include('wetstone-form-handling.php');
 include('wetstone-post-types.php');
+include('wetstone-downloads.php');
 include('wetstone-shortcodes.php');

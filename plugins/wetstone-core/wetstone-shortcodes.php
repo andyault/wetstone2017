@@ -112,7 +112,7 @@ function wetstone_shortcode_tabs($attrs, $content = null) {
 	ob_start();
 
 	//get an array of tab names and tab content
-	preg_match_all(
+	/* preg_match_all(
 		'/\[wetstone_tab\s+name="([^"]*)"[^]]*\]([^\[]+)/i',
 		$content,
 		$matches
@@ -150,12 +150,57 @@ function wetstone_shortcode_tabs($attrs, $content = null) {
 				</label>
 
 				<div class="tab-content body-content">
-					<?php echo $tab['content']; ?>
+					<?php echo do_shortcode($tab['content']); ?>
 				</div>
 
 				<?php
 			}
 		?>
+	</div>
+
+	<?php
+
+	*/
+	
+	$nameClass = isset($attrs['name']) ? ('-' . $attrs['name']) : '';
+	$first = true;
+
+	$tabbed = preg_replace_callback(
+		'/\[wetstone_tab\s+name="([^"]*)"[^\]]*\]/i',
+		function($matches) use (&$first) {
+			ob_start();
+
+			$name = $matches[1];
+			$id = strtolower(preg_replace('/[^\w\s]/', '', implode('-', explode(' ', $name))));
+
+			if(!$first)
+				echo '</div>';
+			?>
+
+			<input type="radio"
+			       name="tab-input<?php echo $nameClass; ?>"
+			       id="tab-input<?php echo $nameClass . '-' . $id; ?>"
+			       class="tab-input"
+			       <?php if($first) { echo 'checked'; $first = false; } ?>>
+
+			<label for="tab-input<?php echo $nameClass . '-' . $id; ?>" class="tab-label">
+				<?php echo $name; ?>
+			</label>
+
+			<div class="tab-content body-content">
+
+			<?php
+
+			return ob_get_clean();
+		},
+		$content
+	);
+
+	?>
+
+	<div class="tabbed">
+		<?php echo do_shortcode($tabbed); ?>
+		</div>
 	</div>
 
 	<?php

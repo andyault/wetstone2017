@@ -18,6 +18,11 @@
 	margin-bottom: $pxPadding;
 }
 
+.download-item {
+	display: flex;
+	align-items: center;
+}
+
 //
 .myproduct-list-item-img {
 	width: 128px;
@@ -47,4 +52,13 @@
 	flex: 1;
 
 	white-space: pre-wrap;
+}
+
+.download-item-title {
+	padding-right: $pxPadding;
+	flex: 1;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: pre;
 }
