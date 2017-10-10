@@ -48,7 +48,7 @@ function wetstone_downloads_meta_content($post) {
 
 	<br />
 
-	<?
+	<?php
 }
 
 

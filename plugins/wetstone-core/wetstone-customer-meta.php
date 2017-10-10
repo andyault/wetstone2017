@@ -153,7 +153,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 		}
 	</script>
 
-	<?
+	<?php
 }
 
 function wetstone_add_customer_content() {
