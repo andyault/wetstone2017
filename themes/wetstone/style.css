@@ -525,11 +525,6 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center; }
 
-.myproduct-list-item-img {
-  width: 128px;
-  height: 128px;
-  margin-right: 16px; }
-
 .myproduct-list-item-title {
   flex: 1;
   text-align: left; }
@@ -537,10 +532,7 @@ h1, h2, h3, h4, h5, h6 {
 .myproduct-overview-image {
   width: 128px;
   height: 128px;
-  margin-right: 16px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat; }
+  margin-right: 16px; }
 
 .myproduct-overview-info {
   padding: 16px 0;

@@ -1,5 +1,5 @@
 <li class="myproduct-list-item">
-	<img src="<?php the_post_thumbnail_url([128, 128]); ?>" class="myproduct-list-item-img">
+	<img src="<?php the_post_thumbnail_url('medium'); ?>" class="myproduct-overview-image">
 
 	<h3 class="myproduct-list-item-title"><?php the_title(); ?></h3>
 

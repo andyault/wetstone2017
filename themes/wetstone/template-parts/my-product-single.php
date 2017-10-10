@@ -2,9 +2,7 @@
 	<h2 class="section-header wetstone-font"><?php the_title(); ?></h2>
 
 	<div class="myproduct-overview">
-		<div class="myproduct-overview-image"
-		     style="background-image: url(<?php the_post_thumbnail_url('medium'); ?>);">
-		</div>
+		<img src="<?php the_post_thumbnail_url('medium'); ?>" class="myproduct-overview-image"></img>
 
 		<div class="myproduct-overview-info"><?php
 			echo get_post_meta($post->ID, 'wetstone_product_customerexcerpt', true);

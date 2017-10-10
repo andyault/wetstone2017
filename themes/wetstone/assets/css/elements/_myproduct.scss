@@ -24,11 +24,6 @@
 }
 
 //
-.myproduct-list-item-img {
-	width: 128px;
-	height: 128px;
-	margin-right: $pxPadding;
-}
 
 .myproduct-list-item-title {
 	flex: 1;
@@ -39,11 +34,7 @@
 .myproduct-overview-image {
 	width: 128px;
 	height: 128px;
-	margin-right: 16px;
-
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
+	margin-right: $pxPadding;
 }
 
 .myproduct-overview-info {

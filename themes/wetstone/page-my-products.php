@@ -21,35 +21,21 @@
 		<section class="single-footer site-content site-content-padded">
 			<?php
 				//have to get prev/next links weird
-				$curpost = $post;
+				//set current to our product
+				while(key($products) != $view) next($products);
 
-				while($post = get_previous_post()) {
-					if(!isset($post)) break;
+				$cur = key($products);
 
-					if($post->ID == $curpost->ID) {
-						$post = null;
-						break;
-					}
+				//if prev was false then we were at the first elem anyway
+				if(prev($products)) {
+					$prev = get_post(key($products));
 
-					if(isset($products[$post->ID])) break;
-				}
+					next($products);
+				} else
+					reset($products);
 
-				$prev = $post;
-				$post = $curpost;
-
-				while($post = get_next_post()) {
-					if(!isset($post)) break;
-
-					if($post->ID == $curpost->ID) {
-						$post = null;
-						break;
-					}
-
-					if(isset($products[$post->ID])) break;
-				}
-
-				$next = $post;
-				$post = $curpost;
+				if(next($products))
+					$next = get_post(key($products));
 				
 				//show links
 				if(!empty($prev)) {
