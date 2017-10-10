@@ -130,7 +130,7 @@ function wetstone_meta_product_customerinfo($post) {
 		<?php
 			wp_editor(
 				get_post_meta($post->ID, 'wetstone_product_customerinfo', true),
-				'wetstone_product_customerinfo_editor'
+				'wetstone_product_customerinfo'
 			);
 		?>
 	</label>
