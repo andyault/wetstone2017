@@ -35,6 +35,10 @@
 	width: 128px;
 	height: 128px;
 	margin-right: $pxPadding;
+
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .myproduct-overview-info {
