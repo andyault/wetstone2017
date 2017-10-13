@@ -338,3 +338,13 @@ function wetstone_post_my_account() {
 }
 
 add_action('admin_post_wetstone-my-account', 'wetstone_post_my_account');
+
+//handle key generation
+function wetstone_post_generate_key() {
+	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-generate-key'))
+		return wp_nonce_ays('wetstone-generate-key');
+
+	include(get_template_directory() . '/generate-key.php');
+}
+
+add_action('admin_post_wetstone-generate-key', 'wetstone_post_generate_key');

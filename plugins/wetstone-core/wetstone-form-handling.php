@@ -3,7 +3,7 @@
 //add options
 wetstone_add_option('form_handling', 'email_width',    75);
 wetstone_add_option('form_handling', 'sender_email',   'noreply@wetstonetech.com');
-wetstone_add_option('form_handling', 'receiver_email', 'aault@allencorp.com');
+wetstone_add_option('form_handling', 'receiver_email', 'smbsales@allencorp.com');
 wetstone_add_option('form_handling', 'default_name',   'WetStone Customer');
 
 //handle post - TODO: verify required fields
