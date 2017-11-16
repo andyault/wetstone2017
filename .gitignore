@@ -1,5 +1,6 @@
 #ignore stuff we don't need
 plugins/*
+!plugins/wp-anti-clickjack*
 !plugins/wetstone-*
 
 themes/*
