@@ -1,6 +1,6 @@
 #ignore stuff we don't need
 plugins/*
-!plugins/product-update*
+!plugins/product-*
 !plugins/wetstone-*
 
 themes/*
