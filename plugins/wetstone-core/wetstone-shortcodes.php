@@ -202,6 +202,6 @@ function display_GDS($atr){
 		
 		$datasetFiles = scandir($dataset);
 
-		printf $datasetFiles;
+		print_r($datasetFiles);
 
 }
