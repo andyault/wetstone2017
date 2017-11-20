@@ -1,8 +1,6 @@
 #ignore stuff we don't need
 plugins/*
-!plugins/product-*
 !plugins/wetstone-*
-!plugins/wp-anti-*
 
 themes/*
 !themes/wetstone/
@@ -13,3 +11,5 @@ uploads/*
 /index.php
 **/.DS_STORE
 **/.sass-cache
+
+*.log
