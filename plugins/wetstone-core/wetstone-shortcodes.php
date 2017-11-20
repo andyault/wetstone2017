@@ -1,5 +1,6 @@
 <?php
 
+//carousel
 function wetstone_shortcode_carousel($attrs) {
 	if(!isset($attrs['ids']) || empty($attrs['ids']))
 		return;
@@ -99,6 +100,85 @@ function wetstone_shortcode_carousel($attrs) {
 }
 
 add_shortcode('wetstone_carousel', 'wetstone_shortcode_carousel');
+
+//adding tabs to posts
+function wetstone_shortcode_tabs($attrs, $content = null) {
+	if(empty($content)) return;
+
+	//can't use has_shortcode
+	if(strpos($content, '[wetstone_tab') == false) return;
+
+	//here we go
+	ob_start();
+	
+	$nameClass = isset($attrs['name']) ? ('-' . $attrs['name']) : '';
+	$first = true;
+
+	$tabbed = preg_replace_callback(
+		'/\[wetstone_tab\s+name="([^"]*)"[^\]]*\]/i',
+		function($matches) use (&$first) {
+			ob_start();
+
+			$name = $matches[1];
+			$id = strtolower(preg_replace('/[^\w\s]/', '', implode('-', explode(' ', $name))));
+
+			if(!$first)
+				echo '</div>';
+			?>
+
+			<input type="radio"
+			       name="tab-input<?php echo $nameClass; ?>"
+			       id="tab-input<?php echo $nameClass . '-' . $id; ?>"
+			       class="tab-input"
+			       <?php
+			       		if(isset($_GET['keygen'])) {
+			       			if(strpos(strtolower($name), 'gen') !== false)
+			       				echo 'checked';
+			       		} elseif($first)
+			       			echo'checked';
+
+			       		$first = false;
+			       	?>>
+
+			<label for="tab-input<?php echo $nameClass . '-' . $id; ?>" class="tab-label">
+				<?php echo $name; ?>
+			</label>
+
+			<div class="tab-content body-content">
+
+			<?php
+
+			return ob_get_clean();
+		},
+		$content
+	);
+
+	?>
+
+	<div class="tabbed">
+		<?php echo do_shortcode($tabbed); ?>
+		</div>
+	</div>
+
+	<?php
+
+	return ob_get_clean();
+}
+
+add_shortcode('wetstone_tabs', 'wetstone_shortcode_tabs');
+
+//generating keys
+wetstone_add_option('key_generation', 'to_emails', 'licensekeyRequest@wetstonetech.com');
+
+function wetstone_shortcode_gen_key_form($attrs) {
+	ob_start();
+	
+	include(get_template_directory() . '/generate-key.php');
+
+	return ob_get_clean();
+}
+
+add_shortcode('wetstone_gen_key_form', 'wetstone_shortcode_gen_key_form');
 
 //add excerpts to posts
 function wetstone_add_page_excerpts() {
