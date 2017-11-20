@@ -195,15 +195,16 @@ add_shortcode("GDS", "display_GDS");
  
 function display_GDS($atr){
 	ob_start();
-        $dataset = 'protected/Gargoyle Investigator/Dataset Updates';
-		$pdfEng = 'protected/Gargoyle Investigator/Release Notes';
-		$pdfSpa = 'protected/Gargoyle Investigator/Release Notes - Spanish';
-		$hashes = 'protected/Gargoyle Investigator/Supplemental Gargoyle Hashes';
+		$productDir = 'Gargoyle Investigator';
+        $dataset = $productDir.'/Dataset Updates';
+		$pdfEng = $productDir.'/Release Notes';
+		$pdfSpa = $productDir.'/Release Notes - Spanish';
+		$hashes = $productDir.'/Supplemental Gargoyle Hashes';
 		
-		$datasetFiles = scan_dir($dataset);
-		$pdfEngFiles = scan_dir($pdfEng);
-		$pdfSpaFiles = scan_dir($pdfSpa);
-		$hashFiles = scan_dir($hashes);		
+		$datasetFiles = scan_dir("protected/".$dataset);
+		$pdfEngFiles = scan_dir("protected/".$pdfEng);
+		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
+		$hashFiles = scan_dir("protected/".$hashes);		
 		
 		$aca_table = "";
 		$aca_table .= '<table style="border: 1px solid black">';
@@ -211,7 +212,7 @@ function display_GDS($atr){
 		$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">Supplemental Gargoyle Hashes</th>';
 		$aca_table .= '</tr>';
 		$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-		$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../'.$hashes.'/'.$hashFiles[0].'" target="_blank" style="text-decoration:none; color:green;">Hash File</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+		$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0]).'" target="_blank" style="text-decoration:none; color:green;">Hash File</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/zip-icon.png" /></td>';
 		$aca_table .= '</tr>';
 		$aca_table .= '</table>';
 		
@@ -226,13 +227,13 @@ function display_GDS($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../'.$dataset.'/'.$datasetFiles[$aca_i].'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/cab-icon.png" /></td>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/cab-icon.png" /></td>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../'.$pdfEng.'/'.$pdfEngFiles[$aca_i].'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../'.$pdfSpa.'/'.$pdfSpaFiles[$aca_i].'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
 			$aca_table .= '</tr>';
 			$aca_table .= '</table>';
 			
