@@ -200,10 +200,10 @@ function display_GDS($atr){
 		$pdfSpa = '../../protected/Gargoyle Investigator/Release Notes - Spanish';
 		$hashes = '../../protected/Gargoyle Investigator/Supplemental Gargoyle Hashes';
 		
-		$datasetFiles = scan_dir($dataset);
-		$pdfEngFiles = scan_dir($pdfEng);
-		$pdfSpaFiles = scan_dir($pdfSpa);
-		$hashFiles = scan_dir($hashes);		
+		$datasetFiles = scandir($dataset);
+		$pdfEngFiles = scandir($pdfEng);
+		$pdfSpaFiles = scandir($pdfSpa);
+		$hashFiles = scandir($hashes);		
 		
 		$aca_table = "";
 		$aca_table .= '<table style="border: 1px solid black">';
@@ -217,7 +217,7 @@ function display_GDS($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+		for ($aca_i = 2; $aca_i < 5; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);
 			
 			$aca_table = "";
@@ -239,19 +239,4 @@ function display_GDS($atr){
 			echo $aca_table;
 		}
 
-}
-
-function scan_dir($dir) {
-    $ignored = array('.', '..');
-
-    $files = array();    
-    foreach (scandir($dir) as $file) {
-        if (in_array($file, $ignored)) continue;
-        $files[$file] = filemtime($dir . '/' . $file);
-    }
-
-    arsort($files);
-    $files = array_keys($files);
-
-    return ($files) ? $files : false;
 }
