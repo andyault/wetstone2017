@@ -195,10 +195,10 @@ add_shortcode("GDS", "display_GDS");
  
 function display_GDS($atr){
 	
-        $dataset = '../../protected/Gargoyle Investigator/Dataset Updates';
-		$pdfEng = '../../protected/Gargoyle Investigator/Release Notes';
-		$pdfSpa = '../../protected/Gargoyle Investigator/Release Notes - Spanish';
-		$hashes = '../../protected/Gargoyle Investigator/Supplemental Gargoyle Hashes';
+        $dataset = '../../protected';
+		$pdfEng = '../../protected';
+		$pdfSpa = '../../protected';
+		$hashes = '../../protected';
 		
 		$datasetFiles = scandir($dataset);
 		$pdfEngFiles = scandir($pdfEng);
