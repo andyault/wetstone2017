@@ -1,6 +1,6 @@
 #ignore stuff we don't need
 plugins/*
-!plugins/wp-anti-clickjack*
+!plugins/product-update*
 !plugins/wetstone-*
 
 themes/*
