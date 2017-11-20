@@ -194,7 +194,7 @@ add_action('init', 'wetstone_add_page_excerpts');
 add_shortcode("GDS", "display_GDS");
  
 function display_GDS($atr){
-	
+	ob_start();
         $dataset = 'protected/Gargoyle Investigator/Dataset Updates';
 		$pdfEng = 'protected/Gargoyle Investigator/Release Notes';
 		$pdfSpa = 'protected/Gargoyle Investigator/Release Notes - Spanish';
@@ -238,7 +238,7 @@ function display_GDS($atr){
 			
 			echo $aca_table;
 		}
-
+	return ob_get_clean();
 }
 
 function scan_dir($dir) {
