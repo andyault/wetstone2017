@@ -221,7 +221,7 @@ function display_GDS($atr){
 			$aca_header = explode("_",$datasetFiles[$aca_i]);
 			
 			$aca_table = "";
-			$aca_table .= '<table style="border: 1px solid black">';
+			$aca_table .= '<table style="border: 1px solid black; font-size: 16px;">';
 			$aca_table .= '<tr style="border: 1px solid black">';
 			$aca_table .= '<th colspan="2" style="padding-left:7px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
