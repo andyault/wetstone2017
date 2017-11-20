@@ -2,7 +2,7 @@
 /**
  *
  * @link              http://wetstonetech.com
- * @since             1.0.0 
+ * @since             1.0.0
  * @package           Product_Update
  *
  * @wordpress-plugin
