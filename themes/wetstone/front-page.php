@@ -67,12 +67,12 @@
 
 	<a href="<?php the_permalink(); ?>" class="link link-button box-center">See more about us</a>
 </section>
-
+<!-- COMMENTED OUT NEWS AND SHOWCASES FOR NOW ACA
 <section id="testimonials" class="testimonials-preview section-invert">
 	<h2 class="section-header">Testimonials</h2>
 
 	<div class="testimonials-preview-testimonials flex flex-center flex-responsive">
-		<?php
+		<?php /*
 			$testimonials = get_posts([
 				'post_type'      => 'testimonial',
 				'meta_key'       => 'testimonial_ispreview',
@@ -87,14 +87,14 @@
 				setup_postdata($post);
 
 				get_template_part('template-parts/testimonial', 'front');
-			}
+			} */
 		?>
 	</div>
 
 	<a href="<?php echo esc_url(get_permalink(get_page_by_path('corporate/testimonials'))); ?>" class="link link-button box-center">
 		See more testimonials
 	</a>
-</section>
+</section> -->
 
 <div class="site-content site-content-padded flex flex-responsive">
 	<section id="showcase" class="showcase-preview section-half">
@@ -129,7 +129,8 @@
 			See more news
 		</a>
 	</section>
-</div>
+</div> 
+
 
 <script>
 	//hero video
