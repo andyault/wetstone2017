@@ -11,8 +11,8 @@
 			break;
 
 		case 'service':
-			$subjectVal = 'Inquiry about %s services';
-			$placeholder = 'Hi, I\'m interested in your %s services...';
+			$subjectVal = 'Inquiry about %s';
+			$placeholder = 'Hi, I\'m interested in %s...';
 			break;
 
 		default:
