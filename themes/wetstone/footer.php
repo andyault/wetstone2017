@@ -4,10 +4,10 @@
 			<div class="site-footer-inner site-content site-content-padded">
 				<?php
 					function footer_link($page, $depth) {
-						$template = '<a href="%s" class="link link-footer">%s</a>';
+						$template = '<a href="%s" class="link link-footer">%s</a>%s';
 
 						if(gettype($page) == 'array') {
-							echo sprintf($template, $page[1], $page[0]);
+							echo sprintf($template, $page[1], $page[0], $page[2]);
 
 							return;
 						}
@@ -27,7 +27,7 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-						echo count($pages);
+						
 						foreach($pages as $page) {
 							echo '<li>';
 							
