@@ -30,7 +30,7 @@
 
 						foreach($pages as $page) {
 							echo '<li>';
-							echo $pages[0];
+							echo $pages[1];
 							if(gettype($page) == 'string')
 								$page = get_page_by_path($page);
 
