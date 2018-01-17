@@ -1,0 +1,49 @@
+//
+.tabbed {
+	display: flex;
+	flex-wrap: wrap;
+
+	font-size: 1rem;
+}
+
+//
+.tab-input {
+	position: absolute;
+	left: -9999px;
+}
+
+.tab-label {
+	padding: 0 1em;
+	line-height: 3em;
+	z-index: 1;
+
+	background: #ddd;
+	border: 1px solid #bbb;
+	cursor: pointer;
+
+	&:not(:first-of-type) { margin-left: -1px; }
+	&:hover { background: #eee; }
+}
+
+.tab-content {
+	display: none;
+	width: 100%;
+	padding: $pxPadding;
+	margin-top: -1px;
+	order: 1;
+
+	border: 1px solid #bbb;
+}
+
+//the magic
+.tab-input:checked {
+	& + .tab-label {
+		background: #fff;
+		border-bottom-color: #fff;
+		font-weight: bold;
+	}
+
+	& + .tab-label + .tab-content {
+		display: block;
+	}
+}

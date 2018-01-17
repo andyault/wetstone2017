@@ -7,8 +7,8 @@
 	$posts = get_posts([
 		'post_type'      => $postType,
 		'posts_per_page' => -1,
-		'sort_column' => 'menu_order',
-		'sort_order'  => 'ASC'
+		'orderby'        => 'menu_order',
+		'order'          => 'ASC'
 	]);
 ?>
 
@@ -42,8 +42,7 @@
 		//group products by category
 		$grouped = wetstone_group_by_cat($posts);
 
-		$other = $grouped['Uncategorized'];
-		unset($grouped['Uncategorized']);
+		$other = wetstone_pop_value($grouped, 'Uncategorized');
 		$grouped['Other Products'] = $other;
 
 		//for each cat, spit out a header and our products

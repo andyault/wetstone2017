@@ -1,0 +1,59 @@
+//
+.myproduct-list-item {
+	display: flex;
+	width: 100%;
+	height: 128px;
+	align-items: center;
+
+	margin-bottom: $pxPadding;
+}
+
+.myproduct-overview {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 128px;
+	align-items: stretch;
+
+	margin-bottom: $pxPadding;
+}
+
+.download-item {
+	display: flex;
+	align-items: center;
+}
+
+//
+
+.myproduct-list-item-title {
+	flex: 1;
+
+	text-align: left;
+}
+
+.myproduct-overview-image {
+	width: 128px;
+	height: 128px;
+	margin-right: $pxPadding;
+
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.myproduct-overview-info {
+	padding: $pxPadding 0;
+	overflow: hidden;
+	flex: 1;
+
+	white-space: pre-wrap;
+}
+
+.download-item-title {
+	padding-right: $pxPadding;
+	flex: 1;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: pre;
+}

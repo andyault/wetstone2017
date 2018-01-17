@@ -123,6 +123,10 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 	width: 100%;
 	flex: 1 1 auto;
 	overflow: hidden;
+
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .product-front-button {

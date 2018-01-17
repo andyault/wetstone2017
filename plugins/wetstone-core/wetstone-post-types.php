@@ -75,6 +75,15 @@ function wetstone_add_meta_boxes() {
 			'side'
 		);
 	}
+
+	//add another body to products
+	add_meta_box(
+		'product_customerinfo',
+		'Customer Info',
+		'wetstone_meta_product_customerinfo',
+		'product',
+		'normal'
+	);
 }
 
 //meta box content
@@ -102,6 +111,31 @@ function wetstone_meta_product_content($post) {
 		],
 		get_post_meta($post->ID)
 	);
+}
+
+function wetstone_meta_product_customerinfo($post) {
+	?>
+
+	<label class="wp-heading-inline">
+		<p class="post-attributes-label">Customer Page Excerpt</p>
+
+		<textarea id="wetstone_product_customerinfo_excerpt" rows="2" cols="40" name="wetstone_product_customerinfo_excerpt"><?php
+			echo get_post_meta($post->ID, 'wetstone_product_customerexcerpt', true);
+		?></textarea>
+	</label>
+
+	<label class="wp-heading-inline">
+		<p class="post-attributes-label">Customer Page Content</p>
+
+		<?php
+			wp_editor(
+				get_post_meta($post->ID, 'wetstone_product_customerinfo', true),
+				'wetstone_product_customerinfo'
+			);
+		?>
+	</label>
+
+	<?php
 }
 
 //  pages
@@ -170,13 +204,11 @@ function wetstone_meta_content($name, $fields, $old) {
 }
 
 //saving meta content?
-add_action('save_post', 'wetstone_meta_save');
-
 function wetstone_meta_save($id) {
 	//don't save if autosave, revision, or nonce doesn't match
 	$isValidNonce = wp_verify_nonce($_POST['_wp_ws_nonce'], 'wetstone_meta_nonce');
 
-	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce)
+	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce || !current_user_can('edit_post', $id))
 		return;
 
 	//save all data in _meta[]
@@ -187,3 +219,38 @@ function wetstone_meta_save($id) {
 			delete_post_meta($id, $key);
 	}
 }
+
+add_action('save_post', 'wetstone_meta_save');
+
+//save product info
+function wetstone_product_customerinfo_save($id) {
+	//don't save if autosave, revision, or nonce doesn't match
+	$isValidNonce = wp_verify_nonce($_POST['_wp_ws_nonce'], 'wetstone_meta_nonce');
+
+	if(wp_is_post_autosave($id) || wp_is_post_revision($id) || !$isValidNonce || !current_user_can('edit_post', $id))
+		return;
+
+	foreach(['customerinfo', 'customerexcerpt'] as $name) {
+		$key = 'wetstone_product_' . $name;
+		$value = $_POST[$key];
+
+		if(!empty($value))
+			update_post_meta($id, $key, $value);
+	}
+}
+
+add_action('save_post', 'wetstone_product_customerinfo_save');
+
+//adding styles to admin page
+function wetstone_admin_styles() {
+	echo '<style>
+		#wetstone_product_customerinfo_excerpt {
+			display: block;
+			margin: 12px 0 0;
+			height: 6em;
+			width: 100%;
+		}
+	</style>';
+}
+
+add_action('admin_head', 'wetstone_admin_styles');

@@ -11,8 +11,8 @@
 			break;
 
 		case 'service':
-			$subjectVal = 'Inquiry about %s services';
-			$placeholder = 'Hi, I\'m interested in your %s services...';
+			$subjectVal = 'Inquiry about %s';
+			$placeholder = 'Hi, I\'m interested in %s...';
 			break;
 
 		default:
@@ -39,7 +39,7 @@
 
 		<?php if($_GET['errmsg']) { ?>
 			<tr class="form-error">
-				<td colspan="2" class="text-center"><?php echo $_GET['errmsg']; ?></td>
+				<td colspan="2" class="text-center"><?php echo esc_html($_GET['errmsg']); ?></td>
 			</tr>
 
 			<tr class="form-error-spacer"><td></td></tr>
@@ -112,6 +112,7 @@
 						'comments', 
 						'Questions/Comments', 
 						$placeholder, 
+						false,
 						['style' => sprintf('height: calc(%d * 1.5em)', count($interests))]
 					); 
 				?>

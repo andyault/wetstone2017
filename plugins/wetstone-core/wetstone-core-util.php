@@ -28,3 +28,17 @@ function wetstone_sanitize_post($keys) {
 		)
 	));
 }
+
+function wetstone_columnify($data) {
+	$ret = '';
+
+	$len = max(array_map('mb_strlen', array_flip($data)));
+
+	foreach($data as $name => $value) {
+		$ret .= $name . ': ';
+		$ret .= str_repeat(' ', max($len - mb_strlen($name), 0));
+		$ret .= $value . "\n";
+	}
+
+	return $ret;
+}

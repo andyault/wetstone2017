@@ -185,4 +185,74 @@ function wetstone_add_page_excerpts() {
 	add_post_type_support('page', 'excerpt');
 }
 
+
+
 add_action('init', 'wetstone_add_page_excerpts');
+
+
+//add Dataset info
+add_shortcode("GDS", "display_GDS");
+ 
+function display_GDS($atr){
+	ob_start();
+		$productDir = 'Gargoyle Investigator';
+        $dataset = $productDir.'/Dataset Updates';
+		$pdfEng = $productDir.'/Release Notes';
+		$pdfSpa = $productDir.'/Release Notes - Spanish';
+		$hashes = $productDir.'/Supplemental Gargoyle Hashes';
+		
+		$datasetFiles = scan_dir("protected/".$dataset);
+		$pdfEngFiles = scan_dir("protected/".$pdfEng);
+		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
+		$hashFiles = scan_dir("protected/".$hashes);		
+		
+		$aca_table = "";
+		$aca_table .= '<table style="border: 1px solid black">';
+		$aca_table .= '<tr style="border: 1px solid black">';
+		$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">Supplemental Gargoyle Hashes</th>';
+		$aca_table .= '</tr>';
+		$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+		$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0]).'" target="_blank" style="text-decoration:none; color:green;">Hash File</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+		$aca_table .= '</tr>';
+		$aca_table .= '</table>';
+		
+		echo $aca_table;
+		
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			
+			$aca_table = "";
+			$aca_table .= '<table style="border: 1px solid black;">';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/cab-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="http://104.131.53.0/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="http://104.131.53.0/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '</table>';
+			
+			echo $aca_table;
+		}
+	return ob_get_clean();
+}
+
+function scan_dir($dir) {
+    $ignored = array('.', '..','.htaccess');
+
+    $files = array();    
+    foreach (scandir($dir) as $file) {
+        if (in_array($file, $ignored)) continue;
+        $files[$file] = filemtime($dir . '/' . $file);
+    }
+
+    arsort($files);
+    $files = array_keys($files);
+
+    return ($files) ? $files : false;
+}

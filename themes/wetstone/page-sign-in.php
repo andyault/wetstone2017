@@ -1,7 +1,4 @@
 <?php
-	//error_reporting(E_ALL | E_WARNING | E_NOTICE);
-	//ini_set('display_errors', TRUE);
-
 	//handle different actions, boy do I hate doing all this in one file
 	$isPOST = $_SERVER['REQUEST_METHOD'] == 'POST';
 

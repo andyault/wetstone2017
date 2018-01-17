@@ -1,5 +1,14 @@
 <?php
 
+//generic util
+if(!function_exists('wetstone_pop_value')) {
+	function wetstone_pop_value(&$arr, $key) {
+		$ret = $arr[$key];
+		unset($arr[$key]);
+		return $ret;
+	}
+}
+
 //page functions
 function wetstone_get_children($post, $args = null) {
 	$args = wp_parse_args($args, [
@@ -81,13 +90,19 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 	);
 }
 
-function wetstone_form_make_textarea($name, $label, $placeholder, $attrs = []) {
+function wetstone_form_make_textarea($name, $label, $placeholder, $required = false, $attrs = []) {
+	if($required) {
+		$label = '<i class="req">*</i> ' . $label;
+		$required = 'required';
+	} else
+		$required = '';
+
 	$attrStr = '';
 
 	foreach($attrs as $key => $val)
 		$attrStr .= sprintf('%s="%s" ', $key, $val);
 
-	//1: label, 2: name, 3: placeholder, 4: attributes
+	//1: label, 2: name, 3: placeholder, 4: attributes, 5: required
 	return sprintf(
 		'<label class="form-label">
 			%s:
@@ -97,7 +112,8 @@ function wetstone_form_make_textarea($name, $label, $placeholder, $attrs = []) {
 		$label,
 		$name,
 		$placeholder,
-		$attrStr
+		$attrStr,
+		$required
 	);
 }
 

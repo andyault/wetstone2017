@@ -3,10 +3,10 @@
 //add options
 wetstone_add_option('form_handling', 'email_width',    75);
 wetstone_add_option('form_handling', 'sender_email',   'noreply@wetstonetech.com');
-wetstone_add_option('form_handling', 'receiver_email', 'aault@allencorp.com');
+wetstone_add_option('form_handling', 'receiver_email', 'smbsales@allencorp.com');
 wetstone_add_option('form_handling', 'default_name',   'WetStone Customer');
 
-//handle post
+//handle post - TODO: verify required fields
 //  contact
 function wetstone_post_contact_form() {
 	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-contact-form'))
@@ -21,29 +21,20 @@ function wetstone_post_contact_form() {
 	//turn into pretty table
 	$emailWidth = wetstone_get_option('form_handling', 'email_width');
 
-	$len = min(max(array_map('mb_strlen', array_flip($data))), floor($emailWidth / 2));
-
 	$comments = wetstone_pop_value($data, 'comments');
 	$subject = wetstone_pop_value($data, 'subject');
 
 	$fields = '<pre>';
-
-	foreach($data as $name => $value) {
-		$fields .= $name . ': ';
-		$fields .= str_repeat(' ', max($len - mb_strlen($name), 0));
-		$fields .= $value . "\n";
-	}
+	$fields .= wetstone_columnify($data);
 
 	if(!empty($comments))
 		$fields .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
 
 	$fullName = $data['fname'] . ' ' . $data['lname'];
 
-	if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth))) {
-		error_log(get_permalink(get_page_by_path('thank-you')));
-
+	if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
 		wp_redirect(get_permalink(get_page_by_path('thank-you')));
-	} else {
+	else {
 		//unpop comments
 		$data['comments'] = $comments;
 
@@ -72,23 +63,16 @@ function wetstone_post_resell_form() {
 	//turn into pretty table
 	$emailWidth = wetstone_get_option('form_handling', 'email_width');
 
-	$len = min(max(array_map('mb_strlen', array_flip($data))), floor($emailWidth / 2));
-
 	$subject = wetstone_pop_value($data, 'subject');
 
 	$fields = '<pre>';
-
-	foreach($data as $name => $value) {
-		$fields .= $name . ': ';
-		$fields .= str_repeat(' ', max($len - mb_strlen($name), 0));
-		$fields .= $value . "\n";
-	}
+	$fields .= wetstone_columnify($data);
 
 	$fullName = $data['fname'] . ' ' . $data['lname'];
 
-	if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth))) {
+	if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
 		wp_redirect(get_permalink(get_page_by_path('thank-you')));
-	} else {
+	else {
 		//add error
 		$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
 
@@ -99,6 +83,52 @@ function wetstone_post_resell_form() {
 
 add_action('admin_post_wetstone-resell-form', 'wetstone_post_resell_form');
 add_action('admin_post_nopriv_wetstone-resell-form', 'wetstone_post_resell_form');
+
+
+//support page
+function wetstone_post_support() {
+	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-customer-support'))
+		return wp_nonce_ays('wetstone-customer-support');
+
+	//make sure ids match
+	$user = wp_get_current_user();
+	$id = $user->ID;
+
+	if($_POST['ID'] === $id)
+		wp_die('<h1>' . __( 'Cheatin&#8217; uh?' ) . '</h1><p>' . __( 'Sorry, you can only submit forms from your own account.' ) . '</p>', 403);
+
+	//building email body
+	$data = wetstone_sanitize_post(['product', 'context', 'comments']);
+
+	$comments = wetstone_pop_value($data, 'comments');
+
+	$body = '<pre>';
+	$body .= wetstone_columnify($data);
+
+	$body .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
+
+	//getting email info
+	$subject = 'Customer Support';
+	$fullName = $user->first_name . ' ' . $user->last_name;
+	$fromMail = $user->user_email;
+	
+	$emailWidth = wetstone_get_option('form_handling', 'email_width');
+
+	if(wetstone_send_mail($subject, $fullName, $fromMail, wordwrap($body, $emailWidth)))
+		wp_redirect(get_permalink(get_page_by_path('thank-you')));
+	else {
+		//unpop comments
+		$data['comments'] = $comments;
+
+		//add error
+		$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+
+		//go back to form with old data
+		wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+	}
+}
+
+add_action('admin_post_wetstone-customer-support', 'wetstone_post_support');
 
 //send email
 function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {

@@ -72,7 +72,7 @@
 	<h2 class="section-header">Testimonials</h2>
 
 	<div class="testimonials-preview-testimonials flex flex-center flex-responsive">
-		<?php
+		<?php 
 			$testimonials = get_posts([
 				'post_type'      => 'testimonial',
 				'meta_key'       => 'testimonial_ispreview',
@@ -87,15 +87,15 @@
 				setup_postdata($post);
 
 				get_template_part('template-parts/testimonial', 'front');
-			}
+			} 
 		?>
 	</div>
 
 	<a href="<?php echo esc_url(get_permalink(get_page_by_path('corporate/testimonials'))); ?>" class="link link-button box-center">
 		See more testimonials
 	</a>
-</section>
-
+</section> 
+<!-- COMMENTED OUT NEWS AND SHOWCASES FOR NOW ACA
 <div class="site-content site-content-padded flex flex-responsive">
 	<section id="showcase" class="showcase-preview section-half">
 		<h2 class="section-header">Showcase</h2>
@@ -107,7 +107,7 @@
 		<h2 class="section-header">News</h2>
 
 		<div class="news-preview-news">
-			<?php
+			<?php /*
 				$news = get_posts([
 					'orderby'        => 'date',
 					'order'          => 'DESC',
@@ -121,15 +121,16 @@
 					setup_postdata($post);
 
 					get_template_part('template-parts/company-news', 'front');
-				}
+				} */
 			?>
 		</div>
 
-		<a href="<?php echo esc_url(get_permalink(get_page_by_path('corporate/news'))); ?>" class="link link-button box-center">
+		<a href="<?php /*echo esc_url(get_permalink(get_page_by_path('corporate/news'))); */?>" class="link link-button box-center">
 			See more news
 		</a>
-	</section>
-</div>
+	</section> -->
+</div> 
+
 
 <script>
 	//hero video
