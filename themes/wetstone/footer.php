@@ -30,10 +30,10 @@
 
 						foreach($pages as $page) {
 							echo '<li>';
-							echo $page;
+							
 							if(gettype($page) == 'string')
 								$page = get_page_by_path($page);
-
+								echo $page;
 							echo footer_link($page, $depth);
 
 							echo '</li>';
