@@ -16,7 +16,7 @@
 
 						//this sucks
 						if($page->ID == 84)
-							$children = get_pages(['parent' => $page->ID]);
+							//$children = get_pages(['parent' => $page->ID]);
 							
 						else
 							$children = wetstone_get_children($page);
