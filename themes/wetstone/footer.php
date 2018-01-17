@@ -17,10 +17,10 @@
 						//this sucks
 						if($page->ID == 84)
 							$children = get_pages(['parent' => $page->ID]);
-							echo $page->ID;
+							
 						else
 							$children = wetstone_get_children($page);
-							echo $page->ID;
+							
 
 						//recursion is fun
 						if($depth != 0 && $children)
