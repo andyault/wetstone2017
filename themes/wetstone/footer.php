@@ -4,10 +4,10 @@
 			<div class="site-footer-inner site-content site-content-padded">
 				<?php
 					function footer_link($page, $depth) {
-						$template = '<a href="%s" class="link link-footer">%s</a>%s';
+						$template = '<a href="%s" class="link link-footer">%s</a>';
 
 						if(gettype($page) == 'array') {
-							echo sprintf($template, $page[1], $page[0], $page[2]);
+							echo sprintf($template, $page[1], $page[0]);
 
 							return;
 						}
