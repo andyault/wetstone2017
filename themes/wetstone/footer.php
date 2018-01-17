@@ -16,11 +16,9 @@
 
 						//this sucks
 						if($page->ID == 84)
-							//$children = get_pages(['parent' => $page->ID]);
-							
+							$children = get_pages(['parent' => $page->ID]);
 						else
 							$children = wetstone_get_children($page);
-							
 
 						//recursion is fun
 						if($depth != 0 && $children)
@@ -29,15 +27,15 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-						
+
 						foreach($pages as $page) {
 							echo '<li>';
-							
+
 							if(gettype($page) == 'string')
 								$page = get_page_by_path($page);
-							
+
 							echo footer_link($page, $depth);
-							
+
 							echo '</li>';
 						}
 
