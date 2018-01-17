@@ -20,7 +20,7 @@
 							echo $page->ID;
 						else
 							$children = wetstone_get_children($page);
-							cho $page->ID;
+							echo $page->ID;
 
 						//recursion is fun
 						if($depth != 0 && $children)
