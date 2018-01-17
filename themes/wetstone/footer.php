@@ -35,7 +35,7 @@
 								$page = get_page_by_path($page);
 							
 							echo footer_link($page, $depth);
-
+							echo $page=>ID;
 							echo '</li>';
 						}
 
