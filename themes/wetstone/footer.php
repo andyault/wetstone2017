@@ -27,13 +27,13 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-
+						echo count($pages);
 						foreach($pages as $page) {
 							echo '<li>';
 							
 							if(gettype($page) == 'string')
 								$page = get_page_by_path($page);
-								echo $page;
+							
 							echo footer_link($page, $depth);
 
 							echo '</li>';
