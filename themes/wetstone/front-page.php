@@ -10,12 +10,12 @@
 			<div class="video-filter"></div>
 
 			<video id="hero-video" class="video-video" autoplay loop>
-				<source src="<?php echo wetstone_get_asset('/img/background/Love-Coding.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
-				<source src="<?php echo wetstone_get_asset('/img/background/Love-Codingwebm'); ?>" type="video/webm" /><?php echo $err; ?>
+				<source src="<?php echo wetstone_get_asset('/img/background/Hello-World.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
+				<source src="<?php echo wetstone_get_asset('/img/background/Hello-World.webm'); ?>" type="video/webm" /><?php echo $err; ?>
 			</video>
 
 			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/Love-Coding.jpg'); ?>);"></div>
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/Hello-World.jpg'); ?>);"></div>
 		</div>
 	</div>
 
