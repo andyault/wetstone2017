@@ -34,7 +34,7 @@
 
 				echo sprintf(
 					'<li>
-						<a href="%s" class="header-link link link-header-site link-header-portal %s">%s</a>
+						<a href="%s" class="header-link link link-header-site link-header-portal %s">%s</a> TEST
 					</li>',
 
 					get_permalink($page->ID),

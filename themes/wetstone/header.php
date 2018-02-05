@@ -232,7 +232,7 @@
 										foreach($posts as $post) {
 											echo '<li>';
 											echo make_header_link();
-											echo ' Test </li>';
+											echo '</li>';
 										}
 									}
 								}
