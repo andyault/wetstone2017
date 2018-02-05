@@ -219,7 +219,7 @@
 							foreach($pages as $post) {
 								echo '<li class="header-link-separated">';
 								echo make_header_link();
-								echo 'Test </li>';
+								echo '</li>';
 
 								if($post->ID != get_page_by_path('portal')->ID) {
 									$children = wetstone_get_children($post);
@@ -232,7 +232,7 @@
 										foreach($posts as $post) {
 											echo '<li>';
 											echo make_header_link();
-											echo '</li>';
+											echo ' Test </li>';
 										}
 									}
 								}
