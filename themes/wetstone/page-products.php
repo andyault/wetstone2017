@@ -19,7 +19,7 @@
 		<?php
 			global $post;
 
-			foreach($posts as $post) {
+			foreach($posts as $post - 2) {
 				setup_postdata($post);
 				if($post->ID == 613 || $post->ID == 612 ) { // IDs of unwanted products
 				} else {
