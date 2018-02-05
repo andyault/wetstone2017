@@ -220,19 +220,23 @@
 								echo '<li class="header-link-separated">';
 								echo make_header_link();
 								echo '</li>';
+								
+								if($page->ID == 613) {
+								}
+								else {
+									if($post->ID != get_page_by_path('portal')->ID) {
+										$children = wetstone_get_children($post);
+										$grouped = wetstone_group_by_cat($children);
 
-								if($post->ID != get_page_by_path('portal')->ID) {
-									$children = wetstone_get_children($post);
-									$grouped = wetstone_group_by_cat($children);
+										foreach($grouped as $cat => $posts) {
+											if(count($grouped) > 1)
+												echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
 
-									foreach($grouped as $cat => $posts) {
-										if(count($grouped) > 1)
-											echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
-
-										foreach($posts as $post) {
-											echo '<li>';
-											echo make_header_link();
-											echo '</li>';
+											foreach($posts as $post) {
+												echo '<li>';
+												echo make_header_link();
+												echo '</li>';
+											}
 										}
 									}
 								}
