@@ -21,7 +21,7 @@
 
 			foreach($posts as $post) {
 				setup_postdata($post);
-				if($post->ID == 613) {
+				if($post->ID == 613 || $post->ID == 612 ) { // IDs of unwanted products
 				} else {
 					get_template_part('template-parts/' . $postType, 'preview');
 				}
@@ -55,8 +55,10 @@
 				<?php
 					foreach($posts as $post) {
 						setup_postdata($post);
-
-						get_template_part('template-parts/' . $postType, 'page');
+						if($post->ID == 613 || $post->ID == 612 ) { // IDs of unwanted products
+						} else {
+							get_template_part('template-parts/' . $postType, 'page');
+						}
 					}
 				?>
 			</div>
