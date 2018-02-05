@@ -28,6 +28,8 @@
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
 						echo $pages[0];
+						echo $pages[1];
+						echo $pages[2];
 						foreach($pages as $page) {
 							echo '<li>';
 
