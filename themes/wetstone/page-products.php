@@ -21,8 +21,10 @@
 
 			foreach($posts as $post) {
 				setup_postdata($post);
-
-				get_template_part('template-parts/' . $postType, 'preview');
+				if($post->ID == 613) {
+				} else {
+					get_template_part('template-parts/' . $postType, 'preview');
+				}
 			}
 		?>
 	</div>
