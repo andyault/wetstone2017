@@ -19,7 +19,7 @@
 		<?php
 			global $post;
 
-			foreach($posts as $post - 2) {
+			foreach($posts as $post) {
 				setup_postdata($post);
 				if($post->ID == 613 || $post->ID == 612 ) { // IDs of unwanted products
 				} else {
@@ -34,7 +34,10 @@
 	<ul class="carousel-dots">
 		<?php
 			foreach($posts as $post)
+				if($post->ID == 613 || $post->ID == 612 ) { // IDs of unwanted products
+					} else {
 				echo '<li class="carousel-dot"></li>';
+					}
 		?>
 	</ul>
 </section>
