@@ -219,24 +219,20 @@
 							foreach($pages as $post) {
 								echo '<li class="header-link-separated">';
 								echo make_header_link();
-								echo '</li>';
-								
-								if($post->ID == 613) {
-								}
-								else {
-									if($post->ID != get_page_by_path('portal')->ID) {
-										$children = wetstone_get_children($post);
-										$grouped = wetstone_group_by_cat($children);
+								echo 'Test </li>';
 
-										foreach($grouped as $cat => $posts) {
-											if(count($grouped) > 1)
-												echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
+								if($post->ID != get_page_by_path('portal')->ID) {
+									$children = wetstone_get_children($post);
+									$grouped = wetstone_group_by_cat($children);
 
-											foreach($posts as $post) {
-												echo '<li>';
-												echo make_header_link();
-												echo '</li>';
-											}
+									foreach($grouped as $cat => $posts) {
+										if(count($grouped) > 1)
+											echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
+
+										foreach($posts as $post) {
+											echo '<li>';
+											echo make_header_link();
+											echo '</li>';
 										}
 									}
 								}
