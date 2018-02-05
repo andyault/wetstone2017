@@ -27,7 +27,7 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-						echo $pages;
+						echo $pages[0];
 						foreach($pages as $page) {
 							echo '<li>';
 
