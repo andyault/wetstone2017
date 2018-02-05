@@ -7,7 +7,7 @@
 						$template = '<a href="%s" class="link link-footer">%s</a>';
 
 						if(gettype($page) == 'array') {
-							echo sprintf($template);
+							echo sprintf($template, $page[1], $page[0]);
 
 							return;
 						}
@@ -27,14 +27,14 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-
+						echo $pages;
 						foreach($pages as $page) {
 							echo '<li>';
 
 							if(gettype($page) == 'string')
 								$page = get_page_by_path($page);
 
-								echo footer_link($page, $depth);
+							echo footer_link($page, $depth);
 
 							echo '</li>';
 						}
