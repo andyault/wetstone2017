@@ -78,7 +78,7 @@
 						$isActive = is_page($id) || $page->post_parent == $id;
 						$activeClass = $isActive ? 'active' : '';
 
-						if ($id == 613) {
+						if ($id == 613 || $id == 612) {
 						} else {
 							return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
