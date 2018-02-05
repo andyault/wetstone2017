@@ -13,13 +13,15 @@
 						}
 						
 						echo sprintf($template, get_permalink($page), get_the_title($page));
-
+						
+						if($page->ID == 116)
+							echo "Is this Gargoyle?";
+						
 						//this sucks
-						if($page->ID == 84) {
-							if($page->ID == 116)						
-								$children = get_pages(['parent' => $page->ID]);							
-						} else {
-						$children = wetstone_get_children($page); }
+						if($page->ID == 84)
+							$children = get_pages(['parent' => $page->ID]);
+						else
+							$children = wetstone_get_children($page);
 
 						//recursion is fun
 						if($depth != 0 && $children)
