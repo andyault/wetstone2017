@@ -221,7 +221,7 @@
 								echo make_header_link();
 								echo '</li>';
 								
-								if($page->ID == 613) {
+								if($post->ID == 613) {
 								}
 								else {
 									if($post->ID != get_page_by_path('portal')->ID) {
