@@ -11,8 +11,8 @@
 
 							return;
 						}
-						if($page->ID != 613 || $page->ID != 612)
-						echo sprintf($template, get_permalink($page), get_the_title($page));
+						if($page->ID != 613)
+							echo sprintf($template, get_permalink($page), get_the_title($page));
 												
 						//this sucks
 						if($page->ID == 84)
