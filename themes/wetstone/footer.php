@@ -33,9 +33,9 @@
 
 							if(gettype($page) == 'string')
 								$page = get_page_by_path($page);
-
-							echo footer_link($page, $depth);
-
+							if($page->ID == 116) {
+								echo footer_link($page, $depth);
+							}
 							echo '</li>';
 						}
 
