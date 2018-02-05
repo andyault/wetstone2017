@@ -230,9 +230,10 @@
 											echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
 
 										foreach($posts as $post) {
+											if($post->ID != 613 || $page->ID != 612){
 											echo '<li>';
 											echo make_header_link();
-											echo '</li>';
+											echo '</li>'; }
 										}
 									}
 								}
