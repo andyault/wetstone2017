@@ -15,10 +15,11 @@
 						echo sprintf($template, get_permalink($page), get_the_title($page));
 
 						//this sucks
-						if($page->ID == 84)
-							$children = get_pages(['parent' => $page->ID]);
-						else
-							$children = wetstone_get_children($page);
+						if($page->ID == 84) {
+							if($page->ID == 116)						
+								$children = get_pages(['parent' => $page->ID]);							
+						} else {
+						$children = wetstone_get_children($page); }
 
 						//recursion is fun
 						if($depth != 0 && $children)
@@ -27,7 +28,7 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-						echo $pages[0];						
+
 						foreach($pages as $page) {
 							echo '<li>';
 
