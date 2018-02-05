@@ -78,13 +78,16 @@
 						$isActive = is_page($id) || $page->post_parent == $id;
 						$activeClass = $isActive ? 'active' : '';
 
-						return sprintf(
-							'<a href="%s" class="header-link link link-header-site %s">%sTEST2</a>', 
+						if ($id == 613) {
+						} else {
+							return sprintf(
+								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
 
-							get_the_permalink(),
-							$activeClass,
-							get_the_title()
-						);
+								get_the_permalink(),
+								$activeClass,
+								get_the_title()
+							);
+						}
 					}
 
 					//recursion is fun
@@ -98,7 +101,7 @@
 						//if it's a submenu, make it sub nav and add a click thru link
 						if($depth > 0) {
 							echo '<ul class="header-sub-nav-site">';
-							echo '<li class="header-link-clickthru header-link-separated"> TEST1';
+							echo '<li class="header-link-clickthru header-link-separated">';
 							echo make_header_link();
 							echo '<li>';
 						} else
@@ -111,7 +114,7 @@
 
 						foreach($grouped as $cat => $pages) {
 							if(count($grouped) > 1)
-								echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;TEST3</li>', $cat);
+								echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
 
 							foreach($pages as $post) {
 								echo '<li>';
@@ -217,7 +220,7 @@
 
 							//make list
 							foreach($pages as $post) {
-								echo '<li class="header-link-separated">TEST4';
+								echo '<li class="header-link-separated">';
 								echo make_header_link();
 								echo '</li>';
 
@@ -227,7 +230,7 @@
 
 									foreach($grouped as $cat => $posts) {
 										if(count($grouped) > 1)
-											echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;TEST5</li>', $cat);
+											echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
 
 										foreach($posts as $post) {
 											echo '<li>';
