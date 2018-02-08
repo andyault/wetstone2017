@@ -78,6 +78,13 @@
 	pointer-events: none;
 }
 
+.select-symbol-state {
+	position: absolute;
+	right: 130px;
+	bottom: 1.5em;
+	pointer-events: none;
+}
+
 .form-reset {
 	margin-right: $pxPadding;
 }
