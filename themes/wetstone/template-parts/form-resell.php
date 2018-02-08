@@ -379,7 +379,21 @@
 		</tr>
 
 		<tr>
-			<td><?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?></td>
+			<td><?php
+					echo wetstone_form_make_select(
+						'customers',
+						'Who is your typical customer?',
+						[
+							'Government',
+							'Educational Institutions',
+							'Financial Institutions',
+							'Healthcare Facilities',
+							'Individuals',
+							'Commercial Markets'
+						],
+						true
+					);
+				?></td>
 
 			<td rowspan="4">
 				<?php
@@ -407,26 +421,6 @@
 			<td>
 				<?php
 					echo wetstone_form_make_select(
-						'customers',
-						'Who is your typical customer?',
-						[
-							'Government',
-							'Educational Institutions',
-							'Financial Institutions',
-							'Healthcare Facilities',
-							'Individuals',
-							'Commercial Markets'
-						],
-						true
-					);
-				?>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>
-				<?php
-					echo wetstone_form_make_select(
 						'description',
 						'Which best describes your company?',
 						[
@@ -444,7 +438,7 @@
 				?>
 			</td>
 		</tr>
-
+		
 		<tr>
 			<td>
 				<?php 
@@ -456,6 +450,12 @@
 						true
 					);
 				?>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?>
 			</td>
 		</tr>
 
