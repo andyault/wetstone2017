@@ -42,7 +42,7 @@
 			<td>
 				<div class="form-multiple">
 					<?php
-						echo wetstone_form_make_select(
+						echo wetstone_form_make_select_state(
 							'state', 
 							'State/Province', 
 							[

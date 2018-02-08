@@ -144,6 +144,33 @@ function wetstone_form_make_select($name, $label, $options, $required = false) {
 	return ob_get_clean();
 }
 
+function wetstone_form_make_select_state($name, $label, $options, $required = false) {
+	ob_start();
+	?>
+
+	<label class="form-label">
+		<?php if($required) echo '<i class="req">*</i>'; ?>
+		<?php echo $label; ?>
+		<br />
+		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> style="width:200px">
+			<option value selected>Select state</option>
+
+			<?php
+				foreach($options as $option) {
+					echo sprintf(
+						'<option value="%1$s">%1$s</option>',
+						$option
+					);
+				}
+			?>
+		</select>
+		<i class="select-symbol">&dtrif;</i>
+	</label>
+
+	<?php
+	return ob_get_clean();
+}
+
 function wetstone_form_make_checkboxes($name, $label, $options, $required = false, $radio = false) {
 	$values = $_GET[preg_replace('/\[\]$/', '', $name)];
 	$values = explode(', ', $values);
