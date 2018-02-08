@@ -36,6 +36,7 @@
 				'meta_key'       => 'product_ispreview',
 				'meta_value'     => 'true',
 				'orderby'        => 'menu_order',
+				'order'            => 'DESC',
 				'posts_per_page' => -1
 			]);
 
