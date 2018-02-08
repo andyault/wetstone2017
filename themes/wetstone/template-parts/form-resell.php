@@ -42,7 +42,64 @@
 			<td>
 				<div class="form-multiple">
 					<?php
-						echo wetstone_form_make_input('state', 'text', 'State/Province', 'MD', true, ['size' => 7]);
+						echo wetstone_form_make_select(
+							'state', 
+							'State/Province', 
+							[
+								'AL',
+								'AK',
+								'AZ',
+								'AR',
+								'CA',
+								'CO',
+								'CT',
+								'DE',
+								'DC',
+								'FL',
+								'GA',
+								'HI',
+								'ID',
+								'IL',
+								'IN',
+								'IA',
+								'KS',
+								'KY',
+								'LA',
+								'ME',
+								'MD',
+								'MA',
+								'MI',
+								'MN',
+								'MS',
+								'MO',
+								'MT',
+								'NE',
+								'NV',
+								'NH',
+								'NJ',
+								'NM',
+								'NY',
+								'NC',
+								'ND',
+								'OH',
+								'OK',
+								'OR',
+								'PA',
+								'RI',
+								'SC',
+								'SD',
+								'TN',
+								'TX',
+								'UT',
+								'VT',
+								'VA',
+								'WA',
+								'WV',
+								'WI',
+								'WY'
+							],
+						true
+					);
 						echo wetstone_form_make_input('zip', 'text', 'Zip/Postal', '20500', true, ['size' => 10]);
 					?>
 				</div>
@@ -109,7 +166,7 @@
 							'Retail',
 							'Service Provider',
 							'Educational Institution',
-							'Other (please specify below)'
+							'Other (please specify in comments)'
 						],
 						true
 					);

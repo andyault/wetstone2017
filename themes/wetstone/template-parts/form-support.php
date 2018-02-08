@@ -50,7 +50,7 @@
 						[
 							'Technical problems',
 							'Unable to activate product',
-							'Other (please specify)'
+							'Other (please specify in comments)'
 						]
 					);
 				?>

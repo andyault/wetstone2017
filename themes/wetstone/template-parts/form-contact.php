@@ -89,9 +89,8 @@
 					'Malware investigation',
 					'Steganography investigation',
 					'Live acquisition and triage',
-					'Forensic time',
 					'Reselling opportunities',
-					'Other (please specify below)'
+					'Other (please specify in comments)'
 				];
 			?>
 
