@@ -10,12 +10,12 @@
 			<div class="video-filter"></div>
 
 			<video id="hero-video" class="video-video" autoplay loop>
-				<source src="<?php echo wetstone_get_asset('/img/background/Browsing.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
-				<source src="<?php echo wetstone_get_asset('/img/background/Browsing.webm'); ?>" type="video/webm" /><?php echo $err; ?>
+				<source src="<?php echo wetstone_get_asset('/img/background/Love-Coding.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
+				<source src="<?php echo wetstone_get_asset('/img/background/Love-Coding.webm'); ?>" type="video/webm" /><?php echo $err; ?>
 			</video>
 
 			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/Browsing.jpg'); ?>);"></div>
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/Love-Coding.jpg'); ?>);"></div>
 		</div>
 	</div>
 
@@ -35,7 +35,7 @@
 				'post_type'      => 'product',
 				'meta_key'       => 'product_ispreview',
 				'meta_value'     => 'true',
-				'orderby'        => 'rand',
+				'orderby'        => 'menu_order',
 				'posts_per_page' => -1
 			]);
 
