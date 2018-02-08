@@ -152,7 +152,7 @@ function wetstone_form_make_select_state($name, $label, $options, $required = fa
 		<?php if($required) echo '<i class="req">*</i>'; ?>
 		<?php echo $label; ?>
 		<br />
-		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> style="width:140px">
+		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> style="width:150px">
 			<option value selected>Select state</option>
 
 			<?php
@@ -164,7 +164,34 @@ function wetstone_form_make_select_state($name, $label, $options, $required = fa
 				}
 			?>
 		</select>
-		<i class="select-symbol" style="right:185px">&dtrif;</i>
+		<i class="select-symbol" style="right:180px">&dtrif;</i>
+	</label>
+
+	<?php
+	return ob_get_clean();
+}
+
+function wetstone_form_make_select_country($name, $label, $options, $required = false) {
+	ob_start();
+	?>
+
+	<label class="form-label">
+		<?php if($required) echo '<i class="req">*</i>'; ?>
+		<?php echo $label; ?>
+		<br />
+		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?>>
+			<option value selected>Select an option</option>
+
+			<?php
+				foreach($options as $option) {
+					echo sprintf(
+						'<option value="%1$s">%1$s</option>',
+						$option
+					);
+				}
+			?>
+		</select>
+		<i class="select-symbol">&dtrif;</i>
 	</label>
 
 	<?php
