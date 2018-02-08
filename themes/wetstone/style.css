@@ -635,7 +635,7 @@ i[class] {
 
 .select-symbol {
   position: absolute;
-  right: 100px;
+  right: 16px;
   bottom: 1.5em;
   pointer-events: none; }
 
