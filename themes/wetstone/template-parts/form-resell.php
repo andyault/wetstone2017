@@ -28,8 +28,8 @@
 		</tr>
 
 		<tr>
-			<td><?php echo wetstone_form_make_input('phone', 'tel', 'Phone', '(555) 867-5309', true); ?></td>
 			<td><?php echo wetstone_form_make_input('email', 'email', 'Email', 'john.doe@example.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input('email2', 'email', 'Verify Email', 'john.doe@example.com', true); ?></td>
 		</tr>
 
 		<tr>
@@ -375,29 +375,13 @@
 					); 
 				?>
 			</td>
-			<td><?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?></td>
+			<td><?php echo wetstone_form_make_input('phone', 'tel', 'Phone', '(555) 867-5309', true); ?></td>
 		</tr>
 
 		<tr>
-			<td>
-				<?php
-					echo wetstone_form_make_select(
-						'customers',
-						'Who is your typical customer?',
-						[
-							'Government',
-							'Educational Institutions',
-							'Financial Institutions',
-							'Healthcare Facilities',
-							'Individuals',
-							'Commercial Markets'
-						],
-						true
-					);
-				?>
-			</td>
+			<td><?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?></td>
 
-			<td rowspan="3">
+			<td rowspan="4">
 				<?php
 					echo wetstone_form_make_checkboxes(
 						'marketing',
@@ -419,6 +403,26 @@
 			</td>
 		</tr>
 
+		<tr>
+			<td>
+				<?php
+					echo wetstone_form_make_select(
+						'customers',
+						'Who is your typical customer?',
+						[
+							'Government',
+							'Educational Institutions',
+							'Financial Institutions',
+							'Healthcare Facilities',
+							'Individuals',
+							'Commercial Markets'
+						],
+						true
+					);
+				?>
+			</td>
+		</tr>
+		
 		<tr>
 			<td>
 				<?php
