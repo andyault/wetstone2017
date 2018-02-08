@@ -164,7 +164,7 @@ function wetstone_form_make_select_state($name, $label, $options, $required = fa
 				}
 			?>
 		</select>
-		<i class="select-symbol-state">&dtrif;</i>
+		<i class="select-symbol">&dtrif;</i>
 	</label>
 
 	<?php
