@@ -152,7 +152,7 @@ function wetstone_form_make_select_state($name, $label, $options, $required = fa
 		<?php if($required) echo '<i class="req">*</i>'; ?>
 		<?php echo $label; ?>
 		<br />
-		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> style="width:120px">
+		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> style="width:140px">
 			<option value selected>Select state</option>
 
 			<?php
