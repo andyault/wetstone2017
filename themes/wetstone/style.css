@@ -638,6 +638,12 @@ i[class] {
   right: 16px;
   bottom: 1.5em;
   pointer-events: none; }
+  
+ .select-symbol-state {
+  position: absolute;
+  right: 2px;
+  bottom: 1.5em;
+  pointer-events: none; }
 
 .form-reset {
   margin-right: 16px; }
