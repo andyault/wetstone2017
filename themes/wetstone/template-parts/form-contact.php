@@ -348,7 +348,7 @@
 		</tr>
 
 		<tr>
-			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?>
+			
 			<?php
 				$interests = [
 					'Malware investigation',
@@ -360,6 +360,7 @@
 			?>
 
 			<td>
+			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?>
 				<?php
 					echo wetstone_form_make_checkboxes(
 						'interests[]',
