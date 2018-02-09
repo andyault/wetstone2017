@@ -28,8 +28,8 @@ function validateUSPhone() {
 }	
 
 function validateEmail() {
-	var email1 = document.getElementById("email").value;
-	var email2= document.getElementById("email2").value;
+	var email1 = document.getElementById("email1Val").value;
+	var email2 = document.getElementById("email2Val").value;
 	 if (email1 == email2) {
 		 document.getElementById("email2CH").innerHTML = "&#x2714;";
 	 }

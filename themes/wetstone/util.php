@@ -93,13 +93,45 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 		
 		);
 	} else {
-
-		if ($name == "email2") {
+		
 		//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
 		return sprintf(
 			'<label class="form-label" id="%sID">
 				%s:
-				<input id="phoneVal" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();" >
+				<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
+			</label>
+			<i class="select-symbol" id="%sCH"></i>',
+			
+			$name,	
+			$label,
+			$type,
+			$name,
+			$placeholder,
+			$attrStr,
+			$required,
+			$name		
+		);		
+	}
+}
+
+function wetstone_form_make_input_email1($name, $type, $label, $placeholder, $required = false, $attrs = []) {
+	if($required) {
+		$label = '<i class="req">*</i> ' . $label;
+		$required = 'required';
+	} else
+		$required = '';
+
+	//mostly only used for input size
+	$attrStr = '';
+
+	foreach($attrs as $key => $val)
+		$attrStr .= sprintf('%s="%s" ', $key, $val);
+		
+		//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
+		return sprintf(
+			'<label class="form-label" id="%sID">
+				%s:
+				<input id="email1Val" type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
 			</label>
 			<i class="select-symbol" id="%sCH"></i>',
 			
@@ -111,29 +143,7 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 			$attrStr,
 			$required
 		
-		);
-		} else {
-	
-			//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
-			return sprintf(
-				'<label class="form-label" id="%sID">
-					%s:
-					<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
-				</label>
-				<i class="select-symbol" id="%sCH"></i>',
-				
-				$name,	
-				$label,
-				$type,
-				$name,
-				$placeholder,
-				$attrStr,
-				$required,
-				$name
-			
-			);
-		}
-	}
+		);		
 }
 
 function wetstone_form_make_input_email2($name, $type, $label, $placeholder, $required = false, $attrs = []) {
@@ -153,7 +163,7 @@ function wetstone_form_make_input_email2($name, $type, $label, $placeholder, $re
 		return sprintf(
 			'<label class="form-label" id="%sID">
 				%s:
-				<input id="phoneVal" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();" >
+				<input id="email2Val" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();" >
 			</label>
 			<i class="select-symbol" id="%sCH"></i>',
 			
