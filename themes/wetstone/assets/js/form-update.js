@@ -30,8 +30,13 @@ function validateUSPhone() {
 function validateEmail() {
 	var email1 = document.getElementById("email1Val").value;
 	var email2 = document.getElementById("email2Val").value;
-	 if (email1 == email2) {
+	
+	if (!email1 || email1 == "" || !email2 || email2 =="") {
+		
+	} else if (email1 == email2) {
 		 document.getElementById("email2CH").innerHTML = "&#x2714;";
+	 } else {
+		 alert("Please ensure both emails match.");
 	 }
 	
 }

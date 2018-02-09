@@ -99,7 +99,7 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 				%s:
 				<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
 			</label>
-			<i class="select-symbol" id="%sCH">&#x2714;</i>',
+			<i class="select-symbol" id="%sCH"></i>',
 			
 			$name,	
 			$label,
@@ -131,9 +131,9 @@ function wetstone_form_make_input_emailone($name, $type, $label, $placeholder, $
 		return sprintf(
 			'<label class="form-label" id="%sID">
 				%s:
-				<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
+				<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();">
 			</label>
-			<i class="select-symbol" id="%sCH">&#x2714;</i>',
+			<i class="select-symbol" id="%sCH"></i>',
 			
 			$name,	
 			$label,
@@ -166,7 +166,7 @@ function wetstone_form_make_input_emailtwo($name, $type, $label, $placeholder, $
 				%s:
 				<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();">
 			</label>
-			<i class="select-symbol" id="%sCH">&#x2714;</i>',
+			<i class="select-symbol" id="%sCH"></i>',
 			
 			$name,	
 			$label,
