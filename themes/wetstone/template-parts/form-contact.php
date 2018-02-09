@@ -361,6 +361,7 @@
 
 			<td>
 			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?>
+			<br /><br />
 				<?php
 					echo wetstone_form_make_checkboxes(
 						'interests[]',
