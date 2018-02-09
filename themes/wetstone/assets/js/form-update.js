@@ -4,7 +4,7 @@ function country_update() {
 	var notUSStates = '<i class="req">*</i> State/Province:<br /><input type="text" name="state" placeholder="MD" class="form-input" size="7" required>';		
 			
 	var inUSPhone = '<i class="req">*</i> Phone:<input id="phoneVal" type="tel" name="phone" placeholder="(555) 867-5309" class="form-input" required onfocusout="validateUSPhone();">';
-	var notUSPhone = '<i class="req">*</i> Phone:<input id="phoneVal" type="tel" name="phone" placeholder="+44 7222 8750" class="form-input" required>';
+	var notUSPhone = '<i class="req">*</i> Phone:<input id="phoneVal" type="tel" name="phone" placeholder="010-56557755" class="form-input" required onfocusout="validateINTPhone();">';
 	
 	if (country == "United States") {
 		document.getElementById("stateID").innerHTML = inUSStates;
@@ -25,10 +25,4 @@ function validateUSPhone() {
 				alert("Please enter a valid 10 digit phone number.");
 				return false;
 			}
-}	
-
-	} else {
-		document.getElementById("stateID").innerHTML = notUSStates;
-	}
-
 }	
