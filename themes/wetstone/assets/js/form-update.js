@@ -16,7 +16,14 @@ function country_update() {
 
 function validatePhone() {
 	var phoneNum = document.getElementById("phoneVal").value;
-	alert(phoneNum);
+	var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		  if(phoneNum.match(phoneno)){
+				alert("Good Number");
+				return true;
+			} else {
+				alert("Bad Number");
+				return false;
+			}
 }	
 
 		
