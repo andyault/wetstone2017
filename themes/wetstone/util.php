@@ -114,7 +114,7 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 	}
 }
 
-function wetstone_form_make_input_email1($name, $type, $label, $placeholder, $required = false, $attrs = []) {
+function wetstone_form_make_input_email_one($name, $type, $label, $placeholder, $required = false, $attrs = []) {
 	if($required) {
 		$label = '<i class="req">*</i> ' . $label;
 		$required = 'required';
@@ -146,7 +146,7 @@ function wetstone_form_make_input_email1($name, $type, $label, $placeholder, $re
 		);		
 }
 
-function wetstone_form_make_input_email2($name, $type, $label, $placeholder, $required = false, $attrs = []) {
+function wetstone_form_make_input_email_two($name, $type, $label, $placeholder, $required = false, $attrs = []) {
 	if($required) {
 		$label = '<i class="req">*</i> ' . $label;
 		$required = 'required';

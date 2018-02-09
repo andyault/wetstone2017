@@ -29,8 +29,8 @@
 		</tr>
 
 		<tr>
-			<td><?php echo wetstone_form_make_input_email1('email', 'email', 'Email', 'john.doe@example.com', true); ?></td>
-			<td><?php echo wetstone_form_make_input_email2('email2', 'email', 'Verify Email', 'john.doe@example.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input_email_one('email', 'email', 'Email', 'john.doe@example.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input_email_two('email2', 'email', 'Verify Email', 'john.doe@example.com', true); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo wetstone_form_make_select_country(
