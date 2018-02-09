@@ -76,11 +76,12 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 
 	//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
 	return sprintf(
-		'<label class="form-label">
+		'<label class="form-label" id="%s">
 			%s:
 			<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
 		</label>',
-
+		
+		$name,	
 		$label,
 		$type,
 		$name,

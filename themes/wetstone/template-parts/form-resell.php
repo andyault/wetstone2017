@@ -1,3 +1,4 @@
+<script src="<?php echo wetstone_get_asset('/js/form-update.js'); ?>"></script>
 <form name="contact" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
 	<input type="hidden" name="action" value="wetstone-resell-form">
 	<?php wp_nonce_field('wetstone-resell-form'); ?>
