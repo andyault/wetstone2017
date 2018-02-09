@@ -26,3 +26,12 @@ function validateUSPhone() {
 				return false;
 			}
 }	
+
+function validateEmail() {
+	var email1 = document.getElementById("email").value;
+	var email2= document.getElementById("email2").value;
+	 if (email1 == email2) {
+		 document.getElementById("email2CH").innerHTML = "&#x2714;";
+	 }
+	
+}

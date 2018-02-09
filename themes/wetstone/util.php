@@ -80,7 +80,8 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 			'<label class="form-label" id="%sID">
 				%s:
 				<input id="phoneVal" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateUSPhone();" >
-			</label>',
+			</label>
+			<i class="select-symbol" id="%sCH"></i>',
 			
 			$name,	
 			$label,
@@ -93,12 +94,14 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 		);
 	} else {
 
+		if ($name == "email2") {
 		//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
 		return sprintf(
 			'<label class="form-label" id="%sID">
 				%s:
-				<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
-			</label>',
+				<input id="phoneVal" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();" >
+			</label>
+			<i class="select-symbol" id="%sCH"></i>',
 			
 			$name,	
 			$label,
@@ -109,6 +112,27 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 			$required
 		
 		);
+		} else {
+	
+			//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
+			return sprintf(
+				'<label class="form-label" id="%sID">
+					%s:
+					<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
+				</label>
+				<i class="select-symbol" id="%sCH"></i>',
+				
+				$name,	
+				$label,
+				$type,
+				$name,
+				$placeholder,
+				$attrStr,
+				$required,
+				$name
+			
+			);
+		}
 	}
 }
 
@@ -129,7 +153,8 @@ function wetstone_form_make_textarea($name, $label, $placeholder, $required = fa
 		'<label class="form-label">
 			%s:
 			<textarea name="%s" class="form-textarea" placeholder="%s" %s></textarea>
-		</label>',
+		</label>
+		',
 
 		$label,
 		$name,
