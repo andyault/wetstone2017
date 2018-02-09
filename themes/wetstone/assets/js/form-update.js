@@ -34,8 +34,8 @@ function validateEmail() {
 	if (!email1 || email1 == "" || !email2 || email2 =="") {
 		
 	} else if (email1 == email2) {
-		 document.getElementById("email2CH").innerHTML = "<span style='color:green'>&#x2714;</span>";
-		 document.getElementById("emailCH").innerHTML = "<span style='color:green'>&#x2714;</span>";
+		 document.getElementById("email2CH").innerHTML = "<span style=\"color:green;\">&#x2714;</span>";
+		 document.getElementById("emailCH").innerHTML = "<span style=\"color:green;\">&#x2714;</span>";
 	 } else {
 		 alert("Please ensure both emails match.");
 		 document.getElementById("emailCH").innerHTML = "";
