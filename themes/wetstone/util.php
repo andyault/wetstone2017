@@ -180,20 +180,18 @@ function wetstone_form_make_select_country($name, $label, $options, $required = 
 		<?php if($required) echo '<i class="req">*</i>'; ?>
 		<?php echo $label; ?>
 		<br />
-		<span id="<?php echo $name+"ID" ?>">
-			<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> onchange="country_update();">
-				<option value selected>Select country</option>
+		<select id="<?php echo $name+"ID" ?>" name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> onchange="country_update();">
+			<option value selected>Select country</option>
 
-				<?php
-					foreach($options as $option) {
-						echo sprintf(
-							'<option value="%1$s">%1$s</option>',
-							$option
-						);
-					}
-				?>
-			</select>
-		</span>
+			<?php
+				foreach($options as $option) {
+					echo sprintf(
+						'<option value="%1$s">%1$s</option>',
+						$option
+					);
+				}
+			?>
+		</select>
 		<i class="select-symbol">&dtrif;</i>
 	</label>
 
