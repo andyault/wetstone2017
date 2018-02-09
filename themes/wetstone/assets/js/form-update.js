@@ -9,7 +9,7 @@ function country_update() {
 		document.getElementById("stateID").innerHTML = notUSStates;
 	}
 
-		
+}		
 
 		
 			
