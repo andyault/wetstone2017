@@ -17,7 +17,7 @@ function country_update() {
 function validatePhone() {
 	var phoneNum = document.getElementById("phoneVal").value;
 	var phoneno = "/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/";
-		  if((phoneNum.value.match(phoneno)){
+		  if(phoneNum.value.match(phoneno)){
 				alert("Good Number");
 				return true;
 			} else {
