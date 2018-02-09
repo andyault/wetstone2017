@@ -35,10 +35,10 @@ function validateEmail() {
 		
 	} else if (email1 == email2) {
 		 document.getElementById("email2CH").innerHTML = "<span style='color:green'>&#x2714;</span>";
-		 document.getElementById("email1CH").innerHTML = "<span style='color:green'>&#x2714;</span>";
+		 document.getElementById("emailCH").innerHTML = "<span style='color:green'>&#x2714;</span>";
 	 } else {
 		 alert("Please ensure both emails match.");
-		 document.getElementById("email1CH").innerHTML = "";
+		 document.getElementById("emailCH").innerHTML = "";
 		 document.getElementById("email2CH").innerHTML = "";
 	 }
 	
