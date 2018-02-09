@@ -10,8 +10,8 @@ function country_update() {
 		document.getElementById("stateID").innerHTML = inUSStates;
 		document.getElementById("stateID").innerHTML = inUSPhone;
 	} else {
-		document.getElementById("PhoneID").innerHTML = notUSStates;
-		document.getElementById("PhoneID").innerHTML = inUSPhone;
+		document.getElementById("phoneID").innerHTML = notUSStates;
+		document.getElementById("phoneID").innerHTML = inUSPhone;
 	}
 
 }	
