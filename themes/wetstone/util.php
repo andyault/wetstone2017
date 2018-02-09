@@ -79,7 +79,7 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 		return sprintf(
 			'<label class="form-label" id="%sID">
 				%s:
-				<input id="phoneVal" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validatePhone();" >
+				<input id="phoneVal" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateUSPhone();" >
 			</label>',
 			
 			$name,	
