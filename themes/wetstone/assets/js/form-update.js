@@ -11,7 +11,7 @@ function country_update() {
 		document.getElementById("stateID").innerHTML = inUSPhone;
 	} else {
 		document.getElementById("phoneID").innerHTML = notUSStates;
-		document.getElementById("phoneID").innerHTML = inUSPhone;
+		document.getElementById("phoneID").innerHTML = notUSPhone;
 	}
 
 }	
