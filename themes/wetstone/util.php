@@ -76,7 +76,7 @@ function wetstone_form_make_input($name, $type, $label, $placeholder, $required 
 
 	//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
 	return sprintf(
-		'<label class="form-label" id="%s">
+		'<label class="form-label" id="%sID">
 			%s:
 			<input type="%s" name="%s" placeholder="%s" class="form-input" %s %s>
 		</label>',
@@ -180,18 +180,20 @@ function wetstone_form_make_select_country($name, $label, $options, $required = 
 		<?php if($required) echo '<i class="req">*</i>'; ?>
 		<?php echo $label; ?>
 		<br />
-		<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?>>
-			<option value selected>Select country</option>
+		<span id="<?php echo $name+"ID" ?>">
+			<select name="<?php echo $name ?>" class="form-input form-input-select" <?php if($required) echo 'required'; ?> onchange="country_update();">
+				<option value selected>Select country</option>
 
-			<?php
-				foreach($options as $option) {
-					echo sprintf(
-						'<option value="%1$s">%1$s</option>',
-						$option
-					);
-				}
-			?>
-		</select>
+				<?php
+					foreach($options as $option) {
+						echo sprintf(
+							'<option value="%1$s">%1$s</option>',
+							$option
+						);
+					}
+				?>
+			</select>
+		</span>
 		<i class="select-symbol">&dtrif;</i>
 	</label>
 
