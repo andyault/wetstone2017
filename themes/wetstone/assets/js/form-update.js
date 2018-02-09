@@ -4,13 +4,13 @@ function country_update() {
 	var notUSStates = '<i class="req">*</i> State/Province:<br /><input type="text" name="state" placeholder="MD" class="form-input" size="7" required>';		
 			
 	var inUSPhone = '<i class="req">*</i> Phone:<input id="phoneVal" type="tel" name="phone" placeholder="(555) 867-5309" class="form-input" required onfocusout="validateUSPhone();">';
-	var notUSPhone = '<i class="req">*</i> Phone:<input id="phoneVal" type="tel" name="phone" placeholder="010-56557755" class="form-input" required onfocusout="validateINTPhone();">';
+	var notUSPhone = '<i class="req">*</i> Phone:<input id="phoneVal" type="tel" name="phone" placeholder="010-56557755" class="form-input" required>';
 	
 	if (country == "United States") {
 		document.getElementById("stateID").innerHTML = inUSStates;
-		document.getElementById("stateID").innerHTML = inUSPhone;
+		document.getElementById("phoneID").innerHTML = inUSPhone;
 	} else {
-		document.getElementById("phoneID").innerHTML = notUSStates;
+		document.getElementById("stateID").innerHTML = notUSStates;
 		document.getElementById("phoneID").innerHTML = notUSPhone;
 	}
 
