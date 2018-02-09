@@ -31,81 +31,6 @@
 			<td><?php echo wetstone_form_make_input('email', 'email', 'Email', 'john.doe@example.com', true); ?></td>
 			<td><?php echo wetstone_form_make_input('email2', 'email', 'Verify Email', 'john.doe@example.com', true); ?></td>
 		</tr>
-
-		<tr>
-			<td><?php echo wetstone_form_make_input('address1', 'text', 'Address Line 1', '1600 Pennsylvania Ave NW', true); ?></td>
-			<td><?php echo wetstone_form_make_input('address2', 'text', 'Address Line 2', 'Apt. 123'); ?></td>
-		</tr>
-
-		<tr>
-			<td><?php echo wetstone_form_make_input('city', 'text', 'City', 'Washington D.C.', true); ?></td>
-			<td>
-				<div class="form-multiple">
-					<?php
-						echo wetstone_form_make_select_state(
-							'state', 
-							'State/Province', 
-							[
-								'AL',
-								'AK',
-								'AZ',
-								'AR',
-								'CA',
-								'CO',
-								'CT',
-								'DE',
-								'DC',
-								'FL',
-								'GA',
-								'HI',
-								'ID',
-								'IL',
-								'IN',
-								'IA',
-								'KS',
-								'KY',
-								'LA',
-								'ME',
-								'MD',
-								'MA',
-								'MI',
-								'MN',
-								'MS',
-								'MO',
-								'MT',
-								'NE',
-								'NV',
-								'NH',
-								'NJ',
-								'NM',
-								'NY',
-								'NC',
-								'ND',
-								'OH',
-								'OK',
-								'OR',
-								'PA',
-								'RI',
-								'SC',
-								'SD',
-								'TN',
-								'TX',
-								'UT',
-								'VT',
-								'VA',
-								'WA',
-								'WV',
-								'WI',
-								'WY'
-							],
-						true
-					);
-						echo wetstone_form_make_input('zip', 'text', 'Zip/Postal', '20500', true, ['size' => 10]);
-					?>
-				</div>
-			</td>
-		</tr>
-
 		<tr>
 			<td><?php echo wetstone_form_make_select_country(
 						'country', 
@@ -377,7 +302,80 @@
 			</td>
 			<td><?php echo wetstone_form_make_input('phone', 'tel', 'Phone', '(555) 867-5309', true); ?></td>
 		</tr>
+		<tr>
+			<td><?php echo wetstone_form_make_input('address1', 'text', 'Address Line 1', '1600 Pennsylvania Ave NW', true); ?></td>
+			<td><?php echo wetstone_form_make_input('address2', 'text', 'Address Line 2', 'Apt. 123'); ?></td>
+		</tr>
 
+		<tr>
+			<td><?php echo wetstone_form_make_input('city', 'text', 'City', 'Washington D.C.', true); ?></td>
+			<td>
+				<div class="form-multiple">
+					<?php
+						echo wetstone_form_make_select_state(
+							'state', 
+							'State/Province', 
+							[
+								'AL',
+								'AK',
+								'AZ',
+								'AR',
+								'CA',
+								'CO',
+								'CT',
+								'DE',
+								'DC',
+								'FL',
+								'GA',
+								'HI',
+								'ID',
+								'IL',
+								'IN',
+								'IA',
+								'KS',
+								'KY',
+								'LA',
+								'ME',
+								'MD',
+								'MA',
+								'MI',
+								'MN',
+								'MS',
+								'MO',
+								'MT',
+								'NE',
+								'NV',
+								'NH',
+								'NJ',
+								'NM',
+								'NY',
+								'NC',
+								'ND',
+								'OH',
+								'OK',
+								'OR',
+								'PA',
+								'RI',
+								'SC',
+								'SD',
+								'TN',
+								'TX',
+								'UT',
+								'VT',
+								'VA',
+								'WA',
+								'WV',
+								'WI',
+								'WY'
+							],
+						true
+					);
+						echo wetstone_form_make_input('zip', 'text', 'Zip/Postal', '20500', true, ['size' => 10]);
+					?>
+				</div>
+			</td>
+		</tr>
+		
 		<tr>
 			<td><?php
 					echo wetstone_form_make_select(
