@@ -21,15 +21,15 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 	line-height: 2em;
 	letter-spacing: 0.05em;
 	
-	&::after {
-		content: '™';
+//	&::after {
+//		content: '™';
 
-		position: relative;
-		top: -0.75em;
+//		position: relative;
+//		top: -0.75em;
 
-		font-family: $fontMain;
-		font-size: 0.75em;
-	}
+//		font-family: $fontMain;
+//		font-size: 0.75em;
+//	}
 }
 
 //blocks
