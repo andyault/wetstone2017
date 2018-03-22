@@ -105,12 +105,11 @@ function wetstone_echo_customer_form_fields($userId = null) {
 								$myinfo = $myproducts[$pid];
 
 								$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false; //for sure need to test this
-								//<td><?php echo $product->post_title; ?></td>
+
 								?>
 
 								<tr>
-									
-									
+																		
 									<td><?php echo $productName ?></td>
 
 									<td style="text-align: center; padding-right: 4em;">
