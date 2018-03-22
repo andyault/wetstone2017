@@ -94,7 +94,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 								date('d')
 							);
 							
-							$pidarray = array(613,116,115,617,616,121,123,37,141,120,620,619,618,623,622,621,614);
+							$pidarray = array(613,116,612,115,617,616,121,120,123,37,141,620,619,618,623,622,621,614);
 							$pidcount = 0;							
 							
 							foreach($products as $key => $product) {
@@ -131,11 +131,8 @@ function wetstone_echo_customer_form_fields($userId = null) {
 									</td>
 								</tr>
 
-								<?php
+								<?php				
 								
-								if ($pidcount < (count($pidarray)-1)) {
-								$pidcount++;
-								}
 							}
 						?>
 					</tbody>
