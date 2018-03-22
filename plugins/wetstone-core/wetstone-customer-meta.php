@@ -95,6 +95,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 							);
 							
 							$pidarray = array(613,116,612,115,617,616,121,120,123,37,141,620,619,618,623,622,621,614);
+							$linebreaks = array(116,616,141,618);
 							$pidcount = 0;							
 							
 							foreach($products as $key => $product) {
@@ -128,12 +129,14 @@ function wetstone_echo_customer_form_fields($userId = null) {
 
 									<td style="padding: 0;">
 										<input type="number" name="product[<?php echo $pid ?>][num_used]" value="<?php echo $myinfo ? $myinfo['num_used'] : 0; ?>" disabled>
-									</td>
-									<br /><br />
-								</tr>
+									</td>									
+								</tr>										
 
 								<?php
 								
+								if (in_array($pid, $linebreaks)) {
+										echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
+									}
 								
 								$pidcount++;
 								
