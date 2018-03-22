@@ -68,7 +68,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 				<table>
 					<thead>
 						<tr>
-							<th style="width: 0;">Product Name</th>
+							<th style="width: 0;">Product Name - TEST</th>
 							<th style="width: 0; padding-right: 4em;">Product Owned?</th>
 							<th>Expiry Date</th>
 							<th>Licenses Owned</th>
