@@ -132,7 +132,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 								</tr>
 
 								<?php
-								if ($pidcount < count($pidArray) {
+								if ($pidcount < count($pidArray)) {
 								$pidcount++;
 								}
 							}
