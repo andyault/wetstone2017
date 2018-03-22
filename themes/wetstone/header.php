@@ -78,7 +78,7 @@
 						$isActive = is_page($id) || $page->post_parent == $id;
 						$activeClass = $isActive ? 'active' : '';
 
-						if ($id >= 612 && $id <= 623) { // IDs of unwanted product in Header
+						if ($id >= 612 && $id <= 633) { // IDs of unwanted product in Header
 						} else {
 							return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 

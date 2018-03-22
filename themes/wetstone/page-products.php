@@ -21,7 +21,7 @@
 
 			foreach($posts as $post) {
 				setup_postdata($post);
-				if($post->ID >= 612 && $post->ID <= 623) { // IDs of unwanted products
+				if($post->ID >= 612 && $post->ID <= 633) { // IDs of unwanted products
 				} else {
 					get_template_part('template-parts/' . $postType, 'preview');
 				}
@@ -34,7 +34,7 @@
 	<ul class="carousel-dots">
 		<?php
 			foreach($posts as $post)
-				if($post->ID >= 612 && $post->ID <= 623) { // IDs of unwanted products
+				if($post->ID >= 612 && $post->ID <= 633) { // IDs of unwanted products
 					} else {
 				echo '<li class="carousel-dot"></li>';
 					}
@@ -58,7 +58,7 @@
 				<?php
 					foreach($posts as $post) {
 						setup_postdata($post);
-						if($post->ID >= 612 && $post->ID <= 623) { // IDs of unwanted products
+						if($post->ID >= 612 && $post->ID <= 633) { // IDs of unwanted products
 						} else {
 							get_template_part('template-parts/' . $postType, 'page');
 						}
