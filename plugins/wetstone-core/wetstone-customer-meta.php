@@ -68,7 +68,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 				<table>
 					<thead>
 						<tr>
-							<th style="width: 0;">Product Name - TEST</th>
+							<th style="width: 0;">Product Name</th>
 							<th style="width: 0; padding-right: 4em;">Product Owned?</th>
 							<th>Expiry Date</th>
 							<th>Licenses Owned</th>
@@ -100,15 +100,18 @@ function wetstone_echo_customer_form_fields($userId = null) {
 							foreach($products as $key => $product) {
 								$pid = $pidarray[$pidcount];
 								//$pid = $product->ID;
+								$productName = get_the_title($pid);
 								$meta = get_post_meta($pid);
 								$myinfo = $myproducts[$pid];
 
 								$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false; //for sure need to test this
-
+								//<td><?php echo $product->post_title; ?></td>
 								?>
 
 								<tr>
-									<td><?php echo $product->post_title; ?></td>
+									
+									
+									<td><?php echo $productName ?></td>
 
 									<td style="text-align: center; padding-right: 4em;">
 										<input type="checkbox" class="product-owned-checkbox" <?php if($owned) echo 'checked'; ?>>
