@@ -129,6 +129,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 									<td style="padding: 0;">
 										<input type="number" name="product[<?php echo $pid ?>][num_used]" value="<?php echo $myinfo ? $myinfo['num_used'] : 0; ?>" disabled>
 									</td>
+									<br /><br />
 								</tr>
 
 								<?php
