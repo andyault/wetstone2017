@@ -105,12 +105,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "wetstone", serif !important;
   line-height: 2em;
   letter-spacing: 0.05em; }
-  .wetstone-font::after {
-    content: '™';
-    position: relative;
-    top: -0.75em;
-    font-family: "cera pro", helvetica, arial, sans-serif;
-    font-size: 0.75em; }
+  
 
 .body, .body-content {
   font-size: 1.3rem;
