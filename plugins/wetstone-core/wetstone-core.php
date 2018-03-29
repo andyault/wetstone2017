@@ -11,6 +11,17 @@ include('wetstone-core-util.php');
 //abstract getting/setting options
 $options = [];
 
+add_filter( 'wp_mail_from', 'my_mail_from' );
+function my_mail_from( $email ) {
+    return "support@wetstonetech.com";
+}
+
+add_filter( 'wp_mail_from_name', 'my_mail_from_name' );
+function my_mail_from_name( $name ) {
+    return "Wetstone Technologies";
+}
+
+
 function wetstone_add_option($group, $name, $default) {
 	if(is_array($default))
 		throw new Exception('Default value must not be array');
