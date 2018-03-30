@@ -392,7 +392,7 @@
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 				<?php $error = apply_filters( 'cptch_verify', true );
 					if ( true === $error ) { /* the CAPTCHA answer is right */
-					   echo '<button type="submit" class="link link-button link-button-input">Submit</button>';
+					  // echo '<button type="submit" class="link link-button link-button-input">Submit</button>';
 					} else { /* the CAPTCHA answer is wrong or there are some other errors */
 					   echo $error; /* display the error message or do other necessary actions in case when the CAPTCHA test was failed */
 					} ?>
