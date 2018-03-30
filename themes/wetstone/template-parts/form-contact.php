@@ -388,9 +388,16 @@
 		<tr>
 			<td colspan="2" class="table-footer">
 				<div class="inline-flex">
-				[bws_google_captcha]
+				<?php echo apply_filters( 'cptch_display', '' ); ?>
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
-					<button type="submit" class="link link-button link-button-input">Submit</button>
+				<?php $error = apply_filters( 'cptch_verify', true );
+					if ( true === $error ) { /* the CAPTCHA answer is right */
+					   echo '<button type="submit" class="link link-button link-button-input">Submit</button>';
+					} else { /* the CAPTCHA answer is wrong or there are some other errors */
+					   echo $error; /* display the error message or do other necessary actions in case when the CAPTCHA test was failed */
+					} ?>
+					
+					
 				</div>
 			</td>
 		</tr>
