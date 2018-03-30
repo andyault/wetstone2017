@@ -56,6 +56,6 @@
 
 		<script src="<?php echo wetstone_get_asset('/js/navigation.js'); ?>"></script>
 
-		<?php wp_footer(); ?>
+		<?php wp_footer(); ?><script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
 	</body>
 </html>
