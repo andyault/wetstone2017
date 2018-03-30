@@ -10,41 +10,50 @@ wetstone_add_option('form_handling', 'default_name',   'WetStone Customer');
 //handle post - TODO: verify required fields
 //  contact
 function wetstone_post_contact_form() {
-	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-contact-form'))
-		return wp_nonce_ays('wetstone-contact-form');
+	
+	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+	 if ( true === $check_result ) { /* the reCAPTCHA answer is right */
+		echo '';			
 
-	//sanitize inputs
-	$data = wetstone_sanitize_post([
-		'subject', 'fname', 'lname', 'title', 'company', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
-		'zip', 'country', 'referrer', 'interests', 'comments'
-	]);
+		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-contact-form'))
+			return wp_nonce_ays('wetstone-contact-form');		
+		
+		//sanitize inputs
+		$data = wetstone_sanitize_post([
+			'subject', 'fname', 'lname', 'title', 'company', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
+			'zip', 'country', 'referrer', 'interests', 'comments'
+		]);
 
-	//turn into pretty table
-	$emailWidth = wetstone_get_option('form_handling', 'email_width');
+		//turn into pretty table
+		$emailWidth = wetstone_get_option('form_handling', 'email_width');
 
-	$comments = wetstone_pop_value($data, 'comments');
-	$subject = wetstone_pop_value($data, 'subject');
+		$comments = wetstone_pop_value($data, 'comments');
+		$subject = wetstone_pop_value($data, 'subject');
 
-	$fields = '<pre>';
-	$fields .= wetstone_columnify($data);
+		$fields = '<pre>';
+		$fields .= wetstone_columnify($data);
 
-	if(!empty($comments))
-		$fields .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
+		if(!empty($comments))
+			$fields .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
 
-	$fullName = $data['fname'] . ' ' . $data['lname'];
+		$fullName = $data['fname'] . ' ' . $data['lname'];
 
-	if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
-		wp_redirect(get_permalink(get_page_by_path('thank-you')));
-	else {
-		//unpop comments
-		$data['comments'] = $comments;
+		if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
+			wp_redirect(get_permalink(get_page_by_path('thank-you')));
+		else {
+			//unpop comments
+			$data['comments'] = $comments;
 
-		//add error
-		$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+			//add error
+			$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
 
-		//go back to form with old data
-		wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
-	}
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+		}
+	
+	} else { /* the reCAPTCHA answer is wrong or there are some other errors */
+		echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
+		}
 }
 
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
