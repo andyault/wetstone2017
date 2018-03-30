@@ -388,13 +388,13 @@
 		<tr>
 			<td colspan="2" class="table-footer">
 				<div class="inline-flex">
-				<?php echo apply_filters( 'cptch_display', '' ); ?>
+				<?php echo apply_filters( 'gglcptch_display_recaptcha', '' ); ?>
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
-				<?php $error = apply_filters( 'cptch_verify', true );
-					if ( true === $error ) { /* the CAPTCHA answer is right */
-					  // echo '<button type="submit" class="link link-button link-button-input">Submit</button>';
-					} else { /* the CAPTCHA answer is wrong or there are some other errors */
-					   echo $error; /* display the error message or do other necessary actions in case when the CAPTCHA test was failed */
+				<?php $check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+					if ( true === $check_result ) { /* the reCAPTCHA answer is right */
+					echo '<button type="submit" class="link link-button link-button-input">Submit</button>';
+					} else { /* the reCAPTCHA answer is wrong or there are some other errors */
+					echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
 					} ?>
 					
 					
