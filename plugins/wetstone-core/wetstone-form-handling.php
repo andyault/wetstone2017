@@ -121,7 +121,7 @@ function wetstone_post_support() {
 	$comments = wetstone_pop_value($data, 'comments');
 
 	$body = '<pre>';
-	$body .= $user->first_name." ".$user->last_name.": ".$user->user_email.'\n\n';
+	$body .= $user->first_name . " " . $user->last_name . ": " . $user->user_email . '\n\n';
 	$body .= wetstone_columnify($data);	
 	$body .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
 
