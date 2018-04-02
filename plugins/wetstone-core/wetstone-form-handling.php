@@ -2,7 +2,7 @@
 
 //add options
 wetstone_add_option('form_handling', 'email_width',    75);
-wetstone_add_option('form_handling', 'sender_email',   'noreply@wetstonetech.com');
+//wetstone_add_option('form_handling', 'sender_email',   'support@wetstonetech.com');
 //wetstone_add_option('form_handling', 'receiver_email', 'smbsales@allencorp.com');
 wetstone_add_option('form_handling', 'receiver_email', 'wconklin@allencorporation.com');
 wetstone_add_option('form_handling', 'default_name',   'WetStone Customer');
