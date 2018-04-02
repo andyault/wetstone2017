@@ -21,6 +21,12 @@ function my_mail_from_name( $name ) {
     return "Wetstone Technologies";
 }
 
+//supress warning about using same email.
+add_filter('pre_user_email', 'skip_email_exist');
+function skip_email_exist($user_email){
+    define( 'WP_IMPORTING', 'SKIP_EMAIL_EXIST' );
+    return $user_email;
+}
 
 function wetstone_add_option($group, $name, $default) {
 	if(is_array($default))
