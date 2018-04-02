@@ -127,8 +127,8 @@ function wetstone_post_support() {
 
 	//getting email info
 	$subject = 'Customer Support';
-	$fullName = $user['first_name'] . ' ' . $user['last_name'];
-	$fromMail = $user['user_email'];
+	$fullName = $user->first_name . ' ' . $user->last_name;
+	$fromMail = $user->user_email;
 	
 	$emailWidth = wetstone_get_option('form_handling', 'email_width');
 
