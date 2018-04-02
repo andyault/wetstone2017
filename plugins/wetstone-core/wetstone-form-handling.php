@@ -111,9 +111,6 @@ function wetstone_post_support() {
 	//make sure ids match
 	$user = wp_get_current_user();
 	$id = $user->ID;
-	$firstname = $user->first_name;
-	$lastname =  $user->last_name;
-	$emailaddress = $user->user_email;
 
 	if($_POST['ID'] === $id)
 		wp_die('<h1>' . __( 'Cheatin&#8217; uh?' ) . '</h1><p>' . __( 'Sorry, you can only submit forms from your own account.' ) . '</p>', 403);
@@ -123,10 +120,10 @@ function wetstone_post_support() {
 
 	$comments = wetstone_pop_value($data, 'comments');
 
-	$body = '<pre>';	
-	$body .= wetstone_columnify($data);	
-	$body .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . "</p>";
-	$body .= "<p>".$firstname." ".$lastname.": ".$emailaddress."</p>";
+	$body = '<pre>';
+	$body .= wetstone_columnify($data);
+
+	$body .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
 
 	//getting email info
 	$subject = 'Customer Support';
