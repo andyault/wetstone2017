@@ -13,7 +13,7 @@ $options = [];
 
 add_filter( 'wp_mail_from', 'my_mail_from' );
 function my_mail_from( $email ) {
-    return "support@wetstonetech.com";
+    return "postmaster@wetstonetech.com";
 }
 
 add_filter( 'wp_mail_from_name', 'my_mail_from_name' );
