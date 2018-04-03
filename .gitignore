@@ -1,10 +1,5 @@
 #ignore stuff we don't need
 
-plugins/*
-!plugins/wetstone-*
-!plugins/google-captcha
-!plugins/duplicator
-
 themes/*
 !themes/wetstone/
 
