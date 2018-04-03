@@ -23,7 +23,7 @@
 
 		//var_dump($adminemail);
 
-		$subject = 'WetStoneTech.com - ' . substr($post->post_title,0, -2) . ' License Key';
+		$subject = 'WetStoneTech.com - ' . substr($post->post_title,0, -3) . ' License Key';
 
 		$headers = "From: " . $user->user_email . "\n";
 		$headers .=  "Reply-To: " . $user->user_email;
