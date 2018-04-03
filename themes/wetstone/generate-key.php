@@ -31,7 +31,7 @@
 		$body = "Date/Time: " . $date . PHP_EOL;
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
-		$body .= "Product Code: " . $post->post_title . PHP_EOL;
+		$body .= "Product Code: " . substr($post->post_title,0, -3) . PHP_EOL;
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;
 
 		//try to send
