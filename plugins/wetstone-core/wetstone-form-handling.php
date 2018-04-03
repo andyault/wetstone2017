@@ -167,11 +167,11 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 
 	//email headers
 	$headers = [
-		'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
-		sprintf('From: %s via Contact Form <%s>', "WetStone Technologies", wetstone_get_option('form_handling', 'sender_email')),
-		sprintf('Reply-to: %s <%s>', "WetStone Technologies", wetstone_get_option('form_handling', 'sender_email')),
+		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
+		//sprintf('From: %s via Contact Form <%s>', $fromName, $fromAddress),
+		//sprintf('Reply-to: %s <%s>', $fromName, $fromAddress),
 		//substr($toHeader, 0, -1),
-		'Content-type: text/html'
+		'Content-Type: text/html; charset=UTF-8'
 	];
 	
 	return wp_mail(
