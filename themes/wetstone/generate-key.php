@@ -18,12 +18,12 @@
 			wp_die('You\'re not allowed to generate a license for that product.');
 
 		//extra info
-		$adminemail = get_option('wetstone_key_generation_to_emails', 'aault@allencorp.com,wslkr@lightlink.com');
+		$adminemail = get_option('wetstone_key_generation_to_emails', 'wconklin@allencorporation.com,wslkr@lightlink.com');
 		$date = date('Y-m-d G:i:s');
 
 		//var_dump($adminemail);
 
-		$subject = 'WetStoneTech.com - ' . $post->post_title . ' License Key';
+		$subject = 'WetStoneTech.com - ' . substr($post->post_title,0, -2) . ' License Key';
 
 		$headers = "From: " . $user->user_email . "\n";
 		$headers .=  "Reply-To: " . $user->user_email;
