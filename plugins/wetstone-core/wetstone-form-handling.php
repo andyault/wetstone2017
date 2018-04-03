@@ -5,7 +5,7 @@ wetstone_add_option('form_handling', 'email_width',    75);
 wetstone_add_option('form_handling', 'sender_email',   'postmaster@wetstonetech.com');
 //wetstone_add_option('form_handling', 'receiver_email', 'smbsales@allencorp.com');
 wetstone_add_option('form_handling', 'receiver_email', 'wconklin@allencorporation.com');
-wetstone_add_option('form_handling', 'default_name',   'WetStone Customer');
+wetstone_add_option('form_handling', 'default_name',   'WetStone Technologies');
 
 //handle post - TODO: verify required fields
 //  contact
@@ -168,8 +168,8 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 	//email headers
 	$headers = [
 		'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
-		sprintf('From: %s via Contact Form <%s>', $fromName, $fromAddress),
-		sprintf('Reply-to: %s <%s>', $fromName, $fromAddress),
+		sprintf('From: %s via Contact Form <%s>', "WetStone Technologies", wetstone_get_option('form_handling', 'sender_email')),
+		sprintf('Reply-to: %s <%s>', "WetStone Technologies", wetstone_get_option('form_handling', 'sender_email')),
 		//substr($toHeader, 0, -1),
 		'Content-type: text/html'
 	];
