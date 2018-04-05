@@ -292,6 +292,12 @@ function wetstone_post_customer_registration() {
 			'WetStone Technologies Registration',
 			$message
 		);
+		
+		wp_mail(
+			'wconklin@wetstonetech.com',
+			'WetStone Technologies Registration',
+			$message
+		);
 
 		//redirect to same page with notification
 		wp_safe_redirect(add_query_arg(['page' => 'user-new-customer', 'customeradded' => true], 'users.php'));
