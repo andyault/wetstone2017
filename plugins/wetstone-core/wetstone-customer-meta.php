@@ -294,7 +294,7 @@ function wetstone_post_customer_registration() {
 		);
 		
 		wp_mail(
-			'wconklin@wetstonetech.com',
+			'support@wetstonetech.com',
 			'WetStone Technologies Registration',
 			$message
 		);
