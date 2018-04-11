@@ -137,7 +137,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 								<?php
 								
 								//if (in_array($pid, $linebreaks)) {
-										echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
+										//echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
 								//	}
 								
 								//$pidcount++;
