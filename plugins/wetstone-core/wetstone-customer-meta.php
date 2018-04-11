@@ -101,8 +101,8 @@ function wetstone_echo_customer_form_fields($userId = null) {
 							$pidcount = 0;							
 							
 							foreach($products as $key => $product) {
-								$pid = $pidarray[$pidcount];
-								//$pid = $product->ID;
+								//$pid = $pidarray[$pidcount];
+								$pid = $product->ID;
 								$productName = get_the_title($pid);
 								$meta = get_post_meta($pid);
 								$myinfo = $myproducts[$pid];
@@ -136,11 +136,11 @@ function wetstone_echo_customer_form_fields($userId = null) {
 
 								<?php
 								
-								if (in_array($pid, $linebreaks)) {
+								//if (in_array($pid, $linebreaks)) {
 										echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
-									}
+								//	}
 								
-								$pidcount++;
+								//$pidcount++;
 								
 							}
 						?>
