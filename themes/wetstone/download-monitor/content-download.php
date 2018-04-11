@@ -1,6 +1,6 @@
 <div class="download-item">
 	<span class="download-item-title"><?php
-		echo $dlm_download->get_the_title();
+		echo $dlm_download->get_the_title()." test";
 
 		if($version = $dlm_download->get_the_version)
 			echo '(Version ' . $version . ')';
