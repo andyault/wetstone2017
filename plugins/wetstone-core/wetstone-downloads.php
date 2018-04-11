@@ -30,7 +30,7 @@ function wetstone_downloads_meta_content($post) {
 		Product required to download:
 
 		<select name="wetstone_download_mustown" style="margin-top: 8px; width: 100%;">
-			<option value=<?php if(empty($old)) echo 'selected'; ?>>Select an option</option>
+			<option value="<?php if(empty($old)) echo 'selected'; ?>">Select an option</option>
 
 			<?php
 				foreach($products as $product) {
