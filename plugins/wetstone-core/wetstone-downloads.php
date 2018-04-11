@@ -69,9 +69,9 @@ add_action('save_post', 'wetstone_downloads_meta_save');
 
 //only let product owners download product downloads
 //maybe todo - allow users to download the last version they had on their license? probably not
-function wetstone_dlm_can_download($noidea, $download, $version) {
-	$id = $download->post->ID;
-	echo $id;
+function wetstone_dlm_can_download($download, $version) {
+
+
 }
 
-add_filter('dlm_can_download', 'wetstone_dlm_can_download', 10, 3);
+add_filter('dlm_can_download', 'wetstone_dlm_can_download', 10, 2);
