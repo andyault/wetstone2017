@@ -69,21 +69,9 @@ add_action('save_post', 'wetstone_downloads_meta_save');
 
 //only let product owners download product downloads
 //maybe todo - allow users to download the last version they had on their license? probably not
-function wetstone_dlm_can_download($download, $version) {
+function wetstone_dlm_can_download($noidea, $download, $version) {
 	$id = $download->post->ID;
-	$mustown = get_post_meta($id, 'wetstone_download_mustown', true);
-
-	//make sure there's a product requirement
-	if(!empty($mustown)) {
-		$products = get_user_meta(wp_get_current_user()->ID, 'wetstone_products', true);
-
-		$info = $products[$mustown];
-		$owned = $info ? strtotime($info['expiry']) > time() : false;
-
-		return $owned;
-	}
-
-	return false;
+	echo $id;
 }
 
-add_filter('dlm_can_download', 'wetstone_dlm_can_download', 10, 2);
+add_filter('dlm_can_download', 'wetstone_dlm_can_download', 10, 3);
