@@ -83,7 +83,7 @@ function wetstone_dlm_can_download($noidea, $download, $version) {
 		return $owned;
 	}
 
-	return false;
+	//return false;
 }
 
-//add_filter('dlm_can_download', 'wetstone_dlm_can_download', 10, 3);
+add_filter('dlm_can_download', 'wetstone_dlm_can_download', 10, 3);
