@@ -297,7 +297,7 @@ function wetstone_post_customer_registration() {
 		);
 		
 		if($meta['resell_email']) {
-			$secondEmail = 'support@wetstonetech.com,'.$user['resell_email'];
+			$secondEmail = 'support@wetstonetech.com,'.$meta['resell_email'];
 		} else {
 			$secondEmail = 'support@wetstonetech.com';
 		}
