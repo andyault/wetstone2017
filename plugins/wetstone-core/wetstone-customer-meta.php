@@ -30,6 +30,9 @@ $fields = [
 	//'address1' => ['text', 'Address Line 1', 'Google Inc.'], //maybe
 	'user_email' => ['email', 'Email Address', 'john.doe@example.com', true],
 	'user_login' => ['text', 'Username', 'johndoe123', true],
+	'resell_company' => ['text', 'Reseller Company Name', 'Reseller Inc.'],
+	'resell_contact' => ['text', 'Reseller Contact Name', 'I.B. Reseller'],
+	'resell_email' => ['email', 'Email Address', 'IBReseller@reseller.com'],
 ];
 
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
@@ -260,7 +263,7 @@ function wetstone_post_customer_registration() {
 		$meta[$key] = $_POST[$key];
 
 	//only use the keys we need
-	foreach(['user_login', 'user_pass', 'user_email', 'first_name', 'last_name'] as $key)
+	foreach(['user_login', 'user_pass', 'user_email', 'first_name', 'last_name', 'resell_company', 'resell_contact', 'resell_contact'] as $key)
 		$user[$key] = $_POST[$key];
 
 	$user['user_registered'] = date('Y-m-d H:i:s');
@@ -293,8 +296,14 @@ function wetstone_post_customer_registration() {
 			$message
 		);
 		
+		if($user['resell_email']) {
+			$secondEmail = 'support@wetstonetech.com,'.$user['resell_email'];
+		} else {
+			$secondEmail = 'support@wetstonetech.com';
+		}
+		
 		wp_mail(
-			'support@wetstonetech.com',
+			$secondEmail,
 			'WetStone Technologies Registration',
 			$message
 		);
