@@ -259,11 +259,11 @@ function wetstone_post_customer_registration() {
 		wp_die('<h1>' . __( 'Cheatin&#8217; uh?' ) . '</h1><p>' . __( 'Sorry, you are not allowed to create users.' ) . '</p>', 403);
 
 	//remove our meta info from the post array
-	foreach(['company', 'phone'] as $key)
+	foreach(['company', 'phone', 'resell_company', 'resell_contact', 'resell_email'] as $key)
 		$meta[$key] = $_POST[$key];
 
 	//only use the keys we need
-	foreach(['user_login', 'user_pass', 'user_email', 'first_name', 'last_name', 'resell_company', 'resell_contact', 'resell_contact'] as $key)
+	foreach(['user_login', 'user_pass', 'user_email', 'first_name', 'last_name'] as $key)
 		$user[$key] = $_POST[$key];
 
 	$user['user_registered'] = date('Y-m-d H:i:s');
@@ -296,7 +296,7 @@ function wetstone_post_customer_registration() {
 			$message
 		);
 		
-		if($user['resell_email']) {
+		if($meta['resell_email']) {
 			$secondEmail = 'support@wetstonetech.com,'.$user['resell_email'];
 		} else {
 			$secondEmail = 'support@wetstonetech.com';
@@ -361,13 +361,10 @@ function wetstone_post_my_account() {
 		'first_name' => sanitize_text_field($_POST['first_name']),
 		'last_name' => sanitize_text_field($_POST['last_name']),
 		'user_email' => sanitize_text_field($_POST['user_email']),
-		'resell_company' => sanitize_text_field($_POST['resell_company']),
-		'resell_contact' => sanitize_text_field($_POST['resell_contact']),
-		'resell_email' => sanitize_text_field($_POST['resell_email'])
 	]);
 
 	//update user meta
-	foreach(['company', 'phone'] as $key)
+	foreach(['company', 'phone', 'resell_company', 'resell_contact', 'resell_email'] as $key)
 		update_user_meta($id, 'wetstone_' . $key, sanitize_text_field($_POST['wetstone_' . $key]));
 
 	wp_safe_redirect(add_query_arg('updated', true, home_url('/portal/my-account/')));
