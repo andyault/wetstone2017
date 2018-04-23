@@ -32,7 +32,7 @@ $fields = [
 	'user_login' => ['text', 'Username', 'johndoe123', true],
 	'resell_company' => ['text', 'Reseller Company Name', 'Reseller Inc.'],
 	'resell_contact' => ['text', 'Reseller Contact Name', 'I.B. Reseller'],
-	'resell_email' => ['email', 'Email Address', 'IBReseller@reseller.com'],
+	'resell_email' => ['email', 'Reseller Email Address', 'IBReseller@reseller.com'],
 ];
 
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
@@ -360,7 +360,10 @@ function wetstone_post_my_account() {
 		'ID' => $id,
 		'first_name' => sanitize_text_field($_POST['first_name']),
 		'last_name' => sanitize_text_field($_POST['last_name']),
-		'user_email' => sanitize_text_field($_POST['user_email'])
+		'user_email' => sanitize_text_field($_POST['user_email']),
+		'resell_company' => sanitize_text_field($_POST['resell_company']),
+		'resell_contact' => sanitize_text_field($_POST['resell_contact']),
+		'resell_email' => sanitize_text_field($_POST['resell_email'])
 	]);
 
 	//update user meta
