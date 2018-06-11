@@ -29,7 +29,6 @@
 
 				<tr>
 					<td colspan="2" class="text-center">
-						<center><?php echo apply_filters( 'gglcptch_display_recaptcha', '' ); ?></center>
 						<button type="submit" name="wp-submit" class="link link-button">Get New Password</button>
 					</td>
 				</tr>
