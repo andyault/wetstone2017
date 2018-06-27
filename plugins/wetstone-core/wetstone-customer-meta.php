@@ -98,9 +98,9 @@ function wetstone_echo_customer_form_fields($userId = null) {
 							);
 							
 							// Array of products that appear on the page in the order requested, to add new product simply place the product ID in the order you wish them to appear
-							$pidarray = array(613,116,612,115,617,616,121,120,123,37,141,620,619,618,623,622,621,614);
+							$pidarray = array(613,116,633,612,115,617,616,121,120,123,37,141,620,619,618,623,622,621,614);
 							// Simple array that lets the list know after which products to put a break for visual purposes.
-							$linebreaks = array(116,616,141,618);
+							$linebreaks = array(633,616,141,618);
 							$pidcount = 0;							
 							
 							foreach($products as $key => $product) {
