@@ -248,7 +248,6 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   max-height: calc(100vh - 64px);
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   z-index: 9999;
   background: #303030; }
   .header-sub-nav-site a {
