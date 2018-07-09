@@ -44,6 +44,7 @@ $pxHeader: 64px;
 	position: absolute;
 	max-height: calc(100vh - #{$pxHeader});
 	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 	z-index: 9999;
 
 	background: $col3;
