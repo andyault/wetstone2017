@@ -56,7 +56,7 @@
 
 		  gtag('config', 'UA-122085870-1');
 		</script>
-		
+		<meta name="google-site-verification" content="NkrxTSz8VFMeKmFHwWZ4ocMW5R_QmNWjNtYI5tI3REA" />
 	</head>
 
 	<body <?php body_class(); ?>>
