@@ -28,6 +28,10 @@ function skip_email_exist($user_email){
     return $user_email;
 }
 
+add_filter( 'password_reset_expiration', function( $expiration ) {
+	return MONTH_IN_SECONDS;
+}
+
 function wetstone_add_option($group, $name, $default) {
 	if(is_array($default))
 		throw new Exception('Default value must not be array');
