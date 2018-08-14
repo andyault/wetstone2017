@@ -387,7 +387,7 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<center><?php if( function_exists( 'gglcptch_display' ) ) { echo gglcptch_display(); } else { echo "Problem with CAPTCHA"; } ?></center>
+				<center><?php if( function_exists( 'gglcptch_display_recaptcha' ) ) { echo gglcptch_display_recaptcha(); } else { echo "Problem with CAPTCHA"; } ?></center>
 				<div class="inline-flex">				
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 					<button type="submit" class="link link-button link-button-input">Submit</button>
