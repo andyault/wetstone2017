@@ -11,7 +11,8 @@ wetstone_add_option('form_handling', 'default_name',   'WetStone Technologies');
 //  contact
 function wetstone_post_contact_form() {
 	
-	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string', 'my_custom_form' );
+	
 	 if ( true === $check_result ) { /* the reCAPTCHA answer is right */
 		echo '';			
 
@@ -62,7 +63,7 @@ add_action('admin_post_nopriv_wetstone-contact-form', 'wetstone_post_contact_for
 //  resell form
 function wetstone_post_resell_form() {
 	
-		$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+		$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string', 'my_custom_form' );
 		 if ( true === $check_result ) { /* the reCAPTCHA answer is right */
 			echo '';
 		
