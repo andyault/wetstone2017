@@ -11,7 +11,7 @@ wetstone_add_option('form_handling', 'default_name',   'WetStone Technologies');
 //  contact
 function wetstone_post_contact_form() {
 	
-	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string'+'x' );
 	
 	 if ( true === $check_result ) { /* the reCAPTCHA answer is right */
 		echo '';			
