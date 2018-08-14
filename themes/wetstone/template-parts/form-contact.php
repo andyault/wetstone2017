@@ -387,7 +387,7 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<center><div class="g-recaptcha" data-sitekey="6LdW-U8UAAAAAF4cLgZAVgO2m89pjmEEkkBsAjbX"></div></center>
+				<center><?php if( function_exists( 'gglcptch_display' ) ) { echo gglcptch_display(); } ; ?></center>
 				<div class="inline-flex">				
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 					<button type="submit" class="link link-button link-button-input">Submit</button>
