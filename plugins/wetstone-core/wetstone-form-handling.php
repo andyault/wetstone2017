@@ -9,11 +9,35 @@ wetstone_add_option('form_handling', 'default_name',   'WetStone Technologies');
 
 //handle post - TODO: verify required fields
 //  contact
+
+$response = $_POST["g_recaptcha-response"];
+
+$gurl = 'https://www.google.com/recaptcha/api/siteverify';
+
+$gdata = array(
+		'secret' => '6LdW_U8UAAAAAEkxW3QTDEh5n3_Db8Qb-4TUw1Ci',
+		'response' => $_POST["g_recaptcha-response"];
+		);
+
+$goptions = array(
+		'http' => array (
+				'method' => 'POST',
+				'content' => http_build_query($gdata)
+				)
+			);
+
+$gcontext = stream_context_create($goptions);
+
+$gverify = file_get_contents($gurl, false, $gcontext);
+
+$captcha_success=json_decode($gverify);
+
+
 function wetstone_post_contact_form() {
 	
-	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+	//$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
 	
-	 if ( true === $check_result ) { /* the reCAPTCHA answer is right */
+	 if ( $captcha_success->success == true ) { /* the reCAPTCHA answer is right */
 		echo '';			
 
 		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-contact-form'))
@@ -52,8 +76,8 @@ function wetstone_post_contact_form() {
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
 	
-	} else { /* the reCAPTCHA answer is wrong or there are some other errors */
-		echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
+	} else if ( $captcha_success->success == false ){ /* the reCAPTCHA answer is wrong or there are some other errors */
+		echo "Captcha not recorded correctly, please try again."; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
 		}
 }
 
