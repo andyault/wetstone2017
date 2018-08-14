@@ -11,9 +11,9 @@ wetstone_add_option('form_handling', 'default_name',   'WetStone Technologies');
 //  contact
 function wetstone_post_contact_form() {
 	
-	//$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
-	// if ( true === $check_result ) { /* the reCAPTCHA answer is right */
-	//	echo '';			
+	$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
+	 if ( true === $check_result ) { /* the reCAPTCHA answer is right */
+		echo '';			
 
 		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-contact-form'))
 			return wp_nonce_ays('wetstone-contact-form');		
@@ -51,9 +51,9 @@ function wetstone_post_contact_form() {
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
 	
-	///} else { /* the reCAPTCHA answer is wrong or there are some other errors */
-	///	echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
-	///	}
+	} else { /* the reCAPTCHA answer is wrong or there are some other errors */
+		echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
+		}
 }
 
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
