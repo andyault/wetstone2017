@@ -360,7 +360,7 @@
 			?>
 
 			<td>
-			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us???', 'Google'); ?>
+			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', 'Google'); ?>
 			<br />
 				<?php
 					echo wetstone_form_make_checkboxes(
@@ -387,7 +387,7 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<p>Testing</p>
+				<center><?php if( function_exists( 'gglcptch_display' ) ) { echo gglcptch_display(); } else { echo "Problem with CAPTCHA"; } ?></center>
 				<div class="inline-flex">				
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 					<button type="submit" class="link link-button link-button-input">Submit</button>
