@@ -28,15 +28,15 @@
 
 				//if prev was false then we were at the first elem anyway
 				if(prev($products)) {
-					//$prev = get_post(key($products));
-					$prev = ''
+					$prev = get_post(key($products));
+
 					next($products);
 				} else
 					reset($products);
 
 				if(next($products))
-					//$next = get_post(key($products));
-					$next = '';
+					$next = get_post(key($products));
+				
 				//show links
 				if(!empty($prev)) {
 					echo sprintf(
