@@ -22,30 +22,30 @@
 			<?php
 				//have to get prev/next links weird
 				//set current to our product
-				while(key($products) != $view) next($products);
+				//while(key($products) != $view) next($products);
 
-				$cur = key($products);
+				//$cur = key($products);
 
 				//if prev was false then we were at the first elem anyway
-				if(prev($products)) {
-					$prev = get_post(key($products));
+				//if(prev($products)) {
+				//	$prev = get_post(key($products));
 
-					next($products);
-				} else
-					reset($products);
+				//	next($products);
+				//} else
+				//	reset($products);
 
-				if(next($products))
-					$next = get_post(key($products));
+				//if(next($products))
+				//	$next = get_post(key($products));
 				
 				//show links
-				if(!empty($prev)) {
-					echo sprintf(
-						'<a href="%s" class="link link-body"><i class="larr"></i> %s</a>',
+				//if(!empty($prev)) {
+				//	echo sprintf(
+				//		'<a href="%s" class="link link-body"><i class="larr"></i> %s</a>',
 
-						add_query_arg('view', $prev->ID),
-						get_the_title($prev)
-					);
-				}
+				//		add_query_arg('view', $prev->ID),
+				//		get_the_title($prev)
+				//	);
+				//}
 
 				//fix for flex alignment
 				echo '<span>&nbsp;</span>';
@@ -54,14 +54,14 @@
 				//for products/services - inquire button
 				echo sprintf('<a href="' . $baseurl . '" class="single-inquire link link-button">Back to My Products</a>');
 
-				if(!empty($next)) {
-					echo sprintf(
-						'<a href="%s" class="link link-body">%s <i class="rarr"></i></a>',
+				//if(!empty($next)) {
+				//	echo sprintf(
+				//		'<a href="%s" class="link link-body">%s <i class="rarr"></i></a>',
 
-						add_query_arg('view', $next->ID),
-						get_the_title($next)
+				//		add_query_arg('view', $next->ID),
+				//		get_the_title($next)
 					);
-				}
+				//}
 			?>
 		</section>
 
