@@ -28,7 +28,10 @@ $pxProductPage: 280px; //1200 with 16px gutter and padding / 4
 	z-index: 2;
 
 	line-height: $emBodyLineH;
-	hyphens: auto;
+	word-wrap: normal;
+	-webkit-hyphens: none;
+	-moz-hyphens:none;
+	hyphens: none;
 	opacity: 0.99;
 }
 

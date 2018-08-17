@@ -110,7 +110,10 @@ h1, h2, h3, h4, h5, h6 {
 .body, .body-content {
   font-size: 1.3rem;
   line-height: 1.5em;
-  hyphens: auto; }
+  word-wrap: normal;
+	-webkit-hyphens: none;
+	-moz-hyphens:none;
+	hyphens: none; }
 
 .body-content img {
   max-width: 100%;
@@ -383,7 +386,10 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   z-index: 2;
   line-height: 1.5em;
-  hyphens: auto;
+  word-wrap: normal;
+	-webkit-hyphens: none;
+	-moz-hyphens:none;
+	hyphens: none;
   opacity: 0.99; }
 
 .product-preview-slide {
@@ -564,7 +570,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .testimonial-body {
   font-style: italic;
-  hyphens: auto; }
+  word-wrap: normal;
+	-webkit-hyphens: none;
+	-moz-hyphens:none;
+	hyphens: none; }
 
 .testimonial-author {
   font-weight: bold; }
