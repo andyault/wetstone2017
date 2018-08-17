@@ -225,7 +225,7 @@
 								}
 							}
 
-							//array_unshift($pages, $post);
+							array_unshift($pages, $post);
 
 							//make list
 							foreach($pages as $post) {
