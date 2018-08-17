@@ -17,9 +17,10 @@
 <!-- prev/next links, inquire link -->
 <section class="single-footer site-content site-content-padded">
 	<?php
+		//$prev = get_previous_post(); 
+		//$next = get_next_post();
 		$prev = ''; 
 		$next = '';
-		
 		if($prev) {
 			echo sprintf(
 				'<a href="%s" class="link link-body"><i class="larr"></i> %s</a>',
