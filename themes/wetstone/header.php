@@ -159,8 +159,8 @@
 						'parent'      => 0,
 						'meta_key'    => 'page_showinheader',
 						'meta_value'  => 'true',
-						'sort_column' => 'menu_order',
-						'sort_order'  => 'ASC'
+						'orderby' => 'menu_order',
+						'order'  => 'ASC'
 					]);
 
 					if(is_user_logged_in())
