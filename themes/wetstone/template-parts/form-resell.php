@@ -356,7 +356,7 @@
 						true,
 						true
 					);
-					
+						echo '<br /><br />';
 						echo wetstone_form_make_textarea(
 						'comments', 
 						'Questions/Comments', 
