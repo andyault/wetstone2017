@@ -72,7 +72,7 @@ function wetstone_post_resell_form() {
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
 			'subject', 'fname', 'lname', 'company', 'website', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
-			'zip', 'country', 'referrer', 'customers', 'marketing', 'other', 'description', 'territories'
+			'zip', 'country', 'referrer', 'customers', 'marketing', 'comments', 'description', 'territories'
 		]);
 
 		//turn into pretty table

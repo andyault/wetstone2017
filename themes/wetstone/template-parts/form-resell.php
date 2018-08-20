@@ -351,13 +351,19 @@
 							'Seminars/Trainings',
 							'Telemarketing',
 							'Web',
-							'Other'
+							'Other (please specify in comments)'
 						],
 						true,
 						true
 					);
 					
-					echo wetstone_form_make_input('other', 'text', 'If other', '', false);
+					echo echo wetstone_form_make_textarea(
+						'comments', 
+						'Questions/Comments', 
+						$placeholder, 
+						false,
+						['style' => sprintf('height: calc(%d * 1.5em)', count($marketing))]
+					); 
 				?>
 			</td>
 		</tr>
