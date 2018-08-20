@@ -25,12 +25,12 @@
 
 		<tr>
 			<td><?php echo wetstone_form_make_input('company', 'text', 'Company', 'Google Inc.', true); ?></td>
-			<td><?php echo wetstone_form_make_input('website', 'url', 'Website', 'http://google.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input('website', 'url', 'Company Website', 'http://google.com', true); ?></td>
 		</tr>
 
 		<tr>
-			<td><?php echo wetstone_form_make_input_emailone('email', 'email', 'Email', 'john.doe@example.com', true); ?></td>
-			<td><?php echo wetstone_form_make_input_emailtwo('email2', 'email', 'Verify Email', 'john.doe@example.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input_emailone('email', 'email', 'Company Email', 'john.doe@example.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input_emailtwo('email2', 'email', 'Verify Company Email', 'john.doe@example.com', true); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo wetstone_form_make_select_country(
@@ -350,11 +350,14 @@
 							'Newsletter',
 							'Seminars/Trainings',
 							'Telemarketing',
-							'Web'
+							'Web',
+							'Other'
 						],
 						true,
 						true
 					);
+					
+					echo wetstone_form_make_input('other', 'text', 'Other', '', false);
 				?>
 			</td>
 		</tr>
