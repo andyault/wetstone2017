@@ -357,11 +357,12 @@
 						true
 					);
 					
-					echo echo wetstone_form_make_textarea(
+						echo wetstone_form_make_textarea(
 						'comments', 
 						'Questions/Comments', 
 						'I have a question about...', 
-						false
+						false,
+						['style' => sprintf('height: calc(%d * 1.5em)', 5)]
 					); 
 				?>
 			</td>
