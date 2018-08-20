@@ -357,7 +357,7 @@
 						true
 					);
 					
-					echo wetstone_form_make_input('other', 'text', 'Other', '', false);
+					echo wetstone_form_make_input('other', 'text', 'If other', '', false);
 				?>
 			</td>
 		</tr>
