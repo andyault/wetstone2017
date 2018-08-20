@@ -361,8 +361,7 @@
 						'comments', 
 						'Questions/Comments', 
 						'I have a question about...', 
-						false,
-						['style' => sprintf('height: calc(%d * 1.5em)', 5)]
+						false
 					); 
 				?>
 			</td>
