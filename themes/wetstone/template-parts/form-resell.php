@@ -360,9 +360,9 @@
 					echo echo wetstone_form_make_textarea(
 						'comments', 
 						'Questions/Comments', 
-						$placeholder, 
+						'I have a question about...', 
 						false,
-						['style' => sprintf('height: calc(%d * 1.5em)', count($marketing))]
+						['style' => sprintf('height: calc(%d * 1.5em)', 5)]
 					); 
 				?>
 			</td>
