@@ -337,7 +337,7 @@
 					);
 				?></td>
 
-			<td rowspan="4">
+			<td rowspan="3">
 				<?php
 					echo wetstone_form_make_checkboxes(
 						'marketing',
@@ -355,15 +355,7 @@
 						],
 						true,
 						true
-					);
-						echo '<br /><br />';
-						echo wetstone_form_make_textarea(
-						'comments', 
-						'Questions/Comments', 
-						'I have a question about...', 
-						false,
-						['style' => sprintf('height: calc(%d * 1.5em)', 5)]
-					); 
+					);						
 				?>
 			</td>
 		</tr>
@@ -408,11 +400,19 @@
 			<td>
 				<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', true); ?>
 			</td>
+			<td>
+				<?php 	echo wetstone_form_make_textarea(
+						'comments', 
+						'Questions/Comments', 
+						'I have a question about...', 
+						false,
+						['style' => sprintf('height: calc(%d * 1.5em)', 5)]
+					); ?>
+			</td>
 		</tr>
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<center><?php echo apply_filters( 'gglcptch_display_recaptcha', '' ); ?></center>
 				<div class="inline-flex">
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 					<button type="submit" class="link link-button link-button-input">Submit</button>
