@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="hero-info">
-		<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.svg'); ?>">
+		<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
 
 		<p class="hero-desc"><?php echo get_bloginfo('description'); ?></p>
 	</div>

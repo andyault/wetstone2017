@@ -144,7 +144,7 @@
 					//logo
 					function make_header_logo() {
 						return sprintf(
-							'<a href="%s" class="header-link header-logo-link %s"><img src="%s" class="header-logo-img" alt"WetStone Technologies: A division of Allen Corporation"></a>',
+							'<a href="%s" class="header-link header-logo-link %s"><img src="%s" class="header-logo-img" alt="WetStone Technologies: A division of Allen Corporation"></a>',
 
 							get_the_permalink(),
 							$activeClass,
