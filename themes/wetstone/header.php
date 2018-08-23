@@ -62,7 +62,7 @@
 	<body <?php body_class(); ?>>
 		<div class="ie-only">
 			<div class="content">
-				<img src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" width="448" height="134" />
+				<img src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" width="448" height="134" alt="WetStone Technologies: A division of Allen Corporation" />
 
 				<p class="body">Unfortunately, our new website relies on browser features that are not available in 
 				older versions of Internet Explorer. As Microsoft has <a href="https://www.microsoft.com/en-us/windowsforbusiness/end-of-ie-support">officially stopped supporting these browsers</a>, we have chosen 
@@ -144,7 +144,7 @@
 					//logo
 					function make_header_logo() {
 						return sprintf(
-							'<a href="%s" class="header-link header-logo-link %s"><img src="%s" class="header-logo-img"></a>',
+							'<a href="%s" class="header-link header-logo-link %s"><img src="%s" class="header-logo-img" alt"WetStone Technologies: A division of Allen Corporation"></a>',
 
 							get_the_permalink(),
 							$activeClass,
