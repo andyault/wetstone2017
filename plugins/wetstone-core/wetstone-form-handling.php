@@ -80,7 +80,7 @@ function wetstone_mp_beta_form() {
 
 		$fullName = $data['fname'] . ' ' . $data['lname'];
 
-		if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
+		if(wetstone_send_mail2($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
 			wp_redirect(get_permalink(get_page_by_path('thank-you')));
 		else {
 
@@ -220,6 +220,29 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 	);
 }
 
+//send email
+function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
+	if(!isset($fromName) || empty($fromName))
+		$fromName = wetstone_get_option('form_handling', 'default_name');
+
+	//$toHeader = 'To: Sales Support <wconklin@allencorp.com>,';
+	$acatoo = 'wconklin@allencorporation.com,agulini@allencorporation.com,gbarron@allencorporation.com';
+	//email headers
+	$headers = [
+		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
+		//sprintf('From: %s via Contact Form <%s>', $fromName, $fromAddress),
+		//sprintf('Reply-to: %s <%s>', $fromName, $fromAddress),
+		//substr($toHeader, 0, -1),
+		'Content-Type: text/html; charset=UTF-8'
+	];
+	
+	return wp_mail(
+		$acatoo,
+		$subject,
+		$body,
+		$headers
+	);
+}
 //handle login form
 function wetstone_post_login() {
 	$res = wp_signon();
