@@ -67,7 +67,7 @@ function wetstone_mp_beta_form() {
 		
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
-			'subject', 'fname', 'lname', 'phone', 'email'
+			'subject', 'fname', 'lname', 'company', 'phone', 'email'
 		]);
 
 		//turn into pretty table
