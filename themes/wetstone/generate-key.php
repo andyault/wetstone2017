@@ -18,12 +18,19 @@
 			wp_die('You\'re not allowed to generate a license for that product.');
 
 		//extra info
-		$adminemail = get_option('wetstone_key_generation_to_emails', 'wconklin@allencorporation.com,wslkr@lightlink.com');
+		$adminemail = get_option('wetstone_key_generation_to_emails', 'wconklin@allencorporation.com');
 		$date = date('Y-m-d G:i:s');
-
+		
+		////
+		$productCode = substr($post->post_title,0, -3);
+		if ($productCode == 'Gargoyl') {
+			$productCode = 'GargoyleMP';
+		}
+		////
+		
 		//var_dump($adminemail);
 
-		$subject = 'WetStoneTech.com - ' . substr($post->post_title,0, -3) . ' License Key';
+		$subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
 		$headers = "From: " . $user->user_email . "\n";
 		$headers .=  "Reply-To: " . $user->user_email;
@@ -31,7 +38,7 @@
 		$body = "Date/Time: " . $date . PHP_EOL;
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
-		$body .= "Product Code: " . substr($post->post_title,0, -3) . PHP_EOL;
+		$body .= "Product Code: " . $productCode . PHP_EOL;
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;
 
 		//try to send
