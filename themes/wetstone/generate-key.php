@@ -35,11 +35,11 @@
 		$headers = "From: " . $user->user_email . "\n";
 		$headers .=  "Reply-To: " . $user->user_email;
 
-		$body = "Date/Time: " . $date . "\n";
-		$body .= "Customer Name: " . $fullname . "\n";
-		$body .= "Customer Email: " . $user->user_email . "\n";
-		$body .= "Product Code: " . $productCode . "\n";
-		$body .= "Registration Code: " . $_POST['regcode'] . "\n";
+		$body = "Date/Time: " . $date . "\n\r";
+		$body .= "Customer Name: " . $fullname . "\n\r";
+		$body .= "Customer Email: " . $user->user_email . "\n\r";
+		$body .= "Product Code: " . $productCode . "\n\r";
+		$body .= "Registration Code: " . $_POST['regcode'];
 
 		//try to send
 		if(wp_mail($adminemail, $subject, $body, $headers)) {
