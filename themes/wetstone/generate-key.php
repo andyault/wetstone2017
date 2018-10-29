@@ -34,7 +34,7 @@
 		$headers[] = 'charset=utf-8';
 		$headers[] = 'Content-Type: text/plain';
 		$headers[] = 'From: ' . $user->user_email;
-		$headers[] = 'Reply-To: "' . $user->user_email;
+		$headers[] = 'Reply-To: ' . $user->user_email;
 		$body = "Date/Time: " . $date . "\r" . "Customer Name: " . $fullname . "\r" . "Customer Email: " . $user->user_email . "\r" . "Product Code: " . $productCode . "\r" . "Registration Code: " . $_POST['regcode'];
 
 		//try to send
