@@ -31,9 +31,15 @@
 		//var_dump($adminemail);
 
 		$subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
-		$headers[] = 'Content-Type: text/plain';
-		$headers[] = 'charset=utf-8';
-		$body = "Date/Time: " . $date . "\r" . "Customer Name: " . $fullname . "\r" . "Customer Email: " . $user->user_email . "\r" . "Product Code: " . $productCode . "\r" . "Registration Code: " . $_POST['regcode'];
+
+		$headers = "From: " . $user->user_email . "\r\n";
+		$headers .=  "Reply-To: " . $user->user_email . "\r\n";
+
+		$body = "Date/Time: " . $date . "\r";
+		$body .= "Customer Name: " . $fullname . "\r";
+		$body .= "Customer Email: " . $user->user_email . "\r";
+		$body .= "Product Code: " . $productCode . "\r";
+		$body .= "Registration Code: " . $_POST['regcode'];
 
 		//try to send
 		if(wp_mail($adminemail, $subject, $body, $headers)) {
