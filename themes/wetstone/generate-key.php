@@ -32,10 +32,8 @@
 
 $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
-		$headers = "From: " . $user->user_email . "\n";
-		$headers .=  "Reply-To: " . $user->user_email . "\n";
-
-		$body = "Date/Time: " . $date . PHP_EOL;
+		$headers = array('Content-Type: text/plain; charset=UTF-8');
+		$body = "\n". "Date/Time: " . $date . PHP_EOL;
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
 		$body .= "Product Code: " . $productCode . PHP_EOL;
