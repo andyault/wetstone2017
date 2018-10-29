@@ -38,7 +38,7 @@ $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 		$body = "Date/Time: " . $date . PHP_EOL;
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
-		$body .= "Product Code: " . $productCode . PHP_EOL;
+		$body .= "Product Code: <strong>" . $productCode . "</strong>" .PHP_EOL;
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;
 
 		//try to send
