@@ -30,16 +30,16 @@
 		
 		//var_dump($adminemail);
 
-		$subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
+$subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
-		$headers = "From: " . $user->user_email . "\r\n";
-		$headers .=  "Reply-To: " . $user->user_email . "\r\n";
+		$headers = "From: " . $user->user_email . "\n";
+		$headers .=  "Reply-To: " . $user->user_email;
 
-		$body = "Date/Time: " . $date . "\r";
-		$body .= "Customer Name: " . $fullname . "\r";
-		$body .= "Customer Email: " . $user->user_email . "\r";
-		$body .= "Product Code: " . $productCode . "\r";
-		$body .= "Registration Code: " . $_POST['regcode'];
+		$body = "Date/Time: " . $date . PHP_EOL;
+		$body .= "Customer Name: " . $fullname . PHP_EOL;
+		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
+		$body .= "Product Code: " . $productCode . PHP_EOL;
+		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;
 
 		//try to send
 		if(wp_mail($adminemail, $subject, $body, $headers)) {
