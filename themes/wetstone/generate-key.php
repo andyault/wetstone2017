@@ -33,6 +33,7 @@
 		$subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
 		$headers = "From: " . $user->user_email . "\n";
+		$headers .=  "Content-Type: text/plain; charset=\"utf-8\"\r\n";
 		$headers .=  "Reply-To: " . $user->user_email;
 
 		$body = "Date/Time: " . $date . "\r" . "Customer Name: " . $fullname . "\r" . "Customer Email: " . $user->user_email . "\r" . "Product Code: " . $productCode . "\r" . "Registration Code: " . $_POST['regcode'];
