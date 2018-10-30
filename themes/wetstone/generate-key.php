@@ -32,7 +32,7 @@
 
 $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
-		$headers = array('Content-Type: text/plain; charset="iso-8859-1; Content-Transfer-Encoding: 7bit');
+		$headers = array('Content-Type: text/plain; charset=iso-8859-1; Content-Transfer-Encoding: 7bit');
 		$body = "\n". "Date/Time: " . $date . PHP_EOL;
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
