@@ -250,7 +250,7 @@ function wetstone_post_login() {
 	if(is_wp_error($res)) {
    		wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
 	} else
-		wp_safe_redirect(get_permalink(get_option('page_on_front')));
+		wp_safe_redirect('https://www.wetstonetech.com/portal/');
 }
 
 add_action('admin_post_wetstone-login', 'wetstone_post_login');
