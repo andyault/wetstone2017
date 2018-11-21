@@ -60,6 +60,6 @@
 			</tr>
 		</table>
 	</form>
-<?php } else { ?>
-	<p class="body-content text-center">You are already logged in.</p>
-<?php } ?>
+<?php } else { 
+	wp_safe_redirect('https://www.wetstonetech.com/portal/'); }
+?>
