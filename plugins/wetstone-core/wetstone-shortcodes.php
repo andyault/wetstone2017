@@ -347,6 +347,62 @@ function display_DISC($atr){
 	return ob_get_clean();
 }
 
+add_shortcode("IDEAL", "display_IDEAL");
+
+function display_IDEAL($atr){
+	ob_start();
+		$productDir = 'IDEAL';
+        $dataset = $productDir.'/Dataset Updates';
+				
+		$datasetFiles = scan_dir("protected/".$dataset);
+		
+		
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			
+			$aca_table = "";
+			$aca_table .= '<table style="border: 1px solid black;">';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+			$aca_table .= '</tr>';			
+			$aca_table .= '</table>';
+			
+			echo $aca_table;
+		}
+	return ob_get_clean();
+}
+
+add_shortcode("GDD", "display_GDD");
+
+function display_GDD($atr){
+	ob_start();
+		$productDir = 'GD Datasets';
+        $dataset = $productDir;
+				
+		$datasetFiles = scan_dir("protected/".$dataset);
+		
+		
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			
+			$aca_table = "";
+			$aca_table .= '<table style="border: 1px solid black;">';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+			$aca_table .= '</tr>';			
+			$aca_table .= '</table>';
+			
+			echo $aca_table;
+		}
+	return ob_get_clean();
+}
+
 function scan_dir($dir) {
     $ignored = array('.', '..','.htaccess');
 
