@@ -44,7 +44,7 @@
 							$title = "[$blogname] Password Reset";
 
 							if($message && !wp_mail($email, $title, $message))
-								wp_die('Email could not be sent "' . $key . '" User - ' . $login . ' - ' . $email);
+								wp_die('Email could not be sent');
 
 							wp_safe_redirect(add_query_arg('action', 'checkmail', get_permalink()));
 
