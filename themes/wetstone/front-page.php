@@ -7,22 +7,22 @@
 <section class="hero fullpage fullpage-hero">
 	<div class="hero-background">
 		<div class="video-container">
-			<div class="video-filter"></div>
+			<!--<div class="video-filter"></div>
 
 			<video id="hero-video" class="video-video" autoplay loop>
-				<source src="<?php echo wetstone_get_asset('/img/background/Love-Coding.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
-				<source src="<?php echo wetstone_get_asset('/img/background/Love-Coding.webm'); ?>" type="video/webm" /><?php echo $err; ?>
-			</video>
+				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.mp4'); ?>" type="video/mp4" /><?php //echo $err; ?>
+				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.webm'); ?>" type="video/webm" /><?php //echo $err; ?>
+			</video>-->
 
 			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/Love-Coding.jpg'); ?>);"></div>
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/gargmp.jpg'); ?>);"></div>
 		</div>
 	</div>
 
 	<div class="hero-info">
-		<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
+		<!-- <img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
 
-		<p class="hero-desc"><?php echo get_bloginfo('description'); ?></p>
+		<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
 	</div>
 
 	<div class="hero-scroll box-center">scroll down</div>
