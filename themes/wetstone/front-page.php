@@ -24,7 +24,7 @@
 
 		<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
 		<p class="hero-desc" style="font-size: 18px; margin:385px 0px 0px 0px">Our NEW Multi-Platform Malware Discovery Tool<br />
-		<span style="font-size:20px; font-family:wetstone; font-color:1fb04c">Gargoyle Investigator&trade; MP</span><br />Coming Soon!</p>
+		<span style="font-size:24px; font-family:wetstone; color:#1fb04c">Gargoyle Investigator&trade; MP</span><br />Coming Soon!</p>
 	</div>
 
 	<div class="hero-scroll box-center">scroll down</div>
