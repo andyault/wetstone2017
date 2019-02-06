@@ -23,7 +23,7 @@
 		<!-- <img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
 
 		<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
-		<p class="hero-desc" style="font-size: 18px; margin:50px 0px 0px 0px">Our NEW Multi-Platform Malware Discovery Tool<br />Gargoyle Investigator(TM) MP<br />Coming Soon!</p>
+		<p class="hero-desc" style="font-size: 18px; margin:350px 0px 0px 0px">Our NEW Multi-Platform Malware Discovery Tool<br />Gargoyle Investigator(TM) MP<br />Coming Soon!</p>
 	</div>
 
 	<div class="hero-scroll box-center">scroll down</div>
