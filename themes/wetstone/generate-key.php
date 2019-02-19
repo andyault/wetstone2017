@@ -18,13 +18,14 @@
 			wp_die('You\'re not allowed to generate a license for that product.');
 
 		//extra info
-		$adminemail = get_option('wetstone_key_generation_to_emails', 'wconklin@allencorporation.com');
+		$adminemail = get_option('wetstone_key_generation_to_emails');
 		$date = date('Y-m-d G:i:s');
 		
 		////
 		$productCode = substr($post->post_title,0, -3);
 		if ($productCode == 'Gargoyl') {
 			$productCode = 'GargoyleMP';
+			$adminemail = 'support@wetstonetech.com';
 		}
 		////
 		

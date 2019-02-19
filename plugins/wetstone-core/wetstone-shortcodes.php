@@ -270,6 +270,33 @@ function display_GMP($atr){
 	return ob_get_clean();
 }
 
+//add Dataset info
+add_shortcode("GMPF", "display_GMPF");
+ 
+function display_GMPF($atr){
+	ob_start();
+		$productDir = 'GargoyleMP Flash';
+        $dataset = $productDir.'/Dataset Updates';			
+		
+		$datasetFiles = scan_dir("protected/".$dataset);				
+		
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			
+			$aca_table = "";
+			$aca_table .= '<table style="border: 1px solid black;">';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+			$aca_table .= '</tr>';						
+			$aca_table .= '</table>';
+			
+			echo $aca_table;
+		}
+	return ob_get_clean();
+}
 
 add_shortcode("STEG", "display_STEG");
 
