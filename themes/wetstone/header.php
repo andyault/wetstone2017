@@ -88,6 +88,15 @@
 						$activeClass = $isActive ? 'active' : '';
 
 						if ($id >= 612 && $id <= 634) { // IDs of unwanted product in Header
+							if ($id == 633) {
+								return sprintf(
+								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
+
+								get_the_permalink(),
+								$activeClass,
+								get_the_title()
+							);
+							}						
 						} else {
 							return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
