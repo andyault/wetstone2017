@@ -39,11 +39,11 @@
 $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
 		$headers = array('Content-Type: text/plain; charset=iso-8859-1; Content-Transfer-Encoding: 7bit');
-		$body = "\n". "Date/Time: " . $date;
-		$body .= "\n". "Customer Name: " . $fullname;
-		$body .= "\n". "Customer Email: " . $user->user_email;
-		$body .= "\n". "Product Code: " . $productCode;
-		$body .= "\n". "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
+		$body = "\n". "Date/Time: " . $date . "\t\n";
+		$body .= "Customer Name: " . $fullname . "\t\n";
+		$body .= "Customer Email: " . $user->user_email . "\t\n";
+		$body .= "Product Code: " . $productCode . "\t\n";
+		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
 
 		//try to send
 		if(wp_mail($adminemail, $subject, $body, $headers)) {
