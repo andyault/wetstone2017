@@ -26,7 +26,7 @@
 		$productID = $post->ID;
 		if ($productID == 633) {
 			$productCode = 'GargoyleMP';
-			$adminemail = 'support@wetstonetech.com';			
+			$adminemail = 'wconklin@allencorporation.com';			
 		}
 		if ($productID == 634) {
 			$productCode = 'GargoyleMPFlash';
@@ -40,9 +40,9 @@ $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
 		$headers = array('Content-Type: text/plain; charset=iso-8859-1; Content-Transfer-Encoding: 7bit');
 		$body = "\n". "Date/Time: " . $date . "\n";
-		$body .= "Customer Name: " . $fullname . "\n";
-		$body .= "Customer Email: " . $user->user_email . "\n";
-		$body .= "Product Code: " . $productCode . "\n";
+		$body .= "Customer Name: " . $fullname . "\n\r";
+		$body .= "Customer Email: " . $user->user_email . "\n\r";
+		$body .= "Product Code: " . $productCode . "\n\r";
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
 
 		//try to send
