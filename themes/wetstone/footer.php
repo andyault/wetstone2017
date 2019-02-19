@@ -11,7 +11,7 @@
 
 							return;
 						}
-						if($page->ID >= 612 && $page->ID <= 633) { // IDs of unwanted product in Footer
+						if($page->ID >= 612 && $page->ID <= 634) { // IDs of unwanted product in Footer
 						 }
 						else {
 							echo sprintf($template, get_permalink($page), get_the_title($page));
