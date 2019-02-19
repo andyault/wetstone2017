@@ -39,8 +39,7 @@ $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
 		$body .= "Product Code: " . $productCode . PHP_EOL;
-		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;
-		$body .= "Product ID: " . $_POST['regcode'] . PHP_EOL;
+		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
 
 		//try to send
 		if(wp_mail($adminemail, $subject, $body, $headers)) {
