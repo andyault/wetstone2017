@@ -21,7 +21,7 @@
 
 			foreach($posts as $post) {
 				setup_postdata($post);
-				if($post->ID >= 612 && $post->ID <= 633) { // IDs of unwanted products
+				if($post->ID >= 612 && $post->ID <= 634) { // IDs of unwanted products
 				} else {
 					get_template_part('template-parts/' . $postType, 'preview');
 				}
