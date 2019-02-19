@@ -26,7 +26,7 @@
 		$productID = $post->ID;
 		if ($productID == 633) {
 			$productCode = 'GargoyleMP';
-			$adminemail = 'wconklin@allencorporation.com';			
+			$adminemail = 'support@wetstonetech.com';			
 		}
 		if ($productID == 634) {
 			$productCode = 'GargoyleMPFlash';
