@@ -22,11 +22,12 @@
 		$date = date('Y-m-d G:i:s');
 		
 		////
-		$productCode = substr($post->post_title,0, -3);
-		if ($productCode == 'Gargoyl') {
-			$productCode = 'GargoyleMP';
-			$adminemail = 'support@wetstonetech.com';
-		}
+		$productCode = $post->ID;
+		//if ($productCode == 'Gargoyl') {
+		//	$productCode = 'GargoyleMP';
+		//	$adminemail = 'support@wetstonetech.com';
+			
+		//}
 		////
 		
 		//var_dump($adminemail);
@@ -39,6 +40,7 @@ $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
 		$body .= "Product Code: " . $productCode . PHP_EOL;
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;
+		$body .= "Product ID: " . $_POST['regcode'] . PHP_EOL;
 
 		//try to send
 		if(wp_mail($adminemail, $subject, $body, $headers)) {
