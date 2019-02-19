@@ -24,8 +24,12 @@
 		////
 		$productCode = substr($post->post_title,0, -3);
 		$productID = $post->ID;
-		if ($productCode == 634) {
+		if ($productID == 633) {
 			$productCode = 'GargoyleMP';
+			$adminemail = 'support@wetstonetech.com';			
+		}
+		if ($productID == 634) {
+			$productCode = 'GargoyleMPFlash';
 			$adminemail = 'support@wetstonetech.com';			
 		}
 		////
