@@ -39,10 +39,10 @@
 $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 
 		$headers = array('Content-Type: text/plain; charset=iso-8859-1; Content-Transfer-Encoding: 7bit');
-		$body = "\n". "Date/Time: " . $date . "\t\n";
-		$body .= "Customer Name: " . $fullname . "\t\n";
-		$body .= "Customer Email: " . $user->user_email . "\t\n";
-		$body .= "Product Code: " . $productCode . "\n";
+		$body = "\n". "Date/Time: " . $date . PHP_EOL;
+		$body .= "Customer Name: " . $fullname . PHP_EOL;
+		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
+		$body .= "Product Code: " . $productCode . PHP_EOL;
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
 
 		//try to send
