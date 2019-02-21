@@ -107,6 +107,28 @@ function wetstone_add_options_content() {
 	<?php
 }
 
+/**
+ * Filters the TinyMCE config before init.
+ *
+ * @param array  $mceInit   An array with TinyMCE config.
+ * @param string $editor_id Unique editor identifier, e.g. 'content'.
+ */
+add_filter( 'tiny_mce_before_init', 'wpse_tiny_mce_before_init', 10, 2 );
+function wpse_tiny_mce_before_init( $mceInit, $editor_id ) {
+    // Allow javascript: in href attributes.
+    $mceInit['allow_script_urls'] = true;
+
+    // Allow onclick attribute in anchor tags.
+  if ( ! isset( $mceInit['extended_valid_elements'] ) ) {
+        $mceInit['extended_valid_elements'] = '';
+    } else {
+        $mceInit['extended_valid_elements'] .= ',';
+    }
+    $mceInit['extended_valid_elements'] .= 'a[href|rel|class|id|style|onclick]';
+
+    return $mceInit;
+}
+
 function wetstone_add_options_page() {
 	add_options_page('Wetstone Site Settings', 'Wetstone Site Settings', 'manage_options', 'wetstone', 'wetstone_add_options_content');
 }
