@@ -355,8 +355,7 @@ function wetstone_edit_user_profile($user) {
 				<td>
 						<input type="email" id="resell_email" name="resell_email" placeholder="IBReseller.com" class="regular-text" autocomplete="off" value='.$resellEmail.'>
 					</td>
-				</tr>';			
-		}
+				</tr>';					
 	?>
 	</table>
 	<h2>Customer Info</h2>
