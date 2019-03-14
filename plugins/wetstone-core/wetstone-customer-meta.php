@@ -331,8 +331,7 @@ function wetstone_edit_user_profile($user) {
 	<h2>Reseller Info</h2>
 	<table class="form-table">				
 	<?php
-			echo sprintf(
-				'<tr class="form-field">
+			echo '<tr class="form-field">
 					<th scope="row">
 						<label for="resell_company">Reseller Company Name</label>
 					</th>
@@ -358,8 +357,7 @@ function wetstone_edit_user_profile($user) {
 					<td>
 						<input type="email" id="resell_email" name="resell_email" placeholder="IBReseller.com" class="regular-text" autocomplete="off" value='.$resellEmail.'>
 					</td>
-				</tr>'
-			);
+				</tr>';			
 		}
 	?>
 	</table>
