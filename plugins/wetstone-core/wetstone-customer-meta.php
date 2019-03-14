@@ -35,6 +35,14 @@ $fields = [
 	'resell_email' => ['email', 'Reseller Email Address', 'IBReseller@reseller.com'],
 ];
 
+$field2 = [
+	//name => [type, label, placeholder, required]
+	'resell_company' => ['text', 'Reseller Company Name', 'Reseller Inc.'],
+	'resell_contact' => ['text', 'Reseller Contact Name', 'I.B. Reseller'],
+	'resell_email' => ['email', 'Reseller Email Address', 'IBReseller@reseller.com'],
+];
+
+
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
 
 //filling in the page
@@ -323,6 +331,31 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 function wetstone_edit_user_profile($user) {
 	?>
 
+	<?php
+		//user fields
+		foreach($fields2 as $name2 => $info2) {
+			//1: name, 2: label, 3: type, 4: placeholder, 5: req, 6: req again
+			echo sprintf(
+				'<tr class="form-field">
+					<th scope="row">
+						<label for="%1$s">%2$s %6$s</label>
+					</th>
+
+					<td>
+						<input type="%3$s" id="%1$s" name="%1$s" placeholder="%4$s" class="regular-text" %5 autocomplete="off" %5$s>
+					</td>
+				</tr>',
+
+				$name2,
+				$info2[1],
+				$info2[0],
+				$info2[2],
+				$info2[3] ? 'required' : '',
+				$info2[3] ? '<span class="description">(required)</span>' : ''
+			);
+		}
+	?>
+	
 	<h2>Customer Info</h2>
 
 	<table class="form-table">
