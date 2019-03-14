@@ -48,7 +48,7 @@ function user_search_by_multiple_parameters($wp_user_query) {
         $user_ids_per_term = array();
  
  // Usermeta fields to search
- $usermeta_keys = array('first_name', 'last_name', 'nickname', 'wetstone_resell_email');
+ $usermeta_keys = array('wetstone_resell_email');
  
  $query_string_meta = "";
  $search_terms = $_GET["s"];
