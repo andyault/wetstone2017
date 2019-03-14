@@ -329,6 +329,7 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
+	global $fields2;
 	?>
 	<h2>Reseller Info</h2>
 	<?php
