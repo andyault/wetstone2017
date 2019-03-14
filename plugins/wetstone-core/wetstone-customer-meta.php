@@ -73,7 +73,7 @@ function user_search_by_multiple_parameters($wp_user_query) {
                 }
             }
  
- // Query users table
+ /* Query users table
             $users_results = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT ID FROM $wpdb->users WHERE LOWER(user_nicename) LIKE '%%%s%%' OR LOWER(user_email) LIKE '%%%s%%' OR LOWER(display_name) LIKE '%%%s%%'", $search_term, $search_term, $search_term));
  
             foreach ($users_results as $users_result) {
@@ -82,7 +82,7 @@ function user_search_by_multiple_parameters($wp_user_query) {
                 }
             }
             
-            /* Limit results to matches of all search terms
+             Limit results to matches of all search terms
             if (empty($user_ids)) {
              $user_ids = array_merge($user_ids, $user_ids_per_term);
             } else {
