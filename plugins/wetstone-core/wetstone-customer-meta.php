@@ -328,7 +328,7 @@ function wetstone_edit_user_profile($user) {
 	?>
 	<h2>Reseller Info</h2>
 	<table class="form-table">				
-	<?php
+	<?php echo $resellCompany.' Test';
 			echo '<tr class="form-field">
 					<th scope="row">
 						<label for="resell_company">Reseller Company Name</label>
