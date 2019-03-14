@@ -20,26 +20,8 @@ function wetstone_add_customer_page() {
 
 add_action('admin_menu', 'wetstone_add_customer_page');
 
-/*add_action('pre_user_query','yoursite_pre_user_search');
 
-function yoursite_pre_user_search($user_search) {
-    global $wpdb;
-    if (!isset($_GET['s'])) return;
-
-    //Enter Your Meta Fields To Query
-    $search_array = array("nickname", "wetstone_company", "wetstone_resell_company", "wetstone_resell_contact","wetstone_resell_email", "first_name", "last_name");
-
-    $user_search->query_from .= " INNER JOIN {$wpdb->usermeta} ON {$wpdb->users}.ID={$wpdb->usermeta}.user_id AND (";
-    for($i=0;$i<count($search_array);$i++) {
-        if ($i > 0) $user_search->query_from .= " OR ";
-            $user_search->query_from .= "{$wpdb->usermeta}.meta_key='" . $search_array[$i] . "'";
-        }
-    $user_search->query_from .= ")";        
-    $custom_where = $wpdb->prepare("{$wpdb->usermeta}.meta_value LIKE '%s'", "%" . $_GET['s'] . "%");
-    $user_search->query_where = str_replace('WHERE 1=1 AND (', "WHERE 1=1 AND ({$custom_where} OR ",$user_search->query_where);
-
-} */
-
+// Add search functionality to user-meta
 function user_search_by_multiple_parameters($wp_user_query) {
     if (false === strpos($wp_user_query->query_where, '@') && !empty($_GET["s"])) {
         global $wpdb;
