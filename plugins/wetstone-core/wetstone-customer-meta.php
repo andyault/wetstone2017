@@ -332,6 +332,7 @@ function wetstone_edit_user_profile($user) {
 	global $fields2;
 	?>
 	<h2>Reseller Info</h2>
+	<table>
 	<?php
 		//user fields
 		foreach($fields2 as $name2 => $info2) {
@@ -356,7 +357,7 @@ function wetstone_edit_user_profile($user) {
 			);
 		}
 	?>
-	
+	</table>
 	<h2>Customer Info</h2>
 
 	<table class="form-table">
