@@ -82,14 +82,14 @@ function user_search_by_multiple_parameters($wp_user_query) {
                 }
             }
             
-            // Limit results to matches of all search terms
+            /* Limit results to matches of all search terms
             if (empty($user_ids)) {
              $user_ids = array_merge($user_ids, $user_ids_per_term);
             } else {
                 if (!empty($user_ids_per_term)) {
                     $user_ids = array_unique(array_intersect($user_ids, $user_ids_per_term));
                 }
-            }
+            } */
         }
  
  // Convert IDs to comma separated string
