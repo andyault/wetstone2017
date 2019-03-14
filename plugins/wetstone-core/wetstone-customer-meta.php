@@ -372,9 +372,9 @@ function wetstone_edit_user_profile_update($userId) {
 		return false;
 
 	update_user_meta($userId, 'wetstone_products', $_POST['product']);
-	
-	foreach(['resell_company', 'resell_contact', 'resell_email'] as $key)
-		update_user_meta($id, 'wetstone_' . $key, sanitize_text_field($_POST[$key]));
+	update_user_meta($userId, 'resell_company', $_POST['resell_company']);
+	update_user_meta($userId, 'resell_contact', $_POST['resell_contact']);
+	update_user_meta($userId, 'resell_email', $_POST['resell_email']);
 }
 
 add_action('edit_user_profile_update', 'wetstone_edit_user_profile_update');
