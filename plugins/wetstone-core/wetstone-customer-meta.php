@@ -321,7 +321,7 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
-		$resellCompany = get_user_meta($user->ID, 'wetstone_resell_company', false);
+		$resellCompany = carbon_get_user_meta($user->ID, 'wetstone_resell_company', true);
 		$resellContact = get_user_meta($user->ID, 'wetstone_resell_contact', true);
 		$resellEmail = get_user_meta($user->ID, 'wetstone_resell_email', true);		
 	
@@ -335,7 +335,7 @@ function wetstone_edit_user_profile($user) {
 					</th>
 
 					<td>
-						<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany[0].' '.$resellCompany[1].'>
+						<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany.'>
 					</td>
 				</tr>
 				<tr class="form-field">
