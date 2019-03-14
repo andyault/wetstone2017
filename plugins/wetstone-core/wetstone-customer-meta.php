@@ -20,86 +20,29 @@ function wetstone_add_customer_page() {
 
 add_action('admin_menu', 'wetstone_add_customer_page');
 
-/*add_action('pre_user_query','yoursite_pre_user_search');
-
-function yoursite_pre_user_search($user_search) {
+add_action( 'pre_user_query', function( $uqi ) {
     global $wpdb;
-    if (!isset($_GET['s'])) return;
-
-    //Enter Your Meta Fields To Query
-    $search_array = array("nickname", "wetstone_company", "wetstone_resell_company", "wetstone_resell_contact","wetstone_resell_email", "first_name", "last_name");
-
-    $user_search->query_from .= " INNER JOIN {$wpdb->usermeta} ON {$wpdb->users}.ID={$wpdb->usermeta}.user_id AND (";
-    for($i=0;$i<count($search_array);$i++) {
-        if ($i > 0) $user_search->query_from .= " OR ";
-            $user_search->query_from .= "{$wpdb->usermeta}.meta_key='" . $search_array[$i] . "'";
-        }
-    $user_search->query_from .= ")";        
-    $custom_where = $wpdb->prepare("{$wpdb->usermeta}.meta_value LIKE '%s'", "%" . $_GET['s'] . "%");
-    $user_search->query_where = str_replace('WHERE 1=1 AND (', "WHERE 1=1 AND ({$custom_where} OR ",$user_search->query_where);
-
-} */
-
-function user_search_by_multiple_parameters($wp_user_query) {
-    if (false === strpos($wp_user_query->query_where, '@') && !empty($_GET["s"])) {
-        global $wpdb;
  
-        $user_ids = array();
-        $user_ids_per_term = array();
+    $search = '';
+    if ( isset( $uqi->query_vars['search'] ) )
+        $search = trim( $uqi->query_vars['search'] );
  
- // Usermeta fields to search
- $usermeta_keys = array('wetstone_resell_email');
+    if ( $search ) {
+        $search = trim($search, '*');
+        $the_search = '%'.$search.'%';
  
- $query_string_meta = "";
- $search_terms = $_GET["s"];
- $search_terms_array = explode(' ', $search_terms);
+        $search_meta = $wpdb->prepare("
+        ID IN ( SELECT user_id FROM {$wpdb->usermeta}
+        WHERE ( ( meta_key='first_name' OR meta_key='last_name' OR meta_key='wetstone_company' OR meta_key='wetstone_resell_company' OR meta_key='wetstone_resell_contact' OR meta_key='wetstone_resell_email' )
+            AND {$wpdb->usermeta}.meta_value LIKE '%s' )
+        )", $the_search);
  
- // Search users for each search term (word) individually
- foreach ($search_terms_array as $search_term) {
- // reset ids per loop
- $user_ids_per_term = array();
- 
- // add all custom fields into the query
- if (!empty($usermeta_keys)) {
- $query_string_meta = "meta_key='" . implode("' OR meta_key='", $wpdb->escape($usermeta_keys)) . "'";
- }
- 
- // Query usermeta table
-            $usermeta_results = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT user_id FROM $wpdb->usermeta WHERE (" . $query_string_meta . ") AND LOWER(meta_value) LIKE '%%%s%%'", $search_term));
- 
-            foreach ($usermeta_results as $usermeta_result) {
-             if (!in_array($usermeta_result->user_id, $user_ids_per_term)) {
-                 array_push($user_ids_per_term, $usermeta_result->user_id);
-                }
-            }
- 
- /* Query users table
-            $users_results = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT ID FROM $wpdb->users WHERE LOWER(user_nicename) LIKE '%%%s%%' OR LOWER(user_email) LIKE '%%%s%%' OR LOWER(display_name) LIKE '%%%s%%'", $search_term, $search_term, $search_term));
- 
-            foreach ($users_results as $users_result) {
-                if (!in_array($users_result->ID, $user_ids_per_term)) {
-                    array_push($user_ids_per_term, $users_result->ID);
-                }
-            }
-            
-             Limit results to matches of all search terms
-            if (empty($user_ids)) {
-             $user_ids = array_merge($user_ids, $user_ids_per_term);
-            } else {
-                if (!empty($user_ids_per_term)) {
-                    $user_ids = array_unique(array_intersect($user_ids, $user_ids_per_term));
-                }
-            } */
-        }
- 
- // Convert IDs to comma separated string
-        $ids_string = implode(',', $user_ids); 
-
+        $uqi->query_where = str_replace(
+            'WHERE 1=1 AND (',
+            "WHERE 1=1 AND (" . $search_meta . " OR ",
+            $uqi->query_where );
     }
- 
-    return $wp_user_query;
-}
-add_action('pre_user_query', 'user_search_by_multiple_parameters');
+});
 
 
 
