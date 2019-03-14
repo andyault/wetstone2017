@@ -321,44 +321,42 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
-	if(isset($userId)) {
-		$resellCompany = get_user_meta($userId, 'wetstone_resell_company', true);
-		$resellContact = get_user_meta($userId, 'wetstone_resell_contact', true);
-		$resellEmail = get_user_meta($userId, 'wetstone_resell_email', true);		
-	}
+		$resellCompany = get_user_meta($user->ID, 'wetstone_resell_company', true);
+		$resellContact = get_user_meta($user->ID, 'wetstone_resell_contact', true);
+		$resellEmail = get_user_meta($user->ID, 'wetstone_resell_email', true);		
 	
 	?>
 	<h2>Reseller Info</h2>
 	<table class="form-table">				
 	<?php
-			echo '<tr class="form-field">
-					<th scope="row">
-						<label for="resell_company">Reseller Company Name</label>
-					</th>
-
-					<td>
-						<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany.'>
-					</td>
-				</tr>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="resell_contact">Reseller Contact Name</label>
-					</th>
-
-					<td>
-						<input type="text" id="resell_contact" name="resell_contact" placeholder="I.B. Reseller" class="regular-text" autocomplete="off" value='.$resellContact.'>
-					</td>
-				</tr>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="resell_email">Reseller Email Address</label>
-					</th>
-
-					<td>
-						<input type="email" id="resell_email" name="resell_email" placeholder="IBReseller.com" class="regular-text" autocomplete="off" value='.$resellEmail.'>
-					</td>
-				</tr>';			
-		}
+	//		echo '<tr class="form-field">
+	//				<th scope="row">
+	//					<label for="resell_company">Reseller Company Name</label>
+	//				</th>
+//
+	//				<td>
+	//					<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany.'>
+	//				</td>
+	//			</tr>
+	//			<tr class="form-field">
+	//				<th scope="row">
+	//					<label for="resell_contact">Reseller Contact Name</label>
+	//				</th>
+//
+	//				<td>
+	//					<input type="text" id="resell_contact" name="resell_contact" placeholder="I.B. Reseller" class="regular-text" autocomplete="off" value='.$resellContact.'>
+	//				</td>
+	//			</tr>
+	//			<tr class="form-field">
+	//				<th scope="row">
+	//					<label for="resell_email">Reseller Email Address</label>
+	//				</th>
+//
+	//				<td>
+	//					<input type="email" id="resell_email" name="resell_email" placeholder="IBReseller.com" class="regular-text" autocomplete="off" value='.$resellEmail.'>
+	//				</td>
+	//			</tr>';			
+	//	}
 	?>
 	</table>
 	<h2>Customer Info</h2>
