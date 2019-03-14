@@ -35,7 +35,7 @@ $fields = [
 	'resell_email' => ['email', 'Reseller Email Address', 'IBReseller@reseller.com'],
 ];
 
-$field2 = [
+$fields2 = [
 	//name => [type, label, placeholder, required]
 	'resell_company' => ['text', 'Reseller Company Name', 'Reseller Inc.'],
 	'resell_contact' => ['text', 'Reseller Contact Name', 'I.B. Reseller'],
@@ -329,7 +329,7 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
-	global $field2;
+	global $fields2;
 	?>
 	<h2>Reseller Info</h2>
 	<?php
