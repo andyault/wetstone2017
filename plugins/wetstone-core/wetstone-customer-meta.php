@@ -374,7 +374,7 @@ function wetstone_edit_user_profile_update($userId) {
 	update_user_meta($userId, 'wetstone_products', $_POST['product']);
 	
 	foreach(['resell_company', 'resell_contact', 'resell_email'] as $key)
-		update_user_meta($id, 'wetstone_' . $key, sanitize_text_field($_POST['wetstone_' . $key]));
+		update_user_meta($id, 'wetstone_' . $key, sanitize_text_field($_POST[$key]));
 }
 
 add_action('edit_user_profile_update', 'wetstone_edit_user_profile_update');
