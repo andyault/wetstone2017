@@ -35,14 +35,6 @@ $fields = [
 	'resell_email' => ['email', 'Reseller Email Address', 'IBReseller@reseller.com'],
 ];
 
-$fields2 = [
-	//name => [type, label, placeholder, required]
-	'resell_company' => ['text', 'Reseller Company Name', 'Reseller Inc.'],
-	'resell_contact' => ['text', 'Reseller Contact Name', 'I.B. Reseller'],
-	'resell_email' => ['email', 'Reseller Email Address', 'IBReseller@reseller.com'],
-];
-
-
 $acctypes = ['Customer', 'Dataset Subscriber', 'Not For Retail', 'Academic'];
 
 //filling in the page
@@ -329,31 +321,44 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
-	global $fields2;
+	if(isset($userId)) {
+		$resellCompany = get_user_meta($userId, 'wetstone_resell_company', true);
+		$resellContact = get_user_meta($userId, 'wetstone_resell_contact', true);
+		$resellEmail = get_user_meta($userId, 'wetstone_resell_email', true);		
+	}
+	
 	?>
 	<h2>Reseller Info</h2>
 	<table class="form-table">				
 	<?php
-		//user fields
-		foreach($fields2 as $name2 => $info2) {
-			//1: name, 2: label, 3: type, 4: placeholder, 5: req, 6: req again
 			echo sprintf(
 				'<tr class="form-field">
 					<th scope="row">
-						<label for="%1$s">%2$s %6$s</label>
+						<label for="resell_company">Reseller Company Name</label>
 					</th>
 
 					<td>
-						<input type="%3$s" id="%1$s" name="%1$s" placeholder="%4$s" class="regular-text" %5 autocomplete="off" %5$s>
+						<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany.'>
 					</td>
-				</tr>',
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="resell_contact">Reseller Contact Name</label>
+					</th>
 
-				$name2,
-				$info2[1],
-				$info2[0],
-				$info2[2],
-				$info2[3] ? 'required' : '',
-				$info2[3] ? '<span class="description">(required)</span>' : ''
+					<td>
+						<input type="text" id="resell_contact" name="resell_contact" placeholder="I.B. Reseller" class="regular-text" autocomplete="off" value='.$resellContact.'>
+					</td>
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="resell_email">Reseller Email Address</label>
+					</th>
+
+					<td>
+						<input type="email" id="resell_email" name="resell_email" placeholder="IBReseller.com" class="regular-text" autocomplete="off" value='.$resellEmail.'>
+					</td>
+				</tr>'
 			);
 		}
 	?>
