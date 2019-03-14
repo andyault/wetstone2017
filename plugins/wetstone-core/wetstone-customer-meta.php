@@ -93,18 +93,8 @@ function user_search_by_multiple_parameters($wp_user_query) {
         }
  
  // Convert IDs to comma separated string
-        $ids_string = implode(',', $user_ids);
- 
- if (!empty($ids_string)) {
- // network users search (multisite)
- $wp_user_query->query_where = str_replace("user_nicename LIKE '" . $search_terms . "'", "ID IN(" . $ids_string . ")", $wp_user_query->query_where);
- 
- // site (blog) users search
-            $wp_user_query->query_where = str_replace("user_nicename LIKE '%" . $search_terms . "%'", "ID IN(" . $ids_string . ")", $wp_user_query->query_where);
-            
-            // network/site users search by number (WordPress assumes user ID number)
-            $wp_user_query->query_where = str_replace("ID = '" . $search_terms . "'", "ID = '" . $search_terms . "' OR ID IN(" . $ids_string . ")", $wp_user_query->query_where);
- }
+        $ids_string = implode(',', $user_ids); 
+
     }
  
     return $wp_user_query;
