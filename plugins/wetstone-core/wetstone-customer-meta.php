@@ -330,7 +330,7 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 //editing other user profile
 function wetstone_edit_user_profile($user) {
 	?>
-
+	<h2>Reseller Info</h2>
 	<?php
 		//user fields
 		foreach($fields2 as $name2 => $info2) {
