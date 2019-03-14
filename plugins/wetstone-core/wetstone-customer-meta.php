@@ -335,7 +335,7 @@ function wetstone_edit_user_profile($user) {
 					</th>
 
 					<td>
-						<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany[0].' '.$resellCompany[1]'>
+						<input type="text" id="resell_company" name="resell_company" placeholder="Reseller Inc." class="regular-text" autocomplete="off" value='.$resellCompany[0].' '.$resellCompany[1].'>
 					</td>
 				</tr>
 				<tr class="form-field">
