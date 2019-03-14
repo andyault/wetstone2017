@@ -332,7 +332,7 @@ function wetstone_edit_user_profile($user) {
 	global $fields2;
 	?>
 	<h2>Reseller Info</h2>
-	<table>
+	<table class="form-table">				
 	<?php
 		//user fields
 		foreach($fields2 as $name2 => $info2) {
