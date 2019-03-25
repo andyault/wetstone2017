@@ -347,8 +347,8 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
-		$WScompany = get_user_meta($user->ID, 'wetstone_company', true);
-		$WSphone = get_user_meta($user->ID, 'wetstone_phone', true);
+		$WSCompany = get_user_meta($user->ID, 'wetstone_company', true);
+		$WSPhone = get_user_meta($user->ID, 'wetstone_phone', true);
 		$resellCompany = get_user_meta($user->ID, 'wetstone_resell_company', true);
 		$resellContact = get_user_meta($user->ID, 'wetstone_resell_contact', true);
 		$resellEmail = get_user_meta($user->ID, 'wetstone_resell_email', true);		
