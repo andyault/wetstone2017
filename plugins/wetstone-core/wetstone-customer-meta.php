@@ -347,11 +347,34 @@ add_action('admin_post_wetstone-customer-registration', 'wetstone_post_customer_
 
 //editing other user profile
 function wetstone_edit_user_profile($user) {
+		$WScompany = get_user_meta($user->ID, 'wetstone_company', true);
+		$WSphone = get_user_meta($user->ID, 'wetstone_phone', true);
 		$resellCompany = get_user_meta($user->ID, 'wetstone_resell_company', true);
 		$resellContact = get_user_meta($user->ID, 'wetstone_resell_contact', true);
 		$resellEmail = get_user_meta($user->ID, 'wetstone_resell_email', true);		
 	
 	?>
+		<h2>Company Info</h2>
+	<table class="form-table">				
+		<tr class="form-field">
+			<th scope="row">
+				<label for="company">Company Name</label>
+			</th>
+
+			<td>
+				<input type="text" id="company" name="company" placeholder="Company" class="regular-text" autocomplete="off" value="<?php echo $WSCompany; ?>">
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="phone">Company Phone</label>
+			</th>
+
+			<td>
+				<input type="text" id="phone" name="phone" placeholder="555-555-5555" class="regular-text" autocomplete="off" value="<?php echo $WSPhone; ?>">
+			</td>
+		</tr>
+	</table>
 	<h2>Reseller Info</h2>
 	<table class="form-table">				
 		<tr class="form-field">
@@ -398,6 +421,8 @@ function wetstone_edit_user_profile_update($userId) {
 		return false;
 
 	update_user_meta($userId, 'wetstone_products', $_POST['product']);
+	update_user_meta($userId, 'wetstone_company', $_POST['company']);
+	update_user_meta($userId, 'wetstone_phone', $_POST['phone']);
 	update_user_meta($userId, 'wetstone_resell_company', $_POST['resell_company']);
 	update_user_meta($userId, 'wetstone_resell_contact', $_POST['resell_contact']);
 	update_user_meta($userId, 'wetstone_resell_email', $_POST['resell_email']);
