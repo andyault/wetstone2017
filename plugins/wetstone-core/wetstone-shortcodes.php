@@ -212,7 +212,7 @@ function display_GDS($atr){
 		$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">Supplemental Gargoyle Hashes</th>';
 		$aca_table .= '</tr>';
 		$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-		$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0]).'" target="_blank" style="text-decoration:none; color:green;">Hash File</a><br /><span style="font-size:11px; margin-top:0px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0])).'</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+		$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0]).'" target="_blank" style="text-decoration:none; color:green; margin-bottom: 5px;">Hash File</a><br /><span style="font-size:11px; margin-top:0px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0])).'</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
 		$aca_table .= '</tr>';
 		$aca_table .= '</table>';
 		
