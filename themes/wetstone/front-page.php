@@ -101,7 +101,6 @@
 		See more testimonials
 	</a>
 </section> 
-<!-- COMMENTED OUT NEWS AND SHOWCASES FOR NOW ACA
 <div class="site-content site-content-padded flex flex-responsive">
 	<section id="showcase" class="showcase-preview section-half">
 		<h2 class="section-header">Showcase</h2>
@@ -134,7 +133,7 @@
 		<a href="<?php /*echo esc_url(get_permalink(get_page_by_path('corporate/news'))); */?>" class="link link-button box-center">
 			See more news
 		</a>
-	</section> -->
+	</section>
 </div> 
 
 
