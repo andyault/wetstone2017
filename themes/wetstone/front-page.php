@@ -102,11 +102,11 @@
 	</a>
 </section> 
 <div class="site-content site-content-padded flex flex-responsive">
-	<section id="showcase" class="showcase-preview section-half">
+	<!--<section id="showcase" class="showcase-preview section-half">
 		<h2 class="section-header">Showcase</h2>
 
 		<p class="text-center" style="display: block; width: 100%; height: 64px; background: #eee; line-height: 64px">Coming soon!</p>
-	</section>
+	</section>-->
 
 	<section id="news" class="news-preview section-half">
 		<h2 class="section-header">News</h2>
