@@ -112,7 +112,7 @@
 		<h2 class="section-header">News</h2>
 
 		<div class="news-preview-news">
-			<?php /*
+			<?php 
 				$news = get_posts([
 					'orderby'        => 'date',
 					'order'          => 'DESC',
@@ -126,7 +126,7 @@
 					setup_postdata($post);
 
 					get_template_part('template-parts/company-news', 'front');
-				} */
+				} 
 			?>
 		</div>
 
