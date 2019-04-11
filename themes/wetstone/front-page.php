@@ -130,7 +130,7 @@
 			?>
 		</div>
 
-		<a href="<?php /*echo esc_url(get_permalink(get_page_by_path('corporate/news'))); */?>" class="link link-button box-center">
+		<a href="<?php echo esc_url(get_permalink(get_page_by_path('corporate/news'))); ?>" class="link link-button box-center">
 			See more news
 		</a>
 	</section>
