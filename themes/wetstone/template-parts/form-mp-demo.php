@@ -1,10 +1,10 @@
 
 
-<form name="mp-beta" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
-	<input type="hidden" name="action" value="wetstone-mp-beta">
+<form name="mp-demo" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
+	<input type="hidden" name="action" value="wetstone-mp-demo">
 	<?php wp_nonce_field('wetstone-mp-demo'); ?>
 
-	<input type="hidden" name="subject" value="Gargoyle Investigator MP BETA Signup Request">
+	<input type="hidden" name="subject" value="Gargoyle MP DEMO Request">
 
 	<table class="form-table form-table-collapse">
 		<tr>
