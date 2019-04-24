@@ -49,7 +49,7 @@
 					}
 
 					//sgo
-					footer_list(['home', 'about-us', 'contact']);
+					footer_list(['home', 'about-us', 'contact', 'news']);
 					footer_list(['products', 'services']);
 					footer_list(['corporate']); 
 					footer_list(['sign-in', ['Sign Out', wp_logout_url(get_permalink(get_page_by_path('sign-in')))], 'portal']);
