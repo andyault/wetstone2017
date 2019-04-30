@@ -398,7 +398,7 @@
 
 		<tr>
 			<td>
-				<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', true); ?>
+				<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', false); ?>
 			</td>
 			<td>
 				<?php 	echo wetstone_form_make_textarea(

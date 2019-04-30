@@ -52,7 +52,7 @@
 
 		<tr>
 			<td><?php echo wetstone_form_make_input('company', 'text', 'Company', 'Google Inc.', true); ?></td>
-			<td><?php echo wetstone_form_make_input('website', 'url', 'Website', 'http://google.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input('website', 'url', 'Website', 'http://google.com', false); ?></td>
 		</tr>
 
 		<tr>
@@ -353,14 +353,14 @@
 				$interests = [
 					'Malware investigation',
 					'Steganography investigation',
-					'Live acquisition and triage',
+					'McAfee Professional Services',
 					'Reselling opportunities',
 					'Other (please specify in comments)'
 				];
 			?>
 
 			<td>
-			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', true); ?>
+			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', false); ?>
 			<br />
 				<?php
 					echo wetstone_form_make_checkboxes(
