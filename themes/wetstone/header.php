@@ -168,7 +168,7 @@
 						'parent'      => 0,
 						'meta_key'    => 'page_showinheader',
 						'meta_value'  => 'true',
-						'sort_column' => 'menu_order',
+						'sort_column' => 'post_date',
 						'sort_order'  => 'ASC'
 					]);
 
