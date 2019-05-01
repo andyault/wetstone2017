@@ -66,7 +66,7 @@ function wetstone_register_post_types() {
 add_action('add_meta_boxes', 'wetstone_add_meta_boxes');
 
 function wetstone_add_meta_boxes() {
-	foreach(['testimonial', 'product', 'page'] as $meta) {
+	foreach(['testimonial', 'product', 'page', 'service'] as $meta) {
 		add_meta_box(
 			sprintf('%s_meta', $meta),
 			sprintf('%s Info', ucfirst($meta)),
