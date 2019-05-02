@@ -42,6 +42,9 @@
 
 							echo footer_link($page, $depth);
 
+							if(gettype($page) == 'array')
+								echo $page[0] . '-' . $page[1] . '-' . $page[2] . '-' . $page[3] . '-';
+							
 							echo '</li>';
 						}
 
