@@ -33,10 +33,6 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-						
-						usort($pages, function ($a, $b) {
-							return strcmp($a['menu_order'], $b['menu_order']);
-						});
 
 						foreach($pages as $page) {
 							echo '<li>';
@@ -46,7 +42,7 @@
 
 							echo footer_link($page, $depth);
 
-							echo $page->menu_order . '</li>';
+							echo '</li>';
 						}
 
 						echo '</ul>';
