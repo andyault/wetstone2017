@@ -33,6 +33,13 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
+						
+						$pages = get_posts([
+							'post_type'      => $pages,
+							'orderby'        => 'menu_order',
+							'order'          => 'ASC'
+						]);
+						
 
 						foreach($pages as $page) {
 							echo '<li>';
