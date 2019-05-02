@@ -34,14 +34,10 @@
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
 						
-						foreach ($pages as $keys => $rows) {
-							$orders[$keys] = $rows['menu_order'];
-							
-						}							
-						array_multisort($orders, SORT_ASC, $pages);	
-						
-						
-							
+						usort($pages, function ($a, $b) {
+							return strcmp($a['menu_order'], $b['menu_order']);
+						});
+
 						foreach($pages as $page) {
 							echo '<li>';
 
@@ -50,7 +46,7 @@
 
 							echo footer_link($page, $depth);
 
-							echo '</li>';
+							echo $page->menu_order . '</li>';
 						}
 
 						echo '</ul>';
