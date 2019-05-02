@@ -42,7 +42,7 @@
 
 							echo footer_link($page, $depth);
 
-							echo $page[0].'-'.$page[1].'</li>';
+							echo $page[0] . '-' . $page[1] . $page[2] . '</li>';
 						}
 
 						echo '</ul>';
