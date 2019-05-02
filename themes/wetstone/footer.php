@@ -32,7 +32,7 @@
 					}
 
 					function footer_list($pages, $depth = 1) {
-						echo '<ul class="list-footer">';
+						echo '<ul class="list-footer">';					
 
 						foreach($pages as $page) {
 							echo '<li>';
@@ -42,7 +42,7 @@
 
 							echo footer_link($page, $depth);
 
-							echo '</li>';
+							echo $page[0].'-'.$page[1].'-'.$page[2].'-'.$page[3].'</li>';
 						}
 
 						echo '</ul>';
