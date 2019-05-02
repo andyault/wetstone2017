@@ -33,7 +33,15 @@
 
 					function footer_list($pages, $depth = 1) {
 						echo '<ul class="list-footer">';
-
+						
+						foreach ($pages as $key => $row) {
+							$order[$key] = $row['menu_order'];
+							
+						}							
+						array_multisort($order, SORT_ASC, $pages);	
+						
+						
+							
 						foreach($pages as $page) {
 							echo '<li>';
 
