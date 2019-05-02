@@ -57,9 +57,10 @@ function wetstone_register_post_types() {
 			'new_item'      => 'New Service',
 			'view_item'     => 'View Service'
 		],
-		'supports'   => ['title', 'editor', 'excerpt'],
+		'supports'   => ['title', 'editor', 'excerpt', 'page-attributes'],
 		'has_archive' => true
 	]);
+	
 }
 
 //add meta boxes
