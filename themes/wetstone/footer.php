@@ -42,7 +42,7 @@
 
 							echo footer_link($page, $depth);
 
-							echo $page->menu_order . '</li>';
+							echo '</li>';
 						}
 
 						echo '</ul>';
