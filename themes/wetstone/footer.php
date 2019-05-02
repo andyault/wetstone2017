@@ -7,7 +7,7 @@
 						$template = '<a href="%s" class="link link-footer">%s</a>';
 
 						if(gettype($page) == 'array') {
-							//echo sprintf($template, $page[1], $page[0]);
+							echo sprintf($template, $page[1], $page[0]);
 
 							return;
 						}
@@ -42,7 +42,7 @@
 
 							echo footer_link($page, $depth);
 
-							echo '</li>';
+							echo $page->ID . '</li>';
 						}
 
 						echo '</ul>';
