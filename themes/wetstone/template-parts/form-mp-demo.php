@@ -9,7 +9,7 @@
 	<table class="form-table form-table-collapse">
 		<tr>
 			<td colspan="2" class="text-center">
-			Register for your DEMO license of Gargoyle MP by please filling out the request form below.<br /><br />			
+			Please complete the form below to request your 30 day trial.<br /><br />			
 			Fields marked with <i class="req">*</i> are required.</td>
 		</tr>
 
