@@ -9,7 +9,7 @@
 	<table class="form-table form-table-collapse">
 		<tr>
 			<td colspan="2" class="text-center">
-			Please complete the form below to request your 30 day trial.<br /><br />			
+			Please complete the form below to request your 10 day trial.<br /><br />			
 			Fields marked with <i class="req">*</i> are required.</td>
 		</tr>
 
