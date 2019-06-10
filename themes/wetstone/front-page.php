@@ -17,7 +17,7 @@
 			<div id="hero-poster" class="video-poster hidden"
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
-				 <br /><br />
+				 <br /><br /><br /><br />
 				 <video width="600" height="338" controls autoplay loop>
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
 				</video> 
