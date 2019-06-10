@@ -18,7 +18,7 @@
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
 				 <br /><br /><br /><br />
-				 <video width="600" height="338" controls autoplay loop>
+				 <video width="600" height="338" class="video-video" autoplay loop controls >
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
 				</video> 
 
