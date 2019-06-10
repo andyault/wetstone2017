@@ -20,12 +20,12 @@
 				 <div style="margin: 30px 0px 0px 0px">
 				 <br /><br /><br /><br />	
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
-				 <br /><br /><br /><br />	
+				 <br /><br /><br />
 				 <video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay>
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
 				</video> 
-				<br /><br />
-				<p class="hero-desc" style="width:550px;">
+				
+				<p class="hero-desc" style="width:550px; margin: 50px 0px 0px 0px;">
 					<span style="font-size: 24px; line-height: 150%;"><strong>Our NEW Multi-Platform Malware Discovery Tool</strong></span><br />
 					<span style="font-size:36px; line-height: 150%; font-family:wetstone; color:#1fb04c"><a class="link link-body" href="https://www.wetstonetech.com/products/gargoyle-mp/">Gargoyle Investigator&trade; MP</a></span><br />
 					<span style="font-size: 24px; line-height: 150%"><strong>Available Now!</strong></span>
