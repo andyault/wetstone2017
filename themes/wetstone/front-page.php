@@ -23,12 +23,12 @@
 	</div>
 
 	<div class="hero-info">
-		 <img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
-		 <center>
+		 <!--<img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">-->
+
 				 <video width="720" height="480" controls>
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
 				</video>  
-				 </center>
+
 		<!--<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
 		<p class="hero-desc" style="margin:500px 0px 0px 0px; width:550px;">
 		<span style="font-size: 24px; line-height: 150%;"><strong>Our NEW Multi-Platform Malware Discovery Tool</strong></span><br />
