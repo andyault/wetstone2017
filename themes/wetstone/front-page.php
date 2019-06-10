@@ -17,6 +17,7 @@
 			<div id="hero-poster" class="video-poster hidden"
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
+				 <div style="margin: 30px 0px 0px 0px">
 				 <br /><br /><br /><br />	
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
 				 <br /><br />
@@ -29,6 +30,7 @@
 					<span style="font-size:36px; line-height: 150%; font-family:wetstone; color:#1fb04c"><a class="link link-body" href="https://www.wetstonetech.com/products/gargoyle-mp/">Gargoyle Investigator&trade; MP</a></span><br />
 					<span style="font-size: 24px; line-height: 150%"><strong>Available Now!</strong></span>
 				</p>
+				</div>
 				</center>
 				 
 			</div>
