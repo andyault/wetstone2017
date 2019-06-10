@@ -18,8 +18,7 @@
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 
 				 <video width="320" height="240" controls>
-					  <source src="<?php //echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4">
-					Your browser does not support the video tag.
+					  <source src="<?php //echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php //echo $err; ?>
 				</video>  
 				 
 				 
