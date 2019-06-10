@@ -19,7 +19,7 @@
 				 <center>
 				 <br /><br />				 
 				 <br /><br />
-				 <video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay loop>
+				 <video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>">
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
 				</video> 
 
