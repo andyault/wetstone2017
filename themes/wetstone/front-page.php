@@ -17,7 +17,7 @@
 			<div id="hero-poster" class="video-poster hidden"
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
-				 <br /><br />	
+				 <br /><br /><br /><br />	
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
 				 <br /><br />
 				 <video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay>
