@@ -16,20 +16,20 @@
 
 			<div id="hero-poster" class="video-poster hidden"
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
-				 
-				 <video width="320" height="240" controls>
-					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
-				</video>  
-				 
+				
 				 
 			</div>
 		</div>
 	</div>
 
 	<div class="hero-info">
-		<!-- <img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
-
-		<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
+		 <img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">
+		 <center>
+				 <video width="720" height="480" controls>
+					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
+				</video>  
+				 </center>
+		<!--<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
 		<p class="hero-desc" style="margin:500px 0px 0px 0px; width:550px;">
 		<span style="font-size: 24px; line-height: 150%;"><strong>Our NEW Multi-Platform Malware Discovery Tool</strong></span><br />
 		<span style="font-size:36px; line-height: 150%; font-family:wetstone; color:#1fb04c"><a class="link link-body" href="https://www.wetstonetech.com/products/gargoyle-mp/">Gargoyle Investigator&trade; MP</a></span><br />
