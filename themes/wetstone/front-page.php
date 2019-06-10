@@ -20,7 +20,7 @@
 				 <div style="margin: 30px 0px 0px 0px">
 				 <br /><br /><br /><br />	
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
-				 <br /><br />
+				 <br /><br /><br /><br />	
 				 <video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay>
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
 				</video> 
