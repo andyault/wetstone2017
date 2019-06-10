@@ -10,7 +10,7 @@
 		<tr>
 			<td colspan="2" class="text-center">
 			Please complete the form below to request your 10 day trial.<br />
-			Note: Trial applications are handled manually, please allow time for application to be processed.<br /><br />				
+			Note: Trial applications are handled manually, please allow time for application to be processed.<br /><br /> 				
 			Fields marked with <i class="req">*</i> are required.</td>
 		</tr>
 
