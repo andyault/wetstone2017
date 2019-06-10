@@ -14,8 +14,8 @@
 				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.webm'); ?>" type="video/webm" /><?php //echo $err; ?>
 			</video>-->
 
-			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/gargmp.jpg'); ?>);"></div>
+			<!--<div id="hero-poster" class="video-poster hidden"
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/gargmp.jpg'); ?>);"></div>-->
 		</div>
 	</div>
 
