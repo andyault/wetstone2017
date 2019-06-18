@@ -32,6 +32,10 @@
 			$productCode = 'GargoyleMPFlash';
 			$adminemail = 'support@wetstonetech.com';			
 		}
+		if ($productID == 1054) {
+			$productCode = 'GargoyleMPTrial';
+			$adminemail = 'support@wetstonetech.com';			
+		}
 		////
 		
 		//var_dump($adminemail);
