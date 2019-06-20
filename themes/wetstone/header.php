@@ -87,9 +87,8 @@
 						$isActive = is_page($id) || $page->post_parent == $id;
 						$activeClass = $isActive ? 'active' : '';
 
-						if ($id >= 612 && $id <= 634) { // IDs of unwanted product in Header
-							if ($id == 1054) {
-						 }
+						if ($id >= 612 && $id <= 634 || $id == 1054) { // IDs of unwanted product in Header
+							
 							
 							if ($id == 633) {
 								return sprintf(
