@@ -26,6 +26,11 @@ function wetstone_post_contact_form() {
 		
 		if($data['fname'] == $data['lname']) {
 			
+			$data['errmsg'] = 'Thank you.';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
 		} else {
 
 		//turn into pretty table
