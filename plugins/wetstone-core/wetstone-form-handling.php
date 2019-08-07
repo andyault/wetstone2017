@@ -53,7 +53,7 @@ function wetstone_post_contact_form() {
 		}
 	
 	} else { /* the reCAPTCHA answer is wrong or there are some other errors */
-		Thank you. 
+		echo 'Thank you.'; 
 		}
 }
 
