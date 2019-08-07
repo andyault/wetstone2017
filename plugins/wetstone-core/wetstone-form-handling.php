@@ -23,6 +23,10 @@ function wetstone_post_contact_form() {
 			'subject', 'fname', 'lname', 'title', 'company', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
 			'zip', 'country', 'referrer', 'interests', 'comments'
 		]);
+		
+		if($data['fname'] == $data['lname']) {
+			
+		} else {
 
 		//turn into pretty table
 		$emailWidth = wetstone_get_option('form_handling', 'email_width');
@@ -53,7 +57,8 @@ function wetstone_post_contact_form() {
 	
 	///} else { /* the reCAPTCHA answer is wrong or there are some other errors */
 	///	echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
-	///	}
+	///}
+	}
 }
 
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
