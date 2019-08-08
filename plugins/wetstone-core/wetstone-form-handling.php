@@ -110,7 +110,8 @@ function wetstone_mp_demo_form() {
 		
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
-			'subject', 'fname', 'lname', 'company', 'phone', 'email'
+			'subject', 'fname', 'lname', 'company', 'website', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
+			'zip', 'country'
 		]);
 
 		//turn into pretty table
