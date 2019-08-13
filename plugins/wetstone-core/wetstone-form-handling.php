@@ -20,9 +20,11 @@ function wetstone_post_contact_form() {
 			'zip', 'country', 'referrer', 'interests', 'comments', 'mtcaptcha-verifiedtoken'
 		]);
 				
-		$captchad = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
 		
-		echo $captchad['success'];
+		$captchaJson = json_decode($captcha);
+		
+		echo $captchaJson->{'success'};
 }
 
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
