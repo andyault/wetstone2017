@@ -303,10 +303,28 @@ function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
 function wetstone_post_login() {
 	$res = wp_signon();
 
-	if(is_wp_error($res)) {
-   		wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
-	} else
-		wp_safe_redirect('https://www.wetstonetech.com/portal/');
+	$data = wetstone_sanitize_post(['mtcaptcha-verifiedtoken']);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
+	
+	
+			if(is_wp_error($res)) {
+				wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
+			} else {
+				wp_safe_redirect('https://www.wetstonetech.com/portal/');
+			}
+		}
 }
 
 add_action('admin_post_wetstone-login', 'wetstone_post_login');
