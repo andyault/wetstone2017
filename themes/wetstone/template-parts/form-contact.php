@@ -394,7 +394,7 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<div class="mtcaptcha"></div>	
+				<div class="mtcaptchainline-flex"></div>	
 				<div class="inline-flex">									
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 					<button type="submit" class="link link-button link-button-input">Submit</button>
