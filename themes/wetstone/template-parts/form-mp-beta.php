@@ -35,7 +35,13 @@
 			<td><?php echo wetstone_form_make_input_emailone('email', 'email', 'Email', 'john.doe@example.com', true); ?></td>
 			<td><?php echo wetstone_form_make_input_emailtwo('email2', 'email', 'Verify Email', 'john.doe@example.com', true); ?></td>
 		</tr>
-
+		<tr>
+			<td colspan="2" class="table-footer">
+				<div class="inline-flex">				
+					<div class="mtcaptcha"></div>
+				</div>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="2" class="table-footer">
 				<div class="inline-flex">				

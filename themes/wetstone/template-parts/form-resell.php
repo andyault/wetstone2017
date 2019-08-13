@@ -410,7 +410,13 @@
 					); ?>
 			</td>
 		</tr>
-
+		<tr>
+			<td colspan="2" class="table-footer">
+				<div class="inline-flex">				
+					<div class="mtcaptcha"></div>
+				</div>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="2" class="table-footer">
 				<div class="inline-flex">

@@ -73,8 +73,21 @@ function wetstone_mp_beta_form() {
 		
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
-			'subject', 'fname', 'lname', 'company', 'phone', 'email'
+			'subject', 'fname', 'lname', 'company', 'phone', 'email', 'mtcaptcha-verifiedtoken'
 		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
 
 		//turn into pretty table
 		$emailWidth = wetstone_get_option('form_handling', 'email_width');
@@ -96,6 +109,7 @@ function wetstone_mp_beta_form() {
 			//go back to form with old data
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
+	}
 }
 
 add_action('admin_post_wetstone-mp-beta', 'wetstone_mp_beta_form');
@@ -110,8 +124,21 @@ function wetstone_mp_demo_form() {
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
 			'subject', 'fname', 'lname', 'company', 'website', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
-			'zip', 'country'
+			'zip', 'country', 'mtcaptcha-verifiedtoken'
 		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
 
 		//turn into pretty table
 		$emailWidth = wetstone_get_option('form_handling', 'email_width');
@@ -133,6 +160,7 @@ function wetstone_mp_demo_form() {
 			//go back to form with old data
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
+		}
 }
 
 add_action('admin_post_wetstone-mp-demo', 'wetstone_mp_demo_form');
@@ -140,10 +168,6 @@ add_action('admin_post_nopriv_wetstone-mp-demo', 'wetstone_mp_demo_form');
 
 //  resell form
 function wetstone_post_resell_form() {
-	
-		//$check_result = apply_filters( 'gglcptch_verify_recaptcha', true, 'string' );
-		// if ( true === $check_result ) { /* the reCAPTCHA answer is right */
-		//	echo '';
 		
 		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-resell-form'))
 			return wp_nonce_ays('wetstone-resell-form');
@@ -151,8 +175,21 @@ function wetstone_post_resell_form() {
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
 			'subject', 'fname', 'lname', 'company', 'website', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
-			'zip', 'country', 'referrer', 'customers', 'marketing', 'comments', 'description', 'territories'
+			'zip', 'country', 'referrer', 'customers', 'marketing', 'comments', 'description', 'territories', 'mtcaptcha-verifiedtoken'
 		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
 
 		//turn into pretty table
 		$emailWidth = wetstone_get_option('form_handling', 'email_width');
@@ -173,9 +210,8 @@ function wetstone_post_resell_form() {
 			//go back to form with old data
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
-	//	} else { /* the reCAPTCHA answer is wrong or there are some other errors */
-	//	echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
-	//	}
+
+		}
 }
 
 add_action('admin_post_wetstone-resell-form', 'wetstone_post_resell_form');
@@ -303,28 +339,10 @@ function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
 function wetstone_post_login() {
 	$res = wp_signon();
 
-	$data = wetstone_sanitize_post(['mtcaptcha-verifiedtoken']);
-				
-		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
-		
-		$captchaJson = json_decode($captcha);
-
-		if($captchaJson->{'success'} != 1) {
-			
-			$data['errmsg'] = 'Please ensure the Captcha is completed';
-
-			//go back to form with old data
-			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
-			
-		} else {
-	
-	
-			if(is_wp_error($res)) {
-				wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
-			} else {
-				wp_safe_redirect('https://www.wetstonetech.com/portal/');
-			}
-		}
+	if(is_wp_error($res)) {
+   		wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
+	} else
+		wp_safe_redirect('https://www.wetstonetech.com/portal/');
 }
 
 add_action('admin_post_wetstone-login', 'wetstone_post_login');
