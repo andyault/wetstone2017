@@ -25,13 +25,6 @@
 	$placeholder = sprintf($placeholder, ucwords($subject));
 ?>
 <script src="<?php echo wetstone_get_asset('/js/form-update.js'); ?>"></script>
-<script>
-    var mtcaptchaConfig = {
-      "sitekey": "MTPublic-VwYnY8ywe"
-   };
-   (function(){var mt_service = document.createElement('script');mt_service.async = true;mt_service.src = 'https://service.mtcaptcha.com/mtcv1/client/mtcaptcha.min.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mt_service);
-   var mt_service2 = document.createElement('script');mt_service2.async = true;mt_service2.src = 'https://service2.mtcaptcha.com/mtcv1/client/mtcaptcha2.min.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mt_service2);}) ();
-   </script>
 <form name="contact" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
 	<input type="hidden" name="action" value="wetstone-contact-form">
 	<?php wp_nonce_field('wetstone-contact-form'); ?>
@@ -394,8 +387,7 @@
 
 		<tr>
 			<td colspan="2" class="table-footer">
-				<center><div class="mtcaptcha"></div></center>
-				<div class="inline-flex">									
+				<div class="inline-flex">				
 					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
 					<button type="submit" class="link link-button link-button-input">Submit</button>
 				</div>
