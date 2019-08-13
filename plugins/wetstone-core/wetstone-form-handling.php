@@ -24,7 +24,7 @@ function wetstone_post_contact_form() {
 		
 		$captchaJson = json_decode($captcha);
 		
-		echo $captchaJson->{'success'};
+		echo $captchaJson->{'codeDesc'}. "      " . $captchaJson->{'code'};
 }
 
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
