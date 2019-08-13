@@ -5,8 +5,24 @@
 	$action = $_GET['action'];
 	$template = '';
 
+	
 	$errors = new WP_Error();
+	
+	$captch = $_POST['mtcaptcha-verifiedtoken'];
 
+	$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$captch['mtcaptcha-verifiedtoken']);
+		
+	$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
+	
 	//if we're posting
 	switch($action) {
 		case 'lostpassword':
@@ -111,7 +127,7 @@
 			$template = 'sign-in';
 			break;
 	}
-
+		}
 	if(isset($_GET['rperror']) && $_GET['rperror'] == 'invalidkey')
 			$errors->add('invalidkey', 'Your password reset link appears to be invalid. Please request a new link below.');
 
