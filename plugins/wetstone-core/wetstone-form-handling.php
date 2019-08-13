@@ -23,8 +23,7 @@ function wetstone_post_contact_form() {
 		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
 		
 		$captchaJson = json_decode($captcha);
-		
-		;
+
 		if($captchaJson->{'success'} != 1) {
 			
 			$data['errmsg'] = 'Please ensure the Captcha is completed';
@@ -60,10 +59,6 @@ function wetstone_post_contact_form() {
 			//go back to form with old data
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
-	
-	///} else { /* the reCAPTCHA answer is wrong or there are some other errors */
-	///	echo $check_result; /* display the error message or do other necessary actions in case when the reCAPTCHA test was failed */
-	///}
 	}
 }
 
@@ -203,7 +198,21 @@ function wetstone_post_support() {
 		wp_die('<h1>' . __( 'Cheatin&#8217; uh?' ) . '</h1><p>' . __( 'Sorry, you can only submit forms from your own account.' ) . '</p>', 403);
 
 	//building email body
-	$data = wetstone_sanitize_post(['product', 'context', 'comments']);
+	$data = wetstone_sanitize_post(['product', 'context', 'comments', 'mtcaptcha-verifiedtoken'
+		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
 
 	$comments = wetstone_pop_value($data, 'comments');
 
@@ -230,6 +239,7 @@ function wetstone_post_support() {
 
 		//go back to form with old data
 		wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+	}
 	}
 }
 
