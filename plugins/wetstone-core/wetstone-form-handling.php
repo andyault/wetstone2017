@@ -22,8 +22,7 @@ function wetstone_post_contact_form() {
 				
 		$captchad = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
 		
-		echo $captchad;
-
+		echo $captchad['success'];
 }
 
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
