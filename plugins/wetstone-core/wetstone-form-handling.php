@@ -40,7 +40,7 @@ function wetstone_post_contact_form() {
 		$subject = wetstone_pop_value($data, 'subject');
 
 		$fields = '<pre>';
-		$fields .= wetstone_columnify($data);
+		$fields .= wetstone_columnify(unset($data['mtcaptcha-verifiedtoken']));
 
 		if(!empty($comments))
 			$fields .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
@@ -217,7 +217,7 @@ function wetstone_post_support() {
 	$comments = wetstone_pop_value($data, 'comments');
 
 	$body = '<pre>';	
-	$body .= wetstone_columnify($data);	
+	$body .= wetstone_columnify(unset($data['mtcaptcha-verifiedtoken']));	
 	$body .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . "</p>";
 	$body .= "<p>".$firstname." ".$lastname.": ".$emailaddress."</p>";
 
