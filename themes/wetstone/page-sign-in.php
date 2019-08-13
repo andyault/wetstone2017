@@ -5,15 +5,8 @@
 	$action = $_GET['action'];
 	$template = '';
 
-	
 	$errors = new WP_Error();
-	
-	$captch = $_POST['mtcaptcha-verifiedtoken'];
 
-	$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$captch['mtcaptcha-verifiedtoken']);
-		
-	$captchaJson = json_decode($captcha);
-	
 	//if we're posting
 	switch($action) {
 		case 'lostpassword':
@@ -22,15 +15,6 @@
 			if($isPOST) {
 				//try to reset password
 				$login = $_POST['user_login'];
-				
-				if($captchaJson->{'success'} != 1) {
-			
-					$data['errmsg'] = 'Please ensure the Captcha is completed';
-
-					//go back to form with old data
-					wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
-			
-				} else {
 
 				if(empty($login)) {
 					$errors->add('empty_username', 'ERROR: Enter a username or email address.');
@@ -72,7 +56,6 @@
 
 						exit;
 					}
-					}
 				}
 			}
 
@@ -83,15 +66,7 @@
 		case 'rp':
 			$key = $_GET['key'];
 			$login = $_GET['login'];
-			
-			if($captchaJson->{'success'} != 1) {
-			
-			$data['errmsg'] = 'Please ensure the Captcha is completed';
 
-			//go back to form with old data
-			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
-			
-				} else {
 			//if we have the right query vars, check password
 			if(isset($key) && !empty($key) && isset($login) && !empty($login)) {
 				$user = check_password_reset_key($key, $login); 
@@ -128,14 +103,15 @@
 					exit;
 				}
 			}
-				}
+
 			$template = 'reset-password';
 			break;
 
 		default:
 			$template = 'sign-in';
 			break;
-		}
+	}
+
 	if(isset($_GET['rperror']) && $_GET['rperror'] == 'invalidkey')
 			$errors->add('invalidkey', 'Your password reset link appears to be invalid. Please request a new link below.');
 
