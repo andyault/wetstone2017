@@ -325,9 +325,27 @@ function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
 //handle login form
 function wetstone_post_login() {
 	
-	$captcha = $_POST['mtcaptcha-verifiedtoken'];
+	$capt = $_POST['mtcaptcha-verifiedtoken'];
 	
-	echo $captcha;
+	$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$capt);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
+			
+		} else {
+	
+	$res = wp_signon();
+
+	if(is_wp_error($res)) {
+   		wp_safe_redirect(add_query_arg('success', 'false', get_permalink(get_page_by_path('sign-in'))));
+	} else
+		wp_safe_redirect('https://www.wetstonetech.com/portal/');
+	
+	}
+	
 }
 
 add_action('admin_post_wetstone-login', 'wetstone_post_login');
