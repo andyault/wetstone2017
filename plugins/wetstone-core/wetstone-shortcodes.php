@@ -247,7 +247,48 @@ add_shortcode("GMP", "display_GMP");
 function display_GMP($atr){
 	ob_start();
 		$productDir = 'GargoyleMP';
-        $dataset = $productDir.'/Dataset Updates';
+        $dataset = $productDir.'/Dataset Updates/7_2';
+		$pdfEng = $productDir.'/Release Notes';
+		$pdfSpa = $productDir.'/Release Notes - Spanish';
+				
+		$datasetFiles = scan_dir("protected/".$dataset);
+		$pdfEngFiles = scan_dir("protected/".$pdfEng);
+		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
+				
+		$aca_table = "";		
+		
+		echo $aca_table;
+		
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			
+			$aca_table = "";
+			$aca_table .= '<table style="border: 1px solid black;">';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><br /><span style="font-size:12px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i])).'</span><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><br /><span style="font-size:12px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i])).'</span><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a><br /><span style="font-size:12px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i])).'</span></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '</table>';
+			
+			echo $aca_table;
+		}
+	return ob_get_clean();
+}
+
+add_shortcode("GMP71", "display_GMP71");
+ 
+function display_GMP71($atr){
+	ob_start();
+		$productDir = 'GargoyleMP';
+        $dataset = $productDir.'/Dataset Updates/7_1';
 		$pdfEng = $productDir.'/Release Notes';
 		$pdfSpa = $productDir.'/Release Notes - Spanish';
 				
@@ -289,7 +330,49 @@ add_shortcode("GMPF", "display_GMPF");
 function display_GMPF($atr){
 	ob_start();
 		$productDir = 'GargoyleMP Flash';
-        $dataset = $productDir.'/Dataset Updates';
+        $dataset = $productDir.'/Dataset Updates/7_2';
+		$pdfEng = 'GargoyleMP/Release Notes';
+		$pdfSpa = 'GargoyleMP/Release Notes - Spanish';
+				
+		$datasetFiles = scan_dir("protected/".$dataset);
+		$pdfEngFiles = scan_dir("protected/".$pdfEng);
+		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
+				
+		$aca_table = "";		
+		
+		echo $aca_table;
+		
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			
+			$aca_table = "";
+			$aca_table .= '<table style="border: 1px solid black;">';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><br /><span style="font-size:12px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i])).'</span><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><br /><span style="font-size:12px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i])).'</span><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a><br /><span style="font-size:12px;">MD5 - '. md5_file('https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i])).'</span></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
+			$aca_table .= '</tr>';
+			$aca_table .= '</table>';
+			
+			echo $aca_table;
+		}
+	return ob_get_clean();
+}
+
+//add Dataset info
+add_shortcode("GMPF71", "display_GMPF71");
+ 
+function display_GMPF71($atr){
+	ob_start();
+		$productDir = 'GargoyleMP Flash';
+        $dataset = $productDir.'/Dataset Updates/7_1';
 		$pdfEng = 'GargoyleMP/Release Notes';
 		$pdfSpa = 'GargoyleMP/Release Notes - Spanish';
 				
