@@ -259,7 +259,7 @@ function display_GMP($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+		for ($aca_i = 0; $aca_i < 1; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);
 			
 			$aca_table = "";
@@ -342,7 +342,7 @@ function display_GMPF($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+		for ($aca_i = 0; $aca_i < 1; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);
 			
 			$aca_table = "";
