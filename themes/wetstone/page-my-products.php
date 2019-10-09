@@ -79,7 +79,7 @@
 
 							get_template_part('template-parts/my-product', 'list');
 							
-							echo $products['613']['expiry'];
+							echo $products[$id]['expiry'];
 						}
 					} else
 						echo '<p class="text-center">You don\'t have any products yet.</p>';
