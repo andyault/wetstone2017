@@ -76,10 +76,15 @@
 						foreach($products as $id => $info) {
 							$post = get_post($id);
 							setup_postdata($post);
-
-							get_template_part('template-parts/my-product', 'list');
 							
-							echo "License Expiration: " . $products[$id]['expiry'];
+							if ($products[$id]['expiry'] > time()) {
+								
+							} else {
+							
+							get_template_part('template-parts/my-product', 'list');				
+							
+							echo "License Expiration: " . $products[$id]['expiry'] . "<br /><br />";
+							}
 						}
 					} else
 						echo '<p class="text-center">You don\'t have any products yet.</p>';
