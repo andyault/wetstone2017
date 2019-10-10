@@ -77,7 +77,7 @@
 							$post = get_post($id);
 							setup_postdata($post);
 							
-							if ($products[$id]['expiry'] < time()) {
+							if ($products[$id]['expiry'] > time()) {
 								
 							} else {
 							
