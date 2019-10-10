@@ -91,7 +91,7 @@
 							echo "License Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
 							
 							if ($days_between <= 90) {
-								echo "<span style='color:red'> - Your license expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
+								echo "<span style='color:red'> - Your license for " . get_the_title($id) . " expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								}
 							
 							echo "<br /><br />";
