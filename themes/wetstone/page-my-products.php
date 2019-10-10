@@ -79,7 +79,7 @@
 							
 							if (strtotime($products[$id]['expiry']) < time()) {
 								
-								echo "<p>Your license for 'PRODUCT NAME' expired on. To renew, please contact <a mailto:sales@wetstonetech.com>sales@wetstonetech.com</a>."
+								echo "<p>Your license for 'PRODUCT NAME' expired on ". date('m d,Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a mailto:sales@wetstonetech.com>sales@wetstonetech.com</a>.";
 								
 							} else {
 							
