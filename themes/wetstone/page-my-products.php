@@ -79,7 +79,8 @@
 							
 							if (strtotime($products[$id]['expiry']) < time()) {
 								
-								echo "<p style='color:red'>Your license for <strong>" . get_the_title($id). "</strong> expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";						
+								echo "<p style='color:red'>Your license for <strong>" . get_the_title($id). "</strong> expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";
+								echo "<br /><br /><hr />";						
 							} else {
 								
 							$start = time();
@@ -94,7 +95,7 @@
 								echo "<span style='color:red'> - Your license for <strong>" . get_the_title($id) . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								}
 							
-							echo "<br /><br />";
+							echo "<br /><br /><hr />";
 							}
 						}
 					} else
