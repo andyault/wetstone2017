@@ -79,13 +79,13 @@
 							
 							if (strtotime($products[$id]['expiry']) < time()) {
 								
-								echo "<p>Your license for 'PRODUCT NAME' expired on ". date('m d,Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a mailto:sales@wetstonetech.com>sales@wetstonetech.com</a>.";
+								echo "<p>Your license for 'PRODUCT NAME' expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\">sales@wetstonetech.com</a>.";
 								
 							} else {
 							
 							get_template_part('template-parts/my-product', 'list');				
 							
-							echo "License Expiration: " . $products[$id]['expiry'] . "<br /><br />";
+							echo "License Expiration: " . date('F d, Y', strtotime($products[$id]['expiry'])) . "<br /><br />";
 							}
 						}
 					} else
