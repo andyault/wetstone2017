@@ -76,7 +76,7 @@
 						foreach($products as $id => $info) {
 							$post = get_post($id);
 							setup_postdata($post);
-							echo $id;
+							
 							if (strtotime($products[$id]['expiry']) < time()) {
 								
 								echo "<p style='color:red'>Your license for " . get_the_title($id). " expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";						
