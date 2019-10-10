@@ -77,19 +77,17 @@
 							$post = get_post($id);
 							setup_postdata($post);
 							
-							if ($products[$id]['expiry'] > time()) {
+							if (strtotime($products[$id]['expiry']) < time()) {
 								
 							} else {
 							
 							get_template_part('template-parts/my-product', 'list');				
 							
-							echo "License Expiration: " . $products[$id]['expiry'] . "<br />".strtotime($products[$id]['expiry'])."<br />";
+							echo "License Expiration: " . $products[$id]['expiry'] . "<br /><br />";
 							}
 						}
 					} else
 						echo '<p class="text-center">You don\'t have any products yet.</p>';
-					
-					echo time();
 				?>
 			</ul>
 			
