@@ -174,7 +174,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 										</select>
 									</td>
 									<td style="padding: 0;">
-										<input type="number" name="product[<?php echo $pid ?>][core_limit]" value="<?php echo $myinfo ? $myinfo['core_limit'] : 1; ?>" disabled>
+										<input type="number" name="product[<?php echo $pid ?>][core_limit]" value="<?php echo $myinfo ? $myinfo['core_limit'] : 2; ?>" disabled>
 									</td>
 
 									<td style="padding: 0;">
