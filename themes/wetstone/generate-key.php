@@ -13,7 +13,12 @@
 		//see how many licenses we have
 		$info = get_user_meta($user->ID, 'wetstone_products', true);
 		$productinfo = &$info[$product];
-
+		
+		$licenseType = 'none';
+		$coreLimit = 'none';
+		$reportLimit = 'none';
+		$expirationDate = strtotime($productinfo['expiry']);
+		
 		if(!$productinfo || $productinfo['num_used'] >= $productinfo['num_owned'])
 			wp_die('You\'re not allowed to generate a license for that product.');
 
@@ -26,15 +31,19 @@
 		$productID = $post->ID;
 		if ($productID == 633) {
 			$productCode = 'GargoyleMP';
-			$adminemail = 'support@wetstonetech.com';			
+			$licenseType = $productinfo['license_type'];
+			$coreLimit = $productinfo['core_limit'];		
 		}
 		if ($productID == 634) {
 			$productCode = 'GargoyleMPFlash';
-			$adminemail = 'support@wetstonetech.com';			
+			$licenseType = 'Perpetual';
+			$coreLimit = $productinfo['core_limit'];			
 		}
 		if ($productID == 1054) {
 			$productCode = 'GargoyleMPTrial';
-			$adminemail = 'support@wetstonetech.com';			
+			$licenseType = 'Trial';
+			$coreLimit = $productinfo['core_limit'];	
+			$reportLimit = $productinfo['report_limit'];		
 		}
 		////
 		
@@ -47,6 +56,10 @@ $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 		$body .= "Customer Name: " . $fullname . PHP_EOL;
 		$body .= "Customer Email: " . $user->user_email . PHP_EOL;
 		$body .= "Product Code: " . $productCode . PHP_EOL;
+		$body .= "License Type: " . $licenseType . PHP_EOL;	
+		$body .= "Core Limit: " . $coreLimit . PHP_EOL;
+		$body .= "Reporting Limit: " . $reportLimit . PHP_EOL;
+		$body .= "Expiration: " . $expirationDate . PHP_EOL;	
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
 
 		//try to send

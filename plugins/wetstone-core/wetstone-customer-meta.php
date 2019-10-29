@@ -102,6 +102,9 @@ function wetstone_echo_customer_form_fields($userId = null) {
 							<th>Expiry Date</th>
 							<th>Licenses Owned</th>
 							<th>Licenses Used</th>
+							<th>License Type</th>
+							<th>Core Limit</th>
+							<th>Reporting Limit</th>
 						</tr>
 					</thead>
 
@@ -160,13 +163,29 @@ function wetstone_echo_customer_form_fields($userId = null) {
 
 									<td style="padding: 0;">
 										<input type="number" name="product[<?php echo $pid ?>][num_used]" value="<?php echo $myinfo ? $myinfo['num_used'] : 0; ?>" disabled>
-									</td>									
+									</td>
+									<td>
+									<?php $type = $myinfo['license_type']; ?>
+										<select name="product[<?php echo $pid ?>][license_type]" value="<?php echo $type; ?>" disabled>
+											<option value="None" <?php if($type == null || $type == '' || $type == 'None') echo 'selected'; ?>>None</option>
+											<option value="Perpetual" <?php if($type == 'Perpetual') echo 'selected'; ?>>Perpetual</option>
+											<option value="Subscription" <?php if($type == 'Subscription') echo 'selected'; ?>>Subscription</option>
+											<option value="Trial" <?php if($type == 'Trial') echo 'selected'; ?>>Trial</option>
+										</select>
+									</td>
+									<td style="padding: 0;">
+										<input type="number" name="product[<?php echo $pid ?>][core_limit]" value="<?php echo $myinfo ? $myinfo['core_limit'] : 1; ?>" disabled>
+									</td>
+
+									<td style="padding: 0;">
+										<input type="number" name="product[<?php echo $pid ?>][report_limit]" value="<?php echo $myinfo ? $myinfo['report_limit'] : 0; ?>" disabled>
+									</td>
 								</tr>										
 
 								<?php
 								
 								if (in_array($pid, $linebreaks)) {
-										echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
+										echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
 									}
 								
 								$pidcount++;
@@ -189,9 +208,12 @@ function wetstone_echo_customer_form_fields($userId = null) {
 			checkbox.onchange = function() {
 				var row = this.parentElement.parentElement;
 				var inputs = row.querySelectorAll('input:not([type=checkbox])');
+				var inputs2 = row.querySelectorAll('select:not([type=checkbox])');
 
 				for(var j = 0; j < inputs.length; j++)
 					inputs[j].disabled = !this.checked;
+				for(var k = 0; k < inputs2.length; k++)
+					inputs2[k].disabled = !this.checked;
 			}
 
 			checkbox.onchange();
