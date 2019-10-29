@@ -23,7 +23,7 @@
 			wp_die('You\'re not allowed to generate a license for that product.');
 
 		//extra info
-		$adminemail = get_option('wetstone_key_generation_to_emails');
+		$adminemail = get_option('wetstone_key_generation_to_emails').",support@wetstonetect.com";
 		$date = date('Y-m-d G:i:s');
 		
 		////
