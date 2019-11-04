@@ -14,7 +14,7 @@
 		<div class="product-preview-info">
 			<h2 class="product-preview-title <?php if($post->ID != 141) echo 'wetstone-font'; ?>"><?php the_title(); ?></h2>
 
-			<div class="product-preview-excerpt body"><?php the_excerpt(); ?></div>
+			<div class="product-preview-excerpt body" style="font-size:18px"><?php the_excerpt(); ?></div>
 
 			<a href="<?php the_permalink(); ?>" class="product-preview-button link link-button">View product</a>
 		</div>
