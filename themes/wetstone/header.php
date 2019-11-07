@@ -74,10 +74,14 @@
 			</div>
 		</div>
 
-		<header class="header">
+		<header class="header" style="height:70px">
+			<div style="width: 100%; position:fixed;">
+				<div style="float: right; font-size: 14px; margin: 5px 5px 0px 0px; color: #AAAAAA"><p>WetStone Technologies, A Division of <a href="https://www.allencorporation.com/" class="link" style="color:green" title="Allen Corporation of America"> Allen Corporation</a></p>
+				</div>
+			</div>
 			<?php global $post; ?>
-
-			<div class="header-site-full">
+			
+			<div class="header-site-full" style="margin-top: 20px">			
 				<?php
 					//normal links
 					function make_header_link() {
@@ -209,8 +213,9 @@
 						}
 					}
 				?>
+				
 			</div>
-
+						
 			<div class="header-site-mobile">
 				<?php
 					$post = get_post($homeID);
@@ -263,7 +268,7 @@
 						?>
 					</ul>
 				</div>
-			</div>
+			</div>			
 		</header>
 
 		<main class="site-main">
