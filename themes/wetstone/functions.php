@@ -5,5 +5,5 @@ function wpse62415_filter_wp_title( $title ) {
     }
     return $title;
 }
-add_filter( 'wp_title', 'wpse62415_filter_wp_title' );
+add_filter( 'the_title', 'wpse62415_filter_wp_title' );
 ?>
