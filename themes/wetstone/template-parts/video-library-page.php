@@ -3,4 +3,3 @@
 		<?php the_title(); ?>
 	</a>
 </h2>
-<h2>Test</h2>
