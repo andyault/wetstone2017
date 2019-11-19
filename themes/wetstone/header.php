@@ -76,7 +76,7 @@
 
 		<header class="header" style="height:78px">
 			<div style="width: 100%; position:fixed;">
-				<div style="float: right; font-size: 14px; margin: 5px 5px 0px 0px; color: #AAAAAA"><p>WetStone Technologies, A Division of <a href="https://www.allencorporation.com/" class="link" style="color:green" title="Allen Corporation of America"> Allen Corporation</a></p>
+				<div style="float: right; font-size: 14px; margin: 5px 5px 0px 0px; color: #AAAAAA"><p>WetStone Technologies, A Division of <a href="https://www.allencorporation.com/" target="_blank" class="link" style="color:#1fb04c" title="Allen Corporation of America"> Allen Corporation</a></p>
 				</div>
 			</div>
 			<?php global $post; ?>
