@@ -672,11 +672,11 @@ add_shortcode("IDEAL", "display_IDEAL");
 
 function display_IDEAL($atr){
 	ob_start();
+		$productID = 614;
 		$productDir = 'IDEAL';
         $dataset = $productDir.'/Dataset Updates';
 				
 		$datasetFiles = scan_dir("protected/".$dataset);
-		
 		
 		$aca_table = "";		
 		
@@ -713,6 +713,7 @@ add_shortcode("GDD", "display_GDD");
 
 function display_GDD($atr){
 	ob_start();
+		$productID = 621;
 		$productDir = 'GD Datasets';
         $dataset = $productDir;
 				
