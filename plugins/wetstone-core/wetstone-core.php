@@ -193,8 +193,17 @@ function dataset_report_menu_page() {
 
 		
 	} */
-	
-	$result2 = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets_log ORDER BY download_date DESC');		
+		
+	if (!isset($_GET['startrow']) or !is_numeric($_GET['startrow'])) {
+	//we give the value of the starting row to 0 because nothing was found in URL
+		$startrow = 0;
+		
+	//otherwise we take the value from the URL
+	} else {
+	  $startrow = (int)$_GET['startrow'];
+	}
+	$prev = $startrow - 25;
+	$result2 = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets_log ORDER BY download_date DESC LIMIT '.$startrow.', 25');		
 	if (!$result2) {
 		echo "There is a problem with the database."; 
 		$wpdb->print_error();
@@ -240,8 +249,16 @@ function dataset_report_menu_page() {
 							  </tr>';		   
 			}
 			
-		$aca_table2 .= '</tbody></table></div>';
+		$aca_table2 .= '</tbody></table>';
+		$aca_table2 .= '<span style="float:right; margin-right:25px;">';
+		if ($prev >= 0) {		
+		$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=dataset_report_menu&startrow='.$prev.'" style="text-decoration:none"><< Previous 25</a> &nbsp; &nbsp; &nbsp';
+		}
 
+		if (count($result2) == 25) {
+			$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=dataset_report_menu&startrow='.($startrow+25).'"  style="text-decoration:none">Next 25 >></a>';
+			$aca_table2 .= '</span></div>';
+		}
 		echo $aca_table2;
 
 		
