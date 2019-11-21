@@ -133,8 +133,148 @@ function wetstone_add_options_page() {
 
 add_action('admin_menu', 'wetstone_add_options_page');
 
+ 
+function dataset_report_menu(){    
+	$page_title = 'Dataset Report';   
+	$menu_title = 'Dataset Report';   
+	$capability = 'manage_options';   
+	$menu_slug  = 'dataset_report_menu';   
+	$function   = 'dataset_report_menu_page';   
+	$icon_url   = 'dashicons-media-code';   
+	$position   = 4;    
+add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
 
+} 
+add_action( 'admin_menu', 'dataset_report_menu' ); 
 
+function dataset_report_menu_page() {	
+	global $wpdb;
+	$wpdb->show_errors();
+	echo "<h1>Dataset Report</h1>";
+	
+	// Will return to this to add what files are in DB //
+/*	$result = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets ORDER BY date_added DESC');		
+	if (!$result) {
+		echo "There is a problem with the database."; 
+		$wpdb->print_error();
+	} else { 
+		$wpdb->hide_errors();
+		$aca_table = '<div style="margin: 5% 5%">
+				<table style="width:95%; 
+						margin-bottom: 1.5em;
+						border-spacing: 0;
+						border: 1px solid #ddd;">
+				<caption>Available Files</caption>
+				<thead style="background-color: rgba(29,150,178,1);
+						border: 1px solid rgba(29,150,178,1);
+						font-weight: normal;
+						text-align: center;
+						color: white;">
+					<tr>
+						<th scope="col">Filename</th>
+						<th scope="col">Date Added</th>
+						<th scope="col">Number of Downloads</th>
+					</tr>
+				</thead>
+				<tbody style="text-align: center;">';
+      
+			foreach ( $result as $page )
+			{
+			   $aca_table .= '<tr>
+								<th scope="row">'. $page->dataset_name. '</th>
+								<td>'. $page->date_added. '</td>
+								<td>'. $page->times_downloaded. '</td>
+							  </tr>';		   
+			}
+			
+		$aca_table .= '</tbody></table></div>';
+
+		echo $aca_table;
+
+		
+	} */
+	
+	$result2 = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets_log ORDER BY download_date DESC');		
+	if (!$result2) {
+		echo "There is a problem with the database."; 
+		$wpdb->print_error();
+	} else { 
+		$wpdb->hide_errors();
+
+		$aca_table2 = '<div style="margin: 5% 2%"><form id="download-csv" action="'. esc_url( admin_url("admin-post.php") ) .'" method="post">
+				   <input type="hidden" name="action" value="wetstone-download-csv">'.
+				   wp_nonce_field("wetstone-download-csv") .
+				   submit_button(__("Download CSV"), "primary", "download-csv", true) .'<br>
+			</form><br />
+				<table style="width:99%; 
+						margin-bottom: 1.5em;
+						border-spacing: 0;
+						border: 1px solid #ddd;">
+				<caption style="font-weight:bold">Dataset and file downloads</caption>
+				<thead style="background-color: rgba(29,150,178,1);
+						border: 1px solid rgba(29,150,178,1);
+						font-weight: normal;
+						text-align: center;
+						color: white;">
+					<tr>
+						<th scope="col">User Name/Email</th>
+						<th scope="col">User Email</th>
+						<th scope="col">IP Address</th>
+						<th scope="col">Asset</th>
+						<th scope="col">Download Date</th>
+					</tr>
+				</thead>
+				<tbody style="text-align: center;">';
+      
+			foreach ( $result2 as $page )
+			{			
+				
+			   $dataset = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets WHERE dataset_id=\''.$page->asset_id.'\'');
+			   $userData = get_userdata($page->user_id);
+			   $aca_table2 .= '<tr>
+								<th scope="row">'. $userData->first_name . ' ' . $userData->last_name . '</th>
+								<td>'. $userData->user_email . '</td>
+								<td>'. $page->user_ip . '</td>
+								<td>'. $dataset[0]->dataset_name . '</td>
+								<td>'. $page->download_date . '</td>
+							  </tr>';		   
+			}
+			
+		$aca_table2 .= '</tbody></table></div>';
+
+		echo $aca_table2;
+
+		
+	}
+		
+}
+
+function wetstone_post_download_csv() {
+	$delimiter = ",";
+    $filename = "downloads_" . date('Y-m-d') . ".csv";
+	//create a file pointer
+    $f = fopen('php://memory', 'w');
+    
+    //set column headers
+    $fields = array('ID', 'Name', 'Email', 'Phone', 'Created', 'Status');
+    fputcsv($f, $fields, $delimiter);
+	
+	$status = ($row['status'] == '1')?'Active':'Inactive';
+    $lineData = array('test', 'test', 'test', 'test', 'test', $status);
+    fputcsv($f, $lineData, $delimiter);
+	
+	    //move back to beginning of file
+    fseek($f, 0);
+    
+    //set headers to download file rather than displayed
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+    
+    //output all remaining data on a file pointer
+    fpassthru($f);
+}	
+
+add_action('admin_post_wetstone-download-csv', 'wetstone_post_download_csv');
 
 //include modules
 include('wetstone-security.php');

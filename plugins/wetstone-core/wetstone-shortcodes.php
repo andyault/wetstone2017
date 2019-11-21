@@ -1,5 +1,4 @@
 <?php
-
 //carousel
 function wetstone_shortcode_carousel($attrs) {
 	if(!isset($attrs['ids']) || empty($attrs['ids']))
@@ -185,26 +184,53 @@ function wetstone_add_page_excerpts() {
 	add_post_type_support('page', 'excerpt');
 }
 
-
-
 add_action('init', 'wetstone_add_page_excerpts');
 
+//Pull data from datasets table
+function getResults($query) {
+	global $wpdb;
+	$result = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets WHERE dataset_name=\''.$query.'\'');
+	return $result;
+}
+
+//Inserts data into datasets table
+function insertDataset($id, $direct, $file) {
+	global $wpdb;
+	$wpdb->insert(
+				$wpdb->prefix.'datasets', 
+				array(
+					'dataset_id' => '',
+					'product_id' => $id,
+					'dataset_name' => $file,
+					'md5_hash' =>  md5_file('protected/'.$direct.'/'.$file),
+					'date_added' => date("Y-m-d H:i:s")
+				)
+			);
+}
 
 //add Dataset info
 add_shortcode("GDS", "display_GDS");
  
 function display_GDS($atr){
 	ob_start();
+		$productID = 116;
 		$productDir = 'Gargoyle Investigator';
         $dataset = $productDir.'/Dataset Updates';
 		$pdfEng = $productDir.'/Release Notes';
 		$pdfSpa = $productDir.'/Release Notes - Spanish';
 		$hashes = $productDir.'/Supplemental Gargoyle Hashes';
-		
+
 		$datasetFiles = scan_dir("protected/".$dataset);
 		$pdfEngFiles = scan_dir("protected/".$pdfEng);
 		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
 		$hashFiles = scan_dir("protected/".$hashes);		
+		
+		$result0 = getResults($hashFiles[0]);
+		
+		if (!$result0) {
+				insertDataset($productID, $hashes, $hashFiles[0]);
+			}
+		$result0 = getResults($hashFiles[0]);
 		
 		$aca_table = "";
 		$aca_table .= '<table style="border: 1px solid black">';
@@ -212,14 +238,34 @@ function display_GDS($atr){
 		$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">Supplemental Gargoyle Hashes</th>';
 		$aca_table .= '</tr>';
 		$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-		$aca_table .= '<td style="padding-left:7px; width:475px; height:25px;"><p><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($hashes.'/'.$hashFiles[0]).'" target="_blank" style="text-decoration:none; color:green;">Hash File</a></p></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
+		$aca_table .= '<a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+		$aca_table .= '<td style="padding-left:7px; width:475px; height:25px;"><a href="../../product-dl.php?asset='. $result0[0]->dataset_id .'&file='.urlencode($hashes.'/'.$hashFiles[0]).'" target="_blank" style="text-decoration:none; color:green;">Hash File</a>';
+		$aca_table .= '<br /><span style="font-size:12px">MD5 - ' . $result0[0]->md5_hash .'</span>';
+		$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
 		$aca_table .= '</tr>';
 		$aca_table .= '</table>';
 		
 		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -227,14 +273,17 @@ function display_GDS($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><br /><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/cab-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><br /><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a><br /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -242,10 +291,14 @@ function display_GDS($atr){
 	return ob_get_clean();
 }
 
+
+
 add_shortcode("GMP", "display_GMP");
  
 function display_GMP($atr){
 	ob_start();
+		global $wpdb;
+		$productID = 633;
 		$productDir = 'GargoyleMP';
         $dataset = $productDir.'/Dataset Updates/7_2';
 		$pdfEng = $productDir.'/Release Notes';
@@ -260,7 +313,24 @@ function display_GMP($atr){
 		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -268,14 +338,17 @@ function display_GMP($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><br /><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><br /><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a><br /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -287,6 +360,7 @@ add_shortcode("GMP71", "display_GMP71");
  
 function display_GMP71($atr){
 	ob_start();
+		$productID = 633;
 		$productDir = 'GargoyleMP';
         $dataset = $productDir.'/Dataset Updates/7_1';
 		$pdfEng = $productDir.'/Release Notes';
@@ -301,7 +375,24 @@ function display_GMP71($atr){
 		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -309,14 +400,17 @@ function display_GMP71($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><br /><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><br /><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -329,6 +423,7 @@ add_shortcode("GMPF", "display_GMPF");
  
 function display_GMPF($atr){
 	ob_start();
+		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
         $dataset = $productDir.'/Dataset Updates/7_2';
 		$pdfEng = 'GargoyleMP/Release Notes';
@@ -343,7 +438,24 @@ function display_GMPF($atr){
 		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -351,14 +463,17 @@ function display_GMPF($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -371,6 +486,7 @@ add_shortcode("GMPF71", "display_GMPF71");
  
 function display_GMPF71($atr){
 	ob_start();
+		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
         $dataset = $productDir.'/Dataset Updates/7_1';
 		$pdfEng = 'GargoyleMP/Release Notes';
@@ -385,7 +501,24 @@ function display_GMPF71($atr){
 		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -393,14 +526,17 @@ function display_GMPF71($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -412,6 +548,7 @@ add_shortcode("STEG", "display_STEG");
 
 function display_STEG($atr){
 	ob_start();
+		$productID = 115;
 		$productDir = 'StegoHunt';
         $dataset = $productDir.'/Dataset Updates';
 		$pdfEng = $productDir.'/Release Notes';
@@ -421,9 +558,29 @@ function display_STEG($atr){
 		$pdfEngFiles = scan_dir("protected/".$pdfEng);
 		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
 		
+		$aca_table = "";		
+		
+		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -431,14 +588,17 @@ function display_STEG($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/cab-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -450,6 +610,7 @@ add_shortcode("DISC", "display_DISC");
 
 function display_DISC($atr){
 	ob_start();
+		$productID = 123;
 		$productDir = 'Discover the Hidden';
         $dataset = $productDir.'/Dataset Updates';
 		$pdfEng = $productDir.'/Release Notes';
@@ -459,9 +620,29 @@ function display_DISC($atr){
 		$pdfEngFiles = scan_dir("protected/".$pdfEng);
 		$pdfSpaFiles = scan_dir("protected/".$pdfSpa);
 		
+		$aca_table = "";		
+		
+		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			if (!$result2) {
+				insertDataset($productID, $pdfEng, $pdfEngFiles[$aca_i]);
+			}
+			if (!$result3) {
+				insertDataset($productID, $pdfSpa, $pdfSpaFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);
+			$result2 = getResults($pdfEngFiles[$aca_i]);
+			$result3 = getResults($pdfSpaFiles[$aca_i]);			
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -469,14 +650,17 @@ function display_DISC($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/cab-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a><hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result2[0]->dataset_id .'&file='.urlencode($pdfEng.'/'.$pdfEngFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - English</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result2[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td>';
-			$aca_table .= '</tr>';
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result3[0]->dataset_id .'&file='.urlencode($pdfSpa.'/'.$pdfSpaFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset Release Notes - Spanish</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result3[0]->md5_hash .'</span>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/pdf-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
