@@ -678,8 +678,19 @@ function display_IDEAL($atr){
 		$datasetFiles = scan_dir("protected/".$dataset);
 		
 		
+		$aca_table = "";		
+		
+		echo $aca_table;
+		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);	
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
@@ -687,14 +698,16 @@ function display_IDEAL($atr){
 			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
-			$aca_table .= '</tr>';			
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
 		}
 	return ob_get_clean();
 }
+
 
 add_shortcode("GDD", "display_GDD");
 
@@ -705,18 +718,29 @@ function display_GDD($atr){
 				
 		$datasetFiles = scan_dir("protected/".$dataset);
 		
+		$aca_table = "";		
+		
+		echo $aca_table;
 		
 		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
-			$aca_header = explode("_",$datasetFiles[$aca_i]);
+			$aca_header = explode("_",$datasetFiles[$aca_i]);			
+			$result = getResults($datasetFiles[$aca_i]);
+			
+			if (!$result) {
+				insertDataset($productID, $dataset, $datasetFiles[$aca_i]);
+			}
+			
+			$result = getResults($datasetFiles[$aca_i]);	
 			
 			$aca_table = "";
 			$aca_table .= '<table style="border: 1px solid black;">';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">GD Dataset - '. $aca_header[0] .'</th>';
+			$aca_table .= '<th colspan="2" style="padding-left:7px; font-size: 16px;">'. $aca_header[1] ." ". $aca_header[0] .'</th>';
 			$aca_table .= '</tr>';
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
-			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="https://www.wetstonetech.com/product-dl.php?file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td>';
-			$aca_table .= '</tr>';			
+			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
+			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
+			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
