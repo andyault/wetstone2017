@@ -203,9 +203,9 @@ function dataset_report_menu_page() {
 
 		$aca_table2 = '<div style="margin: 5% 2%"><form id="download-csv" action="'. esc_url( admin_url("admin-post.php") ) .'" method="post">
 				   <input type="hidden" name="action" value="wetstone-download-csv">'.
-				   wp_nonce_field("wetstone-download-csv") .
-				   submit_button(__("Download CSV"), "primary", "download-csv", true) .'<br>
-			</form><br />
+				   wp_nonce_field("wetstone_post_download_csv") .
+				   '<input type="submit" value="Download CSV" style="float: right"><br>
+			</form>
 				<table style="width:99%; 
 						margin-bottom: 1.5em;
 						border-spacing: 0;
@@ -217,7 +217,7 @@ function dataset_report_menu_page() {
 						text-align: center;
 						color: white;">
 					<tr>
-						<th scope="col">User Name/Email</th>
+						<th scope="col">User Name</th>
 						<th scope="col">User Email</th>
 						<th scope="col">IP Address</th>
 						<th scope="col">Asset</th>
@@ -250,25 +250,32 @@ function dataset_report_menu_page() {
 }
 
 function wetstone_post_download_csv() {
+	global $wpdb;
+	$result = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets_log ORDER BY download_date DESC');
+	
 	$delimiter = ",";
     $filename = "downloads_" . date('Y-m-d') . ".csv";
 	//create a file pointer
     $f = fopen('php://memory', 'w');
     
     //set column headers
-    $fields = array('ID', 'Name', 'Email', 'Phone', 'Created', 'Status');
+    $fields = array('User Name', 'User Email', 'User IP', 'Asset', 'Download Date');
     fputcsv($f, $fields, $delimiter);
 	
-	$status = ($row['status'] == '1')?'Active':'Inactive';
-    $lineData = array('test', 'test', 'test', 'test', 'test', $status);
-    fputcsv($f, $lineData, $delimiter);
-	
+	foreach ( $result as $page )
+			{	
+		$dataset = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets WHERE dataset_id=\''.$page->asset_id.'\'');
+		$userData = get_userdata($page->user_id);
+			
+		$lineData = array($userData->first_name . ' ' . $userData->last_name, $userData->user_email, $page->user_ip, $dataset[0]->dataset_name, $page->download_date);
+		fputcsv($f, $lineData, $delimiter);
+			}
 	    //move back to beginning of file
     fseek($f, 0);
     
     //set headers to download file rather than displayed
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="' . $filename . '";');
+    header('Content-Type: application/excel');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
     
     //output all remaining data on a file pointer
     fpassthru($f);
