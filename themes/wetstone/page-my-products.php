@@ -151,11 +151,11 @@
 									echo '<strong>Last Downloaded Dataset </strong><br />';
 									if ($download1) {
 										$theFile = getFile($download1[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
 									}
 									if ($download2) {
 										$theFile = getFile($download2[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download2[0]->download_date)));
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download2[0]->download_date)));
 									}
 								}
 
@@ -186,7 +186,7 @@
 									echo '<strong>Last Downloaded Dataset </strong><br />';
 									if ($download1) {
 										$theFile = getFile($download1[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
 									}
 								}
 							}
@@ -216,7 +216,7 @@
 									echo '<strong>Last Downloaded Dataset </strong><br />';
 									if ($download1) {
 										$theFile = getFile($download1[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
 									}
 								}
 							}
@@ -246,7 +246,7 @@
 									echo '<strong>Last Downloaded Dataset </strong><br />';
 									if ($download1) {
 										$theFile = getFile($download1[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
 									}
 								}
 							}
@@ -276,7 +276,7 @@
 									echo '<strong>Last Downloaded Dataset </strong><br />';
 									if ($download1) {
 										$theFile = getFile($download1[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
 									}
 								}
 							}
@@ -305,7 +305,7 @@
 									echo '<strong>Last Downloaded Dataset </strong><br />';
 									if ($download1) {
 										$theFile = getFile($download1[0]->asset_id);
-										echo $theFile[0]->dataset_name . ' - Downloaded On :'. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
 									}
 								}
 							}
