@@ -218,7 +218,7 @@ function dataset_report_menu_page() {
 				<table style="width:99%; 
 						margin-bottom: 1.5em;
 						border-spacing: 0;
-						border: 1px solid #ddd;">
+						border: 1px solid #ccc;">
 				<caption style="font-weight:bold">Dataset and file downloads</caption>
 				<thead style="background-color: rgba(29,150,178,1);
 						border: 1px solid rgba(29,150,178,1);
@@ -234,14 +234,17 @@ function dataset_report_menu_page() {
 					</tr>
 				</thead>
 				<tbody style="text-align: center;">';
-      
+			$counter = 0;
 			foreach ( $result2 as $page )
 			{			
+				$counter++;				
 				
 			   $dataset = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets WHERE dataset_id=\''.$page->asset_id.'\'');
 			   $userData = get_userdata($page->user_id);
-			   $aca_table2 .= '<tr>
-								<th scope="row">'. $userData->first_name . ' ' . $userData->last_name . '</th>
+			   if ($counter % 2 == 0) {
+			   $aca_table2 .= '<tr>'; } else {
+			   $aca_table2 .= '<tr style="background-color:#ddd">';}
+			   $aca_table2 .= '	<th scope="row">'. $userData->first_name . ' ' . $userData->last_name . '</th>
 								<td>'. $userData->user_email . '</td>
 								<td>'. $page->user_ip . '</td>
 								<td>'. $dataset[0]->dataset_name . '</td>

@@ -700,7 +700,7 @@ function display_IDEAL($atr){
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
 			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
 			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
-			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
@@ -741,7 +741,7 @@ function display_GDD($atr){
 			$aca_table .= '<tr style="border: 1px solid black; font-size: 16px;">';
 			$aca_table .= '<td style="padding-left:7px; width:475px; height:20px;"><a href="../../product-dl.php?asset='. $result[0]->dataset_id .'&file='.urlencode($dataset.'/'.$datasetFiles[$aca_i]).'" target="_blank" style="text-decoration:none; color:green;">Dataset File</a>';
 			$aca_table .= '<br /><span style="font-size:12px">MD5 - ' .  $result[0]->md5_hash .'</span>';
-			$aca_table .= '<hr /></td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
+			$aca_table .= '</td><td><img src="https://www.wetstonetech.com/wp-content/uploads/2017/11/zip-icon.png" /></td></tr>';
 			$aca_table .= '</table>';
 			
 			echo $aca_table;
