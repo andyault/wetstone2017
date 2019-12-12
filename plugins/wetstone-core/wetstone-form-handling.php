@@ -402,8 +402,7 @@ function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
 		$fromName = wetstone_get_option('form_handling', 'default_name');
 
 	//$toHeader = 'To: Sales Support <wconklin@allencorp.com>,';
-	$acatoo = 'wconklin@allencorporation.com, lkr@wilconklin.com';
-	//$acatoo = 'wconklin@allencorporation.com,agulini@allencorporation.com,gbarron@allencorporation.com';
+	$acatoo = 'wconklin@allencorporation.com,agulini@allencorporation.com,gbarron@allencorporation.com';
 	//email headers
 	$headers = [
 		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
