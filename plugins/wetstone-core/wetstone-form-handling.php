@@ -37,6 +37,7 @@ function wetstone_post_contact_form() {
 		$emailWidth = wetstone_get_option('form_handling', 'email_width');
 
 		$comments = wetstone_pop_value($data, 'comments');
+
 		$subject = wetstone_pop_value($data, 'subject');
 
 		$fields = '<pre>';
@@ -268,6 +269,102 @@ function wetstone_post_support() {
 
 add_action('admin_post_wetstone-customer-support', 'wetstone_post_support');
 
+function wetstone_mpfeedback_form() {
+	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-mpfeedback-form'))
+		return wp_nonce_ays('wetstone-mpfeedback-form');
+	$surv = "Completed";
+	//make sure ids match
+	$user = wp_get_current_user();
+	$id = $user->ID;
+	$firstname = $user->first_name;
+	$lastname =  $user->last_name;
+	$emailaddress = $user->user_email;
+
+	//building email body
+	$data = wetstone_sanitize_post(['element_2', 'explain_2', 'element_3', 'explain_3', 'element_4', 'explain_4', 'element_5', 'explain_5', 'element_6', 'explain_6', 'element_7', 'explain_7', 'element_1']);
+	
+	if (!$data['element_1']) { $comments1 = "No response"; } else { $comments1 = htmlspecialchars(wetstone_pop_value($data, 'element_1')); }
+	
+	$comments2 = htmlspecialchars(wetstone_pop_value($data, 'explain_2'));
+	$comments3 = htmlspecialchars(wetstone_pop_value($data, 'explain_3'));
+	$comments4 = htmlspecialchars(wetstone_pop_value($data, 'explain_4'));
+	$comments5 = htmlspecialchars(wetstone_pop_value($data, 'explain_5'));
+	$comments6 = htmlspecialchars(wetstone_pop_value($data, 'explain_6'));
+	$comments7 = htmlspecialchars(wetstone_pop_value($data, 'explain_7'));
+	
+	
+	if (!$data['element_2']) { $element_2 = "No response"; } else { $element_2 = $data['element_2']; }
+	if (!$data['element_3']) { $element_3 = "No response"; } else { $element_3 = $data['element_3']; }
+	if (!$data['element_4']) { $element_4 = "No response"; } else { $element_4 = $data['element_4']; }
+	if (!$data['element_5']) { $element_5 = "No response"; } else { $element_5 = $data['element_5']; }
+	if (!$data['element_6']) { $element_6 = "No response"; } else { $element_6 = $data['element_6']; }
+	if (!$data['element_7']) { $element_7 = "No response"; } else { $element_7 = $data['element_7']; }
+
+	$body = '<pre>';	
+	$body .= "<p>".$firstname." ".$lastname.": ".$emailaddress."</p>";
+	$body .= "<p>How would you rate the overall ease of installation? - " . $element_2. "</p>";
+	if ($comments2) $body .= "<p>Additional Feedback?</p><p> " . $comments2 . "</p>";
+	$body .= "<p>How would you rate the new interface? - " . $element_3 . "</p>";
+	if ($comments3) $body .= "<p>Additional Feedback?</p><p>" . $comments3 . "</p>";
+	$body .= "<p>How would you rate the scan speed? - " . $element_4 . "</p>";
+	if ($comments4) $body .= "<p>Additional Feedback?</p><p>" . $comments4 . "</p>";
+	$body .= "<p>How would you rate the reporting options? - " . $element_5 . "</p>";
+	if ($comments5) $body .= "<p>Additional Feedback?</p><p>" . $comments5 . "</p>";
+	$body .= "<p>How would you rate the malware discovery results? - " . $element_6 . "</p>";
+	if ($comments6) $body .= "<p>Additional Feedback?</p><p>" . $comments6 . "</p>";
+	$body .= "<p>How would you rate the overall satisfaction with the new product? - " . $element_7 . "</p>";
+	if ($comments7) $body .= "<p>Additional Feedback? - </p><p>" . $comments7 . "</p>";
+	$body .= "<p>Any comments you would like to add?</p><p>" . $comments1 . "</p>"; 
+	
+	//getting email info
+	$subject = 'Gargoyle MP Feedback Survey';
+	$fullName = $user->first_name . ' ' . $user->last_name;
+	$fromMail = $user->user_email;
+	
+	$emailWidth = wetstone_get_option('form_handling', 'email_width');
+
+	if ($_POST['submit'] == "Do Not Ask Again") {
+		$body = '<pre>';	
+		$body .= "<p>".$firstname." ".$lastname.": ".$emailaddress." - Declined survey</p>";
+		$surv = "Declined";
+	}
+	
+	if ($_POST['submit'] == "Ask Me Later") {
+		$surv = "Later";
+	}
+	
+	if ($surv == "Later") { wp_redirect(get_permalink(get_page_by_path('portal'))); } else {
+	
+		if(wetstone_send_mail2($subject, $fullName, $fromMail,wordwrap($body, $emailWidth))) {
+			update_user_meta($id, 'mpsurvey1', $surv);
+			
+			if ($surv == "Declined") {
+				wp_redirect(get_permalink(get_page_by_path('portal')));
+			} else {
+				wp_redirect(get_permalink(get_page_by_path('feedback')));
+			}
+			
+			 
+			}
+			
+			
+		else {
+			//unpop comments
+			//$data['comments'] = $comments;
+
+			//add error
+			$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			}
+	}
+}
+
+add_action('admin_post_wetstone-mpfeedback-form', 'wetstone_mpfeedback_form');
+
+
+
 //send email
 function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 	if(!isset($fromName) || empty($fromName))
@@ -305,7 +402,8 @@ function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
 		$fromName = wetstone_get_option('form_handling', 'default_name');
 
 	//$toHeader = 'To: Sales Support <wconklin@allencorp.com>,';
-	$acatoo = 'wconklin@allencorporation.com,agulini@allencorporation.com,gbarron@allencorporation.com';
+	$acatoo = 'wconklin@allencorporation.com, lkr@wilconklin.com';
+	//$acatoo = 'wconklin@allencorporation.com,agulini@allencorporation.com,gbarron@allencorporation.com';
 	//email headers
 	$headers = [
 		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
