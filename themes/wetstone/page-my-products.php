@@ -105,9 +105,16 @@
 							setup_postdata($post);
 							
 							if (strtotime($products[$id]['expiry']) < time()) {
-								
+
+								if ($id == 1815) { 	
+								echo "<p style='color:red'>Your contract expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";
+								echo "<br /><br /><hr />";
+								} else {
 								echo "<p style='color:red'>Your license for <strong>" . get_the_title($id). "</strong> expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";
-								echo "<br /><br /><hr />";						
+								echo "<br /><br /><hr />";	
+								}
+							
+							
 							} else {
 								
 							$start = time();
@@ -117,13 +124,20 @@
 							get_template_part('template-parts/my-product', 'list');			
 							
 							if ($id == 1815) { 							
-							echo "Contract Expiration: " . date('F d, Y', strtotime($products[$id]['expiry'])); } 
+							echo "Contract Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
+							echo "Status Level: " . $products[$id]['license_type'];
+							} 
 							else {
 							echo "License Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
 							}
 							
 							if ($days_between <= 90) {
+								
+								if ($id == 1815) { 									
 								echo "<span style='color:red'> - Your license for <strong>" . get_the_title($id) . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
+								} else {
+								echo "<span style='color:red'> - Your contract expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
+								}
 								}		
 							
 							echo "<br /><br />";
