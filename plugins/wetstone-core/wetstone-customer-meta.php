@@ -168,11 +168,30 @@ function wetstone_echo_customer_form_fields($userId = null) {
 									<?php $type = $myinfo['license_type']; ?>
 										<select name="product[<?php echo $pid ?>][license_type]" value="<?php echo $type; ?>" disabled>
 											<option value="None" <?php if($type == null || $type == '' || $type == 'None') echo 'selected'; ?>>None</option>
+										<?php 	
+											if ($pid == 1815) { ?>
+											<option value="Authorized" <?php if($type == 'Authorized') echo 'selected'; ?>>Authorized</option>
+											<option value="Gold" <?php if($type == 'Gold') echo 'selected'; ?>>Gold</option>
+											<option value="Platinum" <?php if($type == 'Platinum') echo 'selected'; ?>>Platinum</option>
+												
+											<?php } else { ?>
+											
 											<option value="Perpetual" <?php if($type == 'Perpetual') echo 'selected'; ?>>Perpetual</option>
 											<option value="Subscription" <?php if($type == 'Subscription') echo 'selected'; ?>>Subscription</option>
 											<option value="Trial" <?php if($type == 'Trial') echo 'selected'; ?>>Trial</option>
+											
+												<?php
+											}
+											?>
+											
+											
+											
+											
 										</select>
 									</td>
+									
+									
+									
 									<td style="padding: 0;">
 										<input type="number" name="product[<?php echo $pid ?>][core_limit]" value="<?php echo $myinfo ? $myinfo['core_limit'] : 2; ?>" disabled>
 									</td>
