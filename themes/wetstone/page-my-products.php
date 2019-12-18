@@ -125,7 +125,7 @@
 							
 							if ($id == 1815) { 							
 							echo "Contract Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
-							echo "Status Level: " . $products[$id]['license_type'];
+							echo "<br /> Status Level: <strong>" . $products[$id]['license_type'] . "</strong>";
 							} 
 							else {
 							echo "License Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
