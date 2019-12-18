@@ -125,7 +125,7 @@
 							
 							if ($id == 1815) { 							
 							echo "Contract Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
-							echo "<br /> Status Level: <strong>" . $products[$id]['license_type'] . "</strong>";
+							echo "<br /> Status Level: <strong>" . $products[$id]['license_type'] . "</strong><br />";
 							} 
 							else {
 							echo "License Expiration: " . date('F d, Y', strtotime($products[$id]['expiry']));
@@ -134,9 +134,9 @@
 							if ($days_between <= 90) {
 								
 								if ($id == 1815) { 									
-								echo "<span style='color:red'> - Your license for <strong>" . get_the_title($id) . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
-								} else {
 								echo "<span style='color:red'> - Your contract expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
+								} else {
+								echo "<span style='color:red'> - Your license for <strong>" . get_the_title($id) . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								}
 								}		
 							
