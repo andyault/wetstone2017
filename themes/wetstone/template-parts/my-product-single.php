@@ -6,7 +6,6 @@
 
 		<div class="myproduct-overview-info"><?php
 			echo get_post_meta($post->ID, 'wetstone_product_customerexcerpt', true);
-			echo "test";
 		?></div>
 	</div>
 
