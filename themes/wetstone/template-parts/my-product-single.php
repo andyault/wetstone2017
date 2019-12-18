@@ -5,7 +5,8 @@
 		<div style="background-image: url(<?php the_post_thumbnail_url('medium'); ?>);" class="myproduct-overview-image"></div>
 
 		<div class="myproduct-overview-info"><?php
-			echo get_post_meta($post->ID, 'wetstone_product_customerexcerpt', true);
+			//echo get_post_meta($post->ID, 'wetstone_product_excerpt', true);
+			the_excerpt();
 		?></div>
 	</div>
 
