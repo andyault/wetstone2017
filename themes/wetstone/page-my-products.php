@@ -134,7 +134,7 @@
 							if ($days_between <= 90) {
 								
 								if ($id == 1815) { 									
-								echo "<span style='color:red'> - Your contract expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
+								echo "<span style='color:red'>Your contract expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								} else {
 								echo "<span style='color:red'> - Your license for <strong>" . get_the_title($id) . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								}
