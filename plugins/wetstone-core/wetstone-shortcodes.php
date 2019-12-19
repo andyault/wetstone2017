@@ -425,7 +425,7 @@ function display_GMPF($atr){
 	ob_start();
 		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
-        $dataset = $productDir.'/Dataset Updates/7_2';
+        $dataset = 'GargoyleMP/Dataset Updates/7_2';
 		$pdfEng = 'GargoyleMP/Release Notes';
 		$pdfSpa = 'GargoyleMP/Release Notes - Spanish';
 				
@@ -488,7 +488,7 @@ function display_GMPF71($atr){
 	ob_start();
 		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
-        $dataset = $productDir.'/Dataset Updates/7_1';
+        $dataset = 'GargoyleMP/Dataset Updates/7_1';
 		$pdfEng = 'GargoyleMP/Release Notes';
 		$pdfSpa = 'GargoyleMP/Release Notes - Spanish';
 				
