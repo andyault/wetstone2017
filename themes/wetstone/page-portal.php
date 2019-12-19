@@ -251,7 +251,7 @@ function changed(thisVal, thisID) {
 	}
 
 ?>	
-<p style="font-color:red"><strong>NOTICE! We will be performing maintenance on 12/19/19 at 9:00PM EST. Estimated downtime is less than 45 minutes. Thank you for your understanding while we improve your experience.</strong></p> 	
+<p style="color:red"><strong>NOTICE! We will be performing maintenance on 12/19/19 at 9:00PM EST. Estimated downtime is less than 45 minutes. Thank you for your understanding while we improve your experience.</strong></p> 	
 <table>
 <tbody>
 <tr>
