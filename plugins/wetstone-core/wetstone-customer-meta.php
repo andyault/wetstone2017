@@ -178,7 +178,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 											
 											<option value="Perpetual" <?php if($type == 'Perpetual') echo 'selected'; ?>>Perpetual</option>
 											<option value="Subscription" <?php if($type == 'Subscription') echo 'selected'; ?>>Subscription</option>
-											<option value="Trial" <?php if($type == 'Trial') echo 'selected'; ?>>Trial</option>
+											<option value="Demonstration" <?php if($type == 'Demonstration') echo 'selected'; ?>>Demonstration</option>
 											
 												<?php
 											}

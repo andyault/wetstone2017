@@ -41,7 +41,7 @@
 		}
 		if ($productID == 1054) {
 			$productCode = 'GargoyleMPTrial';
-			$licenseType = 'Trial';
+			$licenseType = 'Demonstration';
 			$coreLimit = $productinfo['core_limit'];	
 			$reportLimit = $productinfo['report_limit'];		
 		}
