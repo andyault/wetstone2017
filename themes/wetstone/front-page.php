@@ -21,7 +21,7 @@
 				 <br /><br /><br /><br />	
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
 				 <br /><br /><br />
-				 <a href="https://youtu.be/Q8-3PX35n_g" target="_blank"><img src="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" height="429" width="758"/></a>
+				 <a href="https://youtu.be/Q8-3PX35n_g" target="_blank"><img src="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" height="394" width="700"/></a>
 				 
 				 <!--<video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay>
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
