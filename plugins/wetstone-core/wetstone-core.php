@@ -147,6 +147,185 @@ add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $ic
 } 
 add_action( 'admin_menu', 'dataset_report_menu' ); 
 
+function dataset_notification_menu(){    
+	$page_title = 'Dataset Notification';   
+	$menu_title = 'Dataset Notification';   
+	$capability = 'manage_options';   
+	$menu_slug  = 'dataset_notification_menu';   
+	$function   = 'dataset_notification_menu_page';   
+	$icon_url   = 'dashicons-media-code';   
+	$position   = 4;    
+add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+
+} 
+add_action( 'admin_menu', 'dataset_notification_menu' ); 
+
+function dataset_notification_menu_page() {	
+	global $wpdb;
+	$wpdb->show_errors();
+	echo "<h1>Dataset Notification</h1>";	
+		if($_GET['emailsent'] == true)
+			echo '<div class="notice notice-success is-dismissible"><p>'.$_GET["counter"].' Customers notified.</p></div>';
+		if($_GET['problem'] == true)
+			echo '<div class="notice notice-success is-dismissible"><p>There was a problem sending the emails.</p></div>';
+	?>
+		<form method="POST" id="mail-dataset" name="mail-dataset" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" autocomplete="off">
+		<input type="hidden" name="action" value="wetstone-mail-dataset">
+				  <?php wp_nonce_field("wetstone-mail-dataset") ?>
+		
+			<label for="group">Select group of customers to email:</label><br />
+			<select id="group" name="group">
+			  <option value="gargoylemp">Gargoyle</option>
+			  <option value="stegohunt">StegoHunt</option>
+			  <option value="gd">General Dynamics</option>
+			  <option value="all">All</option>
+			</select><br /><br />
+			
+			<!-- WILL ADD FUNCTIONALITY TO EDIT SUBJECT AND EMAIL LATER
+			
+			<label for="type">Select Message Type:</label><br>
+			<select id="type">
+			  <option value="precanned">Precanned</option>
+			  <option value="custom">Custom</option>
+			</select><br /><br />
+			<input type="text" id="subject" name="subject" value="WetStone Dataset Update Release"><br>
+			<textarea name="message" rows="10" cols="100">New datasets are available for download. Please go to our Customer SupportPortal to access the latest datasets. 
+			
+Our team of dedicated Marlware Analysts update our Malware Repository with new datasets every month. Please be sure to update your datasets to ensure you are getting the most out of your products.
+			
+For instructions, please view our How To: Download Datasets video. If you need further assistance, emails us at sales@wetstonetech.com.
+			
+Thank you,
+The WetStone Team
+			
+www.wetstonetech.com
+sales@wetstonetech.com
+571-340-3469
+			</textarea>  -->
+			
+		<?php 
+		
+		$toEmail = [];
+		$users = get_users( array( 'fields' => array( 'ID' ) ) );
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[116];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(116);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[115];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(115);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[633];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(633);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[621];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(621);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
+		$result = array_unique($toEmail);
+		$tooMail = implode(",",$result);
+		
+		//echo $tooMail;
+		
+		submit_button(__('Send Email'), 'primary', 'mailcustomer', true, ['id' => 'mailcustomersub']);	?>
+		</form>
+
+
+<?php
+	
+}
+
+function wetstone_post_mail_dataset() {
+	if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-mail-dataset'))
+		return wp_nonce_ays('wetstone-mail-dataset');
+	$toEmail = [];
+	$users = get_users( array( 'fields' => array( 'ID' ) ) );
+	
+	if ($_POST['group'] == 'gargoylemp' || $_POST['group'] == 'all') {		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[116];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(116);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[633];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(633);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+	}
+	
+	if ($_POST['group'] == 'stegohunt' || $_POST['group'] == 'all') {		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[115];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(115);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+	}	
+		
+	if ($_POST['group'] == 'gd' || $_POST['group'] == 'all') {		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[621];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(621);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+	}	
+		
+$body = '<pre>';	
+	$body .= "Dear WetStone Customer,<br /><br />New datasets are available for download. Please go to our <a href='http://www.wetstonetech.com/portal' target='_blank'>Customer Support Portal</a> to access the latest datasets.<br /><br />Our team of dedicated Marlware Analysts update our Malware Repository with new datasets every month. Please be sure to update your datasets to ensure you are getting the most out of your products.<br /><br />For instructions, please view our <a href='http://youtu.be/ukobb95wclc' target='_blank'>How To: Download Datasets</a> video. If you need further assistance, email us at <a href='mailto:sales@wetstonetech.com'>sales@wetstonetech.com</a>.<br /><br />Thank you,<br />The WetStone Team<br /><br /><a href='http://www.wetstonetech.com' target='_blank'>www.wetstonetech.com</a><br /><a href='mailto:sales@wetstonetech.com'>sales@wetstonetech.com</a><br />571-340-3469";
+	//$subject = 'WetStone Dataset Update Release';
+	$emailWidth = wetstone_get_option('form_handling', 'email_width');
+	$result = array_unique($toEmail);
+	$counter = count($result);
+	$tooMail = implode("<br />",$result);	
+	$subject = 'WetStone Dataset Update Release';
+	$tootMail = 'wconklin@allencorporation.com';	
+
+	if(wetstone_dataset_mail($tooMail,$subject,$body)) {
+			wp_safe_redirect(add_query_arg(['page' => 'dataset_notification_menu', 'emailsent' => true ,'counter' => $counter], 'admin.php?page=dataset_notification_menu'));			
+	} else {
+			//go back to form with old data
+			wp_safe_redirect(add_query_arg(['page' => 'dataset_notification_menu', 'problem' => true], 		'admin.php?page=dataset_notification_menu'));
+			exit;
+			} 
+	
+}
+
+add_action('admin_post_wetstone-mail-dataset', 'wetstone_post_mail_dataset');
+
 function dataset_report_menu_page() {	
 	global $wpdb;
 	$wpdb->show_errors();
@@ -268,6 +447,7 @@ function dataset_report_menu_page() {
 	}
 		
 }
+
 
 function wetstone_post_download_csv() {
 	global $wpdb;
