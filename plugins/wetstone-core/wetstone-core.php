@@ -309,7 +309,7 @@ $body = '<pre>';
 	$emailWidth = wetstone_get_option('form_handling', 'email_width');
 	$result = array_unique($toEmail);
 	$counter = count($result);
-	$tooMail = implode("<br />",$result);	
+	$tooMail = implode(",",$result);	
 	$subject = 'WetStone Dataset Update Release';
 	$tootMail = 'wconklin@allencorporation.com';	
 
