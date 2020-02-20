@@ -369,7 +369,7 @@ add_action('admin_post_wetstone-mpfeedback-form', 'wetstone_mpfeedback_form');
 function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 	if(!isset($fromName) || empty($fromName))
 		$fromName = wetstone_get_option('form_handling', 'default_name');
-
+		$toAddress = 'support@wetstonetech.com,wconklin@allencorporation.com';
 	/*/handle multiple recipients
 	$recipients = explode(',', wetstone_get_option('form_handling', 'receiver_email'));
 
@@ -389,7 +389,8 @@ function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
 	];
 	
 	return wp_mail(
-		wetstone_get_option('form_handling', 'receiver_email'),
+		//wetstone_get_option('form_handling', 'receiver_email'),
+		$toAddress,
 		$subject,
 		$body,
 		$headers
