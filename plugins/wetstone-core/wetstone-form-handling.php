@@ -253,7 +253,7 @@ function wetstone_post_support() {
 	
 	$emailWidth = wetstone_get_option('form_handling', 'email_width');
 
-	if(wetstone_send_mail($subject, $fullName, $fromMail, wordwrap($body, $emailWidth)))
+	if(wetstone_support_mail($subject, $fullName, $fromMail, wordwrap($body, $emailWidth)))
 		wp_redirect(get_permalink(get_page_by_path('thank-you')));
 	else {
 		//unpop comments
@@ -367,6 +367,35 @@ add_action('admin_post_wetstone-mpfeedback-form', 'wetstone_mpfeedback_form');
 
 //send email
 function wetstone_send_mail($subject, $fromName, $fromAddress, $body) {
+	if(!isset($fromName) || empty($fromName))
+		$fromName = wetstone_get_option('form_handling', 'default_name');
+	/*/handle multiple recipients
+	$recipients = explode(',', wetstone_get_option('form_handling', 'receiver_email'));
+
+	$toHeader = 'To: ';
+
+	foreach($recipients as $address)
+		$toHeader .= 'Sales Support <' . $address . '>,';
+	*/
+
+	//email headers
+	$headers = [
+		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
+		//sprintf('From: %s via Contact Form <%s>', $fromName, $fromAddress),
+		//sprintf('Reply-to: %s <%s>', $fromName, $fromAddress),
+		//substr($toHeader, 0, -1),
+		'Content-Type: text/html; charset=UTF-8'
+	];
+	
+	return wp_mail(
+		wetstone_get_option('form_handling', 'receiver_email'),
+		$subject,
+		$body,
+		$headers
+	);
+}
+
+function wetstone_support_mail($subject, $fromName, $fromAddress, $body) {
 	if(!isset($fromName) || empty($fromName))
 		$fromName = wetstone_get_option('form_handling', 'default_name');
 		$toAddress = 'support@wetstonetech.com,wconklin@allencorporation.com';
