@@ -6,17 +6,17 @@
 	//make it pretty
 	switch($context) {
 		case 'product':
-			$subjectVal = 'Request about %s';
+			$subjectVal = 'Inquiry about %s';
 			$placeholder = 'Hi, I\'m interested in your product %s...';
 			break;
 
 		case 'service':
-			$subjectVal = 'Request about %s';
+			$subjectVal = 'Inquiry about %s';
 			$placeholder = 'Hi, I\'m interested in %s...';
 			break;
 
 		default:
-			$subjectVal = ($subject ? '%s' : 'WetStone Request Form');
+			$subjectVal = ($subject ? '%s' : 'WetStone Contact Form');
 			$placeholder = 'Hi, I have a question about' . ($subject ? ' %s...' : '...');
 			break;
 	}
@@ -25,9 +25,9 @@
 	$placeholder = sprintf($placeholder, ucwords($subject));
 ?>
 <script src="<?php echo wetstone_get_asset('/js/form-update.js'); ?>"></script>
-<form name="request" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
-	<input type="hidden" name="action" value="wetstone-request-form">
-	<?php wp_nonce_field('wetstone-request-form'); ?>
+<form name="contact" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
+	<input type="hidden" name="action" value="wetstone-contact-form">
+	<?php wp_nonce_field('wetstone-contact-form'); ?>
 
 	<input type="hidden" name="subject" value="<?php echo $subjectVal; ?>">
 
@@ -349,8 +349,27 @@
 
 		<tr>
 			
+			<?php
+				$interests = [
+					'Malware investigation',
+					'Steganography investigation',
+					'McAfee Professional Services',
+					'Reselling opportunities',
+					'Other (please specify in comments)'
+				];
+			?>
+
 			<td>
 			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', false); ?>
+			<br />
+				<?php
+					echo wetstone_form_make_checkboxes(
+						'interests[]',
+						'Please mark your area(s) of interest:',
+						$interests,
+						true
+					);
+				?>
 			</td>
 
 			<td>
@@ -360,7 +379,7 @@
 						'Questions/Comments', 
 						$placeholder, 
 						false,
-						['style' => sprintf('height: calc(%d * 1.5em)', 3)]
+						['style' => sprintf('height: calc(%d * 1.5em)', count($interests))]
 					); 
 				?>
 			</td>
@@ -382,6 +401,11 @@
 		</tr>
 	</table>
 </form>
+
+<hr>
+<p style="text-align: center;"><strong>Marketing and Sales Division</strong><br>17 Main Street, Suite 316<br>Cortland, NY 13045</p>
+<p style="text-align: center;">Phone: <a href="tel:571-340-3469">(571) 340-3469</a><br>Fax: (607) 344-3201<br>Sales: <a href="sales@wetstonetech.com">sales@wetstonetech.com</a><br>Support: <a href="mailto:support@wetstonetech.com">support@wetstonetech.com</a></p>
+<hr>
 
 <script>var oldVals = <?php echo json_encode($_GET); ?></script>
 <script src="<?php echo wetstone_get_asset('/js/form-repopulate.js'); ?>"></script>
