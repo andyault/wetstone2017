@@ -361,15 +361,7 @@
 
 			<td>
 			<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', false); ?>
-			<br />
-				<?php
-					echo wetstone_form_make_checkboxes(
-						'interests[]',
-						'Please mark your area(s) of interest:',
-						$interests,
-						true
-					);
-				?>
+
 			</td>
 
 			<td>
@@ -379,7 +371,7 @@
 						'Questions/Comments', 
 						$placeholder, 
 						false,
-						['style' => sprintf('height: calc(%d * 1.5em)', count($interests))]
+						['style' => sprintf('height: calc(%d * 1.5em)', 3)]
 					); 
 				?>
 			</td>
