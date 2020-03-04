@@ -66,6 +66,64 @@ function wetstone_post_contact_form() {
 add_action('admin_post_wetstone-contact-form', 'wetstone_post_contact_form');
 add_action('admin_post_nopriv_wetstone-contact-form', 'wetstone_post_contact_form');
 
+function wetstone_post_request_form() {
+	
+		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-request-form'))
+			return wp_nonce_ays('wetstone-request-form');		
+		
+		//sanitize inputs
+		$data = wetstone_sanitize_post([
+			'subject', 'fname', 'lname', 'title', 'company', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
+			'zip', 'country', 'referrer', 'interests', 'comments', 'mtcaptcha-verifiedtoken'
+		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
+
+		//turn into pretty table
+		$emailWidth = wetstone_get_option('form_handling', 'email_width');
+
+		$comments = wetstone_pop_value($data, 'comments');
+
+		$subject = wetstone_pop_value($data, 'subject');
+
+		$fields = '<pre>';
+		$fields .= wetstone_columnify($data);
+
+		if(!empty($comments))
+			$fields .= "\ncomments: \n</pre><p>" . htmlspecialchars($comments) . '</p>';
+
+		$fullName = $data['fname'] . ' ' . $data['lname'];
+
+		if(wetstone_send_mail($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
+			wp_redirect(get_permalink(get_page_by_path('thank-you')));
+		else {
+			//unpop comments
+			$data['comments'] = $comments;
+
+			//add error
+			$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+		}
+	}
+}
+
+add_action('admin_post_wetstone-request-form', 'wetstone_post_request_form');
+add_action('admin_post_nopriv_wetstone-request-form', 'wetstone_post_request_form');
+
+
 // BETA SIGNUP FORM -------------------------------------
 function wetstone_mp_beta_form() {
 	
