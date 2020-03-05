@@ -395,7 +395,7 @@
 </form>
 
 <hr>
-<p style="text-align: center;"><strong>Marketing and Sales Division</strong><br>17 Main Street, Suite 316<br>Cortland, NY 13045</p>
+<p style="text-align: center;"><strong>WetStone Technologies, Inc.</strong><br>17 Main Street, Suite 316<br>Cortland, NY 13045</p>
 <p style="text-align: center;">Phone: <a href="tel:571-340-3469">(571) 340-3469</a><br>Fax: (607) 344-3201<br>Sales: <a href="sales@wetstonetech.com">sales@wetstonetech.com</a><br>Support: <a href="mailto:support@wetstonetech.com">support@wetstonetech.com</a></p>
 <hr>
 
