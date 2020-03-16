@@ -25,7 +25,7 @@
 
 		<tr>
 			<td><?php echo wetstone_form_make_input('company', 'text', 'Company', 'Google Inc.', true); ?></td>
-			<td><?php echo wetstone_form_make_input('website', 'url', 'Company Website', 'google.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input('website', 'text', 'Company Website', 'google.com', true); ?></td>
 		</tr>
 
 		<tr>
