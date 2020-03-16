@@ -370,12 +370,11 @@
 					);
 				?>
 			</td>
-		</tr>
 
-		<tr>
 			<td>
 				<?php echo wetstone_form_make_input('referrer', 'text', 'How did you hear about us?', '', false); ?>
 			</td>
+		<tr colspan="2">
 			<td>
 				<?php 	echo wetstone_form_make_textarea(
 						'comments', 
