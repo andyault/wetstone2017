@@ -234,7 +234,7 @@ function wetstone_post_resell_form() {
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
 			'subject', 'fname', 'lname', 'company', 'website', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
-			'zip', 'country', 'referrer', 'customers', 'marketing', 'comments', 'description', 'territories', 'mtcaptcha-verifiedtoken'
+			'zip', 'country', 'referrer', 'customers', 'comments', 'description', 'territories', 'mtcaptcha-verifiedtoken'
 		]);
 				
 		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
