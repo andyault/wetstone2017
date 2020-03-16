@@ -337,9 +337,6 @@
 						true
 					);
 				?></td>
-		</tr>
-
-		<tr>
 			<td>
 				<?php
 					echo wetstone_form_make_select(
