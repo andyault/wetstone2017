@@ -25,7 +25,7 @@
 
 		<tr>
 			<td><?php echo wetstone_form_make_input('company', 'text', 'Company', 'Google Inc.', true); ?></td>
-			<td><?php echo wetstone_form_make_input('website', 'url', 'Company Website', 'http://google.com', true); ?></td>
+			<td><?php echo wetstone_form_make_input('website', 'url', 'Company Website', 'google.com', true); ?></td>
 		</tr>
 
 		<tr>
@@ -301,7 +301,7 @@
 					); 
 				?>
 			</td>
-			<td><?php echo wetstone_form_make_input('phone', 'tel', 'Phone', '(555) 867-5309', true); ?></td>
+			<td><?php echo wetstone_form_make_input('phone', 'tel', 'Phone', '+1 (555) 867-5309', true); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo wetstone_form_make_input('address1', 'text', 'Address Line 1', '1600 Pennsylvania Ave NW', true); ?></td>
@@ -327,6 +327,7 @@
 						'Who is your typical customer?',
 						[
 							'Government',
+							'Law Enforcement',
 							'Educational Institutions',
 							'Financial Institutions',
 							'Healthcare Facilities',
@@ -336,28 +337,6 @@
 						true
 					);
 				?></td>
-
-			<td rowspan="3">
-				<?php
-					echo wetstone_form_make_checkboxes(
-						'marketing',
-						'What is your main marketing campaign?',
-						[
-							'Trade Shows',
-							'Print Advertising',
-							'TV Advertising',
-							'Direct Mail',
-							'Newsletter',
-							'Seminars/Trainings',
-							'Telemarketing',
-							'Web',
-							'Other (please specify in comments)'
-						],
-						true,
-						true
-					);						
-				?>
-			</td>
 		</tr>
 
 		<tr>
