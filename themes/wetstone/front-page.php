@@ -13,6 +13,21 @@
 				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.mp4'); ?>" type="video/mp4" /><?php //echo $err; ?>
 				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.webm'); ?>" type="video/webm" /><?php //echo $err; ?>
 			</video>-->
+			
+			<div style="background-color:#FFFFFF; color:#000000; padding:20px 20px 20px 20px; font-size:14px; width:100%; overflow:auto;"><h3 style="color:#000000">A Message from Allen Corporation’s CEO on COVID-19</strong> </h3>
+			<img src="https://www.wetstonetech.com/wp-content/uploads/2020/04/KC_Headshot.png" style="float:left; height:214px; width:200px">
+			<div style="padding:0px 0px 0px 20px; float:left; width: 70%;">
+			<p>The pandemic we are living through is an extraordinary time for all of us. No one has been untouched by COVID-19, and it is important – maybe more than ever – that we are here for one another.  We are particularly grateful to the first responders and medical personnel who are putting themselves on the front-line of this pandemic to help safely guide us through this difficult period.<p> 
+			<p>We are monitoring the changing situation closely, and doing everything we can to support the well-being of our Allen employees and their families.  Our business continuity planning and migration of critical services to the cloud has enabled us to transition most of our employees to teleworking and to continue supporting the missions of our valued customers and partners. </p>
+			<p>Accelerated by the current crisis, the workplace is evolving into a teleworking model. Allen, through its Mitel partnership, offers the services and solutions to implement a highly secure, work from anywhere, collaborative environment for our customers.  Complemented by the McAfee expertise of our Cyber Security division, WetStone Technologies, Allen can provide the solutions that will enable employees to work remotely, productively, and securely.<p> 
+			<p>As we enter a new and challenging phase of our nation’s response to the present crisis, keep closely guarded, your safety and health. We will be back together face-to-face soon. Until then, I hope you are all well and safe.<p> 
+			<p>All the best,<br />
+			KC <br /><br />
+			K.C. Vaughey<br />
+			President/CEO</p>
+			</div>
+			</div>
+
 
 			<div id="hero-poster" class="video-poster hidden"
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
