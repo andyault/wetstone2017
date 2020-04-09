@@ -31,7 +31,7 @@
 
 
 			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>); overflow:auto;">
 				 <center>
 				 <div style="margin: 0px 0px 0px 0px">
 				 <br />
@@ -63,8 +63,6 @@
 		<!--<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
 		
 	</div>
-
-	<div class="hero-scroll box-center">scroll down</div>
 </section>
 
 <section id="about" class="about-preview">
