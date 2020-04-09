@@ -63,11 +63,12 @@
 				
 				//show links
 				if(!empty($prev)) {
+					$exTitle = explode(": ", get_the_title($prev));
 					echo sprintf(
 						'<a href="%s" class="link link-body"><i class="larr"></i> %s</a>',
 
 						add_query_arg('view', $prev->ID),
-						get_the_title($prev)
+						$exTitle[0]
 					);
 				}
 
@@ -79,11 +80,12 @@
 				echo sprintf('<a href="' . $baseurl . '" class="single-inquire link link-button">Back to My Products</a>');
 
 				if(!empty($next)) {
+					$exTitle = explode(": ", get_the_title($next));
 					echo sprintf(
 						'<a href="%s" class="link link-body">%s <i class="rarr"></i></a>',
 
 						add_query_arg('view', $next->ID),
-						get_the_title($next)
+						$exTitle[0]
 					);
 				}
 			?>
@@ -106,11 +108,12 @@
 							
 							if (strtotime($products[$id]['expiry']) < time()) {
 
-								if ($id == 1815) { 	
+								if ($id == 1815) { 
 								echo "<p style='color:red'>Your contract expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";
 								echo "<br /><br /><hr />";
 								} else {
-								echo "<p style='color:red'>Your license for <strong>" . get_the_title($id). "</strong> expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";
+								$exTitle = explode(": ", get_the_title($id));
+								echo "<p style='color:red'>Your license for <strong>" . $exTitle[0] . "</strong> expired on ". date('F d, Y', strtotime($products[$id]['expiry'])) .". To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.";
 								echo "<br /><br /><hr />";	
 								}
 							
@@ -136,7 +139,8 @@
 								if ($id == 1815) { 									
 								echo "<span style='color:red'>Your contract expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								} else {
-								echo "<span style='color:red'> - Your license for <strong>" . get_the_title($id) . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
+									$exTitle = explode(": ", get_the_title($id));
+								echo "<span style='color:red'> - Your license for <strong>" . $exTitle[0] . "</strong> expires in <strong>\"". $days_between . " day(s)\"</strong>. To renew, please contact <a href=\"mailto:sales@wetstonetech.com\" class=\"link link-body\">sales@wetstonetech.com</a>.</span>"; 
 								}
 								}		
 							

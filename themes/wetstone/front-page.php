@@ -33,11 +33,11 @@
 			<div id="hero-poster" class="video-poster hidden"
 			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
-				 <div style="margin: 30px 0px 0px 0px">
-				 <br /><br /><br /><br />	
+				 <div style="margin: 0px 0px 0px 0px">
+				 <br />
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
 				 <br /><br /><br />
-				 <a href="https://youtu.be/Q8-3PX35n_g" target="_blank"><img src="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" height="394" width="700"/></a>
+				 <a href="https://youtu.be/Q8-3PX35n_g" target="_blank"><img src="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" style="width:40%; height: auto"/></a>
 				 
 				 <!--<video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay>
 					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
@@ -65,29 +65,6 @@
 	</div>
 
 	<div class="hero-scroll box-center">scroll down</div>
-</section>
-
-<section id="products" class="products-front section-invert">
-	<div class="products-front-products">
-		<?php
-			$products = get_posts([
-				'post_type'      => 'product',
-				'meta_key'       => 'product_ispreview',
-				'meta_value'     => 'true',
-				'orderby'        => 'menu_order',
-				'order'          => 'ASC',
-				'posts_per_page' => -1
-			]);
-
-			foreach($products as $product) {
-				global $post;
-				$post = $product;
-				setup_postdata($post);
-
-				get_template_part('template-parts/product', 'front');
-			}
-		?>
-	</div>
 </section>
 
 <section id="about" class="about-preview">

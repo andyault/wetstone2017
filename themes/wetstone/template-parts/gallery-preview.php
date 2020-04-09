@@ -1,5 +1,5 @@
 <?php 
-	$name = $attachment->post_name;
+	$name = explode(": ", $attachment->post_name);
 	$link = wp_get_attachment_image_src($attachment->ID, [1040, 400]);
 	$fulllink = wp_get_attachment_image_src($attachment->ID, 'full');
 

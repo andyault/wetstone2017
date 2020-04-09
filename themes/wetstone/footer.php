@@ -13,11 +13,13 @@
 						}
 						if($page->ID >= 612 && $page->ID <= 634 || $page->ID == 1054 || $page->ID == 116) { // IDs of unwanted product in Footer
 						 if ($page->ID == 633) {
-							echo sprintf($template, get_permalink($page), get_the_title($page));
+							$exTitle = explode(": ", get_the_title($page));
+							echo sprintf($template, get_permalink($page), $exTitle[0]);
 							}
 						 }
 						else {
-							echo sprintf($template, get_permalink($page), get_the_title($page));
+							$exTitle = explode(": ", get_the_title($page));
+							echo sprintf($template, get_permalink($page), $exTitle[0]);
 						}
 												
 						//this sucks

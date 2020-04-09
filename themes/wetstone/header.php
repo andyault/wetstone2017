@@ -95,21 +95,24 @@
 							
 							
 							if ($id == 633) {
+								$exTitle = explode(": ", get_the_title());
+								
 								return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
 
 								get_the_permalink(),
 								$activeClass,
-								get_the_title()
+								$exTitle[0]
 							);
 							}						
 						} else {
+							$exTitle = explode(": ", get_the_title());
 							return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
 
 								get_the_permalink(),
 								$activeClass,
-								get_the_title()
+								$exTitle[0]
 							);
 						}
 					}

@@ -1,5 +1,10 @@
 <section class="site-content site-content-small site-content-padded">
-	<h2 class="section-header wetstone-font"><?php the_title(); ?></h2>
+	<h2 class="section-header wetstone-font">
+	<?php 
+	$exTitle = explode(": ", get_the_title($post->ID));
+	echo $exTitle[0];
+	?>
+	</h2>
 
 	<div class="myproduct-overview">
 		<div style="background-image: url(<?php the_post_thumbnail_url('medium'); ?>);" class="myproduct-overview-image"></div>
