@@ -171,8 +171,8 @@ function wetstone_echo_customer_form_fields($userId = null) {
 										<?php 	
 											if ($pid == 1815) { ?>
 											<option value="Authorized" <?php if($type == 'Authorized') echo 'selected'; ?>>Authorized</option>
+											<option value="Silver" <?php if($type == 'Silver') echo 'selected'; ?>>Silver</option>
 											<option value="Gold" <?php if($type == 'Gold') echo 'selected'; ?>>Gold</option>
-											<option value="Platinum" <?php if($type == 'Platinum') echo 'selected'; ?>>Platinum</option>
 												
 											<?php } else { ?>
 											
