@@ -36,18 +36,7 @@
 				 <div style="margin: 0px 0px 0px 0px">
 				 <br />
 					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
-				 <br /><br /><br />
-				 <a href="https://youtu.be/Q8-3PX35n_g" target="_blank"><img src="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" style="width:40%; height: auto"/></a>
-				 
-				 <!--<video controls width="600" height="338" poster="<?php echo wetstone_get_asset('/img/background/poster.png'); ?>" autoplay>
-					  <source src="<?php echo wetstone_get_asset('/img/background/Gargoyle_MP_Trial.mp4'); ?>" type="video/mp4" /><?php echo $err; ?>
-				</video> -->
-				
-				<p class="hero-desc" style="width:550px; margin: 50px 0px 0px 0px;">
-					<span style="font-size: 24px; line-height: 150%;"><strong>Our NEW Multi-Platform Malware Discovery Tool</strong></span><br />
-					<span style="font-size:36px; line-height: 150%; font-family:wetstone; color:#1fb04c"><a class="link link-body" href="https://www.wetstonetech.com/products/gargoyle-mp/">Gargoyle Investigator&trade; MP</a></span><br />
-					<span style="font-size: 24px; line-height: 150%"><strong>Available Now!</strong></span>
-				</p>
+				<iframe src="https://player.vimeo.com/video/411007100" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 				</div>
 				</center>
 				 
