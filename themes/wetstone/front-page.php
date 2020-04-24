@@ -31,12 +31,12 @@
 
 
 			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>); overflow:auto;">
+			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
-				 <div style="margin: 0px 0px 0px 0px">
 				 <br />
-					<img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134">
-				<iframe src="https://player.vimeo.com/video/411007100" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+				 <img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134"><br />
+				 <div style="position:relative; overflow:hidden; padding-top:56.25%;">				 					
+					<iframe style="position:absolute; top:30px; left:20%; width:65%; height:65%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 				</div>
 				</center>
 				 
