@@ -17,41 +17,13 @@
 			President/CEO</p>
 			</div>
 		</div>
-<section class="hero fullpage fullpage-hero">
-	<div class="hero-background">
-		<div class="video-container">
-			<!--<div class="video-filter"></div>
-
-			<video id="hero-video" class="video-video" autoplay loop>
-				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.mp4'); ?>" type="video/mp4" /><?php //echo $err; ?>
-				<source src="<?php //echo wetstone_get_asset('/img/background/Love-Coding.webm'); ?>" type="video/webm" /><?php //echo $err; ?>
-			</video>-->
-			
-
-
-
-			<div id="hero-poster" class="video-poster hidden"
-			     style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
+<section class="hero fullpage fullpage-hero" style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
-				 <br />
-				 <img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" width="448" height="134"><br />
-				 <div style="position:relative; overflow:hidden; padding-top:56.25%;">				 					
-					<iframe style="position:absolute; top:30px; left:20%; width:65%; height:65%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+				 <img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" style="width:100%; max-width:448px; height:auto;"><br />
+				 <div style="position:relative; overflow:hidden; padding-top:56.25%;">
+				 <iframe style="position:absolute; top:30px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 				</div>
-				</center>
-				 
-			</div>
-		</div>
-	</div>
-
-	<div class="hero-info">
-		 <!--<img class="hero-logo" src="<?php //echo wetstone_get_asset('/img/biglogo.svg'); ?>" alt="WetStone Technologies: A division of Allen Corporation">-->
-
-
-
-		<!--<p class="hero-desc"><?php //echo get_bloginfo('description'); ?></p> -->
-		
-	</div>
+				</center>				 
 </section>
 
 <section id="about" class="about-preview">
