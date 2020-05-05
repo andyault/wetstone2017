@@ -45,6 +45,11 @@
 			$coreLimit = $productinfo['core_limit'];	
 			$reportLimit = $productinfo['report_limit'];		
 		}
+		if ($productID == 1667) {
+			$productCode = 'STEGOHUNTMP';
+			$licenseType = $productinfo['license_type'];
+			$coreLimit = $productinfo['core_limit'];		
+		}
 		////
 		
 		//var_dump($adminemail);
