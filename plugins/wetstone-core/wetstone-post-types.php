@@ -59,12 +59,14 @@ function wetstone_register_post_types() {
 		],
 		'supports'   => ['title', 'editor', 'excerpt', 'page-attributes'],
 		'has_archive' => true
-	]);
+	]);	
 	
 }
 
 //add meta boxes
 add_action('add_meta_boxes', 'wetstone_add_meta_boxes');
+
+
 
 function wetstone_add_meta_boxes() {
 	foreach(['testimonial', 'product', 'page'] as $meta) {
