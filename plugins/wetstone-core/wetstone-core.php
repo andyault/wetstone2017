@@ -160,6 +160,19 @@ add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $ic
 } 
 add_action( 'admin_menu', 'dataset_notification_menu' ); 
 
+function ws_inactive_users_menu(){    
+	$page_title = 'Inactive Users Report';   
+	$menu_title = 'Inactive Users Report';   
+	$capability = 'manage_options';   
+	$menu_slug  = 'ws_inactive_users_menu';   
+	$function   = 'ws_inactive_users_page';   
+	$icon_url   = 'dashicons-media-code';   
+	$position   = 4;    
+add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+
+} 
+add_action( 'admin_menu', 'ws_inactive_users_menu' ); 
+
 function dataset_notification_menu_page() {	
 	global $wpdb;
 	$wpdb->show_errors();
@@ -447,6 +460,85 @@ function dataset_report_menu_page() {
 		
 }
 
+function ws_inactive_users_page() {	
+	global $wpdb;
+	$wpdb->show_errors();
+	echo "<h1>Inactive Users Report</h1>";
+
+	if (!isset($_GET['startrow']) or !is_numeric($_GET['startrow'])) {
+	//we give the value of the starting row to 0 because nothing was found in URL
+		$startrow = 0;
+		
+	//otherwise we take the value from the URL
+	} else {
+	  $startrow = (int)$_GET['startrow'];
+	}
+	$prev = $startrow - 25;
+	$result2 = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets_log ORDER BY download_date DESC LIMIT '.$startrow.', 25');		
+	if (!$result2) {
+		echo "There is a problem with the database."; 
+		$wpdb->print_error();
+	} else { 
+		$wpdb->hide_errors();
+
+		$aca_table2 = '<div style="margin: 5% 2%"><form id="download-csv" action="'. esc_url( admin_url("admin-post.php") ) .'" method="post">
+				   <input type="hidden" name="action" value="wetstone-download-csv">'.
+				   wp_nonce_field("wetstone_post_download_csv") .
+				   '<input type="submit" value="Download CSV" style="float: right"><br>
+			</form>
+				<table style="width:99%; 
+						margin-bottom: 1.5em;
+						border-spacing: 0;
+						border: 1px solid #ccc;">
+				<caption style="font-weight:bold">Dataset and file downloads</caption>
+				<thead style="background-color: rgba(29,150,178,1);
+						border: 1px solid rgba(29,150,178,1);
+						font-weight: normal;
+						text-align: center;
+						color: white;">
+					<tr>
+						<th scope="col">User Name</th>
+						<th scope="col">User Email</th>
+						<th scope="col">IP Address</th>
+						<th scope="col">Asset</th>
+						<th scope="col">Download Date</th>
+					</tr>
+				</thead>
+				<tbody style="text-align: center;">';
+			$counter = 0;
+			foreach ( $result2 as $page )
+			{			
+				$counter++;				
+				
+			   $dataset = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets WHERE dataset_id=\''.$page->asset_id.'\'');
+			   $userData = get_userdata($page->user_id);
+			   if ($counter % 2 == 0) {
+			   $aca_table2 .= '<tr>'; } else {
+			   $aca_table2 .= '<tr style="background-color:#ddd">';}
+			   $aca_table2 .= '	<th scope="row">'. $userData->first_name . ' ' . $userData->last_name . '</th>
+								<td>'. $userData->user_email . '</td>
+								<td>'. $page->user_ip . '</td>
+								<td>'. $dataset[0]->dataset_name . '</td>
+								<td>'. $page->download_date . '</td>
+							  </tr>';		   
+			}
+			
+		$aca_table2 .= '</tbody></table>';
+		$aca_table2 .= '<span style="float:right; margin-right:25px;">';
+		if ($prev >= 0) {		
+		$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=dataset_report_menu&startrow='.$prev.'" style="text-decoration:none"><< Previous 25</a> &nbsp; &nbsp; &nbsp';
+		}
+
+		if (count($result2) == 25) {
+			$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=dataset_report_menu&startrow='.($startrow+25).'"  style="text-decoration:none">Next 25 >></a>';
+			$aca_table2 .= '</span></div>';
+		}
+		echo $aca_table2;
+
+		
+	}
+		
+}
 
 function wetstone_post_download_csv() {
 	global $wpdb;
