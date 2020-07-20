@@ -161,8 +161,8 @@ add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $ic
 add_action( 'admin_menu', 'dataset_notification_menu' ); 
 
 function ws_inactive_users_menu(){    
-	$page_title = 'Inactive Users Report';   
-	$menu_title = 'Inactive Users Report';   
+	$page_title = 'Users Report';   
+	$menu_title = 'Users Report';   
 	$capability = 'manage_options';   
 	$menu_slug  = 'ws_inactive_users_menu';   
 	$function   = 'ws_inactive_users_page';   
@@ -463,7 +463,7 @@ function dataset_report_menu_page() {
 function ws_inactive_users_page() {	
 	global $wpdb;
 	$wpdb->show_errors();
-	echo "<h1>Inactive Users Report</h1>";
+	echo "<h1>Users Report</h1>";
 
 	if (!isset($_GET['startrow']) or !is_numeric($_GET['startrow'])) {
 	//we give the value of the starting row to 0 because nothing was found in URL
@@ -474,63 +474,82 @@ function ws_inactive_users_page() {
 	  $startrow = (int)$_GET['startrow'];
 	}
 	$prev = $startrow - 25;
-	$result2 = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets_log ORDER BY download_date DESC LIMIT '.$startrow.', 25');		
+	$result2 = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'users ORDER BY ID ASC LIMIT '.$startrow.', 25');		
 	if (!$result2) {
 		echo "There is a problem with the database."; 
 		$wpdb->print_error();
 	} else { 
 		$wpdb->hide_errors();
+		//$wpdb->print_error();
 
 		$aca_table2 = '<div style="margin: 5% 2%"><form id="download-csv" action="'. esc_url( admin_url("admin-post.php") ) .'" method="post">
 				   <input type="hidden" name="action" value="wetstone-download-csv">'.
-				   wp_nonce_field("wetstone_post_download_csv") .
-				   '<input type="submit" value="Download CSV" style="float: right"><br>
-			</form>
+				   wp_nonce_field("wetstone_post_download_csv") . //<input type="submit" value="Download CSV" style="float: right"><br>
+			' </form>
 				<table style="width:99%; 
 						margin-bottom: 1.5em;
 						border-spacing: 0;
 						border: 1px solid #ccc;">
-				<caption style="font-weight:bold">Dataset and file downloads</caption>
+				<caption style="font-weight:bold">Last Login by Customer</caption>
 				<thead style="background-color: rgba(29,150,178,1);
 						border: 1px solid rgba(29,150,178,1);
 						font-weight: normal;
-						text-align: center;
+						text-align: left;
+						padding: 10px;
 						color: white;">
 					<tr>
-						<th scope="col">User Name</th>
-						<th scope="col">User Email</th>
-						<th scope="col">IP Address</th>
-						<th scope="col">Asset</th>
-						<th scope="col">Download Date</th>
+						<th scope="col" style="text-align:left; padding: 10px;">User Name</th>
+						<th scope="col" style="text-align:left; padding: 10px;">User Email</th>
+						<th scope="col" style="text-align:left; padding: 10px;">Licensed Products</th>
+						<th scope="col" style="text-align:left; padding: 10px;">License Expiration</th>
+						<th scope="col" style="text-align:left; padding: 10px;">Last Login</th>
 					</tr>
 				</thead>
-				<tbody style="text-align: center;">';
+				<tbody style="text-align: left;">';
 			$counter = 0;
 			foreach ( $result2 as $page )
 			{			
 				$counter++;				
 				
-			   $dataset = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'datasets WHERE dataset_id=\''.$page->asset_id.'\'');
-			   $userData = get_userdata($page->user_id);
+			   $userData = get_userdata($page->ID);
+			   $lastLogin = array_values($userData->session_tokens);
+				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin[0]['login']); 
+				} else { $lastLogin = " - "; }
+			   $arrayValues = array_values($userData->wetstone_products);
+			   $arrayKeys = array_keys($userData->wetstone_products);
+			   $licensedProducts = "";
+			   $expirations = "";
+			   $expired = "";
+			   
+			   for ($x = 0; $x< count($arrayKeys); $x++) {
+				   $exploded = explode(": ",get_the_title($arrayKeys[$x]));				   				   
+				   if (strtotime($arrayValues[$x]['expiry']) < time()) { $expired = "<span style='color:red; font-weight:bold;'> - Expired</span>"; }
+				   $licensedProducts .= $exploded[0] . "<br />";
+				   $expirations .= $arrayValues[$x]['expiry'] . $expired ."<br />";
+			   }
+			  // if ($licensedProducts) {   $licensedProducts = count($licensedProducts) . " " . $licensedProducts[1]['expiry']; 
+			 //	} else { $lastLogin = " - "; }
+			   
+			   
 			   if ($counter % 2 == 0) {
 			   $aca_table2 .= '<tr>'; } else {
 			   $aca_table2 .= '<tr style="background-color:#ddd">';}
-			   $aca_table2 .= '	<th scope="row">'. $userData->first_name . ' ' . $userData->last_name . '</th>
-								<td>'. $userData->user_email . '</td>
-								<td>'. $page->user_ip . '</td>
-								<td>'. $dataset[0]->dataset_name . '</td>
-								<td>'. $page->download_date . '</td>
-							  </tr>';		   
+			   $aca_table2 .= "	<th scope='row' style='text-align:left; padding: 10px;'>". $userData->first_name . " " . $userData->last_name . "</th>
+								<td style='text-align:left; padding: 10px;'>". $userData->user_email . "</td>
+								<td style='text-align:left; padding: 10px;'>". $licensedProducts . "</td>
+								<td style='text-align:left; padding: 10px;'>". $expirations . "</td>
+								<td  style='text-align:left; padding: 10px;'>". $lastLogin . "</td>
+							  </tr>";		   
 			}
 			
 		$aca_table2 .= '</tbody></table>';
 		$aca_table2 .= '<span style="float:right; margin-right:25px;">';
 		if ($prev >= 0) {		
-		$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=dataset_report_menu&startrow='.$prev.'" style="text-decoration:none"><< Previous 25</a> &nbsp; &nbsp; &nbsp';
+		$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=ws_inactive_users_menu&startrow='.$prev.'" style="text-decoration:none"><< Previous 25</a> &nbsp; &nbsp; &nbsp';
 		}
 
 		if (count($result2) == 25) {
-			$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=dataset_report_menu&startrow='.($startrow+25).'"  style="text-decoration:none">Next 25 >></a>';
+			$aca_table2 .= '<a href="'.$_SERVER["PHP_SELF"].'?page=ws_inactive_users_menu&startrow='.($startrow+25).'"  style="text-decoration:none">Next 25 >></a>';
 			$aca_table2 .= '</span></div>';
 		}
 		echo $aca_table2;
