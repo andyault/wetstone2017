@@ -482,10 +482,10 @@ function ws_inactive_users_page() {
 		$wpdb->hide_errors();
 		//$wpdb->print_error();
 
-		$aca_table2 = '<div style="margin: 5% 2%"><form id="download-csv" action="'. esc_url( admin_url("admin-post.php") ) .'" method="post">
-				   <input type="hidden" name="action" value="wetstone-download-csv">'.
-				   wp_nonce_field("wetstone_post_download_csv") . //<input type="submit" value="Download CSV" style="float: right"><br>
-			' </form>
+		$aca_table2 = '<div style="margin: 5% 2%"><form id="download-user-csv" action="'. esc_url( admin_url("admin-post.php") ) .'" method="post">
+				   <input type="hidden" name="action" value="wetstone-download-user-csv">'.
+				   wp_nonce_field("wetstone_post_download_user_csv") . '<input type="submit" value="Download CSV" style="float: right"><br>
+			 </form>
 				<table style="width:99%; 
 						margin-bottom: 1.5em;
 						border-spacing: 0;
@@ -509,8 +509,7 @@ function ws_inactive_users_page() {
 			$counter = 0;
 			foreach ( $result2 as $page )
 			{			
-				$counter++;				
-				
+			   $counter++;	
 			   $userData = get_userdata($page->ID);
 			   $lastLogin = array_values($userData->session_tokens);
 				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin[0]['login']); 
@@ -526,6 +525,8 @@ function ws_inactive_users_page() {
 				   if (strtotime($arrayValues[$x]['expiry']) < time()) { $expired = "<span style='color:red; font-weight:bold;'> - Expired</span>"; }
 				   $licensedProducts .= $exploded[0] . "<br />";
 				   $expirations .= $arrayValues[$x]['expiry'] . $expired ."<br />";
+			   
+			   
 			   }
 			  // if ($licensedProducts) {   $licensedProducts = count($licensedProducts) . " " . $licensedProducts[1]['expiry']; 
 			 //	} else { $lastLogin = " - "; }
@@ -592,6 +593,65 @@ function wetstone_post_download_csv() {
 }	
 
 add_action('admin_post_wetstone-download-csv', 'wetstone_post_download_csv');
+
+
+function wetstone_post_download_user_csv() {
+	global $wpdb;
+	$result = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'users ORDER BY ID ASC');
+	
+	$delimiter = ",";
+    $filename = "inactive_users_" . date('Y-m-d') . ".csv";
+	//create a file pointer
+    $f = fopen('php://memory', 'w');
+    
+    //set column headers
+    $fields = array('User Name', 'User Email', 'Licensed Product', 'License Expiration Date', 'License Expired?', 'Last Login');
+    fputcsv($f, $fields, $delimiter);
+	$counter = 0;
+	foreach ( $result as $page )
+			{	
+			   $userData = get_userdata($page->ID);
+			   $lastLogin = array_values($userData->session_tokens);
+			   $accountType = array_keys($userData->wetstone_wp_capabilities);
+				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin[0]['login']); 
+				} else { $lastLogin = "Not Recorded"; }
+				
+			   $arrayValues = array_values($userData->wetstone_products);
+			   $arrayKeys = array_keys($userData->wetstone_products);
+
+			   if ($accountType[0] != 'administrator') {
+				  for ($x = 0; $x< count($arrayKeys); $x++) {
+						$licensedProducts = "";
+						$expirations = "";
+						$expired = "";
+						
+					   $exploded = explode(": ",get_the_title($arrayKeys[$x]));				   				   
+					   if (strtotime($arrayValues[$x]['expiry']) < time()) { 
+							$expired = "Expired"; 
+					   } else { 
+							$expired = ""; 
+					   }
+					   $licensedProducts = str_replace("™","",$exploded[0]);
+					   $licensedProducts = str_replace("&#8211;","",$licensedProducts);
+					   $expirations = $arrayValues[$x]['expiry'];
+				   
+						$lineData = array($userData->first_name . ' ' . $userData->last_name, $userData->user_email,$licensedProducts, $expirations, $expired, $lastLogin);
+						fputcsv($f, $lineData, $delimiter);
+				   } 
+			   }
+			}
+	    //move back to beginning of file
+    fseek($f, 0);
+    
+    //set headers to download file rather than displayed
+    header('Content-Type: application/excel');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    
+    //output all remaining data on a file pointer
+    fpassthru($f);
+}	
+
+add_action('admin_post_wetstone-download-user-csv', 'wetstone_post_download_user_csv');
 
 //include modules
 include('wetstone-security.php');
