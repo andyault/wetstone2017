@@ -105,6 +105,8 @@ function wetstone_echo_customer_form_fields($userId = null) {
 							<th>License Type</th>
 							<th>Core Limit</th>
 							<th>Reporting Limit</th>
+							<th>OS Type</th>
+							<th>Instance Limit</th>
 						</tr>
 					</thead>
 
@@ -199,6 +201,23 @@ function wetstone_echo_customer_form_fields($userId = null) {
 									<td style="padding: 0;">
 										<input type="number" name="product[<?php echo $pid ?>][report_limit]" value="<?php echo $myinfo ? $myinfo['report_limit'] : 0; ?>" disabled>
 									</td>
+									
+									<?php 	
+											if ($pid == 1667) { ?>
+									
+									<td>
+									<?php $type2 = $myinfo['os_type']; ?>
+										<select name="product[<?php echo $pid ?>][os_type]" value="<?php echo $type2; ?>" disabled>											
+											<option value="Desktop" <?php if($type2 == 'Desktop' || $type2 == null || $type2 == '') echo 'selected'; ?>>Desktop</option>
+											<option value="Server" <?php if($type2 == 'Server') echo 'selected'; ?>>Server</option>
+												
+										</select>
+									</td>
+									
+									<td style="padding: 0;">
+										<input type="number" name="product[<?php echo $pid ?>][instance_limit]" value="<?php echo $myinfo ? $myinfo['instance_limit'] : 1; ?>" disabled>
+											</td> <?php } else { ?> <td>&nbsp;</td><td>&nbsp;</td> <?php } ?>
+									
 								</tr>										
 
 								<?php

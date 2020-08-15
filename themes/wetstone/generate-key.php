@@ -17,6 +17,8 @@
 		$licenseType = 'none';
 		$coreLimit = 'none';
 		$reportLimit = 'none';
+		$instanceLimit = 'none';
+		$osType = 'none';
 		$expirationDate = strtotime($productinfo['expiry']);
 		
 		if(!$productinfo || $productinfo['num_used'] >= $productinfo['num_owned'])
@@ -48,7 +50,10 @@
 		if ($productID == 1667) {
 			$productCode = 'STEGOHUNTMP';
 			$licenseType = $productinfo['license_type'];
-			$coreLimit = $productinfo['core_limit'];		
+			$coreLimit = $productinfo['core_limit'];
+			$reportLimit = $productinfo['report_limit'];
+			$osType = $productinfo['os_type'];
+			$instanceLimit = $productinfo['instance_limit'];
 		}
 		////
 		
@@ -64,6 +69,8 @@ $subject = 'WetStoneTech.com - ' . $productCode . ' License Key';
 		$body .= "License Type: " . $licenseType . PHP_EOL;	
 		$body .= "Core Limit: " . $coreLimit . PHP_EOL;
 		$body .= "Reporting Limit: " . $reportLimit . PHP_EOL;
+		$body .= "OS Type: " . $osType . PHP_EOL;
+		$body .= "Instance Limit: " . $instanceLimit . PHP_EOL;
 		$body .= "Expiration: " . $expirationDate . PHP_EOL;	
 		$body .= "Registration Code: " . $_POST['regcode'] . PHP_EOL;		
 
