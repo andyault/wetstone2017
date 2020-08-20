@@ -183,6 +183,37 @@
 
 							}					
 							
+							if ($id == 115) 
+							{							
+								$result2 = getDataset(115, 'zip');
+								$dataArray = array();
+								
+								foreach ( $result2 as $page )
+									{									
+										$exploder = explode("_", $page->dataset_name);
+										$dataArray[] = array(strtotime($exploder[1] .' '. $exploder[0]), $page->dataset_name, $page->dataset_id, $page->date_added);										 
+									} 
+									
+								rsort($dataArray);							
+								echo '<strong>Latest Datasets</strong><br />';
+								
+								echo $dataArray[0][1] . ' - Added: ' . date("m-d-Y",(strtotime($dataArray[0][3]))) . '<br /><br />';
+								
+								$download1 = getDownload($user->ID,$dataArray[0][2]);
+								
+								if (!$download1) {
+									echo '<strong>Please select the "View Product" button to download the most recent dataset.</strong>';
+								} else {				
+									
+									echo '<strong>Last Downloaded Dataset </strong><br />';
+									if ($download1) {
+										$theFile = getFile($download1[0]->asset_id);
+										echo $theFile[0]->dataset_name . ' - Downloaded On: '. date("m-d-Y",(strtotime($download1[0]->download_date))) .'<br />';									
+									}
+								}
+
+							}
+							
 							if ($id == 613 || $id == 116) 
 							{							
 								$result2 = getDataset(116, 'cab');
@@ -213,9 +244,9 @@
 								}
 							}
 							
-							if ($id == 612 || $id == 115) 
+							if ($id == 612 || $id == 1667) 
 							{							
-								$result2 = getDataset(115, 'cab');
+								$result2 = getDataset(1667, 'cab');
 								$dataArray = array();
 								
 								foreach ( $result2 as $page )

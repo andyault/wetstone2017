@@ -47,13 +47,18 @@
 			$coreLimit = $productinfo['core_limit'];	
 			$reportLimit = $productinfo['report_limit'];		
 		}
-		if ($productID == 1667) {
+		if ($productID == 115) {
 			$productCode = 'STEGOHUNTMP';
 			$licenseType = $productinfo['license_type'];
 			$coreLimit = $productinfo['core_limit'];
 			$reportLimit = $productinfo['report_limit'];
 			$osType = $productinfo['os_type'];
 			$instanceLimit = $productinfo['instance_limit'];
+		}
+		if ($productID == 1667) {
+			$productCode = 'STEGOHUNT';
+			$licenseType = $productinfo['license_type'];
+			$coreLimit = $productinfo['core_limit'];		
 		}
 		////
 		

@@ -173,6 +173,53 @@ add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $ic
 } 
 add_action( 'admin_menu', 'ws_inactive_users_menu' ); 
 
+function ws_test_menu(){    
+	$page_title = 'Wil\'s Test Area';   
+	$menu_title = 'Wil\'s Test Area';   
+	$capability = 'manage_options';   
+	$menu_slug  = 'ws_test_menu';   
+	$function   = 'ws_test_page';   
+	$icon_url   = 'dashicons-media-code';   
+	$position   = 5;    
+add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+
+} 
+add_action( 'admin_menu', 'ws_test_menu' ); 
+
+
+function ws_test_page() {	
+	global $wpdb;
+	echo "<h1>Wil's Test Page</h1>";
+	
+	$posts = get_posts([
+		'post_type'      => 'product',
+		'posts_per_page' => -1
+	]);
+
+	$grouped = [];
+	
+	foreach($posts as $post) {
+		$cat = get_the_category($post->ID);
+		$cat2 = get_the_category($post->ID);
+
+		if(empty($cat)) {
+			$cat = 'Uncategorized';
+			$catID = '20'; 
+		} else {
+			$cat = esc_html($cat[0]->name);
+			$catID = esc_html($cat2[0]->description); 
+		}
+
+		$grouped += [$cat => $catID];
+			
+	}	
+	asort($grouped);
+	foreach($grouped as $x => $x_value) {
+	echo "Key=" . $x . ", Value=" . $x_value;
+	echo "<br>";
+	}
+}
+
 function dataset_notification_menu_page() {	
 	global $wpdb;
 	$wpdb->show_errors();
@@ -189,7 +236,7 @@ function dataset_notification_menu_page() {
 			<label for="group">Select group of customers to email:</label><br />
 			<select id="group" name="group">
 			  <option value="gargoylemp">Gargoyle</option>
-			  <option value="stegohunt">StegoHunt</option>
+			  <option value="stegohuntmp">StegoHunt MP</option>
 			  <option value="gd">General Dynamics</option>
 			  <option value="all">All</option>
 			</select><br /><br />
@@ -256,6 +303,15 @@ sales@wetstonetech.com
 				if ($owned) array_push($toEmail,$mycustomer->user_email);
 		}
 		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[1667];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(1667);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
 		$result = array_unique($toEmail);
 		$tooMail = implode(",",$result);
 		
@@ -295,13 +351,22 @@ function wetstone_post_mail_dataset() {
 		}
 	}
 	
-	if ($_POST['group'] == 'stegohunt' || $_POST['group'] == 'all') {		
+	if ($_POST['group'] == 'stegohuntmp' || $_POST['group'] == 'all') {		
 		foreach($users as $user_id){
 				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
 				$mycustomer = get_user_by('id', $user_id->ID);
 				$myinfo = $myproducts[115];
 				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
 				$productName = get_the_title(115);
+				if ($owned) array_push($toEmail,$mycustomer->user_email);
+		}
+		
+		foreach($users as $user_id){
+				$myproducts = get_user_meta( $user_id->ID, 'wetstone_products', true);
+				$mycustomer = get_user_by('id', $user_id->ID);
+				$myinfo = $myproducts[1667];
+				$owned = $myinfo ? strtotime($myinfo['expiry']) > time() : false;
+				$productName = get_the_title(1667);
 				if ($owned) array_push($toEmail,$mycustomer->user_email);
 		}
 	}	

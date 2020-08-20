@@ -203,7 +203,7 @@ function wetstone_echo_customer_form_fields($userId = null) {
 									</td>
 									
 									<?php 	
-											if ($pid == 1667) { ?>
+											if ($pid == 115) { ?>
 									
 									<td>
 									<?php $type2 = $myinfo['os_type']; ?>

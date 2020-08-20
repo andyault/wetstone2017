@@ -255,7 +255,7 @@ function changed(thisVal, thisID) {
 <tbody>
 <tr>
 <td><a href="https://www.wetstonetech.com/portal/my-products/?view=116"><img class="alignnone size-medium wp-image-238" src="https://www.wetstonetech.com/wp-content/uploads/2017/08/gargoyle_b-242x300.png" alt="" width="100" height="126"></a></td>
-<td><a href="https://www.wetstonetech.com/portal/my-products/?view=115"><img class="alignnone size-medium wp-image-243" src="https://www.wetstonetech.com/wp-content/uploads/2017/08/stegohunt--242x300.png" alt="" width="100" height="126"></a></td>
+<td><a href="https://www.wetstonetech.com/portal/my-products/?view=115"><img class="alignnone size-medium wp-image-243" src="https://www.wetstonetech.com/wp-content/uploads/2019/11/StegoHuntMP-1.png" alt="" width="100" height="126"></a></td>
 <td><a href="https://www.wetstonetech.com/portal/my-products/?view=123"><img class="alignnone size-medium wp-image-231" src="https://www.wetstonetech.com/wp-content/uploads/2017/08/discover_the_hidden-242x300.png" alt="" width="100" height="126"></a></td>
 <td><a href="https://www.wetstonetech.com/portal/my-products/?view=121"><img class="alignnone size-medium wp-image-236" src="https://www.wetstonetech.com/wp-content/uploads/2017/08/us-latt_02-242x300.png" alt="" width="100" height="126"></a></td>
 <td><a href="https://www.wetstonetech.com/portal/my-products/?view=120"><img class="alignnone size-medium wp-image-233" src="https://www.wetstonetech.com/wp-content/uploads/2017/08/ctak-1-242x300.png" alt="" width="100" height="126"></a></td>

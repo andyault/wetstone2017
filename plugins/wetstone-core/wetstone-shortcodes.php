@@ -548,7 +548,7 @@ add_shortcode("STEGMP", "display_STEGMP");
 
 function display_STEGMP($atr){
 	ob_start();
-		$productID = 1667;
+		$productID = 115;
 		$productDir = 'StegoHuntMP';
         $dataset = $productDir.'/Dataset Updates';
 		$pdfEng = $productDir.'/Release Notes';
@@ -611,7 +611,7 @@ add_shortcode("STEG", "display_STEG");
 
 function display_STEG($atr){
 	ob_start();
-		$productID = 115;
+		$productID = 1667;
 		$productDir = 'StegoHunt';
         $dataset = $productDir.'/Dataset Updates';
 		$pdfEng = $productDir.'/Release Notes';
