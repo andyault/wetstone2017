@@ -6,13 +6,17 @@
 
 <section class="hero fullpage fullpage-hero" style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
-				 <img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" style="width:100%; max-width:448px; height:auto;"><br />
-				 <div style="position:relative; overflow:hidden; padding-top:56.25%;">
-				 <iframe style="position:absolute; top:30px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>				 
+				 <img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" style="width:100%; max-width:448px; height:auto; padding-bottom:60px;"><br />
+				 <p>WetStone is an industry leader in cyber security services and computer forensics solutions.</p>
+				 <div style="position:relative; overflow:hidden; padding-top:56.25%;">				 
+				 <iframe style="position:absolute; top:0px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>				
 				</div>
+				<p>WetStone is one of McAfee's highest rated professional services partners.</p>
 				<div style="position:relative; overflow:hidden; padding-top:56.25%;">
-				 <iframe style="position:absolute; top:0px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/415135655" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>				 
+				 <iframe style="position:absolute; top:0px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/415135655" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+				
 				</div>
+				
 				</center>				 
 </section>
 
@@ -36,10 +40,10 @@
 
 <section id="testimonials" class="testimonials-preview section-invert ">
 <h2 class="section-header">News</h2>
-	<section id="news" class="news-preview site-content site-content-padded flex flex-center flex-responsive">
+	<section id="news" class="news-preview site-content flex flex-center flex-responsive">
 		
 
-		<div class="news-preview-news" style="width:800px;">
+		<div class="news-preview-news" style="width:75%;">
 			<?php 
 				$news = get_posts([
 					'orderby'        => 'date',
@@ -60,7 +64,7 @@
 
 		
 	</section>
-<a href="<?php echo esc_url(get_permalink(get_page_by_path('corporate/news'))); ?>" class="link link-button box-center">
+<a href="<?php echo esc_url(get_permalink(get_page_by_path('news'))); ?>" class="link link-button box-center">
 			See more news
 		</a>
 

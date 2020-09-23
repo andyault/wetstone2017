@@ -106,6 +106,13 @@
 								$exTitle[0]
 							);
 							}						
+						} else if ($id == 1394) {
+							return sprintf(
+								'<a href="https://video.wetstonetech.com/categories/" target="blank" class="header-link link link-header-site %s">%s</a>', 
+
+								$activeClass,
+								get_the_title()
+							);
 						} else {
 							$exTitle = explode(": ", get_the_title());
 							return sprintf(
