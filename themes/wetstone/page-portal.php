@@ -279,6 +279,13 @@ function changed(thisVal, thisID) {
 <p>Email: support@wetstonetech.com <br /><br />
 Monday thru Friday<br />
 8:00 a.m. to 5:00 p.m. ET</p>
+<p>WetStone observes the following holidays:<br>
+New Year’s Day (1/1) <br>
+Memorial Day (5/31)<br>
+Independence Day (7/4)<br>
+Labor Day (9/6)<br>
+Thanksgiving Day (11/26)<br>
+Christmas Day (12/25)</p>
 <div>
 <hr>
 <p><strong>CUSTOMER SERVICE:</strong></p>
