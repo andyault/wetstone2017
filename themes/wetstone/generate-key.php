@@ -60,6 +60,12 @@
 			$licenseType = $productinfo['license_type'];
 			$coreLimit = $productinfo['core_limit'];		
 		}
+		
+		if ($productID == 617) {
+			$productCode = 'STEGOANALYST';
+			$licenseType = $productinfo['license_type'];
+			$coreLimit = $productinfo['core_limit'];		
+		}
 		////
 		
 		//var_dump($adminemail);
