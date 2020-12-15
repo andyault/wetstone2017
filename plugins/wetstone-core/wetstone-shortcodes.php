@@ -293,9 +293,9 @@ function display_GDS($atr){
 
 
 
-add_shortcode("GMP", "display_GMP");
+add_shortcode("GMP2", "display_GMP2");
  
-function display_GMP($atr){
+function display_GMP2($atr){
 	ob_start();
 		global $wpdb;
 		$productID = 633;
@@ -356,9 +356,9 @@ function display_GMP($atr){
 	return ob_get_clean();
 }
 
-add_shortcode("GMP2", "display_GMP2");
+add_shortcode("GMP", "display_GMP");
  
-function display_GMP2($atr){
+function display_GMP($atr){
 	ob_start();
 		$productID = 633;
 		$productDir = 'GargoyleMP';
@@ -419,9 +419,9 @@ function display_GMP2($atr){
 }
 
 //add Dataset info
-add_shortcode("GMPF", "display_GMPF");
+add_shortcode("GMPF2", "display_GMPF2");
  
-function display_GMPF($atr){
+function display_GMPF2($atr){
 	ob_start();
 		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
@@ -482,9 +482,9 @@ function display_GMPF($atr){
 }
 
 //add Dataset info
-add_shortcode("GMPF2", "display_GMPF2");
+add_shortcode("GMPF", "display_GMPF");
  
-function display_GMPF2($atr){
+function display_GMPF($atr){
 	ob_start();
 		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
@@ -562,7 +562,7 @@ function display_STEGMP($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 1; $aca_i++) {
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);			
 			$result = getResults($datasetFiles[$aca_i]);
 			$result2 = getResults($pdfEngFiles[$aca_i]);
