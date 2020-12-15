@@ -3,7 +3,7 @@
 	<?php 
 	$exTitle = explode(": ", get_the_title($post->ID));
 	if ($post->ID == 633 || $post->ID == 634 || $post->ID == 1054) {
-		echo $exTitle[0] . " 7.3";
+		echo $exTitle[0] . " 7.4";
 	} else {
 	
 	echo $exTitle[0];

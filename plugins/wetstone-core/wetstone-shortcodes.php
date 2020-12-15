@@ -300,7 +300,7 @@ function display_GMP($atr){
 		global $wpdb;
 		$productID = 633;
 		$productDir = 'GargoyleMP';
-        $dataset = $productDir.'/Dataset Updates/7_2';
+        $dataset = $productDir.'/Dataset Updates/7_4';
 		$pdfEng = $productDir.'/Release Notes';
 		$pdfSpa = $productDir.'/Release Notes - Spanish';
 				
@@ -312,7 +312,7 @@ function display_GMP($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+		for ($aca_i = 0; $aca_i < 1; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);			
 			$result = getResults($datasetFiles[$aca_i]);
 			$result2 = getResults($pdfEngFiles[$aca_i]);
@@ -356,13 +356,13 @@ function display_GMP($atr){
 	return ob_get_clean();
 }
 
-add_shortcode("GMP71", "display_GMP71");
+add_shortcode("GMP2", "display_GMP2");
  
-function display_GMP71($atr){
+function display_GMP2($atr){
 	ob_start();
 		$productID = 633;
 		$productDir = 'GargoyleMP';
-        $dataset = $productDir.'/Dataset Updates/7_1';
+        $dataset = $productDir.'/Dataset Updates/7_3';
 		$pdfEng = $productDir.'/Release Notes';
 		$pdfSpa = $productDir.'/Release Notes - Spanish';
 				
@@ -425,7 +425,7 @@ function display_GMPF($atr){
 	ob_start();
 		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
-        $dataset = 'GargoyleMP/Dataset Updates/7_2';
+        $dataset = 'GargoyleMP/Dataset Updates/7_4';
 		$pdfEng = 'GargoyleMP/Release Notes';
 		$pdfSpa = 'GargoyleMP/Release Notes - Spanish';
 				
@@ -437,7 +437,7 @@ function display_GMPF($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
+		for ($aca_i = 0; $aca_i < 1; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);			
 			$result = getResults($datasetFiles[$aca_i]);
 			$result2 = getResults($pdfEngFiles[$aca_i]);
@@ -482,13 +482,13 @@ function display_GMPF($atr){
 }
 
 //add Dataset info
-add_shortcode("GMPF71", "display_GMPF71");
+add_shortcode("GMPF2", "display_GMPF2");
  
-function display_GMPF71($atr){
+function display_GMPF2($atr){
 	ob_start();
 		$productID = 634;
 		$productDir = 'GargoyleMP Flash';
-        $dataset = 'GargoyleMP/Dataset Updates/7_1';
+        $dataset = 'GargoyleMP/Dataset Updates/7_3';
 		$pdfEng = 'GargoyleMP/Release Notes';
 		$pdfSpa = 'GargoyleMP/Release Notes - Spanish';
 				
