@@ -59,7 +59,7 @@
 
 		//for each cat, spit out a header and our products
 		foreach($grouped as $group => $posts) { ?>
-			<h2 class="section-header"><?php echo $group; ?></h2>
+			<h2 class="section-header"><?php if($group != 'Other Products') echo $group; ?></h2>
 
 			<div class="page-list flex flex-center">
 				<?php

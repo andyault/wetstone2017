@@ -15,7 +15,7 @@
 	}
 ?>
 
-<form name="my-account" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form ">
+			<form name="my-account" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form ">
 	<input type="hidden" name="action" value="wetstone-customer-support">
 	<?php wp_nonce_field('wetstone-customer-support'); ?>
 
@@ -23,15 +23,20 @@
 
 	<table class="form-table form-table-collapse">
 		<tr>
-			<td colspan="2" class="text-center">Before submitting, please be sure your question isn't listed in one of our product FAQs.</td>
+			<td colspan="2" class="text-center">Before submitting, please be sure your question isn't listed in one of our product FAQs or in our How To Video series.</td>
 		</tr>
-
+		<tr>
+			<td><h3 class="wetstone-font">Gargoyle Investigator™ MP</h3><h3 class="wetstone-font">StegoHunt™ MP</h3></td>
+			<td><a class="link link-button popmake-2241">FAQ</a>&nbsp;&nbsp;<a class="link link-button" target="_blank" href="https://video.wetstonetech.com/video-categories/gargoyle-investigator/">How To Videos</a><br /><br /><a class="link link-button popmake-2260">FAQ</a>&nbsp;&nbsp;<a class="link link-button" href="https://video.wetstonetech.com/video-categories/stegohuntmp/" target="_blank">How To Videos</a></td>
+		</tr>
 		<tr>
 			<td colspan="2" class="text-center">Fields marked with <i class="req">*</i> are required.</td>
 		</tr>
 
 		<tr>
 			<td>
+
+			
 				<?php
 					echo wetstone_form_make_select(
 						'product', 

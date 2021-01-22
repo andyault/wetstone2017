@@ -148,8 +148,10 @@
 						$grouped['Other Products'] = $other;
 
 						foreach($grouped as $cat => $pages) {
-							if(count($grouped) > 1)
-								echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat);
+							if(count($grouped) > 1) {
+								if($cat != 'Other Products')								
+									echo sprintf('<li class="header-sub-nav-cat-header"><span>%s</span>&nbsp;</li>', $cat); 
+							}
 
 							foreach($pages as $post) {
 								echo '<li>';
