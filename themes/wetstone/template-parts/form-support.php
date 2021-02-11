@@ -23,7 +23,7 @@
 
 	<table class="form-table form-table-collapse">
 		<tr>
-			<td colspan="2" class="text-center">Before submitting, please be sure your question isn't listed in one of our product FAQs or in our How To Video series.</td>
+			<td colspan="2" class="text-center">Before submitting a support request, you may be able to find your question answered in one of our product FAQ's or in our How To Video series.</td>
 		</tr>
 		<tr>
 			<td><h3 class="wetstone-font">Gargoyle Investigator™ MP</h3><h3 class="wetstone-font">StegoHunt™ MP</h3></td>
