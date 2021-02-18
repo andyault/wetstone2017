@@ -32,7 +32,7 @@
 	<h2 class="section-header"><?php the_title(); ?></h2>
 
 	<div class="body-content">
-		<p>WetStone Technologies is the award-winning Cyber Security Division of Allen Corporation of America. Since 1998, WetStone has developed software solutions that support investigators and analysts engaged in cyber-crime investigations, digital forensics, and incident response activities. We also provide comprehensive consulting services for the best practices implementation and operation of security solutions from McAfee and other industry leaders to protect our customers’ critical information assets.</p>
+		<p>WetStone Technologies is the award-winning Cyber Security Division of Allen Corporation of America. Since 1998, WetStone has developed <a href="https://www.wetstonetech.com/products" class="link link-body">software solutions</a> that support investigators and analysts engaged in cyber-crime investigations, digital forensics, and incident response activities. We also provide comprehensive consulting services for the best practices implementation and operation of security solutions from <a href="https://www.wetstonetech.com/mcafee" class="link link-body">McAfee</a> and other industry leaders to protect our customers’ critical information assets.</p>
 	</div>
 
 	<a href="<?php the_permalink(); ?>" class="link link-button box-center">See more about us</a>

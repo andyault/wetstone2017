@@ -58,6 +58,7 @@ function wetstone_register_post_types() {
 			'view_item'     => 'View Service'
 		],
 		'supports'   => ['title', 'editor', 'excerpt', 'page-attributes'],
+		'taxonomies'  => ['category'],
 		'has_archive' => true
 	]);	
 	
