@@ -12,7 +12,10 @@
 	$skip = false;
 	
 	if ($mpsurvey == "Declined") $skip = true;
-	if ($mpsurvey == "Completed") $skip = true;
+	if ($mpsurvey == "Completed") $skip = true;	
+
+	update_user_meta( $user->ID, '_last_activity', time() );
+	
 ?>
 	<section class="site-content site-content-small site-content-padded">
 	<h2 class="section-header"><?php the_title(); ?></h2>

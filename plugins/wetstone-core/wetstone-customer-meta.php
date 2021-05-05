@@ -169,18 +169,28 @@ function wetstone_echo_customer_form_fields($userId = null) {
 									<td>
 									<?php $type = $myinfo['license_type']; ?>
 										<select name="product[<?php echo $pid ?>][license_type]" value="<?php echo $type; ?>" disabled>
-											<option value="None" <?php if($type == null || $type == '' || $type == 'None') echo 'selected'; ?>>None</option>
+											
 										<?php 	
 											if ($pid == 1815) { ?>
+											<option value="None" <?php if($type == null || $type == '' || $type == 'None') echo 'selected'; ?>>None</option>
 											<option value="Authorized" <?php if($type == 'Authorized') echo 'selected'; ?>>Authorized</option>
 											<option value="Silver" <?php if($type == 'Silver') echo 'selected'; ?>>Silver</option>
 											<option value="Gold" <?php if($type == 'Gold') echo 'selected'; ?>>Gold</option>
 												
 											<?php } else { ?>
-											
-											<option value="Perpetual" <?php if($type == 'Perpetual') echo 'selected'; ?>>Perpetual</option>
-											<option value="Subscription" <?php if($type == 'Subscription') echo 'selected'; ?>>Subscription</option>
-											<option value="Demonstration" <?php if($type == 'Demonstration') echo 'selected'; ?>>Demonstration</option>
+												<?php 	
+													if ($pid == 115 || $pid == 633 || $pid == 634 || $pid == 1807 ) { ?>
+														<option value="None" <?php if($type == 'None') echo 'selected'; ?>>None</option>
+														<option value="Perpetual" <?php if($type == null || $type == '' || $type == 'None' || $type == 'Perpetual') echo 'selected'; ?>>Perpetual</option>
+													
+													<?php } else { ?> 
+														<option value="None" <?php if($type == null || $type == '' || $type == 'None') echo 'selected'; ?>>None</option>
+														<option value="Perpetual" <?php if($type == 'Perpetual') echo 'selected'; ?>>Perpetual</option>
+													<?php
+													}
+													?>
+													<option value="Subscription" <?php if($type == 'Subscription') echo 'selected'; ?>>Subscription</option>
+													<option value="Demonstration" <?php if($type == 'Demonstration') echo 'selected'; ?>>Demonstration</option>
 											
 												<?php
 											}

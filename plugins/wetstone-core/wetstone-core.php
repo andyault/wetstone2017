@@ -190,34 +190,14 @@ add_action( 'admin_menu', 'ws_test_menu' );
 function ws_test_page() {	
 	global $wpdb;
 	echo "<h1>Wil's Test Page</h1>";
+	$command = 'cd /var/www/html/protected/StegoMPDemo && ./create_demo_lic 03-31-2020';
+    $output = shell_exec($command);
 	
-	$posts = get_posts([
-		'post_type'      => 'product',
-		'posts_per_page' => -1
-	]);
-
-	$grouped = [];
-	
-	foreach($posts as $post) {
-		$cat = get_the_category($post->ID);
-		$cat2 = get_the_category($post->ID);
-
-		if(empty($cat)) {
-			$cat = 'Uncategorized';
-			$catID = '20'; 
+	if ($output) {
+	echo $output;
 		} else {
-			$cat = esc_html($cat[0]->name);
-			$catID = esc_html($cat2[0]->description); 
-		}
-
-		$grouped += [$cat => $catID];
-			
-	}	
-	asort($grouped);
-	foreach($grouped as $x => $x_value) {
-	echo "Key=" . $x . ", Value=" . $x_value;
-	echo "<br>";
-	}
+	echo "nothing here?"; }
+    
 }
 
 function dataset_notification_menu_page() {	
@@ -567,7 +547,9 @@ function ws_inactive_users_page() {
 						<th scope="col" style="text-align:left; padding: 10px;">User Email</th>
 						<th scope="col" style="text-align:left; padding: 10px;">Licensed Products</th>
 						<th scope="col" style="text-align:left; padding: 10px;">License Expiration</th>
-						<th scope="col" style="text-align:left; padding: 10px;">Last Login</th>
+						<th scope="col" style="text-align:left; padding: 10px;">License Type</th>
+						<th scope="col" style="text-align:left; padding: 10px;">Last Activity</th>
+						<th scope="col" style="text-align:left; padding: 10px;">Days Since Last Activity</th>
 					</tr>
 				</thead>
 				<tbody style="text-align: left;">';
@@ -576,25 +558,44 @@ function ws_inactive_users_page() {
 			{			
 			   $counter++;	
 			   $userData = get_userdata($page->ID);
-			   $lastLogin = array_values($userData->session_tokens);
-				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin[0]['login']); 
+			  // $lastLogin = array_values($userData->session_tokens);
+			  
+			    if (get_user_meta($page->ID, '_last_activity', true)) {
+					$lastLogin = get_user_meta($page->ID, '_last_activity', true);
+				} else {
+					$lastLogin = get_user_meta($page->ID, 'wfls-last-login', true);
+				}
+			   $now = time();
+			   $daysDiff = $now - $lastLogin;
+				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin); 
 				} else { $lastLogin = " - "; }
 			   $arrayValues = array_values($userData->wetstone_products);
 			   $arrayKeys = array_keys($userData->wetstone_products);
 			   $licensedProducts = "";
+			   $licenseType = "";
 			   $expirations = "";
 			   $expired = "";
+			   
+			   
 			   
 			   for ($x = 0; $x< count($arrayKeys); $x++) {
 				   $exploded = explode(": ",get_the_title($arrayKeys[$x]));				   				   
 				   if (strtotime($arrayValues[$x]['expiry']) < time()) { $expired = "<span style='color:red; font-weight:bold;'> - Expired</span>"; }
 				   $licensedProducts .= $exploded[0] . "<br />";
 				   $expirations .= $arrayValues[$x]['expiry'] . $expired ."<br />";
+				   $licenseType .= $arrayValues[$x]['license_type']."<br />";
 			   
 			   
 			   }
 			  // if ($licensedProducts) {   $licensedProducts = count($licensedProducts) . " " . $licensedProducts[1]['expiry']; 
 			 //	} else { $lastLogin = " - "; }
+			   
+			   if (round($daysDiff / (60*60*24)) > 18695) {
+			    $daysSince =  "-";
+			   } else {
+				$daysSince =  round($daysDiff / (60*60*24));
+			   }
+			   
 			   
 			   
 			   if ($counter % 2 == 0) {
@@ -604,7 +605,9 @@ function ws_inactive_users_page() {
 								<td style='text-align:left; padding: 10px;'>". $userData->user_email . "</td>
 								<td style='text-align:left; padding: 10px;'>". $licensedProducts . "</td>
 								<td style='text-align:left; padding: 10px;'>". $expirations . "</td>
+								<td style='text-align:left; padding: 10px;'>". $licenseType . "</td>
 								<td  style='text-align:left; padding: 10px;'>". $lastLogin . "</td>
+								<td  style='text-align:left; padding: 10px;'>". $daysSince . "</td>
 							  </tr>";		   
 			}
 			
@@ -670,15 +673,30 @@ function wetstone_post_download_user_csv() {
     $f = fopen('php://memory', 'w');
     
     //set column headers
-    $fields = array('User Name', 'User Email', 'Licensed Product', 'License Expiration Date', 'License Expired?', 'Last Login');
+    $fields = array('User Name', 'User Email', 'Licensed Product', 'License Expiration Date', 'License Expired?', 'License Type', 'Last Activity', 'Days Since Activity');
     fputcsv($f, $fields, $delimiter);
 	$counter = 0;
 	foreach ( $result as $page )
 			{	
 			   $userData = get_userdata($page->ID);
-			   $lastLogin = array_values($userData->session_tokens);
+			   if (get_user_meta($page->ID, '_last_activity', true)) {
+					$lastLogin = get_user_meta($page->ID, '_last_activity', true);
+				} else {
+					$lastLogin = get_user_meta($page->ID, 'wfls-last-login', true);
+				}
 			   $accountType = array_keys($userData->wetstone_wp_capabilities);
-				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin[0]['login']); 
+			   
+			   $now = time();
+			   $daysDiff = $now - $lastLogin;
+			   
+			   if (round($daysDiff / (60*60*24)) > 18695) {
+			    $daysSince =  "Not Recorded";
+			   } else {
+				$daysSince =  round($daysDiff / (60*60*24));
+			   }
+			   
+			   
+				if ($lastLogin) {   $lastLogin = date("Y-m-d H:i:s",$lastLogin); 
 				} else { $lastLogin = "Not Recorded"; }
 				
 			   $arrayValues = array_values($userData->wetstone_products);
@@ -687,6 +705,7 @@ function wetstone_post_download_user_csv() {
 			   if ($accountType[0] != 'administrator') {
 				  for ($x = 0; $x< count($arrayKeys); $x++) {
 						$licensedProducts = "";
+						$licenseType = "";
 						$expirations = "";
 						$expired = "";
 						
@@ -699,8 +718,9 @@ function wetstone_post_download_user_csv() {
 					   $licensedProducts = str_replace("™","",$exploded[0]);
 					   $licensedProducts = str_replace("&#8211;","",$licensedProducts);
 					   $expirations = $arrayValues[$x]['expiry'];
+					   $licenseType = $arrayValues[$x]['license_type'];
 				   
-						$lineData = array($userData->first_name . ' ' . $userData->last_name, $userData->user_email,$licensedProducts, $expirations, $expired, $lastLogin);
+						$lineData = array($userData->first_name . ' ' . $userData->last_name, $userData->user_email,$licensedProducts, $expirations,  $expired, $licenseType, $lastLogin, $daysSince);
 						fputcsv($f, $lineData, $delimiter);
 				   } 
 			   }

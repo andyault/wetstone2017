@@ -296,10 +296,36 @@ function wetstone_form_make_checkboxes($name, $label, $options, $required = fals
 
 	ob_start();
 	?>
+	<script>
+       function deRequireCb(elClass) {
+            el=document.getElementsByName(elClass);
 
+            var atLeastOneChecked=false;//at least one cb is checked
+            for (i=0; i<el.length; i++) {
+                if (el[i].checked === true) {
+                   atLeastOneChecked=true;
+                }
+            }
+
+            if (atLeastOneChecked === true) {
+                for (i=0; i<el.length; i++) {
+                    el[i].required = false;
+                }
+            } else {
+                for (i=0; i<el.length; i++) {
+                    el[i].required = true;
+                }
+            }
+        }
+    </script>
 	<div class="form-checkboxes">
 		<div class="form-label">
-			<?php if($required) echo '<i class="req">*</i>'; ?>
+			<?php $rq = '';
+				  if($required) {
+					  $rq = 'required';
+					  echo '<i class="req">*</i>'; 
+				  }
+				  ?>
 			<?php echo $label; ?>
 		</div>
 
@@ -308,7 +334,7 @@ function wetstone_form_make_checkboxes($name, $label, $options, $required = fals
 				//1: name, 2: value, 3: input type
 				echo sprintf(
 					'<label class="form-label">
-						<input type="%3$s" name="%1$s" value="%2$s">
+						<input type="%3$s" name="%1$s"'. $rq .' value="%2$s" onclick="deRequireCb(\'%1$s\')">
 						%2$s
 					</label><br />',
 

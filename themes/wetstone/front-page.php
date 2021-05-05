@@ -3,21 +3,103 @@
 
 	$err = 'Your browser does not support the video tag, please update your browser to view content.';
 ?>
+<style>
+* {
+  box-sizing: border-box;
+}
 
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+}
+
+
+.boxX {
+	width:80%;
+	max-width:650px;
+	height:auto;
+	margin:0 auto;	
+	display:flex;
+	flex-wrap:wrap;
+}
+
+
+.columnX {
+  padding: 10px;
+  display: flex;
+  flex:66%
+}
+
+
+.iconX {
+  float: left;
+  flex:33%
+}
+
+@media (max-width: 300px) {
+  .columnX, .iconX {
+    flex: 100%;
+  }
+}
+
+</style>
 <section class="hero fullpage fullpage-hero" style="background-image: url(<?php echo wetstone_get_asset('/img/background/solid.png'); ?>);">
 				 <center>
 				 <img class="hero-logo" src="<?php echo wetstone_get_asset('/img/biglogo.png'); ?>" alt="WetStone Technologies: A division of Allen Corporation" style="width:100%; max-width:448px; height:auto; padding-bottom:60px;"><br />
-				 <p>WetStone is an industry leader in cyber security services and computer forensics solutions.</p>
-				 <div style="position:relative; overflow:hidden; padding-top:56.25%;">				 
-				 <iframe style="position:absolute; top:0px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>				
-				</div>
-				<p>WetStone is one of McAfee's highest rated professional services partners.</p>
-				<div style="position:relative; overflow:hidden; padding-top:56.25%;">
-				 <iframe style="position:absolute; top:0px; left:14%; width:80%; height:80%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/415135655" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+				 <div class="boxX" style="background-color: #1fb04c;">
+					<div class="iconX">
+						<a href="https://www.wetstonetech.com/dfir"class="link link-body" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/03/dfir_green.png" border="0"/></a>
+					</div>
+					<div class="columnX">
+						<div>
+						<strong><a href="https://www.wetstonetech.com/dfir"class="link link-body" style="font-size: 18px; color:white" target="_blank">WetStone Forensic Software</strong><br /><br />
+						<p style="font-size: 16px; color:white">WetStone is an industry leader in cyber security services and computer forensics solutions.</p><p style="text-decoration:underline;">Click to learn more</p></a>
+						</div>
+					</div>
 				
 				</div>
+				<br /><br />
+				 <div class="embed-container">					 
+				 <iframe style="position:absolute; top:0px; left:14%; width:74%; height:74%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/411007100" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>				
+				</div>
 				
-				</center>				 
+				<br /><br />
+				<p></p>
+				<div class="boxX" style="background-color: #d21302;">
+					<div class="iconX">
+						<a href="https://www.wetstonetech.com/mcafee"class="link link-body" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/03/mcafee_red.png" border="0"/></a>
+					</div>
+					<div class="columnX">
+						<div>
+						<strong><a href="https://www.wetstonetech.com/mcafee"class="link link-body" style="font-size: 18px; color:white" target="_blank">McAfee Solutions and Services</strong><br /><br />
+						<p style="font-size: 16px; color:white">WetStone is one of McAfee's highest rated professional services partners.</p><p style="text-decoration:underline;">Click to learn more</p></a>
+						</div>
+					</div>
+				</div>
+				<br /><br />
+				<div class="embed-container">
+				 <iframe style="top:0px; left:14%; width:74%; height:74%; border:0;" id="vimeoVideoPlayer" src="https://player.vimeo.com/video/415135655" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+				</div>
+
+				
+				
+				
+				</center>		
+<br /><br />				
 </section>
 
 <section id="about" class="about-preview">

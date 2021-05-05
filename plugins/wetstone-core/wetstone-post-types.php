@@ -61,6 +61,22 @@ function wetstone_register_post_types() {
 		'taxonomies'  => ['category'],
 		'has_archive' => true
 	]);	
+
+	//mcafee
+	register_post_type('mcafee', [
+		'public'     => true,
+		'labels'     => [
+			'name'          => 'McAfee', 
+			'singular_name' => 'McAfee', 
+			'add_new_item'  => 'Add McAfee Page',
+			'edit_item'     => 'Edit McAfee Page',
+			'new_item'      => 'New McAfee Page',
+			'view_item'     => 'View McAfee Page'
+		],
+		'supports'   => ['title', 'editor', 'excerpt', 'page-attributes'],
+		'taxonomies'  => ['category'],
+		'has_archive' => false
+	]);	
 	
 }
 

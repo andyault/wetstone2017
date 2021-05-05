@@ -11,7 +11,7 @@
 <div style="position: relative; width: 80%; left: 12%;">
 <p style="font-size: 14px;">Ken McCray, McAfee's Head of Channel Sales and Operations, discusses the WetStone team and the high standards McAfee demands from its Service Delivery Providers.</p>
 
-
+<img src="https://www.wetstonetech.com/wp-content/uploads/2021/03/banner_01.png" width="1" height="1" alt="McAfee Solutions and Services Presented by Wetstone" title="McAfee Solutions and Services Presented by Wetstone"/>
 <style>
 * {
   box-sizing: border-box;
@@ -36,7 +36,7 @@
 	width:75%;
 	max-width:600px;
 	height:auto;
-	background-color: #1fb04c;
+	background-color: #d21302;
 	margin:0 auto;	
 	display:flex;
 	flex-wrap:wrap;
@@ -81,49 +81,49 @@
 	<div class="boxW">
   <div class="icons"> <a href="https://www.wetstonetech.com/service/mcafee-solution-services-training/"class="link link-body" style="font-size: 16px;" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/mcafee_training.png" border="0"/></a></div>
   <div class="column" >
-       <a href="https://www.wetstonetech.com/service/mcafee-solution-services-training/"class="link link-body" style="font-size: 16px;" target="_blank">McAfee Training</a>
+       <a href="https://www.wetstonetech.com/service/mcafee-solution-services-training/"class="link link-body" style="font-size: 16px; color: #d21302;" target="_blank">McAfee Training</a>
 <p style="font-size: 16px;">Instructional content and mentoring sessions delivered by McAfee certified subject matter experts </p>
   </div>  
   </div>
   <div class="boxW">
 	<div class="icons"> <a href="https://www.wetstonetech.com/service/mcafee-professional-services/"class="link link-body" style="font-size: 16px;" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/mcafee_serevices.png" border="0"/></a></div>
   <div class="column">
-    <a href="https://www.wetstonetech.com/service/mcafee-professional-services/"class="link link-body" style="font-size: 16px;" target="_blank">McAfee Services</a>
+    <a href="https://www.wetstonetech.com/service/mcafee-professional-services/"class="link link-body" style="font-size: 16px; color: #d21302;" target="_blank">McAfee Services</a>
 <p style="font-size: 16px;">McAfee professional services delivered by experienced subject matter experts across the entire spectrum of McAfee solutions.</p>
   </div>
     </div>
   <div class="boxW">
 <div class="icons"> <a href="https://www.wetstonetech.com/products/mcafee-products/"class="link link-body" style="font-size: 16px;" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/mcafee_solutions.png" border="0"/></a></div>
   <div class="column" >
-   <a href="https://www.wetstonetech.com/products/mcafee-products/"class="link link-body" style="font-size: 16px;" target="_blank">McAfee Solutions</a>
+   <a href="https://www.wetstonetech.com/products/mcafee-products/"class="link link-body" style="font-size: 16px; color: #d21302;" target="_blank">McAfee Solutions</a>
 <p style="font-size: 16px;">McAfee products for protecting the critical IT assets of an enterprise.</p>
   </div>
     </div>
   <div class="boxW">
 <div class="icons"> <a href="https://www.wetstonetech.com/service/mcafee-healthcheck-services/"class="link link-body" style="font-size: 16px;" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/health_checks.png" border="0"/></a></div>
   <div class="column" >
-    <a href="https://www.wetstonetech.com/service/mcafee-healthcheck-services/"class="link link-body" style="font-size: 16px;" target="_blank">McAfee Health Checks</a>
+    <a href="https://www.wetstonetech.com/service/mcafee-healthcheck-services/"class="link link-body" style="font-size: 16px; color: #d21302;" target="_blank">McAfee Health Checks</a>
 <p style="font-size: 16px;">Services designed to review an existing McAfee environment for proper operation and conformance with best practices.</p>
   </div>
     </div>
   <div class="boxW">
 <div class="icons"> <a href="https://www.wetstonetech.com/service/quick-start-solution-services/"class="link link-body" style="font-size: 16px;" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/quick_starts.png" border="0"/></a></div>
    <div class="column" >
-    <a href="https://www.wetstonetech.com/service/quick-start-solution-services/"class="link link-body" style="font-size: 16px;" target="_blank">McAfee Quick Starts</a>
+    <a href="https://www.wetstonetech.com/service/quick-start-solution-services/"class="link link-body" style="font-size: 16px; color: #d21302;" target="_blank">McAfee Quick Starts</a>
 <p style="font-size: 16px;">Cost-effective remote services designed to get a McAfee product deployed efficiently and in accordance with best practices. </p>
   </div>
     </div>
   <div class="boxW">
   <div class="icons"> <a href="https://www.wetstonetech.com/service/mcafee-managed-services/"class="link link-body" style="font-size: 16px;" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/managed_services.png" border="0"/></a></div>
    <div class="column" >
-    <a href="https://www.wetstonetech.com/service/mcafee-managed-services/"class="link link-body" style="font-size: 16px;" target="_blank">McAfee Managed Services</a>
+    <a href="https://www.wetstonetech.com/service/mcafee-managed-services/"class="link link-body" style="font-size: 16px; color: #d21302;" target="_blank">McAfee Managed Services</a>
 <p style="font-size: 16px;">Deployment services and on-going management of McAfee Security products.</p>
   </div>
     </div>
 	<div class="longBox">
 	<div class="boxX">
 		<div class="iconX">
-			<a href="https://video.wetstonetech.com/video-categories/mcafee-solutions/"class="link link-body" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/02/video_library.png" border="0"/></a>
+			<a href="https://video.wetstonetech.com/video-categories/mcafee-solutions/"class="link link-body" target="_blank"><img src="https://www.wetstonetech.com/wp-content/uploads/2021/03/red_banner.png" border="0"/></a>
 		</div>
 		<div class="columnX">
 			<div>

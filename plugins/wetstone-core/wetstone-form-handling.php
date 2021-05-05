@@ -125,10 +125,10 @@ add_action('admin_post_nopriv_wetstone-request-form', 'wetstone_post_request_for
 
 
 // BETA SIGNUP FORM -------------------------------------
-function wetstone_mp_beta_form() {
+function wetstone_stegocommand_data_screening_white_paper_form() {
 	
-		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-mp-beta'))
-			return wp_nonce_ays('wetstone-mp-beta');		
+		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-stegocommand-data-screening-white-paper'))
+			return wp_nonce_ays('wetstone-stegocommand-data-screening-white-paper');		
 		
 		//sanitize inputs
 		$data = wetstone_sanitize_post([
@@ -157,8 +157,9 @@ function wetstone_mp_beta_form() {
 		$fields .= wetstone_columnify($data);
 
 		$fullName = $data['fname'] . ' ' . $data['lname'];
+		$wsSubject = "StegoCommand Data Screening White Paper Request - " . $fullName;
 
-		if(wetstone_send_mail2($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
+		if(wetstone_send_mail2($wsSubject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
 			wp_redirect(get_permalink(get_page_by_path('thank-you')));
 		else {
 
@@ -168,11 +169,25 @@ function wetstone_mp_beta_form() {
 			//go back to form with old data
 			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
 		}
+		
+		
+		$customerBody = "Hello " . $data['fname'] . ", <br /><br /> Thank you for your interest in WetStone Technologies' StegoCommand Data Screening White Paper.  Please click the link below to download your copy.<br /><br /><a href='https://www.wetstonetech.com/stegocommand-data-screening-download/'>StegoCommand White Paper - Steganographic Content Screening of External Data Feeds</a><br /></br />If you have any questions, please reach out to sales@wetstonetech.com or call us at 1-844-4-WETSTN.<br /><br />Thank you,<br />WetStone Technolgies";
+		
+		if(wetstone_send_mail3($subject, $fullName, $data['email'], $customerBody))
+			wp_redirect(get_permalink(get_page_by_path('thank-you-cs')));
+		else {
+
+			//add error
+			$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+		}		
 	}
 }
 
-add_action('admin_post_wetstone-mp-beta', 'wetstone_mp_beta_form');
-add_action('admin_post_nopriv_wetstone-mp-beta', 'wetstone_mp_beta_form');
+add_action('admin_post_wetstone-stegocommand-data-screening-white-paper', 'wetstone_stegocommand_data_screening_white_paper_form');
+add_action('admin_post_nopriv_wetstone-stegocommand-data-screening-white-paper', 'wetstone_stegocommand_data_screening_white_paper_form');
 
 // DEMO SIGNUP FORM -------------------------------------
 function wetstone_mp_demo_form() {
@@ -224,6 +239,59 @@ function wetstone_mp_demo_form() {
 
 add_action('admin_post_wetstone-mp-demo', 'wetstone_mp_demo_form');
 add_action('admin_post_nopriv_wetstone-mp-demo', 'wetstone_mp_demo_form');
+
+// SAIS CONTACT FORM -------------------------------------
+function wetstone_sais_contact_form() {
+	
+		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-sais-contact'))
+			return wp_nonce_ays('wetstone-sais-contact');		
+		
+		//sanitize inputs
+		$data = wetstone_sanitize_post([
+			'subject', 'fname', 'lname', 'company', 'jobtitle', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
+			'zip', 'country', 'products', 'interests', 'comments', 'mtcaptcha-verifiedtoken'
+		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
+
+		//turn into pretty table
+		$emailWidth = wetstone_get_option('form_handling', 'email_width');
+
+		$subject = wetstone_pop_value($data, 'subject');
+
+		$fields = '<pre>';
+		$fields .= wetstone_columnify($data);
+
+		$fullName = $data['fname'] . ' ' . $data['lname'];
+
+		if(wetstone_send_mail2($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
+			wp_redirect(get_permalink(get_page_by_path('thank-you')));
+		else {
+
+			//add error
+			$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+		}
+		}
+}
+
+add_action('admin_post_wetstone-sais-contact', 'wetstone_sais_contact_form');
+add_action('admin_post_nopriv_wetstone-sais-contact', 'wetstone_sais_contact_form');
+
+
 
 //  resell form
 function wetstone_post_resell_form() {
@@ -513,7 +581,30 @@ function wetstone_send_mail2($subject, $fromName, $fromAddress, $body) {
 		$fromName = wetstone_get_option('form_handling', 'default_name');
 
 	//$toHeader = 'To: Sales Support <wconklin@allencorp.com>,';
-	$acatoo = 'wconklin@allencorporation.com,agulini@allencorporation.com,gbarron@allencorporation.com';
+	$acatoo = 'wconklin@allencorporation.com, sales@wetstonetech.com';
+	//email headers
+	$headers = [
+		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),
+		//sprintf('From: %s via Contact Form <%s>', $fromName, $fromAddress),
+		//sprintf('Reply-to: %s <%s>', $fromName, $fromAddress),
+		//substr($toHeader, 0, -1),
+		'Content-Type: text/html; charset=UTF-8'
+	];
+	
+	return wp_mail(
+		$acatoo,
+		$subject,
+		$body,
+		$headers
+	);
+}
+
+function wetstone_send_mail3($subject, $fromName, $fromAddress, $body) {
+	if(!isset($fromName) || empty($fromName))
+		$fromName = wetstone_get_option('form_handling', 'default_name');
+
+	//$toHeader = 'To: Sales Support <wconklin@allencorp.com>,';
+	$acatoo = $fromAddress;
 	//email headers
 	$headers = [
 		//'Sender: ' . wetstone_get_option('form_handling', 'sender_email'),

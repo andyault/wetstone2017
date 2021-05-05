@@ -34,52 +34,16 @@
 		</tr>
 
 		<tr>
-			<td>
-
-			
-				<?php
-					echo wetstone_form_make_select(
-						'product', 
-						'Which product are you having issues with?', 
-						$products
-					);
-				?>
-			</td>
-
-			<td>
-				<?php
-					echo wetstone_form_make_select(
-						'context',
-						'What type of problem are you having?',
-
-						[
-							'Technical problems',
-							'Unable to activate product',
-							'Other (please specify in comments)'
-						]
-					);
-				?>
-			</td>
-		</tr>
-
-		<tr>
 			<td colspan="2">
-				<?php
-					echo wetstone_form_make_textarea(
-						'comments',
-						'Please describe any problems you are having',
-						'I\'m having issues with...',
-						true
-					);
-				?>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="table-footer">
-				<div class="inline-flex">
-					<button type="reset" class="form-reset link link-button link-button-input link-button-grey">Reset</button>
-					<button type="submit" class="link link-button link-button-input">Submit</button>
-				</div>
+				<!-- BEGIN Podio web form -->
+				<script src="https://podio.com/webforms/16859089/1133593.js"></script>
+				<script type="text/javascript">
+				  _podioWebForm.render("1133593")
+				</script>
+				<noscript>
+				  <a href="https://podio.com/webforms/16859089/1133593" target="_blank">Please fill out the form</a>
+				</noscript>
+				<!-- END Podio web form -->
 			</td>
 		</tr>
 	</table>

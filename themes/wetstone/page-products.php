@@ -56,6 +56,15 @@
 
 		$other = wetstone_pop_value($grouped, 'Uncategorized');
 		$grouped['Other Products'] = $other;
+		
+		function moveElement(&$array, $a, $b) {
+			$p1 = array_splice($array, $a, 1);
+			$p2 = array_splice($array, 0, $b);
+			$array = array_merge($p2,$p1,$array);
+		}
+
+		moveElement($grouped, 5, 2);
+		
 
 		//for each cat, spit out a header and our products
 		foreach($grouped as $group => $posts) { ?>
@@ -77,6 +86,7 @@
 				?>
 			</div>
 		<?php }
+	//print_r($grouped);
 	?>
 </section>
 

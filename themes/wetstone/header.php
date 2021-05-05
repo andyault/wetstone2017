@@ -100,7 +100,6 @@
 								
 								return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
-
 								get_the_permalink(),
 								$activeClass,
 								$exTitle[0]
@@ -109,15 +108,20 @@
 						} else if ($id == 1394) {
 							return sprintf(
 								'<a href="https://video.wetstonetech.com/categories/" target="blank" class="header-link link link-header-site %s">%s</a>', 
-
 								$activeClass,
 								get_the_title()
+							);
+						} else if ($id == 2457) {
+							return sprintf(
+								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
+								get_the_permalink(),
+								$activeClass,
+								'McAfee'
 							);
 						} else {
 							$exTitle = explode(": ", get_the_title());
 							return sprintf(
 								'<a href="%s" class="header-link link link-header-site %s">%s</a>', 
-
 								get_the_permalink(),
 								$activeClass,
 								$exTitle[0]

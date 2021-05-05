@@ -45,7 +45,7 @@
 						'subject' => strtolower(get_the_title()),
 						'context' => strtolower($label)
 					],
-					get_permalink(get_page_by_path('/contact'))
+					get_permalink(get_page_by_path('/about-us/contact'))
 				)),
 				'Inquire about this ' . $label
 			);
