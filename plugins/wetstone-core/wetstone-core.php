@@ -543,11 +543,12 @@ function ws_inactive_users_page() {
 						padding: 10px;
 						color: white;">
 					<tr>
-						<th scope="col" style="text-align:left; padding: 10px;">User Name</th>
+						<th scope="col" style="text-align:left; padding: 10px;">User Name</th>						
 						<th scope="col" style="text-align:left; padding: 10px;">User Email</th>
+						<th scope="col" style="text-align:left; padding: 10px;">Reseller</th>
 						<th scope="col" style="text-align:left; padding: 10px;">Licensed Products</th>
 						<th scope="col" style="text-align:left; padding: 10px;">License Expiration</th>
-						<th scope="col" style="text-align:left; padding: 10px;">License Type</th>
+						<th scope="col" style="text-align:left; padding: 10px;">License Type</th>						
 						<th scope="col" style="text-align:left; padding: 10px;">Last Activity</th>
 						<th scope="col" style="text-align:left; padding: 10px;">Days Since Last Activity</th>
 					</tr>
@@ -578,12 +579,14 @@ function ws_inactive_users_page() {
 			   
 			   
 			   
+			   
 			   for ($x = 0; $x< count($arrayKeys); $x++) {
 				   $exploded = explode(": ",get_the_title($arrayKeys[$x]));				   				   
 				   if (strtotime($arrayValues[$x]['expiry']) < time()) { $expired = "<span style='color:red; font-weight:bold;'> - Expired</span>"; }
 				   $licensedProducts .= $exploded[0] . "<br />";
 				   $expirations .= $arrayValues[$x]['expiry'] . $expired ."<br />";
 				   $licenseType .= $arrayValues[$x]['license_type']."<br />";
+				   
 			   
 			   
 			   }
@@ -603,9 +606,10 @@ function ws_inactive_users_page() {
 			   $aca_table2 .= '<tr style="background-color:#ddd">';}
 			   $aca_table2 .= "	<th scope='row' style='text-align:left; padding: 10px;'>". $userData->first_name . " " . $userData->last_name . "</th>
 								<td style='text-align:left; padding: 10px;'>". $userData->user_email . "</td>
+								<td style='text-align:left; padding: 10px;'>". get_user_meta($page->ID, 'wetstone_resell_company', true) . "</td>
 								<td style='text-align:left; padding: 10px;'>". $licensedProducts . "</td>
 								<td style='text-align:left; padding: 10px;'>". $expirations . "</td>
-								<td style='text-align:left; padding: 10px;'>". $licenseType . "</td>
+								<td style='text-align:left; padding: 10px;'>". $licenseType . "</td>								
 								<td  style='text-align:left; padding: 10px;'>". $lastLogin . "</td>
 								<td  style='text-align:left; padding: 10px;'>". $daysSince . "</td>
 							  </tr>";		   
@@ -673,7 +677,7 @@ function wetstone_post_download_user_csv() {
     $f = fopen('php://memory', 'w');
     
     //set column headers
-    $fields = array('User Name', 'User Email', 'Licensed Product', 'License Expiration Date', 'License Expired?', 'License Type', 'Last Activity', 'Days Since Activity');
+    $fields = array('User Name', 'User Email', 'Reseller', 'Licensed Product', 'License Expiration Date', 'License Expired?', 'License Type', 'Last Activity', 'Days Since Activity');
     fputcsv($f, $fields, $delimiter);
 	$counter = 0;
 	foreach ( $result as $page )
@@ -685,7 +689,7 @@ function wetstone_post_download_user_csv() {
 					$lastLogin = get_user_meta($page->ID, 'wfls-last-login', true);
 				}
 			   $accountType = array_keys($userData->wetstone_wp_capabilities);
-			   
+			   $reseller = get_user_meta($page->ID, 'wetstone_resell_company', true);
 			   $now = time();
 			   $daysDiff = $now - $lastLogin;
 			   
@@ -720,7 +724,7 @@ function wetstone_post_download_user_csv() {
 					   $expirations = $arrayValues[$x]['expiry'];
 					   $licenseType = $arrayValues[$x]['license_type'];
 				   
-						$lineData = array($userData->first_name . ' ' . $userData->last_name, $userData->user_email,$licensedProducts, $expirations,  $expired, $licenseType, $lastLogin, $daysSince);
+						$lineData = array($userData->first_name . ' ' . $userData->last_name, $userData->user_email, $reseller, $licensedProducts, $expirations,  $expired, $licenseType, $lastLogin, $daysSince);
 						fputcsv($f, $lineData, $delimiter);
 				   } 
 			   }
