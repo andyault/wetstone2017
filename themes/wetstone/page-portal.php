@@ -85,7 +85,6 @@ function changed(thisVal, thisID) {
 } 
 
 </script>
-
 <div class="modal" id="modal1" data-animation="slideInOutLeft">
   <div class="modal-dialog">
     <header class="modal-header">

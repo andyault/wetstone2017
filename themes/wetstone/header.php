@@ -92,7 +92,7 @@
 						$isActive = is_page($id) || $page->post_parent == $id;
 						$activeClass = $isActive ? 'active' : '';
 
-						if ($id >= 612 && $id <= 634 || $id == 1054 || $id == 116 || $id == 1815 || $id == 1667 || $id == 1807) { // IDs of unwanted product in Header
+						if ($id >= 612 && $id <= 634 || $id == 1054 || $id == 116 || $id == 1815 || $id == 1667 || $id == 1807 || $id == 2514) { // IDs of unwanted product in Header
 							
 							
 							if ($id == 633) {
