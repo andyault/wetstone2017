@@ -147,6 +147,39 @@ function wetstone_form_make_input_emailone($name, $type, $label, $placeholder, $
 		);
 }
 
+function wetstone_form_make_input_emaildemo($name, $type, $label, $placeholder, $required = false, $attrs = []) {
+	if($required) {
+		$label = '<i class="req">*</i> ' . $label;
+		$required = 'required';
+	} else
+		$required = '';
+
+	//mostly only used for input size
+	$attrStr = '';
+
+	foreach($attrs as $key => $val)
+		$attrStr .= sprintf('%s="%s" ', $key, $val);		
+
+		//1: label, 2: type, 3: name, 4: placeholder, 5: attributes, 6: required
+		return sprintf(
+			'<label class="form-label" id="%sID">
+				%s: <span style="font-size:11px"> NOTE: Company/Organization email is required.</span>
+				<input id="email1Val" type="%s" name="%s" placeholder="%s" class="form-input" %s %s onfocusout="validateEmail();">
+			</label>
+			<i class="select-symbol" id="%sCH"></i>',
+			
+			$name,	
+			$label,
+			$type,
+			$name,
+			$placeholder,
+			$attrStr,
+			$required,
+			$name
+		
+		);
+}
+
 function wetstone_form_make_input_emailtwo($name, $type, $label, $placeholder, $required = false, $attrs = []) {
 	if($required) {
 		$label = '<i class="req">*</i> ' . $label;

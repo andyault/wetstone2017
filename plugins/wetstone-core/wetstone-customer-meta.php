@@ -171,12 +171,18 @@ function wetstone_echo_customer_form_fields($userId = null) {
 										<select name="product[<?php echo $pid ?>][license_type]" value="<?php echo $type; ?>" disabled>
 											
 										<?php 	
-											if ($pid == 1815) { ?>
+											if ($pid == 1815 || $pid == 1054) { //special dropdown cases
+												if ($pid == 1815) { 		
+												?>
 											<option value="None" <?php if($type == null || $type == '' || $type == 'None') echo 'selected'; ?>>None</option>
 											<option value="Authorized" <?php if($type == 'Authorized') echo 'selected'; ?>>Authorized</option>
 											<option value="Silver" <?php if($type == 'Silver') echo 'selected'; ?>>Silver</option>
 											<option value="Gold" <?php if($type == 'Gold') echo 'selected'; ?>>Gold</option>
-												
+												<?php } else { ?>
+													<option value="None" <?php if($type == 'None') echo 'selected'; ?>>None</option>
+												<?php
+													}
+													?>
 											<?php } else { ?>
 												<?php 	
 													if ($pid == 115 || $pid == 633 || $pid == 634 || $pid == 1807 ) { ?>

@@ -740,6 +740,17 @@ function wetstone_post_download_user_csv() {
     fpassthru($f);
 }	
 
+function no_frame_headers()
+{
+    header( "X-Frame-Options: SAMEORIGIN", true );
+    header( "Content-Security-Policy: frame-ancestors 'self'", true );
+}
+
+add_action( 'login_init',        'no_frame_headers', 1000 );
+add_action( 'admin_init',        'no_frame_headers', 1000 );
+add_action( 'template_redirect', 'no_frame_headers', 1000 );
+
+
 add_action('admin_post_wetstone-download-user-csv', 'wetstone_post_download_user_csv');
 
 //include modules

@@ -1,16 +1,16 @@
 
 
 <form name="mp-demo" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="form">
-	<input type="hidden" name="action" value="wetstone-mp-demo">
-	<?php wp_nonce_field('wetstone-mp-demo'); ?>
+	<input type="hidden" name="action" value="wetstone-stegohuntmp-demo">
+	<?php wp_nonce_field('wetstone-stegohuntmp-demo'); ?>
 
-	<input type="hidden" name="subject" value="Gargoyle MP DEMO Request">
+	<input type="hidden" name="subject" value="StegoHunt MP DEMO Request">
 
 	<table class="form-table form-table-collapse">
 		<tr>
 			<td colspan="2" class="text-center">
-			Please complete the form below to request your 10 day trial.<br />
-			<p style="font-size:11px; font-weight: bold; color:#FF0000">Note: Trial applications are handled manually, please allow time for application to be processed.</p> 				
+			Please complete the form below to request your 10 day demo.<br />
+			<p style="font-size:11px; font-weight: bold; color:#FF0000">Note: Demo applications are handled manually, please allow time for application to be processed.</p> 				
 			Fields marked with <i class="req">*</i> are required.</td>
 		</tr>
 

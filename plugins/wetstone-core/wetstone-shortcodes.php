@@ -312,7 +312,7 @@ function display_GMP2($atr){
 		
 		echo $aca_table;
 		
-		for ($aca_i = 0; $aca_i < 2; $aca_i++) {
+		for ($aca_i = 0; $aca_i < 3; $aca_i++) {
 			$aca_header = explode("_",$datasetFiles[$aca_i]);			
 			$result = getResults($datasetFiles[$aca_i]);
 			$result2 = getResults($pdfEngFiles[$aca_i]);

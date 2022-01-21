@@ -3,9 +3,9 @@
 	<?php 
 	$exTitle = explode(": ", get_the_title($post->ID));
 	if ($post->ID == 633 || $post->ID == 634 || $post->ID == 1054) {
-		echo $exTitle[0] . " 7.4";
+		echo $exTitle[0] . " 7.4.1";
 	} elseif ($post->ID == 1807 || $post->ID == 115) {
-		echo $exTitle[0] . " 7.1.2";
+		echo $exTitle[0] . " 7.1.3";
 	} else {
 	echo $exTitle[0];
 	

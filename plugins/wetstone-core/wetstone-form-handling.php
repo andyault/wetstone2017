@@ -240,6 +240,58 @@ function wetstone_mp_demo_form() {
 add_action('admin_post_wetstone-mp-demo', 'wetstone_mp_demo_form');
 add_action('admin_post_nopriv_wetstone-mp-demo', 'wetstone_mp_demo_form');
 
+// DEMO SIGNUP FORM -------------------------------------
+function wetstone_stegohuntmp_demo_form() {
+	
+		if(!wp_verify_nonce($_POST['_wpnonce'], 'wetstone-stegohuntmp-demo'))
+			return wp_nonce_ays('wetstone-stegohuntmp-demo');		
+		
+		//sanitize inputs
+		$data = wetstone_sanitize_post([
+			'subject', 'fname', 'lname', 'company', 'website', 'phone', 'email', 'address1', 'address2', 'city', 'state', 
+			'zip', 'country', 'mtcaptcha-verifiedtoken'
+		]);
+				
+		$captcha = file_get_contents("https://service.mtcaptcha.com/mtcv1/api/checktoken?privatekey=MTPrivat-VwYnY8ywe-qCvwFNh7hRhZfxoT3kWZgkOxItHxkd42vvHH9sK1i4WG9OGtOM&token=".$data['mtcaptcha-verifiedtoken']);
+		
+		$captchaJson = json_decode($captcha);
+
+		if($captchaJson->{'success'} != 1) {
+			
+			$data['errmsg'] = 'Please ensure the Captcha is completed';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+			
+		} else {
+
+		//turn into pretty table
+		$emailWidth = wetstone_get_option('form_handling', 'email_width');
+
+		$subject = wetstone_pop_value($data, 'subject');
+
+		$fields = '<pre>';
+		$fields .= wetstone_columnify($data);
+
+		$fullName = $data['fname'] . ' ' . $data['lname'];
+
+		if(wetstone_send_mail2($subject, $fullName, $data['email'], wordwrap($fields, $emailWidth)))
+			wp_redirect(get_permalink(get_page_by_path('thank-you')));
+		else {
+
+			//add error
+			$data['errmsg'] = 'Unable to send email - possible server error. Please wait and try again.';
+
+			//go back to form with old data
+			wp_safe_redirect(wp_get_referer() . '?' . http_build_query($data));
+		}
+		}
+}
+
+add_action('admin_post_wetstone-stegohuntmp-demo', 'wetstone_stegohuntmp_demo_form');
+add_action('admin_post_nopriv_wetstone-stegohuntmp-demo', 'wetstone_stegohuntmp_demo_form');
+
+
 // SAIS CONTACT FORM -------------------------------------
 function wetstone_sais_contact_form() {
 	
